@@ -273,7 +273,7 @@ const CONTENT = {
         "Conscioustravel.id adalah travel partner untuk company outing, daily trip, dan pengalaman perjalanan yang lebih bermakna di Bali.",
       legal: "PT Wisata Perjalanan Bermakna",
       address: "GG Mangga no.16 Pemecutan Klod, Denpasar Barat, Denpasar, Bali",
-      whatsapp: "085155202123",
+      whatsapp: "085195559749",
       copyright: "© 2025 Conscioustravel.id — PT Wisata Perjalanan Bermakna",
     },
   },
@@ -552,14 +552,14 @@ const CONTENT = {
         "Conscioustravel.id is a travel partner for company outings, daily trips, and more meaningful travel experiences in Bali.",
       legal: "PT Wisata Perjalanan Bermakna",
       address: "GG Mangga no.16 Pemecutan Klod, Denpasar Barat, Denpasar, Bali",
-      whatsapp: "085155202123",
+      whatsapp: "085195559749",
       copyright: "© 2025 Conscioustravel.id — PT Wisata Perjalanan Bermakna",
     },
   },
 };
 
 const CONFIG = {
-  whatsappUrl: "https://wa.me/6285155202123",
+  whatsappUrl: "https://wa.me/6285195559749",
   googleReviewUrl: "https://g.page/r/CaDYluc5v2nQEAE/review",
   instagramUrl: "https://www.instagram.com/conscioustravel.id/",
   instagramHandle: "@conscioustravel.id",
