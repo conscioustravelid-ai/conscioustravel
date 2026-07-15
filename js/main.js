@@ -435,7 +435,7 @@ function bindInteractions() {
 }
 
 // ---- APPS SCRIPT ENDPOINT ----
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby30c9rsnfcolppaKhOV9dSqRj78UXIxDkuno_7BWiEw6Ot38vzA5R7tQjioE-VhG0RSA/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxKd47fISNwfTp0VUazWU5SUCbSxriLxU_8LSsnk-cJpm7KlFhH6OShrrUhM_pQqGP0fA/exec";
 
 // ---- FORM SUBMIT ----
 function handleFormSubmit(e) {
