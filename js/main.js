@@ -49,7 +49,9 @@ function renderNav() {
   const linksEl = document.getElementById("nav-links");
   const mobileEl = document.getElementById("mobile-menu");
   const ctaEl = document.getElementById("nav-cta");
-  const mobileCtaEl = document.getElementById("mobile-cta");
+  const navWaMsg = currentLang === 'id'
+    ? "Halo Conscioustravel, saya ingin tanya paket trip / outing di Bali. Bisa dibantu rekomendasinya?"
+    : "Hi Conscioustravel, I'd like to ask about trip / outing packages in Bali. Could you help?";
 
   if (linksEl) {
     linksEl.innerHTML = c.links.map(l =>
@@ -58,9 +60,7 @@ function renderNav() {
   }
   if (ctaEl) {
     ctaEl.textContent = c.cta;
-    ctaEl.href = waLink(CONTENT[currentLang].hero.primaryCta === "Diskusi via WhatsApp"
-      ? "Halo Conscioustravel, saya ingin tanya paket trip / outing di Bali. Bisa dibantu rekomendasinya?"
-      : "Hi Conscioustravel, I'd like to ask about trip / outing packages in Bali. Could you help?");
+    ctaEl.href = waLink(navWaMsg);
   }
   if (mobileEl) {
     mobileEl.innerHTML = c.links.map(l =>
@@ -69,11 +69,8 @@ function renderNav() {
       `<div class="mobile-lang">
         <button class="lang-btn ${currentLang === 'id' ? 'active' : ''}" data-lang="id">ID</button>
         <button class="lang-btn ${currentLang === 'en' ? 'active' : ''}" data-lang="en">EN</button>
-      </div>`;
-    if (mobileCtaEl) {
-      mobileCtaEl.textContent = c.cta;
-      mobileCtaEl.href = waLink("Halo Conscioustravel, saya ingin tanya paket trip / outing di Bali.");
-    }
+      </div>
+      <a href="${waLink(navWaMsg)}" id="mobile-cta" class="btn-primary" target="_blank" rel="noopener" style="margin-top:1rem;justify-content:center;">${c.cta}</a>`;
   }
 }
 
@@ -357,7 +354,12 @@ function renderFooter() {
   const copyrightEl = document.getElementById("footer-copyright");
   if (descEl) descEl.textContent = c.description;
   if (legalEl) legalEl.textContent = c.legal;
-  if (addrEl) addrEl.textContent = c.address;
+  if (addrEl) {
+    const addresses = c.addresses || [{ label: currentLang === 'id' ? 'Alamat' : 'Address', value: c.address }];
+    addrEl.innerHTML = addresses.map((addr) =>
+      `<span class="footer-address-block"><strong>${addr.label}</strong><br>${addr.value}</span>`
+    ).join("");
+  }
   if (copyrightEl) copyrightEl.textContent = c.copyright;
 }
 
@@ -377,7 +379,9 @@ function renderFloatingWA() {
 function bindInteractions() {
   // Language buttons
   document.querySelectorAll(".lang-btn").forEach((btn) => {
-    btn.addEventListener("click", () => setLang(btn.dataset.lang));
+    btn.onclick = () => {
+      if (btn.dataset.lang && btn.dataset.lang !== currentLang) setLang(btn.dataset.lang);
+    };
   });
 
   // Hamburger menu
@@ -386,10 +390,14 @@ function bindInteractions() {
   if (hamburger && mobileMenu) {
     hamburger.onclick = () => {
       mobileMenu.classList.toggle("open");
+      hamburger.setAttribute("aria-expanded", mobileMenu.classList.contains("open") ? "true" : "false");
     };
     // Close on link click
     mobileMenu.querySelectorAll("a").forEach(a => {
-      a.onclick = () => mobileMenu.classList.remove("open");
+      a.onclick = () => {
+        mobileMenu.classList.remove("open");
+        hamburger.setAttribute("aria-expanded", "false");
+      };
     });
   }
 
@@ -419,7 +427,7 @@ function bindInteractions() {
   // Inquiry form
   const form = document.getElementById("inquiry-form");
   if (form) {
-    form.addEventListener("submit", handleFormSubmit);
+    form.onsubmit = handleFormSubmit;
   }
 }
 
@@ -435,7 +443,10 @@ function handleFormSubmit(e) {
   // Clear previous errors
   document.querySelectorAll(".form-group input, .form-group select, .form-group textarea")
     .forEach(el => el.classList.remove("error"));
-  if (errEl) errEl.classList.remove("visible");
+  if (errEl) {
+    errEl.textContent = CONTENT[currentLang].inquiry.errorMsg;
+    errEl.classList.remove("visible");
+  }
 
   // Validate required fields
   const name         = document.getElementById("inp-name");
@@ -496,7 +507,7 @@ function handleFormSubmit(e) {
   fetch(APPS_SCRIPT_URL, {
     method: "POST",
     mode: "no-cors", // Apps Script requires no-cors
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
     body: JSON.stringify(payload),
   })
   .then(() => {
@@ -505,10 +516,13 @@ function handleFormSubmit(e) {
     if (typeof gtag !== "undefined") gtag("event", "form_submit_success");
   })
   .catch(() => {
-    // Network error fallback — still show success to not block the user
-    // Data may or may not have been saved; log for debugging
     console.error("Form submission network error — check Apps Script deployment.");
-    showFormSuccess();
+    if (errEl) {
+      errEl.textContent = currentLang === "id"
+        ? "Maaf, inquiry belum bisa terkirim. Silakan coba lagi atau hubungi kami via WhatsApp."
+        : "Sorry, your inquiry could not be submitted. Please try again or contact us via WhatsApp.";
+      errEl.classList.add("visible");
+    }
   })
   .finally(() => {
     submitBtn.disabled = false;

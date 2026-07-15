@@ -14,7 +14,7 @@ const CONTENT = {
       eyebrow: "Sustainable journeys. Meaningful impact.",
       headline: "Company Outing & Meaningful Trip in Bali",
       subheadline:
-        "Conscioustravel membantu perusahaan, komunitas, dan small group merancang perjalanan di Bali yang fun, rapi, dan punya nilai positif untuk tim maupun tempat yang dikunjungi.",
+        "Conscioustravel membantu perusahaan, komunitas, dan grup kecil merancang perjalanan di Bali yang menyenangkan, tertata, dan memiliki nilai positif bagi tim maupun tempat yang dikunjungi.",
       primaryCta: "Diskusi via WhatsApp",
       secondaryCta: "Lihat Paket",
       trustNotes: [
@@ -22,13 +22,13 @@ const CONTENT = {
         "Team building facilitator",
         "Responsible travel element",
         "Dokumentasi tersedia",
-        "Custom itinerary",
+        "Itinerary kustom",
       ],
     },
     audience: {
       title: "Dirancang untuk Kebutuhan Trip yang Berbeda",
       description:
-        "Baik untuk outing perusahaan maupun daily trip bersama group kecil, setiap perjalanan bisa disesuaikan dengan tujuan, jumlah peserta, dan gaya pengalaman yang kamu inginkan.",
+        "Baik untuk outing perusahaan maupun daily trip bersama grup kecil, setiap perjalanan dapat disesuaikan dengan tujuan, jumlah peserta, dan gaya pengalaman yang Anda inginkan.",
       cards: [
         {
           icon: "🏢",
@@ -41,19 +41,19 @@ const CONTENT = {
         },
         {
           icon: "🌿",
-          title: "Untuk Daily Trip & Small Group",
+          title: "Untuk Daily Trip & Grup Kecil",
           description:
-            "Private daily trip dan itinerary custom untuk keluarga, teman, pasangan, atau group kecil yang ingin explore Bali dengan cara yang lebih personal.",
-          cta: "Buat Trip Custom",
+            "Daily trip privat dan itinerary kustom untuk keluarga, teman, pasangan, atau grup kecil yang ingin menjelajahi Bali dengan cara yang lebih personal.",
+          cta: "Buat Trip Kustom",
           waMsg:
-            "Halo Conscioustravel, saya ingin tanya paket daily trip custom di Bali. Bisa dibantu rekomendasi itinerary?",
+            "Halo Conscioustravel, saya ingin tanya paket daily trip kustom di Bali. Bisa dibantu rekomendasi itinerary?",
         },
       ],
     },
     packages: {
       title: "Paket Outing Kantor di Bali",
       description:
-        "Pilih format outing yang paling cocok untuk tim kamu — dari nature escape di Ubud atau Kintamani, sampai beach club party yang tetap punya cerita dan nilai positif.",
+        "Pilih format outing yang paling sesuai untuk tim Anda — dari nature escape di Ubud atau Kintamani, hingga beach club party yang tetap memiliki cerita dan nilai positif.",
       items: [
         {
           id: "nature-escape",
@@ -85,7 +85,7 @@ const CONTENT = {
           ],
           cta: "Tanya Paket Nature Escape",
           waMsg:
-            "Halo Conscioustravel, saya tertarik dengan paket Bali Starter — Nature Escape + Impact Light untuk outing kantor. Bisa dibantu info paket dan availability?",
+            "Halo Conscioustravel, saya tertarik dengan paket Bali Starter — Nature Escape + Impact Light untuk outing kantor. Bisa dibantu info paket dan ketersediaannya?",
         },
         {
           id: "beach-club",
@@ -114,19 +114,19 @@ const CONTENT = {
             "DJ / entertainment",
             "Insta360 / video recap",
             "Beach clean-up challenge",
-            "Custom company banner",
+            "Banner perusahaan kustom",
             "Impact report",
           ],
           cta: "Tanya Paket Beach Club Party",
           waMsg:
-            "Halo Conscioustravel, saya tertarik dengan paket Bali Starter — Beach Club Party with Purpose untuk outing kantor. Bisa dibantu info paket dan availability?",
+            "Halo Conscioustravel, saya tertarik dengan paket Bali Starter — Beach Club Party with Purpose untuk outing kantor. Bisa dibantu info paket dan ketersediaannya?",
         },
       ],
     },
     dailyTrip: {
-      title: "Daily Trip & Small Group Custom",
+      title: "Daily Trip & Grup Kecil Kustom",
       description:
-        "Untuk kamu yang ingin explore Bali dengan itinerary yang lebih fleksibel, Conscioustravel bisa membantu merancang daily trip sesuai gaya perjalananmu — mulai dari nature escape, cultural trip, beach hopping, hidden gem, hingga local food experience.",
+        "Untuk Anda yang ingin menjelajahi Bali dengan itinerary yang lebih fleksibel, Conscioustravel dapat membantu merancang daily trip sesuai gaya perjalanan Anda — mulai dari nature escape, cultural trip, beach hopping, hidden gem, hingga pengalaman kuliner lokal.",
       tripTypes: [
         "Uluwatu sunset trip",
         "Kintamani jeep / nature trip",
@@ -134,11 +134,11 @@ const CONTENT = {
         "Beach hopping",
         "Family trip",
         "Couple trip",
-        "Small group custom itinerary",
+        "Itinerary kustom untuk grup kecil",
       ],
-      cta: "Buat Daily Trip Custom",
+      cta: "Buat Daily Trip Kustom",
       waMsg:
-        "Halo Conscioustravel, saya ingin tanya paket daily trip custom di Bali. Bisa dibantu rekomendasi itinerary?",
+        "Halo Conscioustravel, saya ingin tanya paket daily trip kustom di Bali. Bisa dibantu rekomendasi itinerary?",
     },
     why: {
       title: "Kenapa Conscioustravel?",
@@ -147,7 +147,7 @@ const CONTENT = {
           icon: "✦",
           title: "Curated, Not Random",
           description:
-            "Setiap itinerary dirancang sesuai kebutuhan group, bukan sekadar menyusun tempat wisata.",
+            "Setiap itinerary dirancang sesuai kebutuhan grup, bukan sekadar menyusun daftar tempat wisata.",
         },
         {
           icon: "◎",
@@ -188,52 +188,52 @@ const CONTENT = {
     gallery: {
       title: "Experience Preview",
       description:
-        "Beberapa gambaran aktivitas yang bisa dirancang bersama Conscioustravel — dari nature outing, jeep adventure, local lunch, beach team building, hingga group dinner.",
+        "Beberapa gambaran aktivitas yang bisa dirancang bersama Conscioustravel — dari nature outing, jeep adventure, makan siang lokal, beach team building, hingga makan malam grup.",
       images: [
         { src: "assets/images/kintamani-outing-cover.png", alt: "Team building activity in Kintamani Bali", label: "Nature Outing" },
         { src: "assets/images/jeep-adventure.png", alt: "Jeep adventure experience in Kintamani Bali", label: "Jeep Adventure" },
         { src: "assets/images/games-in-nature.png", alt: "Outdoor team building games in nature in Bali", label: "Team Building" },
-        { src: "assets/images/group-local-lunch.png", alt: "Company group enjoying lunch at a local restaurant in Bali", label: "Local Lunch" },
+        { src: "assets/images/group-local-lunch.png", alt: "Company group enjoying lunch at a local restaurant in Bali", label: "Makan Siang Lokal" },
         { src: "assets/images/beach-team-building.png", alt: "Beach team building activity for company outing in Bali", label: "Beach Activity" },
-        { src: "assets/images/group-dinner-party.png", alt: "Corporate group dinner and party event in Bali", label: "Group Dinner" },
+        { src: "assets/images/group-dinner-party.png", alt: "Corporate group dinner and party event in Bali", label: "Makan Malam Grup" },
         { src: "assets/images/local-restaurant-cover.png", alt: "Travelers enjoying local restaurant experience in Bali", label: "Local Experience" },
         { src: "assets/images/local-restaurant-simple.png", alt: "Local food experience in Bali", label: "Food Experience" },
       ],
     },
     clients: {
-      title: "Dipercaya oleh Company, Community, dan Private Group",
+      title: "Dipercaya oleh Perusahaan, Komunitas, dan Grup Privat",
       description:
-        "Conscioustravel telah mendukung berbagai kebutuhan perjalanan dan pengalaman group dari perusahaan, komunitas, hingga private trip.",
+        "Conscioustravel telah mendukung berbagai kebutuhan perjalanan dan pengalaman grup, mulai dari perusahaan, komunitas, hingga trip privat.",
       names: ["DBS", "Astra FSCM", "Lumbung Architecture Bali", "BFB", "Lazada", "PT Gesit"],
       reviewCta: "Lihat Google Review",
     },
     inquiry: {
-      title: "Butuh Paket yang Lebih Custom?",
+      title: "Butuh Paket yang Lebih Kustom?",
       description:
-        "Ceritakan kebutuhan outing atau trip kamu. Tim Conscioustravel akan membantu merekomendasikan format perjalanan yang paling sesuai.",
+        "Ceritakan kebutuhan outing atau trip Anda. Tim Conscioustravel akan membantu merekomendasikan format perjalanan yang paling sesuai.",
       cta: "Kirim Inquiry",
-      successTitle: "Inquiry kamu sudah terkirim!",
+      successTitle: "Inquiry Anda sudah terkirim!",
       successMsg:
-        "Tim Conscioustravel akan menghubungi kamu melalui WhatsApp untuk membantu merekomendasikan paket yang paling sesuai.",
+        "Tim Conscioustravel akan menghubungi Anda melalui WhatsApp untuk membantu merekomendasikan paket yang paling sesuai.",
       successCta: "Lanjut Chat via WhatsApp",
       errorMsg: "Mohon cek kembali data yang wajib diisi.",
       privacyNote:
-        "Dengan mengirim form ini, kamu setuju untuk dihubungi oleh tim Conscioustravel melalui WhatsApp atau email terkait kebutuhan trip kamu.",
+        "Dengan mengirim formulir ini, Anda setuju untuk dihubungi oleh tim Conscioustravel melalui WhatsApp atau email terkait kebutuhan trip Anda.",
       fields: {
         name: "Nama Lengkap",
         whatsapp: "Nomor WhatsApp",
         email: "Email (opsional)",
         inquiryType: "Jenis Kebutuhan",
-        customerType: "Tipe Customer",
+        customerType: "Tipe Pelanggan",
         companyName: "Nama Perusahaan / Instansi (opsional)",
         preferredPackage: "Paket yang Diminati",
         destination: "Area Tujuan",
         participants: "Perkiraan Jumlah Peserta",
         tripDate: "Tanggal Rencana Trip (opsional)",
-        budget: "Estimasi Budget per Pax (opsional)",
-        message: "Ceritakan Kebutuhan Kamu",
+        budget: "Estimasi Anggaran per Pax (opsional)",
+        message: "Ceritakan Kebutuhan Anda",
         messagePlaceholder:
-          "Contoh: Kami ingin outing 1 hari untuk 60 orang di area Kintamani dengan team building, lunch, dokumentasi, dan aktivitas CSR ringan.",
+          "Contoh: Kami ingin outing 1 hari untuk 60 orang di area Kintamani dengan team building, makan siang, dokumentasi, dan aktivitas CSR ringan.",
         submit: "Kirim Inquiry",
       },
     },
@@ -241,39 +241,42 @@ const CONTENT = {
       title: "FAQ",
       items: [
         {
-          q: "Apakah paket bisa dicustom?",
-          a: "Bisa. Paket bisa disesuaikan berdasarkan jumlah peserta, tujuan acara, venue, durasi, dan kebutuhan perusahaan.",
+          q: "Apakah paket bisa dikustomisasi?",
+          a: "Bisa. Paket dapat disesuaikan berdasarkan jumlah peserta, tujuan acara, venue, durasi, dan kebutuhan perusahaan.",
         },
         {
-          q: "Apakah bisa untuk group di bawah 50 pax?",
-          a: "Bisa untuk custom request, namun harga dan format acara akan disesuaikan.",
+          q: "Apakah bisa untuk grup di bawah 50 pax?",
+          a: "Bisa untuk permintaan kustom, namun harga dan format acara akan disesuaikan.",
         },
         {
-          q: "Apakah sudah termasuk transport?",
-          a: "Tergantung kebutuhan paket. Tim kami bisa membantu menyiapkan opsi transport, venue, aktivitas, dan dokumentasi.",
+          q: "Apakah sudah termasuk transportasi?",
+          a: "Tergantung kebutuhan paket. Tim kami dapat membantu menyiapkan opsi transportasi, venue, aktivitas, dan dokumentasi.",
         },
         {
           q: "Apakah bisa dibuatkan proposal untuk perusahaan?",
-          a: "Bisa. Silakan hubungi kami via WhatsApp atau isi inquiry form untuk diskusi kebutuhan awal.",
+          a: "Bisa. Silakan hubungi kami via WhatsApp atau isi formulir inquiry untuk diskusi kebutuhan awal.",
         },
         {
           q: "Apakah tersedia itinerary untuk daily trip?",
-          a: "Ya. Daily trip bisa dibuat custom sesuai preferensi destinasi, waktu, dan gaya perjalanan.",
+          a: "Ya. Daily trip dapat dibuat kustom sesuai preferensi destinasi, waktu, dan gaya perjalanan.",
         },
       ],
     },
     finalCta: {
       title: "Siap Merancang Outing atau Trip yang Lebih Bermakna?",
       description:
-        "Ceritakan kebutuhan tim atau group kamu. Tim Conscioustravel akan membantu merekomendasikan format perjalanan yang paling cocok.",
+        "Ceritakan kebutuhan tim atau grup Anda. Tim Conscioustravel akan membantu merekomendasikan format perjalanan yang paling sesuai.",
       cta: "Diskusi Sekarang via WhatsApp",
     },
     footer: {
       description:
-        "Conscioustravel.id adalah travel partner untuk company outing, daily trip, dan pengalaman perjalanan yang lebih bermakna di Bali.",
+        "Conscioustravel.id adalah mitra perjalanan untuk company outing, daily trip, dan pengalaman perjalanan yang lebih bermakna di Bali.",
       legal: "PT Wisata Perjalanan Bermakna",
-      address: "GG Mangga no.16 Pemecutan Klod, Denpasar Barat, Denpasar, Bali",
-      whatsapp: "085195559749",
+      addresses: [
+        { label: "Alamat PT", value: "Jl. Cempaka Bulak No. 77, Jaticempaka, Pondokgede, Kota Bekasi, Jawa Barat, 17411" },
+        { label: "Kantor Bali", value: "Jl. Nusantara II No. 17, Tuban, Kuta, Badung, Bali, 80361" },
+      ],
+      whatsapp: "+6285195559749",
       copyright: "© 2025 Conscioustravel.id — PT Wisata Perjalanan Bermakna",
     },
   },
@@ -551,8 +554,11 @@ const CONTENT = {
       description:
         "Conscioustravel.id is a travel partner for company outings, daily trips, and more meaningful travel experiences in Bali.",
       legal: "PT Wisata Perjalanan Bermakna",
-      address: "GG Mangga no.16 Pemecutan Klod, Denpasar Barat, Denpasar, Bali",
-      whatsapp: "085195559749",
+      addresses: [
+        { label: "Company Address", value: "Jl. Cempaka Bulak No. 77, Jaticempaka, Pondokgede, Kota Bekasi, Jawa Barat, 17411" },
+        { label: "Bali Office", value: "Jl. Nusantara II No. 17, Tuban, Kuta, Badung, Bali, 80361" },
+      ],
+      whatsapp: "+6285195559749",
       copyright: "© 2025 Conscioustravel.id — PT Wisata Perjalanan Bermakna",
     },
   },
