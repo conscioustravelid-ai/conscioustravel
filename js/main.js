@@ -4,6 +4,15 @@
 
 let currentLang = CONFIG.defaultLang;
 
+function sitePath(path) {
+  if (!path || path.startsWith("#") || /^[a-z]+:/i.test(path) || path.startsWith("/")) return path;
+  return (window.SITE_PATH_PREFIX || "") + path;
+}
+
+function setLink(el, path) {
+  if (el) el.href = sitePath(path);
+}
+
 // ---- WHATSAPP HELPERS ----
 function waLink(msg) {
   return CONFIG.whatsappUrl + "?text=" + encodeURIComponent(msg);
@@ -49,6 +58,7 @@ function setLang(lang) {
   renderFinalCta();
   renderFooter();
   renderFloatingWA();
+  renderGenericPage();
 
   // Re-bind interactions after render
   bindInteractions();
@@ -63,11 +73,13 @@ function renderNav() {
   const linksEl = document.getElementById("nav-links");
   const mobileEl = document.getElementById("mobile-menu");
   const ctaEl = document.getElementById("nav-cta");
+  const logoEl = document.querySelector(".nav-logo");
   const navWaMsg = ctaMessage("travelBetter");
 
+  setLink(logoEl, "index.html");
   if (linksEl) {
     linksEl.innerHTML = c.links.map(l =>
-      `<a href="${l.href}">${l.label}</a>`
+      `<a href="${sitePath(l.href)}">${l.label}</a>`
     ).join("");
   }
   if (ctaEl) {
@@ -76,7 +88,7 @@ function renderNav() {
   }
   if (mobileEl) {
     mobileEl.innerHTML = c.links.map(l =>
-      `<a href="${l.href}">${l.label}</a>`
+      `<a href="${sitePath(l.href)}">${l.label}</a>`
     ).join("") +
       `<div class="mobile-lang">
         <button class="lang-btn ${currentLang === 'id' ? 'active' : ''}" data-lang="id">ID</button>
@@ -107,7 +119,7 @@ function renderHero() {
   }
   if (secBtn) {
     secBtn.textContent = c.secondaryCta;
-    secBtn.href = "#experiences";
+    secBtn.href = sitePath("experiences/");
   }
   if (trustEl) {
     trustEl.innerHTML = c.trustNotes.map(n => `<span class="trust-badge">${n}</span>`).join("");
@@ -138,7 +150,7 @@ function renderAudience() {
       <div class="card-icon">${card.icon}</div>
       <h3>${card.title}</h3>
       <p>${card.description}</p>
-      <a href="${card.href || waLink(card.waMsg)}" class="${card.href ? 'btn-cream' : 'btn-primary'}" ${card.href ? '' : 'target="_blank" rel="noopener"'}>${card.cta}</a>
+      <a href="${card.href ? sitePath(card.href) : waLink(card.waMsg)}" class="${card.href ? 'btn-cream' : 'btn-primary'}" ${card.href ? '' : 'target="_blank" rel="noopener"'}>${card.cta}</a>
     </div>
   `).join("");
 }
@@ -155,7 +167,7 @@ function renderPackages() {
   gridEl.innerHTML = c.items.map(pkg => `
     <div class="package-card fade-in">
       <div class="pkg-img">
-        <img src="${pkg.image}" alt="${pkg.imageAlt}" loading="lazy">
+        <img src="${sitePath(pkg.image)}" alt="${pkg.imageAlt}" loading="lazy">
       </div>
       <div class="pkg-body">
         <div class="pkg-meta">
@@ -250,7 +262,7 @@ function renderGallery() {
   if (!gridEl) return;
   gridEl.innerHTML = c.images.map(img => `
     <div class="gallery-item">
-      <img src="${img.src}" alt="${img.alt}" loading="lazy">
+      <img src="${sitePath(img.src)}" alt="${img.alt}" loading="lazy">
       <div class="gallery-label">${img.label}</div>
     </div>
   `).join("");
@@ -358,12 +370,18 @@ function renderFooter() {
   const legalEl = document.getElementById("footer-legal");
   const addrEl = document.getElementById("footer-address");
   const copyrightEl = document.getElementById("footer-copyright");
+  const footerLinksEl = document.getElementById("footer-links");
   if (descEl) descEl.textContent = c.description;
   if (legalEl) legalEl.textContent = c.legal;
   if (addrEl) {
     const addresses = c.addresses || [{ label: currentLang === 'id' ? 'Alamat' : 'Address', value: c.address }];
     addrEl.innerHTML = addresses.map((addr) =>
       `<span class="footer-address-block"><strong>${addr.label}</strong><br>${addr.value}</span>`
+    ).join("");
+  }
+  if (footerLinksEl && c.links) {
+    footerLinksEl.innerHTML = c.links.map(link =>
+      `<li><a href="${sitePath(link.href)}">${link.label}</a></li>`
     ).join("");
   }
   if (copyrightEl) copyrightEl.textContent = c.copyright;
@@ -376,6 +394,57 @@ function renderFloatingWA() {
   el.href = waLink(ctaMessage("travelBetter"));
   const label = el.querySelector(".wa-label");
   if (label) label.textContent = "Travel Better. Start Here.";
+}
+
+function renderGenericPage() {
+  const key = document.body.dataset.page;
+  if (!key || !CONTENT[currentLang].pages || !CONTENT[currentLang].pages[key]) return;
+
+  const page = CONTENT[currentLang].pages[key];
+  const setText = (id, value) => {
+    const el = document.getElementById(id);
+    if (el && value) el.textContent = value;
+  };
+
+  setText("page-eyebrow", page.eyebrow);
+  setText("page-title", page.title);
+  setText("page-description", page.description);
+  setText("page-intro-title", page.introTitle);
+  setText("page-intro-text", page.introText);
+  setText("page-process-title", page.processTitle);
+
+  const heroImg = document.getElementById("page-hero-img");
+  if (heroImg && page.heroImage) {
+    heroImg.src = sitePath(page.heroImage);
+    heroImg.alt = page.title;
+  }
+
+  document.querySelectorAll("[data-wa-cta]").forEach((el) => {
+    el.textContent = page.primaryCta || "Travel Better. Start Here.";
+    el.href = waLink(ctaMessage(key === "companyOuting" || key === "impact" ? "companyOuting" : "travelBetter"));
+  });
+
+  const secondary = document.getElementById("page-secondary-cta");
+  if (secondary && page.secondaryCta) {
+    secondary.textContent = page.secondaryCta;
+    secondary.href = "#packages";
+  }
+
+  const highlightsEl = document.getElementById("page-highlights");
+  if (highlightsEl && page.highlights) {
+    highlightsEl.innerHTML = page.highlights.map(item => `<li>${item}</li>`).join("");
+  }
+
+  const processEl = document.getElementById("page-process");
+  if (processEl && page.process) {
+    processEl.innerHTML = page.process.map((item, index) => `
+      <div class="process-card fade-in">
+        <span>${String(index + 1).padStart(2, "0")}</span>
+        <h3>${item.title}</h3>
+        <p>${item.text}</p>
+      </div>
+    `).join("");
+  }
 }
 
 // ---- BIND INTERACTIONS ----
@@ -545,7 +614,7 @@ function initScrollEffects() {
   // Navbar scroll
   const navbar = document.getElementById("navbar");
   window.addEventListener("scroll", () => {
-    navbar.classList.toggle("scrolled", window.scrollY > 40);
+    if (navbar) navbar.classList.toggle("scrolled", window.scrollY > 40);
   });
 
   // Fade-in on scroll — stored globally so we can re-use after re-render

@@ -2,11 +2,11 @@ const CONTENT = {
   id: {
     nav: {
       links: [
-        { label: "Experiences", href: "#experiences" },
-        { label: "Corporate", href: "#packages" },
-        { label: "Impact", href: "#impact" },
-        { label: "Reviews", href: "#clients" },
-        { label: "Inquiry", href: "#inquiry" },
+        { label: "Company Outing", href: "company-outing/" },
+        { label: "Experiences", href: "experiences/" },
+        { label: "Impact", href: "impact/" },
+        { label: "About", href: "about/" },
+        { label: "Contact", href: "contact/" },
       ],
       cta: "Travel Better. Start Here.",
     },
@@ -278,18 +278,120 @@ const CONTENT = {
         { label: "Kantor Bali", value: "Jl. Nusantara II No. 17, Tuban, Kuta, Badung, Bali, 80361" },
       ],
       whatsapp: "+6285195559749",
+      links: [
+        { label: "Company Outing", href: "company-outing/" },
+        { label: "Experiences", href: "experiences/" },
+        { label: "Impact Light", href: "impact/" },
+        { label: "About", href: "about/" },
+        { label: "Contact", href: "contact/" },
+        { label: "Inquiry Form", href: "contact/#inquiry" },
+      ],
       copyright: "© 2025 Conscioustravel.id — PT Wisata Perjalanan Bermakna",
+    },
+    pages: {
+      companyOuting: {
+        eyebrow: "Corporate Trips",
+        title: "Company Outing di Bali yang Rapi, Fun, dan Bermakna",
+        description:
+          "Dirancang untuk HR, owner, event planner, dan corporate team yang membutuhkan outing, team building, CSR ringan, atau gathering perusahaan dengan flow yang jelas dan pengalaman yang terasa premium.",
+        heroImage: "assets/images/kintamani-outing-cover.png",
+        primaryCta: "Travel Better. Start Here.",
+        secondaryCta: "Lihat Paket",
+        introTitle: "Bukan sekadar jalan-jalan kantor",
+        introText:
+          "Conscioustravel membantu merancang outing perusahaan dengan kombinasi itinerary, facilitator, venue, local experience, dokumentasi, dan elemen Impact Light yang bisa disesuaikan dengan kebutuhan tim.",
+        highlights: [
+          "Starting price jelas mulai Rp750.000/pax",
+          "Format bisa disesuaikan dengan tujuan acara",
+          "Siap untuk proposal, quotation, dan koordinasi vendor",
+          "Pilihan nature escape, beach club, dinner, dan CSR ringan",
+        ],
+        processTitle: "Alur kerja yang nyaman untuk perusahaan",
+        process: [
+          { title: "Diskusi kebutuhan", text: "Ceritakan jumlah peserta, tanggal, tujuan acara, dan area yang diinginkan." },
+          { title: "Rekomendasi konsep", text: "Kami bantu susun format outing, activity flow, dan opsi venue yang paling cocok." },
+          { title: "Proposal & koordinasi", text: "Tim menyiapkan rincian paket, add-on, dan kebutuhan operasional untuk event." },
+        ],
+      },
+      experiences: {
+        eyebrow: "Daily Trips & Small Groups",
+        title: "Explore Bali dengan Itinerary yang Lebih Personal",
+        description:
+          "Untuk keluarga, pasangan, teman, komunitas kecil, atau traveler yang ingin daily trip fleksibel dengan rekomendasi lokal dan alur perjalanan yang nyaman.",
+        heroImage: "assets/images/jeep-adventure.png",
+        primaryCta: "Travel Better. Start Here.",
+        introTitle: "Daily trip yang bisa mengikuti gaya perjalanan Anda",
+        introText:
+          "Mulai dari Uluwatu sunset, Kintamani jeep, Ubud culture, beach hopping, sampai local food experience. Tim Conscioustravel membantu memilih rute yang terasa natural, tidak terlalu padat, dan tetap berkesan.",
+        highlights: [
+          "Cocok untuk private trip dan grup kecil",
+          "Rute bisa dibuat santai, adventurous, atau cultural",
+          "Rekomendasi local lunch, hidden gem, dan photo spots",
+          "CTA cepat ke WhatsApp untuk diskusi itinerary",
+        ],
+      },
+      impact: {
+        eyebrow: "Impact Light",
+        title: "Small Impact, Better Story",
+        description:
+          "Impact Light membantu perusahaan dan grup menambahkan aktivitas sederhana yang punya nilai positif tanpa membuat perjalanan terasa berat atau terlalu formal.",
+        heroImage: "assets/images/local-restaurant-cover.png",
+        primaryCta: "Travel Better. Start Here.",
+        introTitle: "Dibuat ringan, relevan, dan tidak berlebihan",
+        introText:
+          "Aktivitas impact dapat berupa responsible travel briefing, local support, donation, waste sorting challenge, tree or plant support, atau short impact moment sebelum celebration.",
+        highlights: [
+          "Tidak mengklaim impact secara berlebihan",
+          "Bisa menjadi add-on dalam outing perusahaan",
+          "Membantu cerita event terasa lebih bermakna",
+          "Opsional impact report untuk kebutuhan corporate",
+        ],
+      },
+      about: {
+        eyebrow: "About Conscioustravel",
+        title: "Travel Partner untuk Perjalanan yang Lebih Bermakna",
+        description:
+          "Conscioustravel.id adalah travel partner yang merancang curated trips, company outings, dan private experiences di Bali dengan keseimbangan antara kenyamanan, local connection, dan positive impact.",
+        heroImage: "assets/images/group-local-lunch.png",
+        primaryCta: "Travel Better. Start Here.",
+        introTitle: "Thoughtful, local, and ready for corporate needs",
+        introText:
+          "Kami tidak ingin menjadi travel agent generik. Fokus kami adalah membantu setiap grup mendapatkan pengalaman yang lebih rapi, lebih manusiawi, dan punya cerita yang lebih kuat.",
+        highlights: [
+          "Company outing dan team building",
+          "Daily trip dan small group custom",
+          "Local experience dan responsible travel",
+          "Legal entity: PT Wisata Perjalanan Bermakna",
+        ],
+      },
+      contact: {
+        eyebrow: "Contact",
+        title: "Ceritakan Kebutuhan Trip Anda",
+        description:
+          "Hubungi Conscioustravel via WhatsApp untuk respons cepat, atau isi inquiry form agar tim kami bisa memahami kebutuhan outing, daily trip, atau perjalanan kustom Anda.",
+        heroImage: "assets/images/group-dinner-party.png",
+        primaryCta: "Travel Better. Start Here.",
+        introTitle: "Lebih mudah mulai dari WhatsApp",
+        introText:
+          "WhatsApp tetap menjadi jalur utama. Untuk kebutuhan B2B, inquiry form membantu tim kami menangkap detail seperti jumlah peserta, tanggal, budget, dan paket yang diminati.",
+        highlights: [
+          "WhatsApp: +6285195559749",
+          "Inquiry form tetap tersambung ke Apps Script",
+          "Dua alamat tetap ditampilkan di footer dan contact",
+          "Cocok untuk request proposal atau itinerary custom",
+        ],
+      },
     },
   },
 
   en: {
     nav: {
       links: [
-        { label: "Experiences", href: "#experiences" },
-        { label: "Corporate", href: "#packages" },
-        { label: "Impact", href: "#impact" },
-        { label: "Reviews", href: "#clients" },
-        { label: "Inquiry", href: "#inquiry" },
+        { label: "Company Outing", href: "company-outing/" },
+        { label: "Experiences", href: "experiences/" },
+        { label: "Impact", href: "impact/" },
+        { label: "About", href: "about/" },
+        { label: "Contact", href: "contact/" },
       ],
       cta: "Travel Better. Start Here.",
     },
@@ -561,7 +663,109 @@ const CONTENT = {
         { label: "Bali Office", value: "Jl. Nusantara II No. 17, Tuban, Kuta, Badung, Bali, 80361" },
       ],
       whatsapp: "+6285195559749",
+      links: [
+        { label: "Company Outing", href: "company-outing/" },
+        { label: "Experiences", href: "experiences/" },
+        { label: "Impact Light", href: "impact/" },
+        { label: "About", href: "about/" },
+        { label: "Contact", href: "contact/" },
+        { label: "Inquiry Form", href: "contact/#inquiry" },
+      ],
       copyright: "© 2025 Conscioustravel.id — PT Wisata Perjalanan Bermakna",
+    },
+    pages: {
+      companyOuting: {
+        eyebrow: "Corporate Trips",
+        title: "Company Outings in Bali That Feel Organized, Fun, and Meaningful",
+        description:
+          "Designed for HR teams, owners, event planners, and corporate teams who need outings, team building, light CSR moments, or company gatherings with a clear flow and premium travel feel.",
+        heroImage: "assets/images/kintamani-outing-cover.png",
+        primaryCta: "Travel Better. Start Here.",
+        secondaryCta: "View Packages",
+        introTitle: "More than a company day out",
+        introText:
+          "Conscioustravel helps design company outings with itinerary planning, facilitators, venues, local experiences, documentation, and optional Impact Light elements tailored to your team.",
+        highlights: [
+          "Clear starting price from Rp750,000/pax",
+          "Formats can be customized to your event goals",
+          "Ready for proposal, quotation, and vendor coordination",
+          "Nature escape, beach club, dinner, and light CSR options",
+        ],
+        processTitle: "A comfortable workflow for companies",
+        process: [
+          { title: "Share your needs", text: "Tell us the group size, date, event goals, and preferred area." },
+          { title: "Get a concept recommendation", text: "We help shape the outing format, activity flow, and venue options." },
+          { title: "Proposal & coordination", text: "The team prepares package details, add-ons, and operational needs for the event." },
+        ],
+      },
+      experiences: {
+        eyebrow: "Daily Trips & Small Groups",
+        title: "Explore Bali with a More Personal Itinerary",
+        description:
+          "For families, couples, friends, small communities, or travelers who want flexible daily trips with local recommendations and a comfortable travel flow.",
+        heroImage: "assets/images/jeep-adventure.png",
+        primaryCta: "Travel Better. Start Here.",
+        introTitle: "Daily trips that follow your travel style",
+        introText:
+          "From Uluwatu sunset, Kintamani jeep, Ubud culture, and beach hopping to local food experiences. Conscioustravel helps choose routes that feel natural, not rushed, and memorable.",
+        highlights: [
+          "Suitable for private trips and small groups",
+          "Routes can feel relaxed, adventurous, or cultural",
+          "Local lunch, hidden gems, and photo spot recommendations",
+          "Fast WhatsApp CTA to discuss your itinerary",
+        ],
+      },
+      impact: {
+        eyebrow: "Impact Light",
+        title: "Small Impact, Better Story",
+        description:
+          "Impact Light helps companies and groups add simple positive-value activities without making the trip feel heavy or overly formal.",
+        heroImage: "assets/images/local-restaurant-cover.png",
+        primaryCta: "Travel Better. Start Here.",
+        introTitle: "Light, relevant, and not overclaimed",
+        introText:
+          "Impact activities can include responsible travel briefings, local support, donations, waste sorting challenges, tree or plant support, or short impact moments before a celebration.",
+        highlights: [
+          "No exaggerated impact claims",
+          "Can be added to company outing formats",
+          "Helps the event story feel more meaningful",
+          "Optional impact report for corporate needs",
+        ],
+      },
+      about: {
+        eyebrow: "About Conscioustravel",
+        title: "A Travel Partner for More Meaningful Journeys",
+        description:
+          "Conscioustravel.id is a travel partner designing curated trips, company outings, and private experiences in Bali with a balance of comfort, local connection, and positive impact.",
+        heroImage: "assets/images/group-local-lunch.png",
+        primaryCta: "Travel Better. Start Here.",
+        introTitle: "Thoughtful, local, and ready for corporate needs",
+        introText:
+          "We are not trying to be a generic travel agent. Our focus is helping every group get an experience that feels organized, human, and rich with better stories.",
+        highlights: [
+          "Company outings and team building",
+          "Daily trips and small group custom travel",
+          "Local experiences and responsible travel",
+          "Legal entity: PT Wisata Perjalanan Bermakna",
+        ],
+      },
+      contact: {
+        eyebrow: "Contact",
+        title: "Tell Us What Kind of Trip You Need",
+        description:
+          "Contact Conscioustravel via WhatsApp for a fast response, or submit the inquiry form so our team can understand your outing, daily trip, or custom travel needs.",
+        heroImage: "assets/images/group-dinner-party.png",
+        primaryCta: "Travel Better. Start Here.",
+        introTitle: "The easiest way to start is WhatsApp",
+        introText:
+          "WhatsApp remains the main channel. For B2B needs, the inquiry form helps our team capture details such as group size, date, budget, and preferred package.",
+        highlights: [
+          "WhatsApp: +6285195559749",
+          "Inquiry form remains connected to Apps Script",
+          "Both addresses remain visible in footer and contact",
+          "Suitable for proposal requests or custom itineraries",
+        ],
+      },
     },
   },
 };
