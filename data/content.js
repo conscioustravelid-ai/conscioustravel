@@ -290,6 +290,7 @@ const CONTENT = {
     },
     pages: {
       companyOuting: {
+        breadcrumb: "Company Outing",
         eyebrow: "Corporate Trips",
         title: "Company Outing di Bali yang Rapi, Fun, dan Bermakna",
         description:
@@ -314,6 +315,7 @@ const CONTENT = {
         ],
       },
       experiences: {
+        breadcrumb: "Experiences",
         eyebrow: "Daily Trips & Small Groups",
         title: "Explore Bali dengan Itinerary yang Lebih Personal",
         description:
@@ -331,6 +333,7 @@ const CONTENT = {
         ],
       },
       impact: {
+        breadcrumb: "Impact",
         eyebrow: "Impact Light",
         title: "Small Impact, Better Story",
         description:
@@ -348,6 +351,7 @@ const CONTENT = {
         ],
       },
       about: {
+        breadcrumb: "About",
         eyebrow: "About Conscioustravel",
         title: "Travel Partner untuk Perjalanan yang Lebih Bermakna",
         description:
@@ -365,6 +369,7 @@ const CONTENT = {
         ],
       },
       contact: {
+        breadcrumb: "Contact",
         eyebrow: "Contact",
         title: "Ceritakan Kebutuhan Trip Anda",
         description:
@@ -675,6 +680,7 @@ const CONTENT = {
     },
     pages: {
       companyOuting: {
+        breadcrumb: "Company Outing",
         eyebrow: "Corporate Trips",
         title: "Company Outings in Bali That Feel Organized, Fun, and Meaningful",
         description:
@@ -699,6 +705,7 @@ const CONTENT = {
         ],
       },
       experiences: {
+        breadcrumb: "Experiences",
         eyebrow: "Daily Trips & Small Groups",
         title: "Explore Bali with a More Personal Itinerary",
         description:
@@ -716,6 +723,7 @@ const CONTENT = {
         ],
       },
       impact: {
+        breadcrumb: "Impact",
         eyebrow: "Impact Light",
         title: "Small Impact, Better Story",
         description:
@@ -733,6 +741,7 @@ const CONTENT = {
         ],
       },
       about: {
+        breadcrumb: "About",
         eyebrow: "About Conscioustravel",
         title: "A Travel Partner for More Meaningful Journeys",
         description:
@@ -750,6 +759,7 @@ const CONTENT = {
         ],
       },
       contact: {
+        breadcrumb: "Contact",
         eyebrow: "Contact",
         title: "Tell Us What Kind of Trip You Need",
         description:

@@ -1,0 +1,90 @@
+:root {
+  /* Colors */
+  --color-primary: #2D6A4F;
+  --color-primary-light: #45C95A;
+  --color-primary-dark: #1F4D2B;
+  --color-cream: #F9F5EF;
+  --color-sand: #EBDCC7;
+  --color-dark: #1A1A1A;
+  --color-grey: #6B7280;
+  --color-grey-light: #E5E7EB;
+  --color-white: #FFFFFF;
+  --color-amber: #D4A853;
+  --color-error: #DC2626;
+  --color-sky: #CBE3F0;
+  --color-earth: #7A5739;
+
+  /* Typography */
+  --font-family: 'Plus Jakarta Sans', sans-serif;
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 15px;
+  --text-md: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 28px;
+  --text-4xl: 32px;
+  --text-5xl: 40px;
+  --text-6xl: 56px;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --section-padding-desktop: 80px;
+  --section-padding-mobile: 56px;
+  --container-max-width: 1200px;
+  --container-padding: 24px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+
+  /* Motion */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* Layers */
+  --z-navbar: 100;
+  --z-floating: 90;
+  --z-modal: 200;
+  --z-overlay: 150;
+
+  /* Existing token aliases */
+  --green-primary: var(--color-primary);
+  --green-fresh: var(--color-primary-light);
+  --green-deep: var(--color-primary-dark);
+  --cream: var(--color-cream);
+  --sand: var(--color-sand);
+  --off-white: #FFFDF7;
+  --charcoal: var(--color-dark);
+  --gray: var(--color-grey);
+  --sky-blue: var(--color-sky);
+  --earth-brown: var(--color-earth);
+  --gold: var(--color-amber);
+  --transition: var(--transition-base);
+}

@@ -1,27 +1,22 @@
+@import url("./variables.css");
+
 /* ============================================
    CONSCIOUSTRAVEL.ID — Custom Styles
    ============================================ */
 
 :root {
-  --green-primary: #2F8F3A;
-  --green-fresh: #45C95A;
-  --green-deep: #1F4D2B;
-  --cream: #F7F2E8;
-  --sand: #EBDCC7;
+  --green-primary: var(--color-primary);
+  --green-fresh: var(--color-primary-light);
+  --green-deep: var(--color-primary-dark);
+  --cream: var(--color-cream);
+  --sand: var(--color-sand);
   --off-white: #FFFDF7;
-  --charcoal: #1D1D1D;
-  --gray: #6F6F6F;
-  --sky-blue: #CBE3F0;
-  --earth-brown: #7A5739;
-  --gold: #C99A45;
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
-  --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 20px rgba(0,0,0,0.09);
-  --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
-  --transition: 0.25s ease;
+  --charcoal: var(--color-dark);
+  --gray: var(--color-grey);
+  --sky-blue: var(--color-sky);
+  --earth-brown: var(--color-earth);
+  --gold: var(--color-amber);
+  --transition: var(--transition-base);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -132,7 +127,9 @@ section { padding: 80px 0; }
 .nav-logo img { height: 68px; width: auto; max-height: none; }
 .nav-links { display: flex; align-items: center; gap: 2rem; }
 .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--charcoal); transition: color var(--transition); }
-.nav-links a:hover { color: var(--green-primary); }
+.nav-links a:hover,
+.nav-links a.active { color: var(--green-primary); }
+.nav-links a.active { font-weight: 700; }
 .nav-right { display: flex; align-items: center; gap: 1rem; }
 
 .lang-switcher {
@@ -168,6 +165,7 @@ section { padding: 80px 0; }
   padding: 0.75rem 0; font-weight: 500; color: var(--charcoal);
   border-bottom: 1px solid var(--sand);
 }
+.mobile-menu a.active { color: var(--green-primary); font-weight: 700; }
 .mobile-menu a:last-child { border-bottom: none; }
 .mobile-lang { display: flex; gap: 0.5rem; margin-top: 1rem; }
 
@@ -254,6 +252,20 @@ section { padding: 80px 0; }
 /* ---- SECTION HEADER ---- */
 .section-header { text-align: center; margin-bottom: 3rem; }
 .section-header p { max-width: 600px; margin: 0.75rem auto 0; font-size: 1rem; }
+
+.breadcrumb {
+  padding: 104px 0 0;
+  background: var(--off-white);
+}
+.breadcrumb ol {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;
+  max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--container-padding);
+  font-size: 0.82rem; color: var(--gray);
+}
+.breadcrumb li { display: inline-flex; align-items: center; gap: 0.5rem; }
+.breadcrumb li + li::before { content: "/"; color: var(--sand); }
+.breadcrumb a { color: var(--green-primary); font-weight: 600; }
+.breadcrumb + .page-hero { padding-top: 48px; }
 
 /* ---- INTERNAL PAGES ---- */
 .page-hero {
@@ -408,6 +420,76 @@ section { padding: 80px 0; }
   transition: all var(--transition);
 }
 .trip-type-tag:hover { border-color: var(--green-primary); color: var(--green-primary); background: #e8f5ea; }
+
+/* ---- EXPERIENCE CARDS ---- */
+#experience-list { background: var(--off-white); }
+.filter-bar {
+  display: flex; gap: 0.75rem; flex-wrap: wrap;
+  justify-content: center; margin: -1rem 0 2rem;
+}
+.filter-btn {
+  background: var(--cream);
+  color: var(--charcoal);
+  border: 1px solid var(--sand);
+  border-radius: var(--radius-full);
+  padding: 0.6rem 1rem;
+  font-size: 0.86rem;
+  font-weight: 700;
+  transition: all var(--transition);
+}
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--green-primary);
+  border-color: var(--green-primary);
+  color: #fff;
+}
+.experience-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.experience-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.experience-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.exp-img {
+  position: relative;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+}
+.exp-img img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition-slow); }
+.experience-card:hover .exp-img img { transform: scale(1.04); }
+.exp-category-badge {
+  position: absolute;
+  left: 0.85rem;
+  bottom: 0.85rem;
+  background: rgba(255,255,255,0.92);
+  color: var(--green-primary);
+  border-radius: var(--radius-full);
+  padding: 0.3rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+.exp-body {
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.exp-title { font-size: 1rem; }
+.exp-meta, .exp-excerpt { font-size: 0.86rem; }
+.exp-price { color: var(--green-primary); font-weight: 800; font-size: 0.9rem; }
+.experience-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  background: var(--cream);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
 
 /* ---- WHY ---- */
 #why { background: var(--off-white); }
@@ -646,6 +728,7 @@ footer {
   .nav-links { gap: 1.25rem; }
   .page-hero-inner, .page-intro-grid { gap: 2rem; }
   .contact-card-grid { grid-template-columns: 1fr 1fr; }
+  .experience-card-grid { grid-template-columns: repeat(2, 1fr); }
   .why-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-inner { grid-template-columns: 1fr 1fr; }
 }
@@ -693,6 +776,15 @@ footer {
   .page-hero-actions .btn-cream { width: 100%; justify-content: center; }
   .page-hero-media { aspect-ratio: 16/10; border-radius: var(--radius-lg); }
   .process-grid, .contact-card-grid { grid-template-columns: 1fr; }
+  .filter-bar {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .filter-btn { flex: 0 0 auto; }
+  .experience-card-grid { grid-template-columns: 1fr; }
 
   .audience-grid { grid-template-columns: 1fr; }
   .packages-grid { grid-template-columns: 1fr; }

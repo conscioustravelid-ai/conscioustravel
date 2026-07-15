@@ -24,7 +24,7 @@
 
 <nav id="navbar" role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="../index.html" class="nav-logo" aria-label="Conscioustravel.id — Home"><img src="../assets/images/new-logo-conscious.png" alt="Conscioustravel logo" height="68"></a>
+    <a href="/" class="nav-logo" aria-label="Conscioustravel.id — Home"><img src="../assets/images/new-logo-conscious.png" alt="Conscioustravel logo" height="68"></a>
     <div class="nav-links" id="nav-links" role="menubar"></div>
     <div class="nav-right">
       <div class="lang-switcher" role="group" aria-label="Language switcher"><button class="lang-btn active" data-lang="id">ID</button><span class="lang-divider" aria-hidden="true">|</span><button class="lang-btn" data-lang="en">EN</button></div>
@@ -36,6 +36,8 @@
 </nav>
 
 <main>
+  <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb"></nav>
+
   <section class="page-hero" aria-labelledby="page-title">
     <div class="container page-hero-inner">
       <div class="page-hero-copy fade-in">
@@ -59,6 +61,18 @@
         <p id="page-intro-text"></p>
       </div>
       <ul class="highlight-list fade-in" id="page-highlights"></ul>
+    </div>
+  </section>
+
+  <section id="experience-list" aria-labelledby="experience-list-title">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="eyebrow">Browse Experiences</p>
+        <h2 id="experience-list-title">Pilih Experience yang Cocok</h2>
+        <p>Filter berdasarkan gaya perjalanan, lalu mulai diskusi itinerary melalui WhatsApp.</p>
+      </div>
+      <div class="filter-bar" id="experience-filters" aria-label="Experience categories"></div>
+      <div class="experience-card-grid" id="experience-card-grid"></div>
     </div>
   </section>
 
@@ -87,6 +101,37 @@
       <div class="gallery-grid" id="gallery-grid" role="list" aria-label="Experience photo gallery"></div>
     </div>
   </section>
+
+  <section class="page-intro" aria-labelledby="custom-trip-title">
+    <div class="container page-intro-grid">
+      <div class="page-intro-copy fade-in">
+        <p class="eyebrow">Custom Trip</p>
+        <h2 id="custom-trip-title">Tidak menemukan experience yang cocok?</h2>
+        <p>Kami bisa bantu susun itinerary custom berdasarkan tanggal, jumlah peserta, area yang ingin dikunjungi, dan gaya perjalanan Anda.</p>
+      </div>
+      <ul class="highlight-list fade-in">
+        <li>Trip bisa dibuat santai, adventure, culture, beach, atau food focused.</li>
+        <li>WhatsApp adalah jalur tercepat untuk mulai diskusi.</li>
+        <li><a href="https://wa.me/6285195559749" target="_blank" rel="noopener" style="color:var(--green-primary);font-weight:700;">Travel Better. Start Here.</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-title">FAQ</h2>
+      </div>
+      <div class="faq-list" id="faq-list" role="list"></div>
+    </div>
+  </section>
+
+  <section id="final-cta" aria-labelledby="final-cta-title">
+    <h2 id="final-cta-title">Siap Merancang Outing atau Trip yang Lebih Bermakna?</h2>
+    <p id="final-cta-desc"></p>
+    <a href="https://wa.me/6285195559749" id="final-cta-btn" class="btn-white" target="_blank" rel="noopener">Travel Better. Start Here.</a>
+  </section>
 </main>
 
 <footer role="contentinfo">
@@ -102,5 +147,6 @@
 <script>window.SITE_PATH_PREFIX = "../";</script>
 <script src="../data/content.js"></script>
 <script src="../js/main.js"></script>
+<script src="../js/experience-filter.js"></script>
 </body>
 </html>

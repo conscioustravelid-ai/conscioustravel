@@ -13,6 +13,16 @@ function setLink(el, path) {
   if (el) el.href = sitePath(path);
 }
 
+function normalizePath(path) {
+  return (path || "/").replace(/index\.html$/, "").replace(/\/+$/, "") || "/";
+}
+
+function isActiveNav(href) {
+  const target = normalizePath(new URL(sitePath(href), window.location.origin).pathname);
+  const current = normalizePath(window.location.pathname);
+  return target !== "/" && current === target;
+}
+
 // ---- WHATSAPP HELPERS ----
 function waLink(msg) {
   return CONFIG.whatsappUrl + "?text=" + encodeURIComponent(msg);
@@ -59,6 +69,9 @@ function setLang(lang) {
   renderFooter();
   renderFloatingWA();
   renderGenericPage();
+  renderBreadcrumb();
+  if (typeof renderExperienceFilters === "function") renderExperienceFilters();
+  if (typeof renderExperienceCards === "function") renderExperienceCards();
 
   // Re-bind interactions after render
   bindInteractions();
@@ -76,10 +89,10 @@ function renderNav() {
   const logoEl = document.querySelector(".nav-logo");
   const navWaMsg = ctaMessage("travelBetter");
 
-  setLink(logoEl, "index.html");
+  setLink(logoEl, "/");
   if (linksEl) {
     linksEl.innerHTML = c.links.map(l =>
-      `<a href="${sitePath(l.href)}">${l.label}</a>`
+      `<a href="${sitePath(l.href)}" class="${isActiveNav(l.href) ? 'active' : ''}" ${isActiveNav(l.href) ? 'aria-current="page"' : ''}>${l.label}</a>`
     ).join("");
   }
   if (ctaEl) {
@@ -88,7 +101,7 @@ function renderNav() {
   }
   if (mobileEl) {
     mobileEl.innerHTML = c.links.map(l =>
-      `<a href="${sitePath(l.href)}">${l.label}</a>`
+      `<a href="${sitePath(l.href)}" class="${isActiveNav(l.href) ? 'active' : ''}" ${isActiveNav(l.href) ? 'aria-current="page"' : ''}>${l.label}</a>`
     ).join("") +
       `<div class="mobile-lang">
         <button class="lang-btn ${currentLang === 'id' ? 'active' : ''}" data-lang="id">ID</button>
@@ -340,11 +353,11 @@ function renderFaq() {
   if (!listEl) return;
   listEl.innerHTML = c.items.map((item, i) => `
     <div class="faq-item" id="faq-${i}">
-      <button class="faq-q" data-faq="${i}">
+      <button class="faq-q" data-faq="${i}" aria-expanded="false" aria-controls="faq-answer-${i}">
         ${item.q}
         <span class="faq-arrow">▾</span>
       </button>
-      <div class="faq-a"><p>${item.a}</p></div>
+      <div class="faq-a" id="faq-answer-${i}"><p>${item.a}</p></div>
     </div>
   `).join("");
 }
@@ -447,6 +460,21 @@ function renderGenericPage() {
   }
 }
 
+function renderBreadcrumb() {
+  const el = document.getElementById("breadcrumb");
+  const key = document.body.dataset.page;
+  if (!el || !key || !CONTENT[currentLang].pages || !CONTENT[currentLang].pages[key]) return;
+
+  const page = CONTENT[currentLang].pages[key];
+  const currentLabel = page.breadcrumb || page.eyebrow || page.title;
+  el.innerHTML = `
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li aria-current="page">${currentLabel}</li>
+    </ol>
+  `;
+}
+
 // ---- BIND INTERACTIONS ----
 function bindInteractions() {
   // Language buttons
@@ -491,8 +519,15 @@ function bindInteractions() {
     btn.addEventListener("click", () => {
       const item = btn.closest(".faq-item");
       const isOpen = item.classList.contains("open");
-      document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("open"));
-      if (!isOpen) item.classList.add("open");
+      document.querySelectorAll(".faq-item").forEach(i => {
+        i.classList.remove("open");
+        const trigger = i.querySelector(".faq-q");
+        if (trigger) trigger.setAttribute("aria-expanded", "false");
+      });
+      if (!isOpen) {
+        item.classList.add("open");
+        btn.setAttribute("aria-expanded", "true");
+      }
     });
   });
 
