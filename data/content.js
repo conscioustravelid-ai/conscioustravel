@@ -8,15 +8,15 @@ const CONTENT = {
         { label: "Reviews", href: "#clients" },
         { label: "Inquiry", href: "#inquiry" },
       ],
-      cta: "Diskusi via WhatsApp",
+      cta: "Travel Better. Start Here.",
     },
     hero: {
       eyebrow: "Sustainable journeys. Meaningful impact.",
       headline: "Company Outing & Meaningful Trip in Bali",
       subheadline:
         "Conscioustravel membantu perusahaan, komunitas, dan grup kecil merancang perjalanan di Bali yang menyenangkan, tertata, dan memiliki nilai positif bagi tim maupun tempat yang dikunjungi.",
-      primaryCta: "Diskusi via WhatsApp",
-      secondaryCta: "Lihat Paket",
+      primaryCta: "Travel Better. Start Here.",
+      secondaryCta: "Explore Experiences",
       trustNotes: [
         "Curated outing & private trip",
         "Team building facilitator",
@@ -35,16 +35,17 @@ const CONTENT = {
           title: "Untuk Perusahaan",
           description:
             "Outing kantor, team building, CSR activity, dan company gathering yang dirancang lebih rapi, fun, dan bermakna.",
-          cta: "Tanya Paket Outing",
+          cta: "Make Your Outing Count",
           waMsg:
-            "Halo Conscioustravel, saya ingin tanya paket trip / outing di Bali. Bisa dibantu rekomendasinya?",
+            "Hai Conscious Travel! 👋 Saya sedang merencanakan company outing dan ingin mengeksplorasi ide yang cocok untuk tim kami. Bisa bantu?",
         },
         {
           icon: "🌿",
           title: "Untuk Daily Trip & Grup Kecil",
           description:
             "Daily trip privat dan itinerary kustom untuk keluarga, teman, pasangan, atau grup kecil yang ingin menjelajahi Bali dengan cara yang lebih personal.",
-          cta: "Buat Trip Kustom",
+          cta: "Explore Experiences",
+          href: "#experiences",
           waMsg:
             "Halo Conscioustravel, saya ingin tanya paket daily trip kustom di Bali. Bisa dibantu rekomendasi itinerary?",
         },
@@ -83,9 +84,9 @@ const CONTENT = {
             "Impact report",
             "Drone / video recap",
           ],
-          cta: "Tanya Paket Nature Escape",
+          cta: "Make Your Outing Count",
           waMsg:
-            "Halo Conscioustravel, saya tertarik dengan paket Bali Starter — Nature Escape + Impact Light untuk outing kantor. Bisa dibantu info paket dan ketersediaannya?",
+            "Hai Conscious Travel! 👋 Saya sedang merencanakan company outing dan ingin mengeksplorasi ide yang cocok untuk tim kami. Bisa bantu?",
         },
         {
           id: "beach-club",
@@ -117,9 +118,9 @@ const CONTENT = {
             "Banner perusahaan kustom",
             "Impact report",
           ],
-          cta: "Tanya Paket Beach Club Party",
+          cta: "Make Your Outing Count",
           waMsg:
-            "Halo Conscioustravel, saya tertarik dengan paket Bali Starter — Beach Club Party with Purpose untuk outing kantor. Bisa dibantu info paket dan ketersediaannya?",
+            "Hai Conscious Travel! 👋 Saya sedang merencanakan company outing dan ingin mengeksplorasi ide yang cocok untuk tim kami. Bisa bantu?",
         },
       ],
     },
@@ -136,9 +137,9 @@ const CONTENT = {
         "Couple trip",
         "Itinerary kustom untuk grup kecil",
       ],
-      cta: "Buat Daily Trip Kustom",
+      cta: "Travel Better. Start Here.",
       waMsg:
-        "Halo Conscioustravel, saya ingin tanya paket daily trip kustom di Bali. Bisa dibantu rekomendasi itinerary?",
+        "Hai Conscious Travel! 👋 Saya ingin merencanakan perjalanan di Bali dan mencari experience yang paling cocok. Bisa bantu saya?",
     },
     why: {
       title: "Kenapa Conscioustravel?",
@@ -173,9 +174,9 @@ const CONTENT = {
       title: "Small Impact, Better Story",
       description:
         "Tidak semua outing harus menjadi program CSR besar. Dengan konsep Impact Light, perusahaan bisa menambahkan aktivitas sederhana seperti donation, responsible travel briefing, waste sorting challenge, local support, atau tree / plant support agar perjalanan terasa lebih bermakna.",
-      cta: "Pelajari Format Impact Light",
+      cta: "Make Your Outing Count",
       waMsg:
-        "Halo Conscioustravel, saya ingin tahu lebih lanjut tentang konsep Impact Light untuk outing kantor kami.",
+        "Hai Conscious Travel! 👋 Saya sedang merencanakan company outing dan ingin mengeksplorasi ide yang cocok untuk tim kami. Bisa bantu?",
       items: [
         { icon: "💚", label: "Responsible Travel Briefing" },
         { icon: "🍽️", label: "Local Lunch & Support" },
@@ -215,7 +216,7 @@ const CONTENT = {
       successTitle: "Inquiry Anda sudah terkirim!",
       successMsg:
         "Tim Conscioustravel akan menghubungi Anda melalui WhatsApp untuk membantu merekomendasikan paket yang paling sesuai.",
-      successCta: "Lanjut Chat via WhatsApp",
+      successCta: "Travel Better. Start Here.",
       errorMsg: "Mohon cek kembali data yang wajib diisi.",
       privacyNote:
         "Dengan mengirim formulir ini, Anda setuju untuk dihubungi oleh tim Conscioustravel melalui WhatsApp atau email terkait kebutuhan trip Anda.",
@@ -266,7 +267,7 @@ const CONTENT = {
       title: "Siap Merancang Outing atau Trip yang Lebih Bermakna?",
       description:
         "Ceritakan kebutuhan tim atau grup Anda. Tim Conscioustravel akan membantu merekomendasikan format perjalanan yang paling sesuai.",
-      cta: "Diskusi Sekarang via WhatsApp",
+      cta: "Travel Better. Start Here.",
     },
     footer: {
       description:
@@ -290,15 +291,15 @@ const CONTENT = {
         { label: "Reviews", href: "#clients" },
         { label: "Inquiry", href: "#inquiry" },
       ],
-      cta: "Discuss via WhatsApp",
+      cta: "Travel Better. Start Here.",
     },
     hero: {
       eyebrow: "Sustainable journeys. Meaningful impact.",
       headline: "Company Outing & Meaningful Trips in Bali",
       subheadline:
         "Conscioustravel helps companies, communities, and small groups design Bali trips that are fun, well-organized, and thoughtfully connected to local experiences and positive impact.",
-      primaryCta: "Discuss via WhatsApp",
-      secondaryCta: "View Packages",
+      primaryCta: "Travel Better. Start Here.",
+      secondaryCta: "Explore Experiences",
       trustNotes: [
         "Curated outing & private trip",
         "Team building facilitator",
@@ -317,16 +318,17 @@ const CONTENT = {
           title: "For Companies",
           description:
             "Company outings, team building, CSR activities, and corporate gatherings designed to be organized, fun, and meaningful.",
-          cta: "Ask About Outing Packages",
+          cta: "Make Your Outing Count",
           waMsg:
-            "Hi Conscioustravel, I'd like to ask about trip / outing packages in Bali. Could you help recommend the best option?",
+            "Hi Conscious Travel! 👋 I'm planning a company outing and would love to explore some ideas for our team. Can you help?",
         },
         {
           icon: "🌿",
           title: "For Daily Trips & Small Groups",
           description:
             "Private daily trips and custom itineraries for families, friends, couples, or small groups who want to explore Bali in a more personal way.",
-          cta: "Create a Custom Trip",
+          cta: "Explore Experiences",
+          href: "#experiences",
           waMsg:
             "Hi Conscioustravel, I'd like to ask about a custom daily trip in Bali. Could you help recommend an itinerary?",
         },
@@ -365,9 +367,9 @@ const CONTENT = {
             "Impact report",
             "Drone / video recap",
           ],
-          cta: "Ask About Nature Escape",
+          cta: "Make Your Outing Count",
           waMsg:
-            "Hi Conscioustravel, I'm interested in the Bali Starter — Nature Escape + Impact Light package for a company outing. Could you help with package details and availability?",
+            "Hi Conscious Travel! 👋 I'm planning a company outing and would love to explore some ideas for our team. Can you help?",
         },
         {
           id: "beach-club",
@@ -399,9 +401,9 @@ const CONTENT = {
             "Custom company banner",
             "Impact report",
           ],
-          cta: "Ask About Beach Club Party",
+          cta: "Make Your Outing Count",
           waMsg:
-            "Hi Conscioustravel, I'm interested in the Bali Starter — Beach Club Party with Purpose package for a company outing. Could you help with package details and availability?",
+            "Hi Conscious Travel! 👋 I'm planning a company outing and would love to explore some ideas for our team. Can you help?",
         },
       ],
     },
@@ -418,9 +420,9 @@ const CONTENT = {
         "Couple trip",
         "Small group custom itinerary",
       ],
-      cta: "Create a Custom Daily Trip",
+      cta: "Travel Better. Start Here.",
       waMsg:
-        "Hi Conscioustravel, I'd like to ask about a custom daily trip in Bali. Could you help recommend an itinerary?",
+        "Hi Conscious Travel! 👋 I'd love to explore a better way to experience Bali. Can you help me find the right trip?",
     },
     why: {
       title: "Why Conscioustravel?",
@@ -455,9 +457,9 @@ const CONTENT = {
       title: "Small Impact, Better Story",
       description:
         "Not every outing needs to become a large CSR program. With the Impact Light concept, companies can add simple activities such as donations, responsible travel briefings, waste sorting challenges, local support, or tree / plant support to make the journey feel more meaningful.",
-      cta: "Learn About Impact Light",
+      cta: "Make Your Outing Count",
       waMsg:
-        "Hi Conscioustravel, I'd like to learn more about the Impact Light concept for our company outing.",
+        "Hi Conscious Travel! 👋 I'm planning a company outing and would love to explore some ideas for our team. Can you help?",
       items: [
         { icon: "💚", label: "Responsible Travel Briefing" },
         { icon: "🍽️", label: "Local Lunch & Support" },
@@ -497,7 +499,7 @@ const CONTENT = {
       successTitle: "Your inquiry has been submitted!",
       successMsg:
         "The Conscioustravel team will contact you via WhatsApp to help recommend the most suitable package.",
-      successCta: "Continue Chat via WhatsApp",
+      successCta: "Travel Better. Start Here.",
       errorMsg: "Please check the required fields before submitting.",
       privacyNote:
         "By submitting this form, you agree to be contacted by the Conscioustravel team via WhatsApp or email regarding your trip inquiry.",
@@ -548,7 +550,7 @@ const CONTENT = {
       title: "Ready to Design a More Meaningful Outing or Trip?",
       description:
         "Tell us what your team or group needs. The Conscioustravel team will help recommend the most suitable travel format.",
-      cta: "Discuss Now via WhatsApp",
+      cta: "Travel Better. Start Here.",
     },
     footer: {
       description:

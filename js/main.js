@@ -9,6 +9,20 @@ function waLink(msg) {
   return CONFIG.whatsappUrl + "?text=" + encodeURIComponent(msg);
 }
 
+function ctaMessage(type) {
+  const messages = {
+    travelBetter: {
+      id: "Hai Conscious Travel! 👋 Saya ingin merencanakan perjalanan di Bali dan mencari experience yang paling cocok. Bisa bantu saya?",
+      en: "Hi Conscious Travel! 👋 I'd love to explore a better way to experience Bali. Can you help me find the right trip?",
+    },
+    companyOuting: {
+      id: "Hai Conscious Travel! 👋 Saya sedang merencanakan company outing dan ingin mengeksplorasi ide yang cocok untuk tim kami. Bisa bantu?",
+      en: "Hi Conscious Travel! 👋 I'm planning a company outing and would love to explore some ideas for our team. Can you help?",
+    },
+  };
+  return messages[type][currentLang] || messages[type].en;
+}
+
 // ---- LANGUAGE SWITCHER ----
 function setLang(lang) {
   currentLang = lang;
@@ -49,9 +63,7 @@ function renderNav() {
   const linksEl = document.getElementById("nav-links");
   const mobileEl = document.getElementById("mobile-menu");
   const ctaEl = document.getElementById("nav-cta");
-  const navWaMsg = currentLang === 'id'
-    ? "Halo Conscioustravel, saya ingin tanya paket trip / outing di Bali. Bisa dibantu rekomendasinya?"
-    : "Hi Conscioustravel, I'd like to ask about trip / outing packages in Bali. Could you help?";
+  const navWaMsg = ctaMessage("travelBetter");
 
   if (linksEl) {
     linksEl.innerHTML = c.links.map(l =>
@@ -90,14 +102,12 @@ function renderHero() {
   if (sub) sub.textContent = c.subheadline;
 
   if (primaryBtn) {
-    primaryBtn.innerHTML = '💬 ' + c.primaryCta;
-    primaryBtn.href = waLink(currentLang === 'id'
-      ? "Halo Conscioustravel, saya ingin tanya paket trip / outing di Bali. Bisa dibantu rekomendasinya?"
-      : "Hi Conscioustravel, I'd like to ask about trip / outing packages in Bali. Could you help?");
+    primaryBtn.textContent = c.primaryCta;
+    primaryBtn.href = waLink(ctaMessage("travelBetter"));
   }
   if (secBtn) {
-    secBtn.innerHTML = c.secondaryCta + ' ↓';
-    secBtn.href = "#packages";
+    secBtn.textContent = c.secondaryCta;
+    secBtn.href = "#experiences";
   }
   if (trustEl) {
     trustEl.innerHTML = c.trustNotes.map(n => `<span class="trust-badge">${n}</span>`).join("");
@@ -128,7 +138,7 @@ function renderAudience() {
       <div class="card-icon">${card.icon}</div>
       <h3>${card.title}</h3>
       <p>${card.description}</p>
-      <a href="${waLink(card.waMsg)}" class="btn-primary" target="_blank" rel="noopener">${card.cta}</a>
+      <a href="${card.href || waLink(card.waMsg)}" class="${card.href ? 'btn-cream' : 'btn-primary'}" ${card.href ? '' : 'target="_blank" rel="noopener"'}>${card.cta}</a>
     </div>
   `).join("");
 }
@@ -305,9 +315,7 @@ function renderInquiry() {
   if (successMsg) successMsg.textContent = c.successMsg;
   if (successCta) {
     successCta.textContent = c.successCta;
-    successCta.href = waLink(currentLang === 'id'
-      ? "Halo Conscioustravel, saya sudah mengisi inquiry form dan ingin melanjutkan diskusi."
-      : "Hi Conscioustravel, I have submitted the inquiry form and would like to continue the discussion.");
+    successCta.href = waLink(ctaMessage("travelBetter"));
   }
 }
 
@@ -339,9 +347,7 @@ function renderFinalCta() {
   if (descEl) descEl.textContent = c.description;
   if (ctaEl) {
     ctaEl.textContent = c.cta;
-    ctaEl.href = waLink(currentLang === 'id'
-      ? "Halo Conscioustravel, saya ingin merancang outing atau trip yang lebih bermakna di Bali."
-      : "Hi Conscioustravel, I'd like to design a more meaningful outing or trip in Bali.");
+    ctaEl.href = waLink(ctaMessage("travelBetter"));
   }
 }
 
@@ -367,12 +373,9 @@ function renderFooter() {
 function renderFloatingWA() {
   const el = document.getElementById("floating-wa");
   if (!el) return;
-  const msg = currentLang === 'id'
-    ? "Halo Conscioustravel, saya ingin tanya paket trip / outing di Bali. Bisa dibantu rekomendasinya?"
-    : "Hi Conscioustravel, I'd like to ask about trip / outing packages in Bali. Could you help?";
-  el.href = waLink(msg);
+  el.href = waLink(ctaMessage("travelBetter"));
   const label = el.querySelector(".wa-label");
-  if (label) label.textContent = currentLang === 'id' ? "Diskusi via WhatsApp" : "Discuss via WhatsApp";
+  if (label) label.textContent = "Travel Better. Start Here.";
 }
 
 // ---- BIND INTERACTIONS ----
