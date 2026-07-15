@@ -161,12 +161,15 @@ Setiap task ditandai dengan:
 
 ---
 
-## FASE 4 — Experience Detail Template
+## FASE 4 — Experience Detail Template (DITUNDA KE PHASE 2)
 
 **File:** `experience-detail.html` (template, file baru)
 
+Catatan Phase 1.5: jangan buat atau publish file ini dulu. Experience Catalog,
+detail page, itinerary, gallery detail, dan harga B2C baru masuk Phase 2.
+
 ### 4.1 Setup File
-- [ ] Buat `experience-detail.html` sebagai template
+- [ ] Ditunda sampai Phase 2: buat `experience-detail.html` sebagai template
 - [ ] Data experience diambil dari URL parameter atau path
   - Contoh: `experience-detail.html?slug=kintamani-jeep-adventure`
   - JS baca `URLSearchParams`, cari data di `experiences.json`, render konten

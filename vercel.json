@@ -1,0 +1,34 @@
+{
+  "redirects": [
+    {
+      "source": "/bali/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/company-trip/",
+      "destination": "/company-outing/",
+      "permanent": true
+    },
+    {
+      "source": "/study-tour/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/private-trip/",
+      "destination": "/experiences/",
+      "permanent": true
+    },
+    {
+      "source": "/open-trip/",
+      "destination": "/experiences/",
+      "permanent": true
+    },
+    {
+      "source": "/open-trip-europe/",
+      "destination": "/experiences/",
+      "permanent": true
+    }
+  ]
+}

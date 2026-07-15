@@ -17,23 +17,22 @@ conscioustravel-website/
 │   └── style.css              ← semua styles (import variables.css di atas)
 ├── js/
 │   ├── main.js                ← init, language switcher, scroll effects
-│   ├── experience-filter.js   ← filter kategori di /experiences
-│   └── router.js              ← simple client-side routing (Phase 1)
+│   └── experience-filter.js   ← parked untuk Phase 2, tidak diload di Phase 1.5
 ├── data/
-│   ├── site-config.json       ← config global (WA number, URL, dll)
-│   ├── content.js             ← semua copy bilingual (sudah ada, perlu expand)
-│   ├── experiences.json       ← data semua experience
+│   ├── content.js             ← semua copy bilingual + config global
+│   ├── experiences.json       ← dikosongkan sampai Experience Catalog Phase 2
 │   └── packages.json          ← data paket outing
 ├── assets/
 │   └── images/                ← semua foto (WebP diutamakan)
 ├── docs/                      ← dokumen implementasi ini
 ├── index.html                 ← Home
-├── company-outing.html        ← Company Outing
-├── experiences.html           ← Experiences hub
-├── experience-detail.html     ← Template Experience Detail
-├── impact.html                ← Impact & Sustainability
-├── about.html                 ← About Us
-└── contact.html               ← Contact
+├── company-outing/index.html  ← Company Outing
+├── experiences/index.html     ← Experiences hub, tanpa catalog final
+├── impact/index.html          ← Impact & Sustainability
+├── about/index.html           ← About Us
+├── contact/index.html         ← Contact
+├── robots.txt                 ← crawler directive
+└── sitemap.xml                ← sitemap halaman Phase 1
 ```
 
 ---
@@ -202,7 +201,12 @@ Footer Bottom:
 
 ## 6. EXPERIENCE CARD
 
-**Dipakai di:** Experiences hub, Home (preview), Experience Detail (related)
+**Status:** Ditunda sampai Phase 2 Experience Catalog.
+
+**Dipakai nanti di:** Experiences hub, Home (preview), Experience Detail (related)
+
+Catatan Phase 1.5: jangan tampilkan card, harga mulai, atau link detail B2C
+sebelum data catalog final disetujui.
 
 **Struktur:**
 ```html
@@ -449,7 +453,9 @@ Footer Bottom:
 
 ## 16. STICKY BOTTOM BAR (Mobile Only)
 
-**Dipakai di:** Experience Detail page
+**Status:** Ditunda sampai Phase 2 Experience Detail.
+
+**Dipakai nanti di:** Experience Detail page
 
 **Behavior:**
 - Muncul saat user scroll melewati hero section
@@ -469,6 +475,10 @@ Footer Bottom:
 ## Data Files
 
 ### `data/experiences.json`
+
+Phase 1.5: file ini dikosongkan agar draft harga dan route B2C tidak
+terpublish sebagai catalog final. Struktur berikut hanya referensi Phase 2.
+
 ```json
 [
   {

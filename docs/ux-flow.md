@@ -96,34 +96,24 @@ experience di Bali. Mereka lebih spontan, lebih visual, dan ingin proses yang ce
 [2] Landing di /experiences atau /
     - Hero tone lebih personal dan warm
     - Foto Bali yang beautiful
-    - CTA: "Buat Trip Custom" atau "Lihat Experience"
+    - CTA: "Buat Trip Custom" atau "Explore Trip Types"
     
-    ↓ (scroll atau klik filter)
+    ↓ (scroll ke trip type / custom trip)
     
-[3] Browse Experience Cards
-    - Filter kategori: Nature, Beach, Culture, Adventure, Food
-    - Scroll grid, lihat foto dan harga
+[3] Lihat inspirasi trip type
+    - Uluwatu, Kintamani, Ubud, beach hopping, food, family/couple
+    - Tidak ada harga fixed atau detail itinerary public di Phase 1.5
     
-    ↓ (tertarik dengan experience tertentu)
+    ↓ (tertarik diskusi itinerary)
     
-[4] Klik Experience Card → /experiences/[slug]
-    - Lihat foto gallery
-    - Baca deskripsi dan itinerary
-    - Cek includes/excludes
-    - Lihat harga mulai
-    
-    ↓ (tertarik, ingin tanya)
-    
-[5] Klik CTA WhatsApp (prefilled dengan nama experience)
+[4] Klik CTA WhatsApp
     → Chat langsung
     → Tanya tanggal, pax, custom request
     → Konfirmasi → Trip terjadwal ✓
     
     ATAU
     
-    (Kalau tidak menemukan yang cocok di step 3)
-    
-[3b] Lihat "Custom Trip" CTA Block
+[4b] Lihat "Custom Trip" CTA Block
     → "Tidak menemukan yang cocok? Kami bisa buat khusus."
     → Klik WhatsApp
     → Diskusi custom itinerary
@@ -135,35 +125,33 @@ experience di Bali. Mereka lebih spontan, lebih visual, dan ingin proses yang ce
 | Touchpoint | Lokasi | Fungsi |
 |---|---|---|
 | Hero visual | Above the fold | First impression — harus beautiful |
-| Filter bar | /experiences | Discovery tool |
-| Experience card foto | Grid | Visual trigger klik |
-| Gallery di detail page | /experiences/[slug] | Memperkuat desire |
-| Sticky bottom bar | Mobile, detail page | Always-visible CTA saat scroll |
+| Trip type tags | /experiences | Inspirasi tanpa menjanjikan catalog final |
+| Gallery preview | /experiences | Memperkuat desire tanpa detail package |
 | Custom trip block | /experiences | Jaring lead yang tidak cocok paket |
 | Floating WA button | Seluruh halaman | Escape hatch kapan saja |
 
 ### UX Notes B2C
 - Foto adalah senjata utama — kualitas foto langsung mempengaruhi konversi
 - Proses harus terasa ringan: WhatsApp satu klik, bukan form panjang
-- Harga "Mulai dari" memberi ekspektasi yang tepat tanpa menakut-nakuti
+- Jangan tampilkan harga B2C fixed sebelum data Experience Catalog Phase 2 final
 - Mobile experience harus sempurna — B2C mayoritas dari Instagram ads di HP
 
 ---
 
-## 3. FUTURE BOOKING FLOW (Phase 2)
+## 3. FUTURE EXPERIENCE CATALOG & BOOKING FLOW
 
 ### Konteks
-Ketika Conscioustravel sudah siap menerima pembayaran online, flow ini
-menggantikan WhatsApp sebagai jalur konfirmasi untuk B2C.
+Phase 2 membuat Experience Catalog untuk B2C Daily Trip. Phase 3 membuat
+Booking Request System tanpa payment. Phase 4 baru menambahkan online payment.
 B2B tetap via proposal dan WhatsApp.
 
 ### Alur Lengkap
 
 ```
-[1] User di /experiences/[slug]
+[1] User di /experiences/[slug] (Phase 2)
     ↓
     
-[2] Klik tombol "Book Now" (ditambah di Phase 2)
+[2] Klik tombol "Request Booking" (Phase 3, tanpa payment)
     ↓
     
 [3] /booking?experience=[slug]
@@ -179,24 +167,29 @@ B2B tetap via proposal dan WhatsApp.
     
 [5] Review & Confirm
     - Summary: nama experience, tanggal, pax, total harga
-    - Tombol: "Lanjut ke Pembayaran"
+    - Tombol: "Kirim Booking Request"
     ↓
     
-[6] Payment Gateway (Midtrans atau Xendit)
+[6] Tim follow up via WhatsApp / email
+    - Validasi availability
+    - Konfirmasi detail operasional
+    ↓
+
+[7] Payment Gateway (Phase 4: Midtrans atau Xendit)
     - Transfer bank / QRIS / kartu kredit
     ↓
     
-[7] Konfirmasi
+[8] Konfirmasi
     - Email konfirmasi otomatis
     - WhatsApp notifikasi dari tim
     - Status booking di halaman terima kasih
 ```
 
 ### Yang Perlu Disiapkan Sekarang untuk Phase 2
-- URL struktur `/booking` sudah disiapkan di router
-- Data experience sudah terstruktur di `data/experiences.json`
+- Struktur konten Experiences tetap rapi sebagai entry point B2C
+- Data draft experience tidak dipublish sebagai public catalog
 - Form inquiry sudah ada sebagai fondasi form booking
-- Jangan hardcode harga di HTML — selalu dari data file
+- Jangan hardcode harga B2C di HTML sebelum data Phase 2 final
 
 ---
 
@@ -223,11 +216,10 @@ Home → /contact            (menu Contact atau CTA Form)
 ### Dari Experiences
 
 ```
-/experiences → /experiences/[slug]  (klik experience card)
 /experiences → WhatsApp             (custom trip CTA)
 ```
 
-### Dari Experience Detail
+### Dari Experience Detail (Phase 2)
 
 ```
 /experiences/[slug] → WhatsApp                 (CTA utama)

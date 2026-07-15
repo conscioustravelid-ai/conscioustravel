@@ -14,7 +14,6 @@ Semua halaman menggunakan layout default kecuali ada catatan khusus.
 /                        → Home
 /company-outing          → Company Outing
 /experiences             → Experiences / Daily Trips
-/experiences/[slug]      → Experience Detail (template)
 /impact                  → Impact & Sustainability
 /about                   → About Us
 /contact                 → Contact
@@ -23,6 +22,7 @@ Semua halaman menggunakan layout default kecuali ada catatan khusus.
 ## Sitemap Phase 2 (Ditunda)
 
 ```
+/experiences/[slug]      → Experience Detail
 /company-outing/team-building
 /company-outing/corporate-retreat
 /company-outing/csr-impact-trip
@@ -74,8 +74,9 @@ drive pengunjung ke WhatsApp atau halaman yang relevan.
 6.  Experience Preview
       - Eyebrow: "Daily Trip & Small Group"
       - H2: "Explore Bali dengan Cara yang Lebih Personal"
-      - 3–4 Experience Card (featured)
-      - CTA: "Lihat Semua Experience" → /experiences
+      - Preview visual dan trip style, bukan catalog final
+      - Jangan tampilkan harga B2C fixed sebelum Phase 2
+      - CTA: "Explore Experiences" → /experiences
 
 7.  Why Conscioustravel
       - 4 benefit block (icon + judul + deskripsi)
@@ -182,7 +183,8 @@ adalah partner outing yang tepat. Drive ke WhatsApp atau inquiry form.
 
 ## 3. EXPERIENCES / DAILY TRIPS (`/experiences`)
 
-**Tujuan:** Showcase semua experience dan daily trip. Entry point B2C traveler.
+**Tujuan:** Menjelaskan daily trip dan custom small-group inquiry tanpa
+menampilkan Experience Catalog final. Entry point B2C traveler.
 
 **Target User:** B2C — traveler, couple, family, small group, international visitor.
 
@@ -197,39 +199,31 @@ adalah partner outing yang tepat. Drive ke WhatsApp atau inquiry form.
       - H1: "Explore Bali dengan Cara yang Lebih Personal"
       - Subheadline: fleksibel, custom, bukan paket wisata biasa
       - CTA Primary: "Buat Trip Custom" → WhatsApp
-      - CTA Secondary: "Lihat Experience" → scroll ke #list
+      - CTA Secondary: "Explore Trip Types" → scroll ke #daily-trip
 
-4.  Filter / Category Bar (id="list")
-      - Kategori: Semua | Nature | Beach | Culture | Adventure | Food
-      - Scroll horizontal di mobile
-      - Active state yang jelas
+4.  Daily Trip / Custom Trip Block
+      - Jelaskan trip style secara umum: Uluwatu, Kintamani, Ubud, beach, food, family, couple
+      - Tidak menampilkan card catalog, itinerary detail, atau harga B2C fixed
+      - CTA WhatsApp untuk diskusi itinerary kustom
 
-5.  Experience Card Grid
-      - Grid 3 kolom desktop, 2 tablet, 1 mobile
-      - Filter JS: tampilkan/sembunyikan berdasarkan kategori
-      - Setiap card: foto, nama, lokasi, durasi, harga mulai, CTA
+5.  Experience Preview / Gallery
+      - Foto dan narasi inspiratif saja
+      - Tidak mengarah ke detail page sebelum Phase 2
 
 6.  Custom Trip CTA Block
       - Tone: "Tidak menemukan yang cocok? Kami bisa buat khusus untuk kamu."
       - CTA: WhatsApp dengan pesan prefilled
       - Background: --color-cream
 
-7.  Destinations Preview (singkat)
-      - 4–5 destinasi populer dengan foto kecil
-      - Link ke /destinations (Phase 2) atau filter experience
-
-8.  Testimonial (B2C focused)
-      - Testimonial dari traveler, couple, atau small group
-
-9.  FAQ Accordion (B2C focused)
+7.  FAQ Accordion (B2C focused)
       - Pertanyaan seputar itinerary, harga, minimum pax, booking, dll
 
-10. Final CTA Section
-11. Footer
+8. Final CTA Section
+9. Footer
 ```
 
 **CTA Utama:** Buat Trip Custom via WhatsApp
-**CTA Sekunder:** Lihat Detail Experience
+**CTA Sekunder:** Explore Trip Types
 
 **SEO:**
 - Title: `Daily Trip & Small Group Experiences Bali | Conscioustravel`
@@ -237,7 +231,11 @@ adalah partner outing yang tepat. Drive ke WhatsApp atau inquiry form.
 
 ---
 
-## 4. EXPERIENCE DETAIL PAGE TEMPLATE (`/experiences/[slug]`)
+## 4. EXPERIENCE DETAIL PAGE TEMPLATE (`/experiences/[slug]`) — DITUNDA PHASE 2
+
+Catatan Phase 1.5: jangan publish route ini dan jangan tampilkan harga,
+itinerary, gallery detail, include/exclude, add-ons, atau FAQ per experience
+sebelum Experience Catalog Phase 2 disetujui.
 
 **Tujuan:** Meyakinkan traveler untuk inquiry atau booking experience tertentu.
 
@@ -392,7 +390,8 @@ adalah partner outing yang tepat. Drive ke WhatsApp atau inquiry form.
 
 7.  Legal Info
       - Nama legal: PT Wisata Perjalanan Bermakna
-      - Alamat: GG Mangga no.16 Pemecutan Klod, Denpasar Barat, Bali
+      - Alamat PT: Jl. Cempaka Bulak No. 77, Jaticempaka, Pondokgede, Kota Bekasi, Jawa Barat, 17411
+      - Kantor Bali: Jl. Nusantara II No. 17, Tuban, Kuta, Badung, Bali, 80361
       - Nomor WhatsApp, Instagram
       - Background: --color-cream
 

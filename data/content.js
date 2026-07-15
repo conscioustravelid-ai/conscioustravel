@@ -63,7 +63,7 @@ const CONTENT = {
           location: "Ubud / Kintamani",
           price: "Mulai Rp750.000/pax",
           minPax: "Min. 50 pax",
-          image: "assets/images/kintamani-outing-cover.png",
+          image: "assets/images/kintamani-outing-cover.webp",
           imageAlt: "Team building activity in Kintamani Bali with Conscioustravel",
           description:
             "Paket outing untuk perusahaan yang ingin membawa tim keluar dari rutinitas, menikmati suasana alam Bali, dan menambahkan aktivitas ringan yang punya nilai positif.",
@@ -95,7 +95,7 @@ const CONTENT = {
           location: "Nuanu / Atlas",
           price: "Mulai Rp750.000/pax",
           minPax: "Min. 50 pax",
-          image: "assets/images/beach-team-building.png",
+          image: "assets/images/beach-team-building.webp",
           imageAlt: "Beach team building activity for company outing in Bali",
           description:
             "Paket outing untuk perusahaan yang ingin menggabungkan team building, beach club party, dan short impact moment agar acara tetap fun namun punya cerita.",
@@ -191,14 +191,14 @@ const CONTENT = {
       description:
         "Beberapa gambaran aktivitas yang bisa dirancang bersama Conscioustravel — dari nature outing, jeep adventure, makan siang lokal, beach team building, hingga makan malam grup.",
       images: [
-        { src: "assets/images/kintamani-outing-cover.png", alt: "Team building activity in Kintamani Bali", label: "Nature Outing" },
-        { src: "assets/images/jeep-adventure.png", alt: "Jeep adventure experience in Kintamani Bali", label: "Jeep Adventure" },
-        { src: "assets/images/games-in-nature.png", alt: "Outdoor team building games in nature in Bali", label: "Team Building" },
-        { src: "assets/images/group-local-lunch.png", alt: "Company group enjoying lunch at a local restaurant in Bali", label: "Makan Siang Lokal" },
-        { src: "assets/images/beach-team-building.png", alt: "Beach team building activity for company outing in Bali", label: "Beach Activity" },
-        { src: "assets/images/group-dinner-party.png", alt: "Corporate group dinner and party event in Bali", label: "Makan Malam Grup" },
-        { src: "assets/images/local-restaurant-cover.png", alt: "Travelers enjoying local restaurant experience in Bali", label: "Local Experience" },
-        { src: "assets/images/local-restaurant-simple.png", alt: "Local food experience in Bali", label: "Food Experience" },
+        { src: "assets/images/kintamani-outing-cover.webp", alt: "Team building activity in Kintamani Bali", label: "Nature Outing" },
+        { src: "assets/images/jeep-adventure.webp", alt: "Jeep adventure experience in Kintamani Bali", label: "Jeep Adventure" },
+        { src: "assets/images/games-in-nature.webp", alt: "Outdoor team building games in nature in Bali", label: "Team Building" },
+        { src: "assets/images/group-local-lunch.webp", alt: "Company group enjoying lunch at a local restaurant in Bali", label: "Makan Siang Lokal" },
+        { src: "assets/images/beach-team-building.webp", alt: "Beach team building activity for company outing in Bali", label: "Beach Activity" },
+        { src: "assets/images/group-dinner-party.webp", alt: "Corporate group dinner and party event in Bali", label: "Makan Malam Grup" },
+        { src: "assets/images/local-restaurant-cover.webp", alt: "Travelers enjoying local restaurant experience in Bali", label: "Local Experience" },
+        { src: "assets/images/local-restaurant-simple.webp", alt: "Local food experience in Bali", label: "Food Experience" },
       ],
     },
     clients: {
@@ -295,7 +295,7 @@ const CONTENT = {
         title: "Company Outing di Bali yang Rapi, Fun, dan Bermakna",
         description:
           "Dirancang untuk HR, owner, event planner, dan corporate team yang membutuhkan outing, team building, CSR ringan, atau gathering perusahaan dengan flow yang jelas dan pengalaman yang terasa premium.",
-        heroImage: "assets/images/kintamani-outing-cover.png",
+        heroImage: "assets/images/kintamani-outing-cover.webp",
         primaryCta: "Travel Better. Start Here.",
         secondaryCta: "Lihat Paket",
         introTitle: "Bukan sekadar jalan-jalan kantor",
@@ -320,7 +320,7 @@ const CONTENT = {
         title: "Explore Bali dengan Itinerary yang Lebih Personal",
         description:
           "Untuk keluarga, pasangan, teman, komunitas kecil, atau traveler yang ingin daily trip fleksibel dengan rekomendasi lokal dan alur perjalanan yang nyaman.",
-        heroImage: "assets/images/jeep-adventure.png",
+        heroImage: "assets/images/jeep-adventure.webp",
         primaryCta: "Travel Better. Start Here.",
         introTitle: "Daily trip yang bisa mengikuti gaya perjalanan Anda",
         introText:
@@ -338,7 +338,7 @@ const CONTENT = {
         title: "Small Impact, Better Story",
         description:
           "Impact Light membantu perusahaan dan grup menambahkan aktivitas sederhana yang punya nilai positif tanpa membuat perjalanan terasa berat atau terlalu formal.",
-        heroImage: "assets/images/local-restaurant-cover.png",
+        heroImage: "assets/images/local-restaurant-cover.webp",
         primaryCta: "Travel Better. Start Here.",
         introTitle: "Dibuat ringan, relevan, dan tidak berlebihan",
         introText:
@@ -356,7 +356,7 @@ const CONTENT = {
         title: "Travel Partner untuk Perjalanan yang Lebih Bermakna",
         description:
           "Conscioustravel.id adalah travel partner yang merancang curated trips, company outings, dan private experiences di Bali dengan keseimbangan antara kenyamanan, local connection, dan positive impact.",
-        heroImage: "assets/images/group-local-lunch.png",
+        heroImage: "assets/images/group-local-lunch.webp",
         primaryCta: "Travel Better. Start Here.",
         introTitle: "Thoughtful, local, and ready for corporate needs",
         introText:
@@ -374,7 +374,7 @@ const CONTENT = {
         title: "Ceritakan Kebutuhan Trip Anda",
         description:
           "Hubungi Conscioustravel via WhatsApp untuk respons cepat, atau isi inquiry form agar tim kami bisa memahami kebutuhan outing, daily trip, atau perjalanan kustom Anda.",
-        heroImage: "assets/images/group-dinner-party.png",
+        heroImage: "assets/images/group-dinner-party.webp",
         primaryCta: "Travel Better. Start Here.",
         introTitle: "Lebih mudah mulai dari WhatsApp",
         introText:
@@ -453,7 +453,7 @@ const CONTENT = {
           location: "Ubud / Kintamani",
           price: "Starting from Rp750,000/pax",
           minPax: "Min. 50 pax",
-          image: "assets/images/kintamani-outing-cover.png",
+          image: "assets/images/kintamani-outing-cover.webp",
           imageAlt: "Team building activity in Kintamani Bali with Conscioustravel",
           description:
             "A company outing package for teams who want to step away from routine, reconnect in Bali's natural setting, and add a light positive-impact element to the experience.",
@@ -485,7 +485,7 @@ const CONTENT = {
           location: "Nuanu / Atlas",
           price: "Starting from Rp750,000/pax",
           minPax: "Min. 50 pax",
-          image: "assets/images/beach-team-building.png",
+          image: "assets/images/beach-team-building.webp",
           imageAlt: "Beach team building activity for company outing in Bali",
           description:
             "A company outing package that combines beach team building, dinner or party experience, and a short impact moment so the event feels fun and meaningful.",
@@ -581,14 +581,14 @@ const CONTENT = {
       description:
         "A glimpse of activities that can be designed with Conscioustravel — from nature outings and jeep adventures to local lunch, beach team building, and group dinner moments.",
       images: [
-        { src: "assets/images/kintamani-outing-cover.png", alt: "Team building activity in Kintamani Bali", label: "Nature Outing" },
-        { src: "assets/images/jeep-adventure.png", alt: "Jeep adventure experience in Kintamani Bali", label: "Jeep Adventure" },
-        { src: "assets/images/games-in-nature.png", alt: "Outdoor team building games in nature in Bali", label: "Team Building" },
-        { src: "assets/images/group-local-lunch.png", alt: "Company group enjoying lunch at a local restaurant in Bali", label: "Local Lunch" },
-        { src: "assets/images/beach-team-building.png", alt: "Beach team building activity for company outing in Bali", label: "Beach Activity" },
-        { src: "assets/images/group-dinner-party.png", alt: "Corporate group dinner and party event in Bali", label: "Group Dinner" },
-        { src: "assets/images/local-restaurant-cover.png", alt: "Travelers enjoying local restaurant experience in Bali", label: "Local Experience" },
-        { src: "assets/images/local-restaurant-simple.png", alt: "Local food experience in Bali", label: "Food Experience" },
+        { src: "assets/images/kintamani-outing-cover.webp", alt: "Team building activity in Kintamani Bali", label: "Nature Outing" },
+        { src: "assets/images/jeep-adventure.webp", alt: "Jeep adventure experience in Kintamani Bali", label: "Jeep Adventure" },
+        { src: "assets/images/games-in-nature.webp", alt: "Outdoor team building games in nature in Bali", label: "Team Building" },
+        { src: "assets/images/group-local-lunch.webp", alt: "Company group enjoying lunch at a local restaurant in Bali", label: "Local Lunch" },
+        { src: "assets/images/beach-team-building.webp", alt: "Beach team building activity for company outing in Bali", label: "Beach Activity" },
+        { src: "assets/images/group-dinner-party.webp", alt: "Corporate group dinner and party event in Bali", label: "Group Dinner" },
+        { src: "assets/images/local-restaurant-cover.webp", alt: "Travelers enjoying local restaurant experience in Bali", label: "Local Experience" },
+        { src: "assets/images/local-restaurant-simple.webp", alt: "Local food experience in Bali", label: "Food Experience" },
       ],
     },
     clients: {
@@ -685,7 +685,7 @@ const CONTENT = {
         title: "Company Outings in Bali That Feel Organized, Fun, and Meaningful",
         description:
           "Designed for HR teams, owners, event planners, and corporate teams who need outings, team building, light CSR moments, or company gatherings with a clear flow and premium travel feel.",
-        heroImage: "assets/images/kintamani-outing-cover.png",
+        heroImage: "assets/images/kintamani-outing-cover.webp",
         primaryCta: "Travel Better. Start Here.",
         secondaryCta: "View Packages",
         introTitle: "More than a company day out",
@@ -710,7 +710,7 @@ const CONTENT = {
         title: "Explore Bali with a More Personal Itinerary",
         description:
           "For families, couples, friends, small communities, or travelers who want flexible daily trips with local recommendations and a comfortable travel flow.",
-        heroImage: "assets/images/jeep-adventure.png",
+        heroImage: "assets/images/jeep-adventure.webp",
         primaryCta: "Travel Better. Start Here.",
         introTitle: "Daily trips that follow your travel style",
         introText:
@@ -728,7 +728,7 @@ const CONTENT = {
         title: "Small Impact, Better Story",
         description:
           "Impact Light helps companies and groups add simple positive-value activities without making the trip feel heavy or overly formal.",
-        heroImage: "assets/images/local-restaurant-cover.png",
+        heroImage: "assets/images/local-restaurant-cover.webp",
         primaryCta: "Travel Better. Start Here.",
         introTitle: "Light, relevant, and not overclaimed",
         introText:
@@ -746,7 +746,7 @@ const CONTENT = {
         title: "A Travel Partner for More Meaningful Journeys",
         description:
           "Conscioustravel.id is a travel partner designing curated trips, company outings, and private experiences in Bali with a balance of comfort, local connection, and positive impact.",
-        heroImage: "assets/images/group-local-lunch.png",
+        heroImage: "assets/images/group-local-lunch.webp",
         primaryCta: "Travel Better. Start Here.",
         introTitle: "Thoughtful, local, and ready for corporate needs",
         introText:
@@ -764,7 +764,7 @@ const CONTENT = {
         title: "Tell Us What Kind of Trip You Need",
         description:
           "Contact Conscioustravel via WhatsApp for a fast response, or submit the inquiry form so our team can understand your outing, daily trip, or custom travel needs.",
-        heroImage: "assets/images/group-dinner-party.png",
+        heroImage: "assets/images/group-dinner-party.webp",
         primaryCta: "Travel Better. Start Here.",
         introTitle: "The easiest way to start is WhatsApp",
         introText:

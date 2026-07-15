@@ -110,31 +110,21 @@ dianggap selesai dan siap dipublish. Gunakan dokumen ini sebagai checklist QA.
 
 - [ ] Breadcrumb menampilkan: Home > Experiences
 - [ ] H1 ada dengan tone B2C (personal, warm)
-- [ ] Filter bar tampil dengan semua kategori
-- [ ] Filter bar scroll horizontal di mobile (tidak wrap)
-- [ ] Filter berfungsi: klik kategori → hanya card kategori itu yang tampil
-- [ ] "Semua" menampilkan semua experience card
-- [ ] Setiap experience card punya foto, nama, lokasi, harga, dan CTA
-- [ ] Klik experience card mengarah ke halaman detail yang benar
+- [ ] Halaman menjelaskan daily trip / small-group custom trip tanpa catalog final
+- [ ] Tidak ada harga B2C fixed yang tampil sebelum Phase 2
+- [ ] Tidak ada link ke `/experiences/[slug]` sebelum Experience Catalog dibuat
+- [ ] Trip type tags tampil sebagai inspirasi, bukan paket final
+- [ ] Gallery / preview visual tampil tanpa klaim itinerary detail
 - [ ] Custom Trip CTA block ada dan WhatsApp link berfungsi
 - [ ] FAQ accordion dengan pertanyaan relevan B2C berfungsi
 
 ---
 
-## EXPERIENCE DETAIL (`/experiences/[slug]`)
+## EXPERIENCE DETAIL (`/experiences/[slug]`) — DEFERRED PHASE 2
 
-- [ ] Breadcrumb menampilkan: Home > Experiences > [Nama Experience]
-- [ ] H1 adalah nama experience yang benar
-- [ ] Data experience diambil dari `experiences.json` berdasarkan slug
-- [ ] Foto hero/cover tampil dengan benar
-- [ ] Itinerary accordion berfungsi
-- [ ] Gallery tampil dengan benar (swipeable di mobile)
-- [ ] Includes dan Excludes tampil dalam 2 kolom
-- [ ] Practical info tampil (meeting point, durasi, min pax)
-- [ ] Related experiences menampilkan 3 experience LAIN (bukan yang sedang dibuka)
-- [ ] Sticky bottom bar muncul di mobile saat scroll melewati hero
-- [ ] WhatsApp link menggunakan prefilled message dengan nama experience yang spesifik
-- [ ] Kalau slug tidak valid, redirect ke `/experiences.html`
+- [ ] Route detail experience belum dipublish di Phase 1.5
+- [ ] Data draft B2C tidak tampil sebagai public catalog sebelum Phase 2
+- [ ] Detail page baru boleh dibuat saat Phase 2 Experience Catalog dimulai
 
 ---
 

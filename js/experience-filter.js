@@ -74,7 +74,6 @@ function renderExperienceCards() {
         <h3 class="exp-title">${localized(exp.title)}</h3>
         <p class="exp-meta">${exp.location} · ${localized(exp.duration)}</p>
         <p class="exp-excerpt">${localized(exp.excerpt)}</p>
-        <p class="exp-price">${localized(exp.priceLabel)}</p>
         <a href="${waLink(localized(exp.waMessage))}" class="btn-ghost" target="_blank" rel="noopener">
           ${currentLang === "id" ? "Tanya Experience" : "Ask About This"}
         </a>

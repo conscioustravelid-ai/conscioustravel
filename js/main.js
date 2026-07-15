@@ -28,6 +28,32 @@ function waLink(msg) {
   return CONFIG.whatsappUrl + "?text=" + encodeURIComponent(msg);
 }
 
+function pageType() {
+  return document.body.dataset.page || "home";
+}
+
+function pushTrackingEvent(eventName, data = {}) {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: eventName,
+    page_type: pageType(),
+    page_path: window.location.pathname,
+    page_title: document.title,
+    language: currentLang,
+    ...data,
+  });
+}
+
+function ctaLocation(el) {
+  if (!el) return "unknown";
+  if (el.id) return el.id;
+  const section = el.closest("section");
+  if (section && section.id) return section.id;
+  if (el.closest("nav")) return "navigation";
+  if (el.closest("footer")) return "footer";
+  return "body";
+}
+
 function ctaMessage(type) {
   const messages = {
     travelBetter: {
@@ -40,6 +66,11 @@ function ctaMessage(type) {
     },
   };
   return messages[type][currentLang] || messages[type].en;
+}
+
+function defaultWaMessage() {
+  const type = ["companyOuting", "impact"].includes(pageType()) ? "companyOuting" : "travelBetter";
+  return ctaMessage(type);
 }
 
 // ---- LANGUAGE SWITCHER ----
@@ -206,7 +237,7 @@ function renderPackages() {
           </div>
         </div>
         <div class="pkg-cta">
-          <a href="${waLink(pkg.waMsg)}" class="btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center;">${pkg.cta}</a>
+          <a href="${waLink(pkg.waMsg)}" class="btn-primary" target="_blank" rel="noopener" data-package-cta data-package-id="${pkg.id}" data-package-title="${pkg.title} - ${pkg.subtitle}" style="width:100%;justify-content:center;">${pkg.cta}</a>
         </div>
       </div>
     </div>
@@ -536,6 +567,33 @@ function bindInteractions() {
   if (form) {
     form.onsubmit = handleFormSubmit;
   }
+
+  document.querySelectorAll('a[href*="wa.me/6285195559749"]').forEach((link) => {
+    if (!link.href.includes("?text=")) {
+      link.href = waLink(defaultWaMessage());
+    }
+    if (link.dataset.waTrackingBound === "true") return;
+    link.dataset.waTrackingBound = "true";
+    link.addEventListener("click", () => {
+      pushTrackingEvent("whatsapp_click", {
+        cta_text: link.textContent.trim(),
+        cta_location: ctaLocation(link),
+        whatsapp_url: link.href,
+      });
+    });
+  });
+
+  document.querySelectorAll("[data-package-cta]").forEach((link) => {
+    if (link.dataset.packageTrackingBound === "true") return;
+    link.dataset.packageTrackingBound = "true";
+    link.addEventListener("click", () => {
+      pushTrackingEvent("package_cta_click", {
+        package_id: link.dataset.packageId || "",
+        package_title: link.dataset.packageTitle || "",
+        cta_location: ctaLocation(link),
+      });
+    });
+  });
 }
 
 // ---- APPS SCRIPT ENDPOINT ----
@@ -606,6 +664,14 @@ function handleFormSubmit(e) {
     utm,
   };
 
+  pushTrackingEvent("inquiry_form_submit_attempt", {
+    inquiry_type: payload.inquiryType,
+    customer_type: payload.customerType,
+    preferred_package: payload.preferredPackage,
+    participants: payload.participants,
+    has_email: Boolean(payload.email),
+  });
+
   // Loading state
   submitBtn.disabled = true;
   submitBtn.textContent = currentLang === "id" ? "Mengirim..." : "Sending...";
@@ -620,7 +686,18 @@ function handleFormSubmit(e) {
   .then(() => {
     // no-cors returns opaque response — treat as success if no error thrown
     showFormSuccess();
-    if (typeof gtag !== "undefined") gtag("event", "form_submit_success");
+    pushTrackingEvent("inquiry_form_submit_success", {
+      inquiry_type: payload.inquiryType,
+      customer_type: payload.customerType,
+      preferred_package: payload.preferredPackage,
+      participants: payload.participants,
+    });
+    pushTrackingEvent("booking_form_submit_success", {
+      inquiry_type: payload.inquiryType,
+      customer_type: payload.customerType,
+      preferred_package: payload.preferredPackage,
+      participants: payload.participants,
+    });
   })
   .catch(() => {
     console.error("Form submission network error — check Apps Script deployment.");
@@ -683,4 +760,7 @@ function observeFadeIns() {
 document.addEventListener("DOMContentLoaded", () => {
   setLang(CONFIG.defaultLang);
   initScrollEffects();
+  if (pageType() === "contact") {
+    pushTrackingEvent("contact_page_visit");
+  }
 });
