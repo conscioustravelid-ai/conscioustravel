@@ -1,0 +1,207 @@
+{
+  "meta": {
+    "brand": "Conscious Travel",
+    "currency": "IDR",
+    "sourceOfTruth": true,
+    "lastReviewed": "2026-07-17"
+  },
+  "corporateIndonesia": {
+    "displayOrder": ["bali", "jogja", "bandung", "lombok"],
+    "destinations": [
+      {
+        "id": "bali",
+        "name": "Bali",
+        "packages": [
+          {
+            "id": "bali-starter",
+            "name": "Bali Starter Package",
+            "featured": true,
+            "duration": "1 Day",
+            "minimumPax": 50,
+            "price": { "amount": 750000, "currency": "IDR", "unit": "pax", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false },
+            "variants": [
+              { "id": "kintamani", "name": "Kintamani", "time": "09:00-14:00 WITA" },
+              { "id": "ubud", "name": "Ubud", "time": "09:00-14:00 WITA" },
+              { "id": "atlas", "name": "Atlas Beach Club", "time": "16:00-21:00 WITA" },
+              { "id": "nuanu", "name": "Nuanu City", "time": "16:00-21:00 WITA" }
+            ]
+          },
+          {
+            "id": "bali-silver",
+            "name": "Bali Silver Package",
+            "tier": "Silver",
+            "duration": "2D1N",
+            "minimumPax": 25,
+            "price": { "amount": 1550000, "currency": "IDR", "unit": "pax", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false }
+          },
+          {
+            "id": "bali-gold",
+            "name": "Bali Gold Package",
+            "tier": "Gold",
+            "duration": "3D2N",
+            "minimumPax": 20,
+            "price": { "amount": 2150000, "currency": "IDR", "unit": "pax", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false }
+          },
+          {
+            "id": "bali-premium",
+            "name": "Bali Premium Package",
+            "tier": "Premium",
+            "duration": "3D2N",
+            "minimumPax": 20,
+            "price": { "amount": 2950000, "currency": "IDR", "unit": "pax", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false }
+          }
+        ]
+      },
+      {
+        "id": "jogja",
+        "name": "Jogja",
+        "packages": [
+          {
+            "id": "jogja-silver",
+            "name": "Jogja Silver Package",
+            "featured": true,
+            "duration": "2D1N",
+            "minimumPax": 25,
+            "price": { "amount": 1550000, "currency": "IDR", "unit": "pax", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false }
+          },
+          {
+            "id": "jogja-gold",
+            "name": "Jogja Gold Package",
+            "tier": "Gold",
+            "duration": "3D2N",
+            "minimumPax": 20,
+            "price": { "amount": 2950000, "currency": "IDR", "unit": "pax", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false }
+          }
+        ]
+      },
+      {
+        "id": "bandung",
+        "name": "Bandung",
+        "packages": [
+          {
+            "id": "bandung-silver",
+            "name": "Bandung Silver Package",
+            "featured": true,
+            "duration": "2D1N",
+            "minimumPax": 20,
+            "price": { "amount": 1750000, "currency": "IDR", "unit": "pax", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false }
+          },
+          {
+            "id": "bandung-gold",
+            "name": "Bandung Gold Package",
+            "tier": "Gold",
+            "duration": "3D2N",
+            "minimumPax": 20,
+            "price": { "amount": 2950000, "currency": "IDR", "unit": "pax", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false }
+          }
+        ]
+      },
+      {
+        "id": "lombok",
+        "name": "Lombok",
+        "packages": [
+          {
+            "id": "lombok-silver",
+            "name": "Lombok Silver Package",
+            "featured": true,
+            "duration": "3D2N",
+            "minimumPax": 20,
+            "price": { "amount": 2850000, "currency": "IDR", "unit": "pax", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false }
+          },
+          {
+            "id": "lombok-gold",
+            "name": "Lombok Gold Package",
+            "tier": "Gold",
+            "duration": "3D2N",
+            "minimumPax": 20,
+            "price": { "amount": 3450000, "currency": "IDR", "unit": "pax", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false }
+          }
+        ]
+      }
+    ]
+  },
+  "corporateInternational": [
+    {
+      "id": "bangkok-silver",
+      "name": "Bangkok Silver Package",
+      "duration": "4D3N",
+      "minimumPax": 20,
+      "price": { "amount": 6950000, "currency": "IDR", "unit": "pax", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false }
+    },
+    {
+      "id": "bangkok-gold",
+      "name": "Bangkok Gold Package",
+      "duration": "4D3N",
+      "minimumPax": 20,
+      "price": { "amount": 7950000, "currency": "IDR", "unit": "pax", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false }
+    },
+    {
+      "id": "vietnam-silver",
+      "name": "Vietnam Silver Package",
+      "duration": "4D3N",
+      "minimumPax": 20,
+      "price": { "amount": 8500000, "currency": "IDR", "unit": "pax", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false }
+    },
+    {
+      "id": "vietnam-gold",
+      "name": "Vietnam Gold Package",
+      "duration": "4D3N",
+      "minimumPax": 20,
+      "price": { "amount": 11500000, "currency": "IDR", "unit": "pax", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false }
+    },
+    {
+      "id": "europe-gold",
+      "name": "Europe Gold Package",
+      "duration": "7D6N",
+      "minimumPax": 20,
+      "price": { "amount": 32000000, "currency": "IDR", "unit": "pax", "isStartingFrom": true, "excludesFlight": true, "workingPrice": true }
+    },
+    {
+      "id": "europe-premium",
+      "name": "Europe Premium Package",
+      "duration": "5D4N",
+      "minimumPax": 20,
+      "price": { "amount": 39900000, "currency": "IDR", "unit": "pax", "isStartingFrom": true, "excludesFlight": true, "workingPrice": true }
+    }
+  ],
+  "csrPrograms": {
+    "requiresBusinessReview": true,
+    "hiddenClaims": ["automatic-donation-2-5-percent", "one-tree-per-person"],
+    "featured": [
+      { "id": "village-empowerment", "name": "Village Empowerment Program", "theme": "Community Development", "minimumParticipants": 20, "price": { "amount": 950000, "currency": "IDR", "unit": "person", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false } },
+      { "id": "school-impact-day", "name": "School Impact Day", "theme": "Education", "price": { "amount": 750000, "currency": "IDR", "unit": "person", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false } },
+      { "id": "bicycle-for-education", "name": "Bicycle for Education", "theme": "Education Access", "minimumParticipants": 20, "price": { "amount": 1250000, "currency": "IDR", "unit": "person", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false } },
+      { "id": "build-for-community", "name": "Build for Community", "theme": "Community Development", "price": { "amount": 1500000, "currency": "IDR", "unit": "person", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false } },
+      { "id": "mangrove-restoration", "name": "Mangrove Restoration Experience", "theme": "Climate Action", "minimumParticipants": 25, "price": { "amount": 550000, "currency": "IDR", "unit": "person", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false } }
+    ],
+    "morePrograms": [
+      { "id": "coral-reef-restoration", "name": "Coral Reef Restoration", "minimumParticipants": 20, "price": { "amount": 850000, "currency": "IDR", "unit": "person", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false } },
+      { "id": "sea-turtle-conservation", "name": "Sea Turtle Conservation", "minimumParticipants": 25, "price": { "amount": 450000, "currency": "IDR", "unit": "person", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false } },
+      { "id": "beach-clean-up", "name": "Beach Clean Up Challenge", "minimumParticipants": 30, "price": { "amount": 375000, "currency": "IDR", "unit": "person", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false } },
+      { "id": "sustainable-farming", "name": "Sustainable Farming Experience", "price": { "amount": 650000, "currency": "IDR", "unit": "person", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false } },
+      { "id": "animal-welfare", "name": "Animal Welfare Program", "price": { "amount": 600000, "currency": "IDR", "unit": "person", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false } }
+    ]
+  },
+  "eventPlanning": {
+    "pricingCards": [
+      { "id": "event-starter", "tier": "Starter", "capacity": "Up to 30 participants", "price": { "amount": 15000000, "currency": "IDR", "unit": "program", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false } },
+      { "id": "event-professional", "tier": "Professional", "capacity": "30-100 participants", "price": { "amount": 35000000, "currency": "IDR", "unit": "program", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false } },
+      { "id": "event-enterprise", "tier": "Enterprise", "capacity": "100-500 participants", "price": { "amount": 75000000, "currency": "IDR", "unit": "program", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false } }
+    ],
+    "premiumCorporate": { "id": "event-premium", "pricing": "Custom Proposal", "capacity": "500+ participants" }
+  },
+  "studyTour": {
+    "regional": [
+      { "id": "bali-study-tour", "name": "Bali Study Tour", "duration": "3D2N", "price": { "amount": 1950000, "currency": "IDR", "unit": "student", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false } },
+      { "id": "yogyakarta-study-tour", "name": "Yogyakarta Study Tour", "duration": "3D2N", "price": { "amount": 1850000, "currency": "IDR", "unit": "student", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false } },
+      { "id": "bandung-study-tour", "name": "Bandung Study Tour", "duration": "3D2N", "price": { "amount": 1950000, "currency": "IDR", "unit": "student", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false } }
+    ],
+    "international": [
+      { "id": "bangkok-study-tour", "name": "Bangkok Study Tour", "duration": "4D3N", "price": { "amount": 8950000, "currency": "IDR", "unit": "student", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false } },
+      { "id": "malaysia-study-tour", "name": "Malaysia Study Tour", "duration": "4D3N", "price": { "amount": 7500000, "currency": "IDR", "unit": "student", "isStartingFrom": true, "excludesFlight": false, "workingPrice": false } },
+      { "id": "europe-study-tour", "name": "Europe Study Tour", "duration": "8D7N", "price": { "amount": 32900000, "currency": "IDR", "unit": "student", "isStartingFrom": true, "excludesFlight": true, "workingPrice": false } }
+    ]
+  },
+  "experiences": { "status": "general-soft-conversion", "sections": ["local", "international"] },
+  "sailingPackage": { "status": "available-by-request" }
+}

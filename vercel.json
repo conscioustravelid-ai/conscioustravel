@@ -1,18 +1,20 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": true,
   "redirects": [
+    {
+      "source": "/company-outing/:path*",
+      "destination": "/corporate-packages/indonesia-region/",
+      "permanent": true
+    },
+    {
+      "source": "/company-trip/:path*",
+      "destination": "/corporate-packages/indonesia-region/",
+      "permanent": true
+    },
     {
       "source": "/bali/",
       "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/company-trip/",
-      "destination": "/company-outing/",
-      "permanent": true
-    },
-    {
-      "source": "/study-tour/",
-      "destination": "/contact/",
       "permanent": true
     },
     {

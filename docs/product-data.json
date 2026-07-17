@@ -1,0 +1,404 @@
+{
+  "meta": {
+    "brand": "Conscious Travel",
+    "positioning": {
+      "id": "Meaningful travel company untuk perusahaan, institusi pendidikan, komunitas, dan traveler.",
+      "en": "A meaningful travel company for companies, educational institutions, communities, and travelers."
+    },
+    "email": "happy@conscioustravel.id",
+    "whatsapp": "+6285195559749",
+    "primaryCta": "Create Your Meaningful Journey",
+    "sourceDocument": "Slide Terakhir Semua Info Lengkap.pdf"
+  },
+  "routes": {
+    "corporateOverview": "/corporate-packages",
+    "indonesiaRegion": "/corporate-packages/indonesia-region",
+    "internationalCorporate": "/corporate-packages/international",
+    "csrProgram": "/corporate-packages/csr-program",
+    "eventPlanning": "/corporate-packages/event-planning-organizer",
+    "experiences": "/experiences",
+    "studyTour": "/study-tour",
+    "sailingPackage": "/sailing-package",
+    "redirects": [
+      {
+        "from": "/company-outing",
+        "to": "/corporate-packages/indonesia-region"
+      }
+    ]
+  },
+  "corporateIndonesia": {
+    "displayOrder": [
+      "bali",
+      "jogja",
+      "bandung",
+      "lombok"
+    ],
+    "destinations": [
+      {
+        "id": "bali",
+        "packages": [
+          {
+            "id": "bali-starter",
+            "name": "Bali Starter Package",
+            "featured": true,
+            "duration": "1 Day",
+            "price": {
+              "amount": 750000,
+              "currency": "IDR",
+              "unit": "pax"
+            },
+            "minimumPax": 50,
+            "variants": [
+              {
+                "id": "kintamani",
+                "name": "Kintamani",
+                "time": "09:00-14:00 WITA"
+              },
+              {
+                "id": "ubud",
+                "name": "Ubud",
+                "time": "09:00-14:00 WITA"
+              },
+              {
+                "id": "atlas",
+                "name": "Atlas Beach Club",
+                "time": "16:00-21:00 WITA"
+              },
+              {
+                "id": "nuanu",
+                "name": "Nuanu City",
+                "time": "16:00-21:00 WITA"
+              }
+            ]
+          },
+          {
+            "id": "bali-silver",
+            "name": "Bali Silver Package",
+            "tier": "Silver",
+            "duration": "2D1N",
+            "price": {
+              "amount": 1550000,
+              "currency": "IDR",
+              "unit": "pax"
+            },
+            "minimumPax": 25
+          },
+          {
+            "id": "bali-gold",
+            "name": "Bali Gold Package",
+            "tier": "Gold",
+            "duration": "3D2N",
+            "price": {
+              "amount": 2150000,
+              "currency": "IDR",
+              "unit": "pax"
+            },
+            "minimumPax": 20
+          },
+          {
+            "id": "bali-premium",
+            "name": "Bali Premium Package",
+            "tier": "Premium",
+            "duration": "3D2N",
+            "price": {
+              "amount": 2950000,
+              "currency": "IDR",
+              "unit": "pax"
+            },
+            "minimumPax": 20
+          }
+        ]
+      },
+      {
+        "id": "jogja",
+        "packages": [
+          {
+            "id": "jogja-silver",
+            "name": "Jogja Silver Package",
+            "featured": true,
+            "duration": "2D1N",
+            "price": {
+              "amount": 1550000,
+              "currency": "IDR",
+              "unit": "pax"
+            },
+            "minimumPax": 25
+          },
+          {
+            "id": "jogja-gold",
+            "name": "Jogja Gold Package",
+            "featured": false,
+            "duration": "3D2N",
+            "price": {
+              "amount": 2950000,
+              "currency": "IDR",
+              "unit": "pax"
+            },
+            "minimumPax": 20
+          }
+        ]
+      },
+      {
+        "id": "bandung",
+        "packages": [
+          {
+            "id": "bandung-silver",
+            "name": "Bandung Silver Package",
+            "featured": true,
+            "duration": "2D1N",
+            "price": {
+              "amount": 1750000,
+              "currency": "IDR",
+              "unit": "pax"
+            },
+            "minimumPax": 20
+          },
+          {
+            "id": "bandung-gold",
+            "name": "Bandung Gold Package",
+            "featured": false,
+            "duration": "3D2N",
+            "price": {
+              "amount": 2950000,
+              "currency": "IDR",
+              "unit": "pax"
+            },
+            "minimumPax": 20
+          }
+        ]
+      },
+      {
+        "id": "lombok",
+        "packages": [
+          {
+            "id": "lombok-silver",
+            "name": "Lombok Silver Package",
+            "featured": true,
+            "duration": "3D2N",
+            "price": {
+              "amount": 2850000,
+              "currency": "IDR",
+              "unit": "pax"
+            },
+            "minimumPax": 20
+          },
+          {
+            "id": "lombok-gold",
+            "name": "Lombok Gold Package",
+            "featured": false,
+            "duration": "3D2N",
+            "price": {
+              "amount": 3450000,
+              "currency": "IDR",
+              "unit": "pax"
+            },
+            "minimumPax": 20
+          }
+        ]
+      }
+    ]
+  },
+  "corporateInternational": [
+    {
+      "id": "bangkok-silver",
+      "name": "Bangkok Silver Package",
+      "duration": "4D3N",
+      "price": 6950000,
+      "minimumPax": 20
+    },
+    {
+      "id": "bangkok-gold",
+      "name": "Bangkok Gold Package",
+      "duration": "4D3N",
+      "price": 7950000,
+      "minimumPax": 20
+    },
+    {
+      "id": "vietnam-silver",
+      "name": "Vietnam Silver Package",
+      "duration": "4D3N",
+      "price": 8500000,
+      "minimumPax": 20
+    },
+    {
+      "id": "vietnam-gold",
+      "name": "Vietnam Gold Package",
+      "duration": "4D3N",
+      "price": 11500000,
+      "minimumPax": 20
+    },
+    {
+      "id": "europe-gold",
+      "name": "Europe Gold Package",
+      "duration": "7D6N",
+      "price": 32000000,
+      "minimumPax": 20,
+      "excludesFlight": true,
+      "workingPrice": true
+    },
+    {
+      "id": "europe-premium",
+      "name": "Europe Premium Package",
+      "duration": "5D4N",
+      "price": 39900000,
+      "minimumPax": 20,
+      "excludesFlight": true,
+      "workingPrice": true
+    }
+  ],
+  "csrPrograms": {
+    "featured": [
+      {
+        "id": "village-empowerment",
+        "name": "Village Empowerment Program",
+        "theme": "Community Development",
+        "priceFrom": 950000,
+        "minimumParticipants": 20
+      },
+      {
+        "id": "school-impact-day",
+        "name": "School Impact Day",
+        "theme": "Education",
+        "priceFrom": 750000
+      },
+      {
+        "id": "bicycle-for-education",
+        "name": "Bicycle for Education",
+        "theme": "Education Access",
+        "priceFrom": 1250000,
+        "minimumParticipants": 20
+      },
+      {
+        "id": "build-for-community",
+        "name": "Build for Community",
+        "theme": "Community Development",
+        "priceFrom": 1500000
+      },
+      {
+        "id": "mangrove-restoration",
+        "name": "Mangrove Restoration Experience",
+        "theme": "Climate Action",
+        "priceFrom": 550000,
+        "minimumParticipants": 25
+      }
+    ],
+    "morePrograms": [
+      {
+        "id": "coral-reef-restoration",
+        "name": "Coral Reef Restoration",
+        "priceFrom": 850000,
+        "minimumParticipants": 20
+      },
+      {
+        "id": "sea-turtle-conservation",
+        "name": "Sea Turtle Conservation",
+        "priceFrom": 450000,
+        "minimumParticipants": 25
+      },
+      {
+        "id": "beach-clean-up",
+        "name": "Beach Clean Up Challenge",
+        "priceFrom": 375000,
+        "minimumParticipants": 30
+      },
+      {
+        "id": "sustainable-farming",
+        "name": "Sustainable Farming Experience",
+        "priceFrom": 650000
+      },
+      {
+        "id": "animal-welfare",
+        "name": "Animal Welfare Program",
+        "priceFrom": 600000
+      }
+    ],
+    "requiresBusinessReview": true,
+    "reviewClaims": [
+      "Impact Report",
+      "ESG Certificate",
+      "Measurable impact data",
+      "Automatic 2.5% donation",
+      "One tree planted per person"
+    ]
+  },
+  "eventPlanning": {
+    "pricingCards": [
+      {
+        "tier": "Starter",
+        "priceFrom": 15000000,
+        "capacity": "Up to 30 participants"
+      },
+      {
+        "tier": "Professional",
+        "priceFrom": 35000000,
+        "capacity": "30-100 participants"
+      },
+      {
+        "tier": "Enterprise",
+        "priceFrom": 75000000,
+        "capacity": "100-500 participants"
+      }
+    ],
+    "premiumCorporate": {
+      "pricing": "Custom Proposal",
+      "capacity": "500+ participants"
+    },
+    "cta": "Plan Your Corporate Event"
+  },
+  "studyTour": {
+    "regional": [
+      {
+        "id": "bali-study-tour",
+        "name": "Bali Study Tour",
+        "duration": "3D2N",
+        "priceFrom": 1950000
+      },
+      {
+        "id": "yogyakarta-study-tour",
+        "name": "Yogyakarta Study Tour",
+        "duration": "3D2N",
+        "priceFrom": 1850000
+      },
+      {
+        "id": "bandung-study-tour",
+        "name": "Bandung Study Tour",
+        "duration": "3D2N",
+        "priceFrom": 1950000
+      }
+    ],
+    "international": [
+      {
+        "id": "bangkok-study-tour",
+        "name": "Bangkok Study Tour",
+        "duration": "4D3N",
+        "priceFrom": 8950000
+      },
+      {
+        "id": "malaysia-study-tour",
+        "name": "Malaysia Study Tour",
+        "duration": "4D3N",
+        "priceFrom": 7500000
+      },
+      {
+        "id": "europe-study-tour",
+        "name": "Europe Study Tour",
+        "duration": "8D7N",
+        "priceFrom": 32900000,
+        "excludesFlight": true
+      }
+    ],
+    "cta": "Discuss Your Study Tour"
+  },
+  "experiences": {
+    "status": "general-soft-conversion",
+    "sections": [
+      "Local Experiences",
+      "International Experiences"
+    ],
+    "cta": "Create Your Meaningful Journey"
+  },
+  "sailingPackage": {
+    "status": "available-by-request",
+    "cta": "Discuss Sailing Package"
+  }
+}
