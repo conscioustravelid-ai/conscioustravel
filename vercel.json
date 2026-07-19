@@ -3,6 +3,12 @@
   "trailingSlash": true,
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.conscioustravel.id" }],
+      "destination": "https://conscioustravel.id/:path*",
+      "permanent": true
+    },
+    {
       "source": "/company-outing/:path*",
       "destination": "/corporate-packages/indonesia-region/",
       "permanent": true
