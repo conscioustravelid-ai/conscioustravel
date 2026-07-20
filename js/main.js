@@ -20,6 +20,15 @@ const PAGE_IMAGES = {
   blog: "/assets/images/group-local-lunch.webp"
 };
 
+const CLIENT_LOGOS = [
+  ["DBS", "/assets/images/clients/dbs.webp"],
+  ["Astra FSCM", "/assets/images/clients/astra-fscm.webp"],
+  ["Lumbung Architecture Bali", "/assets/images/clients/lumbung-architect.webp"],
+  ["BFB", "/assets/images/clients/bfb-logo.webp"],
+  ["Lazada", "/assets/images/clients/lazada.webp"],
+  ["PT Gesit", "/assets/images/clients/pt-gesits.webp"]
+];
+
 function content() {
   return window.CT_CONTENT[CT_STATE.language];
 }
@@ -119,7 +128,8 @@ function renderHeader() {
     <a class="skip-link" href="#main-content">${escapeHtml(c.skip)}</a>
     <div class="nav-shell">
       <a class="brand-link" href="/" aria-label="Conscious Travel home">
-        <img src="/assets/images/new-logo-conscious.webp" alt="Conscious Travel" width="174" height="58">
+        <img class="brand-logo-default" src="/assets/images/new-logo-conscious.webp" alt="Conscious Travel" width="174" height="58">
+        <img class="brand-logo-on-dark" src="/assets/images/new-logo-conscious-on-dark.webp" alt="" width="174" height="58" aria-hidden="true">
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="${escapeHtml(c.ui.menu)}">
         <span></span><span></span><span></span>
@@ -134,7 +144,7 @@ function renderHeader() {
         <a href="/contact/"${isActive("/contact") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.contact)}</a>
         <div class="nav-actions">
           ${isBlog ? "" : `<button class="language-toggle" type="button" data-language-toggle aria-label="${escapeHtml(c.ui.changeLanguage)}">${CT_STATE.language === "id" ? "EN" : "ID"}</button>`}
-          <a class="btn btn-primary nav-cta" href="${whatsappUrl("general")}" target="_blank" rel="noopener" data-wa-key="general">${escapeHtml(c.home.title)}</a>
+          <a class="btn btn-primary nav-cta" href="${whatsappUrl("general")}" target="_blank" rel="noopener" data-wa-key="general">Start Your Journey</a>
         </div>
       </nav>
     </div>`;
@@ -146,7 +156,7 @@ function renderFooter() {
   document.getElementById("site-footer").innerHTML = `
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="/assets/images/new-logo-conscious.webp" alt="Conscious Travel" width="174" height="58" loading="lazy">
+        <img src="/assets/images/new-logo-conscious-on-dark.webp" alt="Conscious Travel" width="174" height="58" loading="lazy">
         <p>${escapeHtml(c.footer.description)}</p>
         <a href="mailto:${config.email}">${config.email}</a>
         <a href="tel:+${config.whatsappNumber}">${config.phoneDisplay}</a>
@@ -183,19 +193,29 @@ function renderFooter() {
 function renderHero(pageKey, page, options = {}) {
   const image = PAGE_IMAGES[pageKey] || PAGE_IMAGES.home;
   return `
-    <section class="page-hero${options.home ? " home-hero" : ""}">
+    <section class="page-hero page-hero-${pageKey}${options.home ? " home-hero" : ""}">
       <img class="hero-media" src="${image}" alt="${escapeHtml(options.alt || page.title)}" width="1600" height="900" fetchpriority="high">
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="container hero-content">
-        <p class="eyebrow">${escapeHtml(page.eyebrow)}</p>
-        <h1>${escapeHtml(page.title)}</h1>
-        <p class="hero-lead">${escapeHtml(page.lead)}</p>
-        <div class="button-row">
-          <a class="btn btn-primary" href="${whatsappUrl(options.waKey || "general")}" target="_blank" rel="noopener" data-wa-key="${options.waKey || "general"}">${escapeHtml(options.primaryLabel || content().ui.whatsapp)}</a>
-          ${options.secondaryHref ? `<a class="btn btn-secondary" href="${options.secondaryHref}">${escapeHtml(options.secondaryLabel || content().ui.explore)}</a>` : ""}
+        <div class="hero-copy">
+          <p class="eyebrow">${escapeHtml(page.eyebrow)}</p>
+          <h1>${escapeHtml(page.title)}</h1>
+          <p class="hero-lead">${escapeHtml(page.lead)}</p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="${whatsappUrl(options.waKey || "general")}" target="_blank" rel="noopener" data-wa-key="${options.waKey || "general"}">${escapeHtml(options.primaryLabel || content().ui.whatsapp)}</a>
+            ${options.secondaryHref ? `<a class="btn btn-secondary" href="${options.secondaryHref}">${escapeHtml(options.secondaryLabel || content().ui.explore)}</a>` : ""}
+          </div>
         </div>
+        <p class="hero-signature" aria-hidden="true">Travel / Connect / Contribute</p>
       </div>
     </section>`;
+}
+
+function renderTrustedBy(label) {
+  const logos = CLIENT_LOGOS.map(([name, src]) => `
+    <li><img src="${src}" alt="${escapeHtml(name)}" width="180" height="72" loading="lazy"></li>`).join("");
+  const supportingLabel = CT_STATE.language === "id" ? "Kolaborasi terpilih" : "Selected collaborations";
+  return `<section class="trust-strip" aria-label="Client trust"><div class="container"><div class="trust-heading"><p>${escapeHtml(label)}</p><span>${supportingLabel}</span></div><ul>${logos}</ul></div></section>`;
 }
 
 function renderBreadcrumb(items) {
@@ -203,12 +223,13 @@ function renderBreadcrumb(items) {
 }
 
 function renderIntro(title, body) {
-  return `<section class="section intro-section"><div class="container narrow"><p class="section-kicker">Conscious Travel</p><h2>${escapeHtml(title)}</h2><p class="section-lead">${escapeHtml(body)}</p></div></section>`;
+  return `<section class="section intro-section"><div class="container intro-editorial"><div><p class="section-kicker">Conscious Travel</p><h2>${escapeHtml(title)}</h2></div><div class="intro-copy"><span aria-hidden="true">01</span><p class="section-lead">${escapeHtml(body)}</p></div></div></section>`;
 }
 
 function renderCards(items, className = "service-grid") {
-  return `<div class="${className}">${items.map((item) => `
-    <article class="service-card">
+  return `<div class="${className}">${items.map((item, index) => `
+    <article class="service-card${index < 2 ? " service-card-featured" : ""}">
+      <span class="card-index" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
       ${item[3] ? `<span class="service-symbol" aria-hidden="true">${escapeHtml(item[3].slice(0, 1).toUpperCase())}</span>` : ""}
       <h3>${escapeHtml(item[0])}</h3>
       <p>${escapeHtml(item[1])}</p>
@@ -227,12 +248,11 @@ function renderFeatureList(items, ordered = false) {
 
 function renderCta(title, body, options = {}) {
   const key = options.waKey || "general";
-  return `<section class="cta-band"><div class="container cta-inner"><div><p class="eyebrow">Conscious Travel</p><h2>${escapeHtml(title)}</h2><p>${escapeHtml(body)}</p></div><div class="button-row"><a class="btn btn-light" href="${whatsappUrl(key)}" target="_blank" rel="noopener" data-wa-key="${key}">${escapeHtml(content().ui.whatsapp)}</a><a class="btn btn-outline-light" href="${escapeHtml(inquiryUrl(options.service || "Custom Trip"))}">${escapeHtml(content().ui.inquiry)}</a></div></div></section>`;
+  return `<section class="cta-band"><div class="container cta-inner"><span class="cta-index" aria-hidden="true">CT / JOURNEY</span><div><p class="eyebrow">Conscious Travel</p><h2>${escapeHtml(title)}</h2><p>${escapeHtml(body)}</p></div><div class="button-row"><a class="btn btn-light" href="${whatsappUrl(key)}" target="_blank" rel="noopener" data-wa-key="${key}">${escapeHtml(content().ui.whatsapp)}</a><a class="btn btn-outline-light" href="${escapeHtml(inquiryUrl(options.service || "Custom Trip"))}">${escapeHtml(content().ui.inquiry)}</a></div></div></section>`;
 }
 
 function renderHome() {
   const p = content().home;
-  const clientLogos = window.CT_CONFIG.clients.map((client) => `<li>${escapeHtml(client)}</li>`).join("");
   const primaryServices = p.services.slice(0, 2).map((item, index) => {
     const image = index === 0 ? "/assets/images/beach-team-building.webp" : "/assets/images/group-local-lunch.webp";
     return `<article class="home-service-gateway home-service-primary">
@@ -245,7 +265,7 @@ function renderHome() {
     <span>0${index + 3}</span><div><h3>${escapeHtml(item[0])}</h3><p>${escapeHtml(item[1])}</p><a class="text-link" href="${item[2]}">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></a></div>
   </article>`).join("");
   return `${renderHero("home", p, { home: true, primaryLabel: p.title, secondaryHref: "/corporate-packages/", secondaryLabel: content().nav.corporate })}
-    <section class="trust-strip" aria-label="Client trust"><div class="container"><p>${escapeHtml(p.trust)}</p><ul>${clientLogos}</ul></div></section>
+    ${renderTrustedBy(p.trust)}
     <section class="section home-intro"><div class="container home-intro-grid"><div><p class="section-kicker">Conscious Travel</p><h2>${escapeHtml(p.introTitle)}</h2></div><p class="section-lead">${escapeHtml(p.introBody)}</p></div></section>
     <section class="section home-services"><div class="container"><div class="section-heading home-section-heading"><p class="section-kicker">Service ecosystem</p><h2>${escapeHtml(p.whatTitle)}</h2><p>${escapeHtml(p.whatLead)}</p></div><div class="home-service-primary-grid">${primaryServices}</div><div class="home-service-supporting-grid">${supportingServices}</div></div></section>
     <section class="section home-editorial home-corporate"><div class="container home-editorial-grid"><div class="home-editorial-media"><img src="/assets/images/beach-team-building.webp" alt="Corporate team building experience in Bali" width="960" height="1120" loading="lazy"></div><div class="home-editorial-copy"><p class="section-kicker">Corporate Packages</p><h2>${escapeHtml(p.corporateTitle)}</h2><p>${escapeHtml(p.corporateBody)}</p><a class="text-link" href="/corporate-packages/">${escapeHtml(content().ui.explore)} Corporate Packages <span aria-hidden="true">&#8594;</span></a></div></div></section>
@@ -260,7 +280,7 @@ function renderCorporateHub() {
   return `${renderHero("corporateHub", p, { waKey: "corporate", secondaryHref: inquiryUrl("Corporate Packages"), secondaryLabel: content().ui.requestProposal })}
     ${renderBreadcrumb([[content().nav.corporate, "/corporate-packages/"]])}
     ${renderIntro(p.introTitle, p.introBody)}
-    <section class="section"><div class="container"><div class="section-heading"><p class="section-kicker">Corporate service hub</p><h2>${escapeHtml(content().nav.corporate)}</h2></div>${renderCards(p.categories)}</div></section>
+    <section class="section corporate-gateway-section"><div class="container"><div class="section-heading"><p class="section-kicker">Corporate service hub</p><h2>${escapeHtml(content().nav.corporate)}</h2></div>${renderCards(p.categories, "service-grid editorial-gateway-grid")}</div></section>
     <section class="section muted-band"><div class="container"><div class="section-heading"><p class="section-kicker">From brief to journey</p><h2>${escapeHtml(p.processTitle)}</h2></div>${renderFeatureList(p.process, true)}</div></section>
     ${renderCta(p.ctaTitle, p.ctaBody, { waKey: "corporate", service: "Corporate Packages" })}`;
 }
@@ -396,7 +416,7 @@ function renderAbout() {
     <section class="section founder-section"><div class="container split-layout"><div><p class="section-kicker">${escapeHtml(p.founderTitle)}</p><h2>${escapeHtml(p.founderName)}</h2><p class="founder-role">${escapeHtml(p.founderRole)}</p><p>${escapeHtml(p.founderBio)}</p></div><img src="/assets/images/about/merlin-ohara.webp" alt="Merlin Ohara, Founder of Conscious Travel" width="800" height="950" loading="lazy" onerror="this.onerror=null;this.src='/assets/images/group-dinner-party.webp'"></div></section>
     <section class="section green-soft"><div class="container"><div class="section-heading"><p class="section-kicker">People behind the journeys</p><h2>${escapeHtml(p.teamTitle)}</h2><p>${escapeHtml(p.teamLead)}</p></div><div class="team-grid">${teamCards}</div></div></section>
     <section class="section"><div class="container split-layout align-start"><div><p class="section-kicker">Our difference</p><h2>${escapeHtml(p.whyTitle)}</h2></div>${renderFeatureList(p.why)}</div></section>
-    <section class="trust-strip" aria-label="Client trust"><div class="container"><p>${escapeHtml(content().home.trust)}</p><ul>${window.CT_CONFIG.clients.map((client) => `<li>${escapeHtml(client)}</li>`).join("")}</ul></div></section>
+    ${renderTrustedBy(content().home.trust)}
     ${renderCta(p.ctaTitle, p.ctaBody, { service: "Custom Trip" })}`;
 }
 
