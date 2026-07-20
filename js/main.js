@@ -233,15 +233,26 @@ function renderCta(title, body, options = {}) {
 function renderHome() {
   const p = content().home;
   const clientLogos = window.CT_CONFIG.clients.map((client) => `<li>${escapeHtml(client)}</li>`).join("");
+  const primaryServices = p.services.slice(0, 2).map((item, index) => {
+    const image = index === 0 ? "/assets/images/beach-team-building.webp" : "/assets/images/group-local-lunch.webp";
+    return `<article class="home-service-gateway home-service-primary">
+      <img src="${image}" alt="${escapeHtml(item[0])}" width="900" height="720" loading="lazy">
+      <div class="home-service-overlay" aria-hidden="true"></div>
+      <div class="home-service-copy"><span>0${index + 1}</span><h3>${escapeHtml(item[0])}</h3><p>${escapeHtml(item[1])}</p><a class="text-link" href="${item[2]}">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></a></div>
+    </article>`;
+  }).join("");
+  const supportingServices = p.services.slice(2).map((item, index) => `<article class="home-service-support">
+    <span>0${index + 3}</span><div><h3>${escapeHtml(item[0])}</h3><p>${escapeHtml(item[1])}</p><a class="text-link" href="${item[2]}">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></a></div>
+  </article>`).join("");
   return `${renderHero("home", p, { home: true, primaryLabel: p.title, secondaryHref: "/corporate-packages/", secondaryLabel: content().nav.corporate })}
     <section class="trust-strip" aria-label="Client trust"><div class="container"><p>${escapeHtml(p.trust)}</p><ul>${clientLogos}</ul></div></section>
-    ${renderIntro(p.introTitle, p.introBody)}
-    <section class="section"><div class="container"><div class="section-heading"><p class="section-kicker">Service ecosystem</p><h2>${escapeHtml(p.whatTitle)}</h2><p>${escapeHtml(p.whatLead)}</p></div>${renderCards(p.services)}</div></section>
-    <section class="section image-feature"><div class="container split-layout"><div><p class="section-kicker">Corporate Packages</p><h2>${escapeHtml(p.corporateTitle)}</h2><p>${escapeHtml(p.corporateBody)}</p><a class="btn btn-secondary" href="/corporate-packages/">${escapeHtml(content().ui.explore)} Corporate Packages</a></div><img src="/assets/images/beach-team-building.webp" alt="Corporate team building experience in Bali" width="900" height="650" loading="lazy"></div></section>
-    <section class="section muted-band"><div class="container split-layout reverse"><div><p class="section-kicker">Experiences</p><h2>${escapeHtml(p.experienceTitle)}</h2><p>${escapeHtml(p.experienceBody)}</p><a class="btn btn-secondary" href="/experiences/">${escapeHtml(content().ui.explore)} Experiences</a></div><img src="/assets/images/group-local-lunch.webp" alt="Local culinary travel experience" width="900" height="650" loading="lazy"></div></section>
-    <section class="section"><div class="container split-layout"><div><p class="section-kicker">Impact & Sustainability</p><h2>${escapeHtml(p.impactTitle)}</h2><p>${escapeHtml(p.impactBody)}</p><a class="text-link" href="/impact/">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></a></div><img src="/assets/images/group-local-lunch.webp" alt="Conscious Travel group connecting through a local experience" width="900" height="650" loading="lazy"></div></section>
-    <section class="section green-soft"><div class="container"><div class="section-heading"><p class="section-kicker">Our approach</p><h2>${escapeHtml(p.whyTitle)}</h2></div>${renderFeatureList(p.why)}</div></section>
-    ${renderCta(p.ctaTitle, p.ctaBody, { service: "Custom Trip" })}`;
+    <section class="section home-intro"><div class="container home-intro-grid"><div><p class="section-kicker">Conscious Travel</p><h2>${escapeHtml(p.introTitle)}</h2></div><p class="section-lead">${escapeHtml(p.introBody)}</p></div></section>
+    <section class="section home-services"><div class="container"><div class="section-heading home-section-heading"><p class="section-kicker">Service ecosystem</p><h2>${escapeHtml(p.whatTitle)}</h2><p>${escapeHtml(p.whatLead)}</p></div><div class="home-service-primary-grid">${primaryServices}</div><div class="home-service-supporting-grid">${supportingServices}</div></div></section>
+    <section class="section home-editorial home-corporate"><div class="container home-editorial-grid"><div class="home-editorial-media"><img src="/assets/images/beach-team-building.webp" alt="Corporate team building experience in Bali" width="960" height="1120" loading="lazy"></div><div class="home-editorial-copy"><p class="section-kicker">Corporate Packages</p><h2>${escapeHtml(p.corporateTitle)}</h2><p>${escapeHtml(p.corporateBody)}</p><a class="text-link" href="/corporate-packages/">${escapeHtml(content().ui.explore)} Corporate Packages <span aria-hidden="true">&#8594;</span></a></div></div></section>
+    <section class="section home-editorial home-experiences"><div class="container home-editorial-grid"><div class="home-editorial-copy"><p class="section-kicker">Experiences</p><h2>${escapeHtml(p.experienceTitle)}</h2><p>${escapeHtml(p.experienceBody)}</p><a class="text-link" href="/experiences/">${escapeHtml(content().ui.explore)} Experiences <span aria-hidden="true">&#8594;</span></a></div><div class="home-editorial-media"><img src="/assets/images/group-local-lunch.webp" alt="Local culinary travel experience" width="1080" height="810" loading="lazy"></div></div></section>
+    <section class="section home-impact"><div class="container home-impact-grid"><div class="home-impact-copy"><p class="section-kicker">Impact & Sustainability</p><h2>${escapeHtml(p.impactTitle)}</h2><p>${escapeHtml(p.impactBody)}</p><a class="text-link" href="/impact/">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></a></div><div class="home-impact-media"><img src="/assets/images/group-local-lunch.webp" alt="Conscious Travel group connecting through a local experience" width="960" height="1080" loading="lazy"></div></div></section>
+    <section class="section home-why"><div class="container home-why-grid"><div class="section-heading"><p class="section-kicker">Our approach</p><h2>${escapeHtml(p.whyTitle)}</h2></div>${renderFeatureList(p.why)}</div></section>
+    <section class="home-closing-cta"><img src="/assets/images/group-dinner-party.webp" alt="A meaningful Conscious Travel group journey" width="1600" height="900" loading="lazy"><div class="home-closing-overlay" aria-hidden="true"></div><div class="container home-closing-inner"><p class="eyebrow">Conscious Travel</p><h2>${escapeHtml(p.ctaTitle)}</h2><p>${escapeHtml(p.ctaBody)}</p><div class="button-row"><a class="btn btn-light" href="${whatsappUrl("general")}" target="_blank" rel="noopener" data-wa-key="general">${escapeHtml(p.title)}</a><a class="btn btn-outline-light" href="${escapeHtml(inquiryUrl("Custom Trip"))}">${escapeHtml(content().ui.inquiry)}</a></div></div></section>`;
 }
 
 function renderCorporateHub() {
@@ -476,6 +487,20 @@ function closeNavigation() {
   document.body.classList.remove("menu-open");
 }
 
+function bindHeaderVisualState() {
+  const header = document.getElementById("site-header");
+  if (CT_STATE.headerScrollHandler) window.removeEventListener("scroll", CT_STATE.headerScrollHandler);
+  if (document.body.dataset.page !== "home") {
+    header.classList.remove("is-scrolled");
+    CT_STATE.headerScrollHandler = null;
+    return;
+  }
+  const updateHeader = () => header.classList.toggle("is-scrolled", window.scrollY > 24);
+  CT_STATE.headerScrollHandler = updateHeader;
+  window.addEventListener("scroll", updateHeader, { passive: true });
+  updateHeader();
+}
+
 function bindNavigation() {
   const toggle = document.querySelector(".menu-toggle");
   const nav = document.getElementById("primary-navigation");
@@ -669,6 +694,7 @@ function initializeUi() {
   renderHeader();
   renderPage();
   renderFooter();
+  bindHeaderVisualState();
   bindNavigation();
   bindLanguageToggle();
   bindWhatsappTracking();
