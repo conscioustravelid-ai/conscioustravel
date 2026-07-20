@@ -97,6 +97,35 @@ function renderPrice(product) {
     </div>`;
 }
 
+function lowestPricedProduct(products = []) {
+  return products
+    .filter((product) => product.price && typeof product.price.amount === "number")
+    .reduce((lowest, product) => !lowest || product.price.amount < lowest.price.amount ? product : lowest, null);
+}
+
+function renderHomeServicePrice(product) {
+  if (!product || !product.price) return "";
+  return `<div class="home-service-price"><span>${escapeHtml(content().ui.startingFrom)}</span><strong>${escapeHtml(formatCurrency(product.price))}</strong><small>/ ${escapeHtml(formatUnit(product.price.unit))}</small></div>`;
+}
+
+function renderHomeServiceCard(item, index, options) {
+  const media = options.mobileImage
+    ? renderResponsiveImage({
+      desktop: options.image,
+      mobile: options.mobileImage,
+      alt: item[0],
+      className: "home-service-card-image",
+      width: options.width,
+      height: options.height
+    })
+    : `<img class="home-service-card-image" src="${options.image}" alt="${escapeHtml(item[0])}" width="${options.width}" height="${options.height}" loading="lazy" decoding="async">`;
+  return `<article class="home-service-gateway ${options.supporting ? "home-service-support" : "home-service-primary"}">
+    ${media}
+    <div class="home-service-overlay" aria-hidden="true"></div>
+    <div class="home-service-copy"><span>0${index + 1}</span><h3>${escapeHtml(item[0])}</h3>${renderHomeServicePrice(options.price)}<p>${escapeHtml(item[1])}</p><a class="text-link" href="${item[2]}">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></a></div>
+  </article>`;
+}
+
 function renderProductCard(product, options = {}) {
   const copy = productCopy(product);
   return `
@@ -265,6 +294,23 @@ function renderFeatureList(items, ordered = false) {
   }).join("")}</div>`;
 }
 
+function renderHomeOurServices(items) {
+  const icons = [
+    ["/assets/images/home/services/meaningful-travel-plan-icon.webp", 640, 475],
+    ["/assets/images/home/services/event-planning-icon.webp", 640, 492],
+    ["/assets/images/home/services/journey-storytelling-icon.webp", 640, 394],
+    ["/assets/images/home/services/impactful-journey-icon.webp", 640, 598]
+  ];
+  return `<div class="home-offering-grid">${items.map((item, index) => {
+    const [src, width, height] = icons[index];
+    return `<article class="home-offering"><div class="home-offering-icon"><img src="${src}" alt="" width="${width}" height="${height}" loading="lazy" decoding="async" aria-hidden="true"></div><div class="home-offering-copy"><h3>${escapeHtml(item[0])}</h3><p>${escapeHtml(item[1])}</p></div></article>`;
+  }).join("")}</div>`;
+}
+
+function renderHomeImpactMetrics(metrics) {
+  return `<div class="home-impact-metrics">${metrics.map(([value, label]) => `<div class="home-impact-metric"><strong>${escapeHtml(value)}</strong><span>${escapeHtml(label)}</span></div>`).join("")}</div>`;
+}
+
 function renderCta(title, body, options = {}) {
   const key = options.waKey || "general";
   return `<section class="cta-band"><div class="container cta-inner"><span class="cta-index" aria-hidden="true">CT / JOURNEY</span><div><p class="eyebrow">Conscious Travel</p><h2>${escapeHtml(title)}</h2><p>${escapeHtml(body)}</p></div><div class="button-row"><a class="btn btn-light" href="${whatsappUrl(key)}" target="_blank" rel="noopener" data-wa-key="${key}">${escapeHtml(content().ui.whatsapp)}</a><a class="btn btn-outline-light" href="${escapeHtml(inquiryUrl(options.service || "Custom Trip"))}">${escapeHtml(content().ui.inquiry)}</a></div></div></section>`;
@@ -272,25 +318,22 @@ function renderCta(title, body, options = {}) {
 
 function renderHome() {
   const p = content().home;
-  const primaryServices = p.services.slice(0, 2).map((item, index) => {
-    const image = index === 0 ? "/assets/images/beach-team-building.webp" : "/assets/images/group-local-lunch.webp";
-    return `<article class="home-service-gateway home-service-primary">
-      <img src="${image}" alt="${escapeHtml(item[0])}" width="900" height="720" loading="lazy">
-      <div class="home-service-overlay" aria-hidden="true"></div>
-      <div class="home-service-copy"><span>0${index + 1}</span><h3>${escapeHtml(item[0])}</h3><p>${escapeHtml(item[1])}</p><a class="text-link" href="${item[2]}">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></a></div>
-    </article>`;
-  }).join("");
-  const supportingServices = p.services.slice(2).map((item, index) => `<article class="home-service-support">
-    <span>0${index + 3}</span><div><h3>${escapeHtml(item[0])}</h3><p>${escapeHtml(item[1])}</p><a class="text-link" href="${item[2]}">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></a></div>
-  </article>`).join("");
+  const corporateProducts = (CT_STATE.catalog.corporateIndonesia?.destinations || []).flatMap((destination) => destination.packages || []);
+  const studyProducts = [...(CT_STATE.catalog.studyTour?.regional || []), ...(CT_STATE.catalog.studyTour?.international || [])];
+  const serviceCards = [
+    { image: "/assets/images/home/corporate-home-feature-desktop.webp", mobileImage: "/assets/images/home/corporate-home-feature-mobile.webp", width: 1484, height: 1060, price: lowestPricedProduct(corporateProducts) },
+    { image: "/assets/images/home/experiences-home-outdoor.webp", width: 1122, height: 1402 },
+    { image: "/assets/images/home/study-tour-home-card.webp", width: 1600, height: 1067, price: lowestPricedProduct(studyProducts), supporting: true },
+    { image: "/assets/images/home/impact-home-card.webp", width: 900, height: 1600, supporting: true }
+  ];
+  const primaryServices = p.services.slice(0, 2).map((item, index) => renderHomeServiceCard(item, index, serviceCards[index])).join("");
+  const supportingServices = p.services.slice(2).map((item, index) => renderHomeServiceCard(item, index + 2, serviceCards[index + 2])).join("");
   return `${renderHero("home", p, { home: true, primaryLabel: p.title, secondaryHref: "/corporate-packages/", secondaryLabel: content().nav.corporate })}
     ${renderTrustedBy(p.trust)}
     <section class="section home-intro"><div class="container home-intro-grid"><div><p class="section-kicker">Conscious Travel</p><h2>${escapeHtml(p.introTitle)}</h2></div><p class="section-lead">${escapeHtml(p.introBody)}</p></div></section>
     <section class="section home-services"><div class="container"><div class="section-heading home-section-heading"><p class="section-kicker">Service ecosystem</p><h2>${escapeHtml(p.whatTitle)}</h2><p>${escapeHtml(p.whatLead)}</p></div><div class="home-service-primary-grid">${primaryServices}</div><div class="home-service-supporting-grid">${supportingServices}</div></div></section>
-    <section class="section home-editorial home-corporate"><div class="container home-editorial-grid"><div class="home-editorial-media">${renderResponsiveImage({ desktop: "/assets/images/home/corporate-home-feature-desktop.webp", mobile: "/assets/images/home/corporate-home-feature-mobile.webp", alt: "Conscious Travel corporate group experience by the beach", className: "home-editorial-image", width: 1484, height: 1060 })}</div><div class="home-editorial-copy"><p class="section-kicker">Corporate Packages</p><h2>${escapeHtml(p.corporateTitle)}</h2><p>${escapeHtml(p.corporateBody)}</p><a class="text-link" href="/corporate-packages/">${escapeHtml(content().ui.explore)} Corporate Packages <span aria-hidden="true">&#8594;</span></a></div></div></section>
-    <section class="section home-editorial home-experiences"><div class="container home-editorial-grid"><div class="home-editorial-copy"><p class="section-kicker">Experiences</p><h2>${escapeHtml(p.experienceTitle)}</h2><p>${escapeHtml(p.experienceBody)}</p><a class="text-link" href="/experiences/">${escapeHtml(content().ui.explore)} Experiences <span aria-hidden="true">&#8594;</span></a></div><div class="home-editorial-media">${renderResponsiveImage({ desktop: "/assets/images/home/experiences-home-outdoor.webp", alt: "Travelers enjoying an outdoor rafting experience in Indonesia", className: "home-editorial-image", width: 1122, height: 1402 })}</div></div></section>
-    <section class="section home-impact"><div class="container home-impact-grid"><div class="home-impact-copy"><p class="section-kicker">Impact & Sustainability</p><h2>${escapeHtml(p.impactTitle)}</h2><p>${escapeHtml(p.impactBody)}</p><a class="text-link" href="/impact/">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></a></div><div class="home-impact-media"><img src="/assets/images/group-local-lunch.webp" alt="Conscious Travel group connecting through a local experience" width="960" height="1080" loading="lazy"></div></div></section>
-    <section class="section home-why"><div class="container home-why-grid"><div class="section-heading"><p class="section-kicker">Our approach</p><h2>${escapeHtml(p.whyTitle)}</h2></div>${renderFeatureList(p.why)}</div></section>
+    <section class="section home-impact"><div class="container home-impact-grid"><div class="home-impact-copy"><p class="section-kicker">${escapeHtml(p.impactEyebrow)}</p><h2>${escapeHtml(p.impactTitle)}</h2><p>${escapeHtml(p.impactBody)}</p><a class="text-link" href="/impact/">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></a></div>${renderHomeImpactMetrics(p.impactMetrics)}</div></section>
+    <section class="section home-why home-offerings"><div class="container"><div class="section-heading home-offerings-heading"><div><p class="section-kicker">${escapeHtml(p.ourServicesEyebrow)}</p><h2>${escapeHtml(p.ourServicesTitle)}</h2></div><p>${escapeHtml(p.ourServicesLead)}</p></div>${renderHomeOurServices(p.ourServices)}</div></section>
     <section class="home-closing-cta">${renderResponsiveImage({ desktop: "/assets/images/home/storytelling-home-campfire.webp", alt: "Travelers sharing a meaningful evening around a campfire", className: "home-closing-media", width: 1448, height: 1086 })}<div class="home-closing-overlay" aria-hidden="true"></div><div class="container home-closing-inner"><p class="eyebrow">Conscious Travel</p><h2>${escapeHtml(p.ctaTitle)}</h2><p>${escapeHtml(p.ctaBody)}</p><div class="button-row"><a class="btn btn-light" href="${whatsappUrl("general")}" target="_blank" rel="noopener" data-wa-key="general">${escapeHtml(p.title)}</a><a class="btn btn-outline-light" href="${escapeHtml(inquiryUrl("Custom Trip"))}">${escapeHtml(content().ui.inquiry)}</a></div></div></section>`;
 }
 

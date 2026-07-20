@@ -26,7 +26,18 @@
   --color-earth: #7A5739;
 
   /* Typography */
+  --font-primary: 'DM Sans', 'Avenir Next', 'Segoe UI', sans-serif;
+  --font-editorial: 'DM Serif Display', 'Iowan Old Style', Baskerville, 'Times New Roman', serif;
   --font-family: 'Plus Jakarta Sans', sans-serif;
+  --type-display: 72px;
+  --type-h1: 56px;
+  --type-h2: 44px;
+  --type-h3: 28px;
+  --type-body-large: 18px;
+  --type-body: 16px;
+  --type-body-small: 14px;
+  --type-eyebrow: 12px;
+  --type-button: 14px;
   --text-xs: 12px;
   --text-sm: 13px;
   --text-base: 15px;
