@@ -1,6 +1,18 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "trailingSlash": true,
+  "headers": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "staging.conscioustravel.id" }],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    }
+  ],
   "redirects": [
     {
       "source": "/:path*",
