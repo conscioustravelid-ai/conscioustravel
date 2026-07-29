@@ -1129,6 +1129,17 @@ body[data-page="home"] .trust-strip li {
   border-radius: 8px;
 }
 
+.home-service-gateway {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+}
+
+.home-service-gateway:hover .text-link > span,
+.home-service-gateway:focus-visible .text-link > span {
+  transform: translateX(4px);
+}
+
 .home-service-card-image-picture {
   height: 100%;
   inset: 0;

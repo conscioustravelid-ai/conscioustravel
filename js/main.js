@@ -119,11 +119,11 @@ function renderHomeServiceCard(item, index, options) {
       height: options.height
     })
     : `<img class="home-service-card-image" src="${options.image}" alt="${escapeHtml(item[0])}" width="${options.width}" height="${options.height}" loading="lazy" decoding="async">`;
-  return `<article class="home-service-gateway ${options.supporting ? "home-service-support" : "home-service-primary"}">
+  return `<a class="home-service-gateway ${options.supporting ? "home-service-support" : "home-service-primary"}" href="${escapeHtml(item[2])}">
     ${media}
     <div class="home-service-overlay" aria-hidden="true"></div>
-    <div class="home-service-copy"><span>0${index + 1}</span><h3>${escapeHtml(item[0])}</h3>${renderHomeServicePrice(options.price)}<p>${escapeHtml(item[1])}</p><a class="text-link" href="${item[2]}">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></a></div>
-  </article>`;
+    <div class="home-service-copy"><span>0${index + 1}</span><h3>${escapeHtml(item[0])}</h3>${renderHomeServicePrice(options.price)}<p>${escapeHtml(item[1])}</p><span class="text-link">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></span></div>
+  </a>`;
 }
 
 function renderProductCard(product, options = {}) {
