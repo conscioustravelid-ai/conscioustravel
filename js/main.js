@@ -6,7 +6,7 @@ const CT_STATE = {
 const PAGE_IMAGES = {
   home: "/assets/images/beach-team-building.webp",
   corporateHub: "/assets/images/beach-team-building.webp",
-  indonesia: "/assets/images/beach-team-building.webp",
+  indonesia: "/assets/images/kintamani-outing-cover.webp",
   international: "/assets/images/group-dinner-party.webp",
   csr: "/assets/images/group-local-lunch.webp",
   event: "/assets/images/beach-team-building.webp",
@@ -20,6 +20,21 @@ const PAGE_IMAGES = {
   blog: "/assets/images/group-local-lunch.webp"
 };
 
+const PRODUCT_PAGE_IMAGES = {
+  corporateHub: {
+    indonesia: "/assets/images/kintamani-outing-cover.webp",
+    international: "/assets/images/group-dinner-party.webp",
+    csr: "/assets/images/home/impact-home-card.webp",
+    event: "/assets/images/beach-team-building.webp"
+  },
+  indonesia: {
+    bali: "/assets/images/kintamani-incentive-retreat-poster.webp",
+    jogja: "/assets/images/website-hero-mockup-01.webp",
+    bandung: "/assets/images/games-in-nature.webp",
+    lombok: "/assets/images/jeep-adventure.webp"
+  }
+};
+
 const CLIENT_LOGOS = [
   ["DBS", "/assets/images/clients/dbs.webp"],
   ["Astra FSCM", "/assets/images/clients/astra-fscm.webp"],
@@ -31,6 +46,10 @@ const CLIENT_LOGOS = [
 
 function content() {
   return window.CT_CONTENT[CT_STATE.language];
+}
+
+function editorialContent() {
+  return window.CT_EDITORIAL_CONTENT[CT_STATE.language];
 }
 
 function escapeHtml(value = "") {
@@ -221,6 +240,10 @@ function renderFooter() {
 
 function renderHero(pageKey, page, options = {}) {
   const image = PAGE_IMAGES[pageKey] || PAGE_IMAGES.home;
+  const primaryHref = options.primaryHref || whatsappUrl(options.waKey || "general");
+  const primaryAttributes = options.primaryHref
+    ? ""
+    : ` target="_blank" rel="noopener" data-wa-key="${options.waKey || "general"}"`;
   const media = pageKey === "home"
     ? renderResponsiveImage({
       desktop: "/assets/images/home/hero-home-primary-desktop.webp",
@@ -243,7 +266,7 @@ function renderHero(pageKey, page, options = {}) {
           <h1>${escapeHtml(page.title)}</h1>
           <p class="hero-lead">${escapeHtml(page.lead)}</p>
           <div class="button-row">
-            <a class="btn btn-primary" href="${whatsappUrl(options.waKey || "general")}" target="_blank" rel="noopener" data-wa-key="${options.waKey || "general"}">${escapeHtml(options.primaryLabel || content().ui.whatsapp)}</a>
+            <a class="btn btn-primary" href="${escapeHtml(primaryHref)}"${primaryAttributes}>${escapeHtml(options.primaryLabel || content().ui.whatsapp)}</a>
             ${options.secondaryHref ? `<a class="btn btn-secondary" href="${options.secondaryHref}">${escapeHtml(options.secondaryLabel || content().ui.explore)}</a>` : ""}
           </div>
         </div>
@@ -316,6 +339,90 @@ function renderCta(title, body, options = {}) {
   return `<section class="cta-band"><div class="container cta-inner"><span class="cta-index" aria-hidden="true">CT / JOURNEY</span><div><p class="eyebrow">Conscious Travel</p><h2>${escapeHtml(title)}</h2><p>${escapeHtml(body)}</p></div><div class="button-row"><a class="btn btn-light" href="${whatsappUrl(key)}" target="_blank" rel="noopener" data-wa-key="${key}">${escapeHtml(content().ui.whatsapp)}</a><a class="btn btn-outline-light" href="${escapeHtml(inquiryUrl(options.service || "Custom Trip"))}">${escapeHtml(content().ui.inquiry)}</a></div></div></section>`;
 }
 
+function renderEditorialList(title, items, className = "") {
+  if (!items?.length) return "";
+  return `<div class="editorial-list ${className}"><h3>${escapeHtml(title)}</h3><ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>`;
+}
+
+function renderEditorialDisclosure(title, items, open = false) {
+  if (!items?.length) return "";
+  return `<details class="editorial-disclosure"${open ? " open" : ""}><summary>${escapeHtml(title)} <span aria-hidden="true">+</span></summary><ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></details>`;
+}
+
+function renderPathwayGateways(pathways) {
+  const labels = editorialContent().labels;
+  const images = PRODUCT_PAGE_IMAGES.corporateHub;
+  return `<div class="journey-pathway-grid">${pathways.map((pathway, index) => `
+    <a class="journey-pathway${index < 2 ? " journey-pathway-primary" : " journey-pathway-supporting"}" href="${escapeHtml(pathway.href)}">
+      <img src="${escapeHtml(images[pathway.key])}" alt="${escapeHtml(pathway.title)} corporate journey" width="1200" height="900" loading="lazy" decoding="async">
+      <span class="journey-pathway-overlay" aria-hidden="true"></span>
+      <span class="journey-pathway-index" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
+      <span class="journey-pathway-copy">
+        <strong>${escapeHtml(pathway.title)}</strong>
+        <span>${escapeHtml(pathway.body)}</span>
+        <small><b>${escapeHtml(labels.bestFor)}:</b> ${escapeHtml(pathway.bestFor)}</small>
+        <em>${escapeHtml(labels.explore)} <span aria-hidden="true">&#8594;</span></em>
+      </span>
+    </a>`).join("")}</div>`;
+}
+
+function renderProductClosingCta(title, body, options = {}) {
+  const service = options.service || "Corporate Packages";
+  const waKey = options.waKey || "corporate";
+  return `<section class="product-closing-cta"><div class="container product-closing-inner"><div><p class="eyebrow">Conscious Travel</p><h2>${escapeHtml(title)}</h2><p>${escapeHtml(body)}</p></div><div class="button-row"><a class="btn btn-light" href="${escapeHtml(inquiryUrl(service))}">${escapeHtml(options.primaryLabel || content().ui.requestProposal)}</a><a class="text-link text-link-light" href="${whatsappUrl(waKey)}" target="_blank" rel="noopener" data-wa-key="${waKey}">${escapeHtml(options.secondaryLabel || content().ui.whatsapp)} <span aria-hidden="true">&#8594;</span></a></div></div></section>`;
+}
+
+function renderPackageComparison(products, details, options = {}) {
+  const labels = editorialContent().labels;
+  const service = options.service || "Corporate Packages";
+  return `<div class="package-comparison">${products.map((product, index) => {
+    const copy = productCopy(product);
+    const detail = details[product.id] || {};
+    return `<article class="package-comparison-item${index === 0 ? " package-comparison-featured" : ""}">
+      <div class="package-comparison-heading">
+        <span>${escapeHtml(product.tier || (index === 0 ? labels.featured : labels.packages))}</span>
+        <h3>${escapeHtml(copy[0])}</h3>
+        <p>${escapeHtml(detail.positioning || copy[1])}</p>
+      </div>
+      <div class="package-comparison-price">${renderPrice(product)}</div>
+      <div class="package-comparison-details">
+        ${renderEditorialList(labels.highlights, detail.highlights || [])}
+        ${detail.flow ? renderEditorialDisclosure(labels.sampleFlow, detail.flow) : ""}
+        <a class="text-link" href="${escapeHtml(inquiryUrl(service))}">${escapeHtml(labels.proposal)} <span aria-hidden="true">&#8594;</span></a>
+      </div>
+    </article>`;
+  }).join("")}</div>`;
+}
+
+function renderDestinationStory(destination, story, packages, image, options = {}) {
+  const labels = editorialContent().labels;
+  const layout = options.layout || "standard";
+  const details = editorialContent().indonesia.packageDetails;
+  return `<section class="section destination-editorial destination-editorial-${layout}" id="${escapeHtml(destination.id)}">
+    <div class="container">
+      <div class="destination-story-grid">
+        <figure class="destination-story-media"><img src="${escapeHtml(image)}" alt="${escapeHtml(story.title)} corporate journey" width="1200" height="900" loading="lazy" decoding="async"></figure>
+        <div class="destination-story-copy">
+          <p class="section-kicker">${escapeHtml(story.eyebrow)}</p>
+          <h2>${escapeHtml(story.title)}</h2>
+          <p class="destination-intro">${escapeHtml(story.intro)}</p>
+          <div class="destination-decision">
+            ${renderEditorialList(labels.bestFor, story.bestFor, "editorial-list-best-for")}
+            <div class="destination-disclosures">
+              ${renderEditorialDisclosure(labels.whyChoose, story.why, true)}
+              ${renderEditorialDisclosure(labels.signature, story.signature)}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="destination-package-section">
+        <div class="destination-package-heading"><p class="section-kicker">${escapeHtml(labels.packages)}</p><span>${escapeHtml(destination.name)}</span></div>
+        ${renderPackageComparison(packages, details)}
+      </div>
+    </div>
+  </section>`;
+}
+
 function renderHome() {
   const p = content().home;
   const corporateProducts = (CT_STATE.catalog.corporateIndonesia?.destinations || []).flatMap((destination) => destination.packages || []);
@@ -339,46 +446,80 @@ function renderHome() {
 
 function renderCorporateHub() {
   const p = content().corporateHub;
-  return `${renderHero("corporateHub", p, { waKey: "corporate", secondaryHref: inquiryUrl("Corporate Packages"), secondaryLabel: content().ui.requestProposal })}
+  const e = editorialContent().corporateHub;
+  const hero = { ...p, title: e.heroTitle, lead: e.heroLead };
+  return `${renderHero("corporateHub", hero, { primaryHref: "#corporate-pathways", primaryLabel: e.heroPrimary, secondaryHref: inquiryUrl("Corporate Packages"), secondaryLabel: content().ui.requestProposal })}
     ${renderBreadcrumb([[content().nav.corporate, "/corporate-packages/"]])}
-    ${renderIntro(p.introTitle, p.introBody)}
-    <section class="section corporate-gateway-section"><div class="container"><div class="section-heading"><p class="section-kicker">Corporate service hub</p><h2>${escapeHtml(content().nav.corporate)}</h2></div>${renderCards(p.categories, "service-grid editorial-gateway-grid")}</div></section>
-    <section class="section muted-band"><div class="container"><div class="section-heading"><p class="section-kicker">From brief to journey</p><h2>${escapeHtml(p.processTitle)}</h2></div>${renderFeatureList(p.process, true)}</div></section>
-    ${renderCta(p.ctaTitle, p.ctaBody, { waKey: "corporate", service: "Corporate Packages" })}`;
+    <section class="section product-page-intro"><div class="container product-page-intro-grid"><div><p class="section-kicker">Corporate journeys</p><h2>${escapeHtml(e.introTitle)}</h2></div><p class="section-lead">${escapeHtml(e.introBody)}</p></div></section>
+    <section class="section journey-pathways" id="corporate-pathways"><div class="container"><div class="product-section-heading"><div><p class="section-kicker">Corporate service ecosystem</p><h2>${escapeHtml(e.pathwaysTitle)}</h2></div><p>${escapeHtml(e.pathwaysLead)}</p></div>${renderPathwayGateways(e.pathways)}</div></section>
+    <section class="section editorial-proof-section"><div class="container editorial-proof-grid"><div><p class="section-kicker">${escapeHtml(editorialContent().labels.fromBrief)}</p><h2>${escapeHtml(e.supportTitle)}</h2><p>${escapeHtml(e.supportLead)}</p></div>${renderFeatureList(e.supportItems)}</div></section>
+    ${renderProductClosingCta(e.closingTitle, e.closingBody, { service: "Corporate Packages", waKey: "corporate", primaryLabel: e.closingPrimary, secondaryLabel: e.closingSecondary })}`;
 }
 
-function renderBaliVariants(product) {
+function renderBaliVariants(product, variantDetails = {}) {
   if (!product.variants) return "";
   const firstId = product.variants[0].id;
   const tabButtons = product.variants.map((variant, index) => `<button type="button" role="tab" id="tab-${variant.id}" aria-controls="panel-${variant.id}" aria-selected="${index === 0}" tabindex="${index === 0 ? 0 : -1}" data-variant-tab="${variant.id}">${escapeHtml(variant.name)}</button>`).join("");
-  const panels = product.variants.map((variant, index) => `<div role="tabpanel" id="panel-${variant.id}" aria-labelledby="tab-${variant.id}"${index ? " hidden" : ""}><h4>${escapeHtml(variant.name)}</h4><p>${escapeHtml(variant.time)}</p><a class="text-link" href="${escapeHtml(inquiryUrl("Corporate Packages"))}">${escapeHtml(content().ui.requestProposal)} <span aria-hidden="true">&#8594;</span></a></div>`).join("");
-  const mobile = product.variants.map((variant, index) => `<details class="variant-mobile"${index === 0 ? " open" : ""}><summary>${escapeHtml(variant.name)}</summary><p>${escapeHtml(variant.time)}</p><a class="text-link" href="${escapeHtml(inquiryUrl("Corporate Packages"))}">${escapeHtml(content().ui.requestProposal)} <span aria-hidden="true">&#8594;</span></a></details>`).join("");
-  return `<div class="variant-explorer"><div class="variant-desktop"><div class="variant-tabs" role="tablist" aria-label="Bali Starter options">${tabButtons}</div><div class="variant-panels">${panels}</div></div><div class="variant-mobile-list">${mobile}</div></div><input type="hidden" value="${firstId}">`;
+  const panels = product.variants.map((variant, index) => `<div role="tabpanel" id="panel-${variant.id}" aria-labelledby="tab-${variant.id}"${index ? " hidden" : ""}><h4>${escapeHtml(variant.name)}</h4><p>${escapeHtml(variant.time)}</p>${renderEditorialList(editorialContent().labels.highlights, variantDetails[variant.id] || [], "variant-highlight-list")}<a class="text-link" href="${escapeHtml(inquiryUrl("Corporate Packages"))}">${escapeHtml(content().ui.requestProposal)} <span aria-hidden="true">&#8594;</span></a></div>`).join("");
+  const mobile = product.variants.map((variant, index) => `<details class="variant-mobile"${index === 0 ? " open" : ""}><summary>${escapeHtml(variant.name)}</summary><p>${escapeHtml(variant.time)}</p>${renderEditorialList(editorialContent().labels.highlights, variantDetails[variant.id] || [], "variant-highlight-list")}<a class="text-link" href="${escapeHtml(inquiryUrl("Corporate Packages"))}">${escapeHtml(content().ui.requestProposal)} <span aria-hidden="true">&#8594;</span></a></details>`).join("");
+  return `<div class="variant-explorer"><div class="variant-desktop"><div class="variant-tabs" role="tablist" aria-label="${escapeHtml(editorialContent().labels.variantLabel)}">${tabButtons}</div><div class="variant-panels">${panels}</div></div><div class="variant-mobile-list">${mobile}</div></div><input type="hidden" value="${firstId}">`;
 }
 
 function renderIndonesia() {
   const p = content().indonesia;
+  const e = editorialContent().indonesia;
   const data = CT_STATE.catalog.corporateIndonesia;
   const byId = Object.fromEntries(data.destinations.map((destination) => [destination.id, destination]));
-  const destinations = data.displayOrder.map((id) => {
+  const guide = data.displayOrder.map((id, index) => {
     const destination = byId[id];
-    const copy = p.destinations[id];
-    return `<article class="destination-tile"><span>${escapeHtml(destination.name.slice(0, 1))}</span><h3>${escapeHtml(copy[0])}</h3><p>${escapeHtml(copy[1])}</p><a href="#${id}" class="text-link">${escapeHtml(content().ui.viewOptions)} <span aria-hidden="true">&#8595;</span></a></article>`;
+    return `<a class="destination-guide-item" href="#${escapeHtml(id)}"><span aria-hidden="true">${String(index + 1).padStart(2, "0")}</span><strong>${escapeHtml(destination.name)}</strong><small>${escapeHtml(e.guide[id])}</small><em aria-hidden="true">&#8595;</em></a>`;
   }).join("");
   const bali = byId.bali;
   const starter = bali.packages.find((item) => item.id === "bali-starter");
-  const destinationSections = data.displayOrder.filter((id) => id !== "bali").map((id) => {
+  const starterCopy = productCopy(starter);
+  const destinationSections = data.displayOrder.filter((id) => id !== "bali").map((id, index) => {
     const destination = byId[id];
-    return `<section class="section destination-section" id="${id}"><div class="container"><div class="section-heading"><p class="section-kicker">Indonesia Region</p><h2>${escapeHtml(destination.name)}</h2></div><div class="product-grid">${destination.packages.map((product, index) => renderProductCard(product, { featured: index === 0, label: index === 0 ? "Featured" : "Upgrade" })).join("")}</div></div></section>`;
+    const layouts = ["standard", "reverse", "wide"];
+    return renderDestinationStory(destination, e.destinations[id], destination.packages, PRODUCT_PAGE_IMAGES.indonesia[id], { layout: layouts[index] });
   }).join("");
-  return `${renderHero("indonesia", p, { waKey: "corporate", secondaryHref: inquiryUrl("Corporate Packages"), secondaryLabel: content().ui.requestProposal })}
+  const hero = { ...p, title: e.heroTitle, lead: e.heroLead };
+  return `${renderHero("indonesia", hero, { primaryHref: "#destination-guide", primaryLabel: e.heroPrimary, secondaryHref: inquiryUrl("Corporate Packages"), secondaryLabel: content().ui.requestProposal })}
     ${renderBreadcrumb([[content().nav.corporate, "/corporate-packages/"], ["Indonesia Region", "/corporate-packages/indonesia-region/"]])}
     ${renderIntro(p.introTitle, p.introBody)}
-    <section class="section compact-section"><div class="container"><div class="section-heading"><p class="section-kicker">${escapeHtml(content().ui.primaryDestinations)}</p><h2>Indonesia Region</h2></div><div class="destination-grid">${destinations}</div></div></section>
-    <section class="section muted-band destination-section" id="bali"><div class="container"><div class="section-heading"><p class="section-kicker">Hero product</p><h2>${escapeHtml(p.baliTitle)}</h2><p>${escapeHtml(p.baliLead)}</p></div><article class="starter-feature"><div>${renderProductCard(starter, { featured: true, label: "Hero Product" })}</div><div><h3>${escapeHtml(content().ui.packageOptions)}</h3>${renderBaliVariants(starter)}</div></article><div class="product-grid supporting-products">${bali.packages.filter((item) => item.id !== starter.id).map((product) => renderProductCard(product, { label: product.tier || "Package" })).join("")}</div></div></section>
+    <section class="section destination-guide-section" id="destination-guide"><div class="container"><div class="product-section-heading"><div><p class="section-kicker">${escapeHtml(content().ui.primaryDestinations)}</p><h2>${escapeHtml(e.guideTitle)}</h2></div><p>${escapeHtml(e.guideLead)}</p></div><nav class="destination-guide" aria-label="${escapeHtml(content().ui.primaryDestinations)}">${guide}</nav></div></section>
+    <section class="section destination-editorial destination-editorial-featured" id="bali"><div class="container">
+      <div class="destination-story-grid">
+        <figure class="destination-story-media"><img src="${escapeHtml(PRODUCT_PAGE_IMAGES.indonesia.bali)}" alt="Corporate retreat experience in Bali" width="1200" height="900" loading="lazy" decoding="async"></figure>
+        <div class="destination-story-copy">
+          <p class="section-kicker">${escapeHtml(e.destinations.bali.eyebrow)}</p>
+          <h2>${escapeHtml(e.destinations.bali.title)}</h2>
+          <p class="destination-intro">${escapeHtml(e.destinations.bali.intro)}</p>
+          <div class="destination-decision">
+            ${renderEditorialList(editorialContent().labels.bestFor, e.destinations.bali.bestFor, "editorial-list-best-for")}
+            <div class="destination-disclosures">
+              ${renderEditorialDisclosure(editorialContent().labels.whyChoose, e.destinations.bali.why, true)}
+              ${renderEditorialDisclosure(editorialContent().labels.signature, e.destinations.bali.signature)}
+            </div>
+          </div>
+        </div>
+      </div>
+      <article class="starter-product-spotlight">
+        <div class="starter-product-summary">
+          <p class="section-kicker">${escapeHtml(starterCopy[0])} / ${escapeHtml(starter.duration)}</p>
+          <h2>${escapeHtml(e.starterTitle)}</h2>
+          <p>${escapeHtml(e.starterBody)}</p>
+          <div class="starter-product-facts"><div><h3>${escapeHtml(starterCopy[0])}</h3><p>${escapeHtml(starterCopy[1])}</p>${renderPrice(starter)}</div>${renderEditorialList(editorialContent().labels.highlights, e.starterIncluded)}</div>
+        </div>
+        <div class="starter-variant-section"><div class="starter-variant-heading"><p class="section-kicker">${escapeHtml(content().ui.packageOptions)}</p><span>${escapeHtml(starter.variants.length)} ${escapeHtml(editorialContent().labels.options)}</span></div>${renderBaliVariants(starter, e.variants)}</div>
+      </article>
+      <div class="destination-package-section bali-package-comparison">
+        <div class="destination-package-heading"><p class="section-kicker">${escapeHtml(editorialContent().labels.packages)}</p><span>Bali / Multi-day</span></div>
+        ${renderPackageComparison(bali.packages.filter((product) => product.id !== starter.id), e.packageDetails)}
+      </div>
+    </div></section>
     ${destinationSections}
-    <section class="section green-soft"><div class="container split-copy"><div><p class="section-kicker">CSR & Impact</p><h2>${escapeHtml(p.addOnTitle)}</h2><p>${escapeHtml(p.addOnBody)}</p></div><div><p class="section-kicker">Documentation</p><h2>${escapeHtml(p.recapTitle)}</h2><p>${escapeHtml(p.recapBody)}</p></div></div></section>
-    ${renderCta(p.ctaTitle, p.ctaBody, { waKey: "corporate", service: "Corporate Packages" })}`;
+    <section class="section editorial-proof-section indonesia-proof"><div class="container editorial-proof-grid"><div><p class="section-kicker">Conscious Travel</p><h2>${escapeHtml(e.capabilityTitle)}</h2><p>${escapeHtml(e.capabilityLead)}</p></div>${renderFeatureList(e.capabilities)}</div></section>
+    ${renderProductClosingCta(e.closingTitle, e.closingBody, { service: "Corporate Packages", waKey: "corporate", primaryLabel: e.closingPrimary, secondaryLabel: e.closingSecondary })}`;
 }
 
 function renderInternational() {
