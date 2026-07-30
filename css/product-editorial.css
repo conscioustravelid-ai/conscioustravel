@@ -1,4 +1,4 @@
-/* Editorial product exploration for Corporate Hub and Indonesia Region. */
+/* Editorial product exploration across the corporate and learning service pages. */
 
 html {
   scroll-behavior: smooth;
@@ -1117,5 +1117,477 @@ body[data-page="indonesia"] .page-hero .btn-primary:hover {
   .journey-pathway-copy em span,
   .destination-guide-item em {
     transition: none;
+  }
+}
+
+/* Editorial product pages: Study Tour, International, CSR, and Event Planning. */
+
+body:is([data-page="study"], [data-page="international"], [data-page="csr"], [data-page="event"]) {
+  background: var(--color-off-white);
+  color: var(--color-primary-ink);
+  font-family: var(--font-primary);
+}
+
+body:is([data-page="study"], [data-page="international"], [data-page="csr"], [data-page="event"]) .page-hero {
+  min-height: 82svh;
+}
+
+body:is([data-page="study"], [data-page="international"], [data-page="csr"], [data-page="event"]) .page-hero .hero-overlay {
+  background:
+    linear-gradient(90deg, rgba(8, 29, 20, 0.86) 0%, rgba(8, 29, 20, 0.56) 48%, rgba(8, 29, 20, 0.15) 78%),
+    linear-gradient(0deg, rgba(8, 29, 20, 0.48) 0%, transparent 48%);
+}
+
+body:is([data-page="study"], [data-page="international"], [data-page="csr"], [data-page="event"]) .page-hero .hero-copy {
+  max-width: 820px;
+}
+
+body:is([data-page="study"], [data-page="international"], [data-page="csr"], [data-page="event"]) .page-hero h1 {
+  font-family: var(--font-editorial);
+  font-size: 64px;
+  font-weight: var(--weight-regular);
+  line-height: 1.03;
+}
+
+body:is([data-page="study"], [data-page="international"], [data-page="csr"], [data-page="event"]) .page-hero .hero-lead {
+  font-size: var(--type-body-large);
+  line-height: 1.7;
+  max-width: 680px;
+}
+
+body:is([data-page="study"], [data-page="international"], [data-page="csr"], [data-page="event"]) .page-hero .btn-primary {
+  background: var(--color-cream);
+  color: var(--color-primary-ink);
+}
+
+.destination-guide-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.destination-guide-6 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.destination-guide-6 .destination-guide-item:nth-child(n + 4) {
+  border-top: 1px solid rgba(16, 39, 29, 0.2);
+}
+
+.destination-guide-6 .destination-guide-item:nth-child(4) {
+  border-left: 0;
+}
+
+.planning-price-note {
+  background: var(--color-sand);
+  padding-block: var(--space-12);
+}
+
+.planning-price-inner {
+  align-items: start;
+  display: grid;
+  gap: var(--space-10);
+  grid-template-columns: minmax(220px, 0.55fr) minmax(0, 1.45fr);
+}
+
+.planning-price-inner p {
+  color: var(--color-text);
+  font-size: var(--type-body-large);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.study-region-heading {
+  background: var(--color-primary-deep);
+  color: var(--color-white);
+  padding-block: var(--space-14);
+  scroll-margin-top: 96px;
+}
+
+.study-region-heading h2 {
+  color: var(--color-white);
+  font-family: var(--font-editorial);
+  font-size: 48px;
+  font-weight: var(--weight-regular);
+  margin: 0 0 var(--space-3);
+}
+
+.study-region-heading p:last-child {
+  color: rgba(255, 255, 255, 0.74);
+  font-size: var(--type-body-large);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 760px;
+}
+
+.study-support-section {
+  background: var(--color-cream);
+}
+
+.study-support-grid {
+  align-items: start;
+  display: grid;
+  gap: var(--space-20);
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+}
+
+.study-support-grid h2 {
+  font-family: var(--font-editorial);
+  font-size: var(--type-h2);
+  font-weight: var(--weight-regular);
+}
+
+.study-support-grid > div > p:last-child {
+  color: var(--color-text);
+  font-size: var(--type-body-large);
+  line-height: 1.75;
+}
+
+.study-inclusion-list {
+  border-top: 1px solid rgba(16, 39, 29, 0.2);
+}
+
+.csr-featured-section {
+  background: var(--color-cream);
+}
+
+.csr-featured-list {
+  display: grid;
+  gap: var(--space-24);
+}
+
+.csr-featured-program {
+  align-items: stretch;
+  display: grid;
+  gap: var(--space-14);
+  grid-template-columns: minmax(0, 1.04fr) minmax(420px, 0.96fr);
+  scroll-margin-top: 96px;
+}
+
+.csr-featured-program figure {
+  margin: 0;
+  min-height: 580px;
+  overflow: hidden;
+}
+
+.csr-featured-program figure img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.csr-featured-copy {
+  align-self: center;
+  padding-block: var(--space-8);
+}
+
+.csr-featured-copy h3 {
+  font-family: var(--font-editorial);
+  font-size: 46px;
+  font-weight: var(--weight-regular);
+  line-height: 1.08;
+}
+
+.csr-program-intro {
+  color: var(--color-text);
+  font-size: var(--type-body-large);
+  line-height: 1.7;
+}
+
+.csr-featured-copy .product-price {
+  margin-top: var(--space-8);
+}
+
+.csr-program-details {
+  display: grid;
+  gap: var(--space-8);
+  margin-block: var(--space-8);
+}
+
+.csr-featured-program-reverse figure {
+  grid-column: 2;
+}
+
+.csr-featured-program-reverse .csr-featured-copy {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.csr-more-section {
+  background: var(--color-off-white);
+}
+
+.editorial-program-index {
+  border-bottom: 1px solid rgba(16, 39, 29, 0.2);
+  border-top: 1px solid rgba(16, 39, 29, 0.2);
+}
+
+.editorial-program-row {
+  align-items: start;
+  display: grid;
+  gap: var(--space-8);
+  grid-template-columns: 54px minmax(260px, 1fr) minmax(250px, 0.66fr);
+  padding-block: var(--space-8);
+}
+
+.editorial-program-row + .editorial-program-row {
+  border-top: 1px solid rgba(16, 39, 29, 0.2);
+}
+
+.editorial-program-number {
+  color: var(--color-primary);
+  font-size: var(--type-eyebrow);
+  font-weight: var(--weight-bold);
+}
+
+.editorial-program-row h3 {
+  font-size: 25px;
+  margin: 0 0 var(--space-2);
+}
+
+.editorial-program-row p {
+  color: var(--color-text);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.editorial-program-row .product-price {
+  border: 0;
+  margin: 0 0 var(--space-3);
+  padding: 0;
+}
+
+.editorial-program-row .product-meta {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.csr-addon-section {
+  background: var(--color-primary-deep);
+  color: var(--color-white);
+}
+
+.csr-addon-grid {
+  align-items: center;
+  display: grid;
+  gap: var(--space-20);
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.8fr);
+}
+
+.csr-addon-grid h2 {
+  color: var(--color-white);
+  font-family: var(--font-editorial);
+  font-size: 48px;
+  font-weight: var(--weight-regular);
+}
+
+.csr-addon-grid > div > p:last-child {
+  color: rgba(255, 255, 255, 0.74);
+  font-size: var(--type-body-large);
+  line-height: 1.7;
+}
+
+.csr-addon-grid blockquote {
+  border-left: 2px solid var(--color-clay);
+  color: var(--color-white);
+  font-family: var(--font-editorial);
+  font-size: 28px;
+  line-height: 1.45;
+  margin: 0;
+  padding: var(--space-6) 0 var(--space-6) var(--space-8);
+}
+
+body[data-page="event"] .split-layout.align-start {
+  gap: var(--space-20);
+}
+
+body[data-page="event"] .pricing-grid {
+  gap: var(--space-5);
+}
+
+body[data-page="event"] .pricing-grid .product-card {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+body[data-page="event"] .pricing-grid .product-card-featured {
+  background: var(--color-primary-deep);
+  color: var(--color-white);
+  transform: translateY(-12px);
+}
+
+body[data-page="event"] .pricing-grid .product-card-featured h3,
+body[data-page="event"] .pricing-grid .product-card-featured .product-price strong,
+body[data-page="event"] .pricing-grid .product-card-featured .text-link {
+  color: var(--color-white);
+}
+
+body[data-page="event"] .pricing-grid .product-card-featured p,
+body[data-page="event"] .pricing-grid .product-card-featured .product-price span,
+body[data-page="event"] .pricing-grid .product-card-featured .product-price small {
+  color: rgba(255, 255, 255, 0.74);
+}
+
+@media (max-width: 1180px) {
+  body:is([data-page="study"], [data-page="international"], [data-page="csr"], [data-page="event"]) .page-hero h1 {
+    font-size: 56px;
+  }
+
+  .csr-featured-program {
+    gap: var(--space-10);
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .destination-guide-6 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .destination-guide-6 .destination-guide-item:nth-child(3),
+  .destination-guide-6 .destination-guide-item:nth-child(5) {
+    border-left: 0;
+  }
+
+  .destination-guide-6 .destination-guide-item:nth-child(n + 3) {
+    border-top: 1px solid rgba(16, 39, 29, 0.2);
+  }
+
+  .planning-price-inner,
+  .study-support-grid,
+  .csr-addon-grid {
+    gap: var(--space-10);
+    grid-template-columns: 1fr;
+  }
+
+  .csr-featured-program {
+    grid-template-columns: 1fr;
+  }
+
+  .csr-featured-program-reverse figure,
+  .csr-featured-program-reverse .csr-featured-copy {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .csr-featured-program figure {
+    min-height: 500px;
+  }
+
+  .editorial-program-row {
+    grid-template-columns: 42px minmax(0, 1fr);
+  }
+
+  .editorial-program-row > div:last-child {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 700px) {
+  body:is([data-page="study"], [data-page="international"], [data-page="csr"], [data-page="event"]) .page-hero {
+    min-height: 680px;
+  }
+
+  body:is([data-page="study"], [data-page="international"], [data-page="csr"], [data-page="event"]) .page-hero h1 {
+    font-size: 42px;
+  }
+
+  body:is([data-page="study"], [data-page="international"], [data-page="csr"], [data-page="event"]) .page-hero .hero-lead {
+    font-size: var(--type-body);
+  }
+
+  .destination-guide-3,
+  .destination-guide-6 {
+    display: flex;
+  }
+
+  .destination-guide-3 .destination-guide-item,
+  .destination-guide-6 .destination-guide-item {
+    border-bottom: 0;
+    border-top: 0;
+    flex: 0 0 78%;
+  }
+
+  .destination-guide-3 .destination-guide-item + .destination-guide-item,
+  .destination-guide-6 .destination-guide-item + .destination-guide-item {
+    border-left: 1px solid rgba(16, 39, 29, 0.2);
+    border-top: 0;
+  }
+
+  .study-region-heading {
+    padding-block: var(--space-10);
+  }
+
+  .study-region-heading h2 {
+    font-size: 38px;
+  }
+
+  .csr-featured-list {
+    gap: var(--space-16);
+  }
+
+  .csr-featured-program figure {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+  }
+
+  .csr-featured-copy {
+    padding: 0;
+  }
+
+  .csr-featured-copy h3,
+  .csr-addon-grid h2 {
+    font-size: 38px;
+  }
+
+  .csr-addon-grid blockquote {
+    font-size: 24px;
+  }
+
+  body[data-page="event"] .pricing-grid .product-card-featured {
+    transform: none;
+  }
+}
+
+@media (max-width: 440px) {
+  body:is([data-page="study"], [data-page="international"], [data-page="csr"], [data-page="event"]) .page-hero .hero-lead {
+    -webkit-box-orient: initial;
+    -webkit-line-clamp: initial;
+    display: block;
+    overflow: visible;
+  }
+
+  body:is([data-page="study"], [data-page="international"], [data-page="csr"], [data-page="event"]) .page-hero {
+    min-height: 680px;
+  }
+
+  body:is([data-page="study"], [data-page="international"], [data-page="csr"], [data-page="event"]) .page-hero h1 {
+    font-size: 38px;
+  }
+
+  body:is([data-page="study"], [data-page="international"], [data-page="csr"], [data-page="event"]) .page-hero .button-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  body:is([data-page="study"], [data-page="international"], [data-page="csr"], [data-page="event"]) .page-hero .btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .destination-guide-3 .destination-guide-item,
+  .destination-guide-6 .destination-guide-item {
+    flex-basis: 86%;
+  }
+
+  .editorial-program-row {
+    gap: var(--space-4);
+    grid-template-columns: 32px minmax(0, 1fr);
+  }
+
+  .editorial-program-row h3 {
+    font-size: 22px;
+  }
+
+  .csr-addon-grid blockquote {
+    padding-left: var(--space-5);
   }
 }

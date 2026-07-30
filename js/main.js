@@ -32,6 +32,26 @@ const PRODUCT_PAGE_IMAGES = {
     jogja: "/assets/images/website-hero-mockup-01.webp",
     bandung: "/assets/images/games-in-nature.webp",
     lombok: "/assets/images/jeep-adventure.webp"
+  },
+  international: {
+    bangkok: "/assets/images/group-dinner-party.webp",
+    vietnam: "/assets/images/website-hero-mockup-03.webp",
+    europe: "/assets/images/website-hero-mockup-02.webp"
+  },
+  study: {
+    "bali-study-tour": "/assets/images/home/study-tour-home-card.webp",
+    "yogyakarta-study-tour": "/assets/images/website-hero-mockup-01.webp",
+    "bandung-study-tour": "/assets/images/games-in-nature.webp",
+    "bangkok-study-tour": "/assets/images/group-dinner-party.webp",
+    "malaysia-study-tour": "/assets/images/website-hero-mockup-03.webp",
+    "europe-study-tour": "/assets/images/website-hero-mockup-02.webp"
+  },
+  csr: {
+    "village-empowerment": "/assets/images/group-local-lunch.webp",
+    "school-impact-day": "/assets/images/home/impact-home-card.webp",
+    "bicycle-for-education": "/assets/images/games-in-nature.webp",
+    "build-for-community": "/assets/images/website-hero-mockup-01.webp",
+    "mangrove-restoration": "/assets/images/local-restaurant-simple.webp"
   }
 };
 
@@ -397,11 +417,13 @@ function renderPackageComparison(products, details, options = {}) {
 function renderDestinationStory(destination, story, packages, image, options = {}) {
   const labels = editorialContent().labels;
   const layout = options.layout || "standard";
-  const details = editorialContent().indonesia.packageDetails;
+  const details = options.details || editorialContent().indonesia.packageDetails;
+  const service = options.service || "Corporate Packages";
+  const alt = options.alt || `${story.title} ${service.toLowerCase()} journey`;
   return `<section class="section destination-editorial destination-editorial-${layout}" id="${escapeHtml(destination.id)}">
     <div class="container">
       <div class="destination-story-grid">
-        <figure class="destination-story-media"><img src="${escapeHtml(image)}" alt="${escapeHtml(story.title)} corporate journey" width="1200" height="900" loading="lazy" decoding="async"></figure>
+        <figure class="destination-story-media"><img src="${escapeHtml(image)}" alt="${escapeHtml(alt)}" width="1200" height="900" loading="lazy" decoding="async"></figure>
         <div class="destination-story-copy">
           <p class="section-kicker">${escapeHtml(story.eyebrow)}</p>
           <h2>${escapeHtml(story.title)}</h2>
@@ -417,10 +439,48 @@ function renderDestinationStory(destination, story, packages, image, options = {
       </div>
       <div class="destination-package-section">
         <div class="destination-package-heading"><p class="section-kicker">${escapeHtml(labels.packages)}</p><span>${escapeHtml(destination.name)}</span></div>
-        ${renderPackageComparison(packages, details)}
+        ${renderPackageComparison(packages, details, { service })}
       </div>
     </div>
   </section>`;
+}
+
+function renderEditorialGuide(items, title, lead, options = {}) {
+  const kicker = options.kicker || content().ui.primaryDestinations;
+  const links = items.map((item, index) => `<a class="destination-guide-item" href="#${escapeHtml(item.id)}"><span aria-hidden="true">${String(index + 1).padStart(2, "0")}</span><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(item.summary)}</small><em aria-hidden="true">&#8595;</em></a>`).join("");
+  return `<section class="section destination-guide-section" id="${escapeHtml(options.id || "journey-guide")}"><div class="container"><div class="product-section-heading"><div><p class="section-kicker">${escapeHtml(kicker)}</p><h2>${escapeHtml(title)}</h2></div><p>${escapeHtml(lead)}</p></div><nav class="destination-guide destination-guide-${items.length}" aria-label="${escapeHtml(title)}">${links}</nav></div></section>`;
+}
+
+function renderProgramIndex(products, details, options = {}) {
+  const labels = editorialContent().labels;
+  const service = options.service || "CSR Program";
+  return `<div class="editorial-program-index">${products.map((product, index) => {
+    const detail = details[product.id] || {};
+    return `<article class="editorial-program-row">
+      <span class="editorial-program-number" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
+      <div><p class="section-kicker">${escapeHtml(product.theme || labels.programOptions)}</p><h3>${escapeHtml(product.name)}</h3><p>${escapeHtml(detail.description || "")}</p></div>
+      <div>${renderPrice(product)}<a class="text-link" href="${escapeHtml(inquiryUrl(service))}">${escapeHtml(labels.proposal)} <span aria-hidden="true">&#8594;</span></a></div>
+    </article>`;
+  }).join("")}</div>`;
+}
+
+function renderCsrFeaturedProgram(product, story, image, index) {
+  const labels = editorialContent().labels;
+  const copy = productCopy(product);
+  return `<article class="csr-featured-program${index % 2 ? " csr-featured-program-reverse" : ""}" id="${escapeHtml(product.id)}">
+    <figure><img src="${escapeHtml(image)}" alt="${escapeHtml(copy[0])} activity" width="1200" height="900" loading="lazy" decoding="async"></figure>
+    <div class="csr-featured-copy">
+      <p class="section-kicker">${escapeHtml(product.theme)}</p>
+      <h3>${escapeHtml(copy[0])}</h3>
+      <p class="csr-program-intro">${escapeHtml(story.intro)}</p>
+      ${renderPrice(product)}
+      <div class="csr-program-details">
+        ${renderEditorialList(labels.bestFor, story.bestFor, "editorial-list-best-for")}
+        ${renderEditorialDisclosure(labels.programActivities, story.activities, index === 0)}
+      </div>
+      <a class="text-link" href="${escapeHtml(inquiryUrl("CSR Program"))}">${escapeHtml(labels.proposal)} <span aria-hidden="true">&#8594;</span></a>
+    </div>
+  </article>`;
 }
 
 function renderHome() {
@@ -524,29 +584,51 @@ function renderIndonesia() {
 
 function renderInternational() {
   const p = content().international;
+  const e = editorialContent().international;
   const products = CT_STATE.catalog.corporateInternational;
-  const groups = ["bangkok", "vietnam", "europe"].map((destination) => {
-    const selected = products.filter((product) => product.id.startsWith(destination));
-    return `<section class="destination-product-group"><h3>${escapeHtml(destination[0].toUpperCase() + destination.slice(1))}</h3><div class="product-grid">${selected.map((product) => renderProductCard(product, { featured: product.id.endsWith("gold") })).join("")}</div></section>`;
+  const destinations = ["bangkok", "vietnam", "europe"];
+  const guideItems = destinations.map((id) => ({ id, name: e.destinations[id].title, summary: e.destinations[id].intro }));
+  const destinationSections = destinations.map((id, index) => {
+    const selected = products.filter((product) => product.id.startsWith(id));
+    return renderDestinationStory(
+      { id, name: e.destinations[id].title },
+      e.destinations[id],
+      selected,
+      PRODUCT_PAGE_IMAGES.international[id],
+      {
+        layout: ["standard", "reverse", "wide"][index],
+        details: e.packageDetails,
+        service: "Corporate Packages",
+        alt: `${e.destinations[id].title} international corporate journey`
+      }
+    );
   }).join("");
-  return `${renderHero("international", p, { waKey: "corporate", secondaryHref: inquiryUrl("Corporate Packages"), secondaryLabel: content().ui.requestProposal })}
+  const hero = { ...p, title: e.heroTitle, lead: e.heroLead };
+  return `${renderHero("international", hero, { primaryHref: "#international-guide", primaryLabel: e.heroPrimary, secondaryHref: inquiryUrl("Corporate Packages"), secondaryLabel: content().ui.requestProposal })}
     ${renderBreadcrumb([[content().nav.corporate, "/corporate-packages/"], ["International", "/corporate-packages/international/"]])}
-    ${renderIntro(p.introTitle, p.introBody)}
-    <section class="section"><div class="container"><div class="section-heading"><p class="section-kicker">By request</p><h2>${escapeHtml(p.destinationsTitle)}</h2></div>${groups}<p class="notice">${escapeHtml(p.note)}</p></div></section>
-    <section class="section muted-band"><div class="container"><div class="section-heading"><h2>${escapeHtml(p.whyTitle)}</h2></div>${renderFeatureList(p.why)}</div></section>
-    ${renderCta(p.ctaTitle, p.ctaBody, { waKey: "corporate", service: "Corporate Packages" })}`;
+    <section class="section product-page-intro"><div class="container product-page-intro-grid"><div><p class="section-kicker">International corporate travel</p><h2>${escapeHtml(e.introTitle)}</h2></div><p class="section-lead">${escapeHtml(e.introBody)}</p></div></section>
+    ${renderEditorialGuide(guideItems, e.guideTitle, e.guideLead, { id: "international-guide", kicker: editorialContent().labels.byRequest })}
+    ${destinationSections}
+    <section class="section planning-price-note"><div class="container planning-price-inner"><p class="section-kicker">${escapeHtml(editorialContent().labels.workingPrice)}</p><p>${escapeHtml(e.workingPriceNote)}</p></div></section>
+    <section class="section editorial-proof-section"><div class="container editorial-proof-grid"><div><p class="section-kicker">Conscious Travel</p><h2>${escapeHtml(e.capabilityTitle)}</h2><p>${escapeHtml(e.capabilityLead)}</p></div>${renderFeatureList(e.capabilities)}</div></section>
+    ${renderProductClosingCta(e.closingTitle, e.closingBody, { service: "Corporate Packages", waKey: "corporate", primaryLabel: e.closingPrimary, secondaryLabel: e.closingSecondary })}`;
 }
 
 function renderCsr() {
   const p = content().csr;
+  const e = editorialContent().csr;
   const data = CT_STATE.catalog.csrPrograms;
-  return `${renderHero("csr", p, { waKey: "csr", secondaryHref: inquiryUrl("CSR Program"), secondaryLabel: content().ui.requestProposal })}
+  const featuredPrograms = data.featured.map((product, index) => renderCsrFeaturedProgram(product, e.programDetails[product.id], PRODUCT_PAGE_IMAGES.csr[product.id], index)).join("");
+  const moreDetails = Object.fromEntries(data.morePrograms.map((program) => [program.id, { description: e.moreDetails[program.id] }]));
+  const hero = { ...p, title: e.heroTitle, lead: e.heroLead };
+  return `${renderHero("csr", hero, { primaryHref: "#featured-csr", primaryLabel: e.heroPrimary, secondaryHref: inquiryUrl("CSR Program"), secondaryLabel: content().ui.requestProposal })}
     ${renderBreadcrumb([[content().nav.corporate, "/corporate-packages/"], ["CSR Program", "/corporate-packages/csr-program/"]])}
-    ${renderIntro(p.introTitle, p.introBody)}
-    <section class="section"><div class="container"><div class="section-heading"><p class="section-kicker">CSR by request</p><h2>${escapeHtml(p.featuredTitle)}</h2></div><div class="product-grid csr-grid">${data.featured.map((product) => renderProductCard(product, { featured: true, service: "CSR Program", label: product.theme })).join("")}</div></div></section>
-    <section class="section muted-band"><div class="container"><div class="section-heading"><h2>${escapeHtml(p.moreTitle)}</h2></div><div class="compact-card-grid">${data.morePrograms.map((program) => `<article><h3>${escapeHtml(program.name)}</h3>${renderPrice(program)}<a class="text-link" href="${escapeHtml(inquiryUrl("CSR Program"))}">${escapeHtml(content().ui.requestProposal)} <span aria-hidden="true">&#8594;</span></a></article>`).join("")}</div></div></section>
-    <section class="section green-soft"><div class="container split-copy"><div><h2>${escapeHtml(p.addOnTitle)}</h2><p>${escapeHtml(p.addOnBody)}</p></div><blockquote>${escapeHtml(p.safeClaim)}</blockquote></div></section>
-    ${renderCta(p.ctaTitle, p.ctaBody, { waKey: "csr", service: "CSR Program" })}`;
+    <section class="section product-page-intro"><div class="container product-page-intro-grid"><div><p class="section-kicker">Context-aware contribution</p><h2>${escapeHtml(e.introTitle)}</h2></div><p class="section-lead">${escapeHtml(e.introBody)}</p></div></section>
+    <section class="section csr-featured-section" id="featured-csr"><div class="container"><div class="product-section-heading"><div><p class="section-kicker">${escapeHtml(editorialContent().labels.programOptions)}</p><h2>${escapeHtml(e.featuredTitle)}</h2></div><p>${escapeHtml(e.featuredLead)}</p></div><div class="csr-featured-list">${featuredPrograms}</div></div></section>
+    <section class="section csr-more-section"><div class="container"><div class="product-section-heading"><div><p class="section-kicker">${escapeHtml(editorialContent().labels.byRequest)}</p><h2>${escapeHtml(e.moreTitle)}</h2></div><p>${escapeHtml(e.moreLead)}</p></div>${renderProgramIndex(data.morePrograms, moreDetails)}</div></section>
+    <section class="section csr-addon-section"><div class="container csr-addon-grid"><div><p class="section-kicker">Flexible program format</p><h2>${escapeHtml(e.addOnTitle)}</h2><p>${escapeHtml(e.addOnBody)}</p></div><blockquote>${escapeHtml(e.safeClaim)}</blockquote></div></section>
+    <section class="section editorial-proof-section csr-process-section"><div class="container editorial-proof-grid"><div><p class="section-kicker">${escapeHtml(editorialContent().labels.programScope)}</p><h2>${escapeHtml(e.processTitle)}</h2></div>${renderFeatureList(e.process)}</div></section>
+    ${renderProductClosingCta(e.closingTitle, e.closingBody, { service: "CSR Program", waKey: "csr", primaryLabel: e.closingPrimary, secondaryLabel: e.closingSecondary })}`;
 }
 
 function renderEvent() {
@@ -557,7 +639,7 @@ function renderEvent() {
     ${renderIntro(p.introTitle, p.introBody)}
     <section class="section"><div class="container split-layout align-start"><div><p class="section-kicker">Corporate scope</p><h2>${escapeHtml(p.focusTitle)}</h2></div>${renderFeatureList(p.focus)}</div></section>
     <section class="section muted-band"><div class="container"><div class="section-heading"><p class="section-kicker">Starting prices</p><h2>${escapeHtml(p.pricingTitle)}</h2><p>${escapeHtml(p.pricingLead)}</p></div><div class="pricing-grid">${data.pricingCards.map((product, index) => renderProductCard(product, { featured: index === 1, service: "Event Planning", label: product.capacity })).join("")}</div><div class="premium-banner"><div><p class="section-kicker">${escapeHtml(data.premiumCorporate.capacity)}</p><h3>${escapeHtml(p.premiumTitle)}</h3><p>${escapeHtml(p.premiumBody)}</p></div><a class="btn btn-primary" href="${escapeHtml(inquiryUrl("Event Planning"))}">${escapeHtml(content().ui.requestProposal)}</a></div></div></section>
-    ${renderCta(p.ctaTitle, p.ctaBody, { waKey: "event", service: "Event Planning" })}`;
+    ${renderProductClosingCta(p.ctaTitle, p.ctaBody, { service: "Event Planning", waKey: "event", primaryLabel: content().ui.requestProposal, secondaryLabel: content().ui.whatsapp })}`;
 }
 
 function renderExperiences() {
@@ -572,21 +654,35 @@ function renderExperiences() {
     ${renderCta(p.ctaTitle, p.ctaBody, { waKey: "experiences", service: "Experiences" })}`;
 }
 
-function renderStudyCards(products) {
-  return `<div class="product-grid">${products.map((product) => renderProductCard(product, { service: "Study Tour" })).join("")}</div>`;
-}
-
 function renderStudy() {
   const p = content().study;
+  const e = editorialContent().study;
   const data = CT_STATE.catalog.studyTour;
-  return `${renderHero("study", p, { waKey: "study", secondaryHref: inquiryUrl("Study Tour"), secondaryLabel: content().ui.requestProposal })}
+  const products = [...data.regional, ...data.international];
+  const productsById = Object.fromEntries(products.map((product) => [product.id, product]));
+  const guideItems = products.map((product) => ({ id: product.id, name: product.name.replace(" Study Tour", ""), summary: e.destinations[product.id].intro }));
+  const renderStudyGroup = (group, title, lead, id, offset) => `<section class="study-region-heading" id="${escapeHtml(id)}"><div class="container"><p class="section-kicker">${escapeHtml(id === "regional" ? editorialContent().labels.regional : editorialContent().labels.international)}</p><h2>${escapeHtml(title)}</h2><p>${escapeHtml(lead)}</p></div></section>${group.map((product, index) => renderDestinationStory(
+    { id: product.id, name: product.name },
+    { ...e.destinations[product.id], title: product.name },
+    [productsById[product.id]],
+    PRODUCT_PAGE_IMAGES.study[product.id],
+    {
+      layout: ["standard", "reverse", "wide"][(index + offset) % 3],
+      details: e.packageDetails,
+      service: "Study Tour",
+      alt: `${product.name} educational journey`
+    }
+  )).join("")}`;
+  const hero = { ...p, title: e.heroTitle, lead: e.heroLead };
+  return `${renderHero("study", hero, { primaryHref: "#study-guide", primaryLabel: e.heroPrimary, secondaryHref: inquiryUrl("Study Tour"), secondaryLabel: content().ui.requestProposal })}
     ${renderBreadcrumb([[content().nav.study, "/study-tour/"]])}
-    ${renderIntro(p.introTitle, p.introBody)}
-    <section class="section" id="regional"><div class="container"><div class="section-heading"><p class="section-kicker">Indonesia</p><h2>${escapeHtml(p.regionalTitle)}</h2><p>${escapeHtml(p.regionalBody)}</p></div>${renderStudyCards(data.regional)}</div></section>
-    <section class="section muted-band" id="international"><div class="container"><div class="section-heading"><p class="section-kicker">Beyond Indonesia</p><h2>${escapeHtml(p.internationalTitle)}</h2><p>${escapeHtml(p.internationalBody)}</p></div>${renderStudyCards(data.international)}</div></section>
-    <section class="section"><div class="container"><div class="section-heading"><h2>${escapeHtml(p.pillarsTitle)}</h2></div>${renderFeatureList(p.pillars)}</div></section>
-    <section class="section green-soft"><div class="container split-copy"><div><h2>${escapeHtml(p.safetyTitle)}</h2><p>${escapeHtml(p.safetyBody)}</p></div><div><h2>${escapeHtml(p.includeTitle)}</h2><ul class="check-list">${p.include.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div></div></section>
-    ${renderCta(p.ctaTitle, p.ctaBody, { waKey: "study", service: "Study Tour" })}`;
+    <section class="section product-page-intro"><div class="container product-page-intro-grid"><div><p class="section-kicker">Learning journey design</p><h2>${escapeHtml(e.introTitle)}</h2></div><p class="section-lead">${escapeHtml(e.introBody)}</p></div></section>
+    ${renderEditorialGuide(guideItems, e.guideTitle, e.guideLead, { id: "study-guide", kicker: editorialContent().labels.learningThemes })}
+    ${renderStudyGroup(data.regional, e.regionalTitle, e.regionalLead, "regional", 0)}
+    ${renderStudyGroup(data.international, e.internationalTitle, e.internationalLead, "international", 1)}
+    <section class="section editorial-proof-section study-pillars-section"><div class="container editorial-proof-grid"><div><p class="section-kicker">${escapeHtml(editorialContent().labels.learningThemes)}</p><h2>${escapeHtml(e.pillarsTitle)}</h2><p>${escapeHtml(e.pillarsLead)}</p></div>${renderFeatureList(e.pillars)}</div></section>
+    <section class="section study-support-section"><div class="container study-support-grid"><div><p class="section-kicker">Coordination</p><h2>${escapeHtml(e.supportTitle)}</h2><p>${escapeHtml(e.supportBody)}</p></div>${renderEditorialList(p.includeTitle, p.include, "study-inclusion-list")}</div></section>
+    ${renderProductClosingCta(e.closingTitle, e.closingBody, { service: "Study Tour", waKey: "study", primaryLabel: e.closingPrimary, secondaryLabel: e.closingSecondary })}`;
 }
 
 function renderSailing() {
