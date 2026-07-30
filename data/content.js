@@ -472,6 +472,861 @@ window.CT_CONTENT = {
   }
 };
 
+window.CT_EDITORIAL_CONTENT = {
+  id: {
+    labels: {
+      bestFor: "Cocok untuk",
+      whyChoose: "Mengapa destinasi ini",
+      signature: "Signature experiences",
+      packages: "Pilihan package",
+      highlights: "Program highlights",
+      sampleFlow: "Contoh alur perjalanan",
+      explore: "Jelajahi",
+      proposal: "Minta Proposal",
+      fromBrief: "Dari brief hingga perjalanan",
+      options: "pilihan",
+      variantLabel: "Pilihan Bali Starter",
+      featured: "Featured package",
+      learningThemes: "Tema pembelajaran",
+      programActivities: "Aktivitas program",
+      programOptions: "Pilihan program",
+      workingPrice: "Harga indikatif untuk perencanaan",
+      byRequest: "Disusun berdasarkan permintaan",
+      regional: "Regional",
+      international: "International",
+      programScope: "Cakupan program"
+    },
+    corporateHub: {
+      heroTitle: "Perjalanan Tim yang Dirancang dengan Makna",
+      heroLead: "Outing, retreat, incentive travel, CSR, dan corporate gathering yang dibangun dari tujuan tim, profil peserta, dan pengalaman yang ingin diciptakan.",
+      heroPrimary: "Explore Corporate Journeys",
+      introTitle: "Satu partner untuk perjalanan corporate yang utuh",
+      introBody: "Kami membantu menyatukan destinasi, akomodasi, aktivitas, fasilitasi, dukungan event, CSR, dan dokumentasi sesuai package ke dalam satu alur koordinasi. Setiap program dimulai dari kebutuhan tim, bukan dari template perjalanan yang kaku.",
+      pathwaysTitle: "Pilih arah perjalanan tim Anda",
+      pathwaysLead: "Mulai dari konteks yang paling relevan, lalu kami bantu menyesuaikan detail programnya.",
+      pathways: [
+        {
+          key: "indonesia",
+          title: "Indonesia Region",
+          body: "Bali, Jogja, Bandung, dan Lombok untuk outing, retreat, dan perjalanan tim yang dekat dengan budaya serta alam.",
+          bestFor: "Outing regional, team retreat, dan incentive journey",
+          href: "/corporate-packages/indonesia-region/"
+        },
+        {
+          key: "international",
+          title: "International",
+          body: "Bangkok, Vietnam, dan Europe sebagai titik awal perjalanan internasional yang disusun sesuai ritme dan tujuan tim.",
+          bestFor: "Incentive trip, leadership retreat, dan cultural immersion",
+          href: "/corporate-packages/international/"
+        },
+        {
+          key: "csr",
+          title: "CSR Program",
+          body: "Program standalone atau bagian dari corporate journey untuk belajar, terhubung, dan berkontribusi sesuai konteks.",
+          bestFor: "CSR activation dan community engagement",
+          href: "/corporate-packages/csr-program/"
+        },
+        {
+          key: "event",
+          title: "Event Planning",
+          body: "Dukungan untuk corporate travel, retreat, gathering, team building, dan travel-based event.",
+          bestFor: "Corporate gathering dan program dengan koordinasi multi-vendor",
+          href: "/corporate-packages/event-planning-organizer/"
+        }
+      ],
+      supportTitle: "Bagaimana kami mendukung tim",
+      supportLead: "Dari brief awal hingga perjalanan berlangsung, setiap elemen disusun dalam satu alur kerja yang jelas dan fleksibel.",
+      supportItems: [
+        ["Journey planning", "Tujuan, profil peserta, waktu, destinasi, dan budget menjadi dasar rancangan."],
+        ["Local coordination", "Transportasi, akomodasi, venue, vendor, dan kebutuhan lapangan dikoordinasikan sesuai scope."],
+        ["Group experiences", "Aktivitas dipilih untuk membangun koneksi, eksplorasi, pembelajaran, atau kontribusi."],
+        ["Flexible customization", "Program dapat disesuaikan mengikuti dinamika tim dan kelayakan operasional."]
+      ],
+      closingTitle: "Rancang perjalanan yang relevan untuk tim Anda",
+      closingBody: "Bagikan tujuan, jumlah peserta, periode, dan arah perjalanan. Kami akan membantu memetakan langkah berikutnya.",
+      closingPrimary: "Request a Corporate Proposal",
+      closingSecondary: "Start Your Journey"
+    },
+    indonesia: {
+      heroTitle: "Meaningful Corporate Journeys Across Indonesia",
+      heroLead: "Dari pengalaman tim satu hari hingga retreat beberapa hari, temukan perjalanan yang memadukan budaya, alam, koneksi, dan koordinasi yang dapat disesuaikan.",
+      heroPrimary: "Explore Destinations",
+      guideTitle: "Empat destinasi, empat karakter perjalanan",
+      guideLead: "Gunakan karakter setiap destinasi sebagai titik awal sebelum memilih package dan menyusun proposal.",
+      guide: {
+        bali: "Pilihan paling fleksibel untuk budaya, adventure, wellness, dan retreat.",
+        jogja: "Heritage, kreativitas, dan koneksi komunitas dalam suasana yang hidup.",
+        bandung: "Udara sejuk, alam yang mudah dijangkau, dan ritme retreat yang dekat.",
+        lombok: "Island escape yang lebih tenang dengan budaya lokal dan pengalaman laut."
+      },
+      destinations: {
+        bali: {
+          title: "Bali",
+          eyebrow: "Featured destination",
+          intro: "Bali memberi ruang paling luas untuk merancang perjalanan tim: outing satu hari, retreat dengan adventure, pengalaman budaya, hingga program dengan ritme yang lebih tenang. Pilihan package dapat menjadi titik awal dan disesuaikan kembali dengan tujuan serta profil peserta.",
+          bestFor: ["Tim yang membutuhkan pilihan format fleksibel", "Outing satu hari hingga retreat 3D2N", "Kombinasi culture, nature, adventure, dan wellness"],
+          why: ["Rentang program dan aktivitas paling lengkap di catalog saat ini", "Pilihan suasana dari Kintamani dan Ubud hingga beach club dan Nuanu"],
+          signature: ["Team building dan outbound", "Rafting, ATV, Jeep, atau kayaking sesuai package", "Art making dan community engagement", "Gala dinner, bonfire, atau team party sesuai program"]
+        },
+        jogja: {
+          title: "Jogja",
+          eyebrow: "Culture and creativity",
+          intro: "Jogja membawa tim lebih dekat pada heritage, seni, kreativitas, dan pengalaman komunitas. Destinasi ini cocok untuk perjalanan yang ingin menggabungkan aktivitas kelompok dengan eksplorasi budaya dalam ritme yang tetap hangat dan kolaboratif.",
+          bestFor: ["Tim yang menyukai heritage dan creative activities", "Outing 2D1N atau retreat 3D2N", "Program dengan cultural immersion dan community connection"],
+          why: ["Warisan budaya dan aktivitas kreatif hadir dalam satu perjalanan", "Pilihan program dapat menggabungkan adventure, seni, dan gathering"],
+          signature: ["Prambanan atau Borobudur sesuai package", "Goa Pindul atau Jeep Merapi", "Team building dan art making", "Malioboro, community impact, dan gala dinner sesuai tier"]
+        },
+        bandung: {
+          title: "Bandung",
+          eyebrow: "Nature-led retreat",
+          intro: "Bandung menawarkan suasana lebih sejuk dengan akses ke alam, aktivitas tim, dan ruang gathering yang cocok untuk memperlambat ritme. Program dapat memadukan adventure ringan, workshop, community engagement, dan momen bersama.",
+          bestFor: ["Retreat dengan suasana sejuk dan dekat alam", "Team activity dan company gathering", "Program 2D1N atau 3D2N"],
+          why: ["Perpaduan nature, workshop, dan gathering terasa mudah diakses", "Pilihan package mendukung format retreat yang ringkas maupun lebih lengkap"],
+          signature: ["Lembang atau Kawah Putih sesuai package", "Jeep, luge, atau team building", "Coffee atau artisan workshop", "Community engagement dan gala dinner"]
+        },
+        lombok: {
+          title: "Lombok",
+          eyebrow: "Island connection",
+          intro: "Lombok memberi suasana island journey yang lebih intim dan tenang. Budaya Sasak, aktivitas laut, pengalaman komunitas, dan sunset moments menjadikannya pilihan untuk tim yang ingin keluar dari ritme kota dan membangun koneksi bersama.",
+          bestFor: ["Tim yang mencari island escape", "Perjalanan 3D2N dengan budaya dan aktivitas laut", "Retreat dengan suasana lebih intimate"],
+          why: ["Karakter perjalanan terasa lebih tenang dan personal", "Budaya lokal dan marine experience dapat hadir dalam satu program"],
+          signature: ["Sasak Village dan local art making", "Gili Trawangan atau private island", "Snorkeling, sunset dinner, atau sunset cruise", "Team building dan local community engagement"]
+        }
+      },
+      starterTitle: "Satu hari, empat cara menikmati Bali",
+      starterBody: "Bali Starter adalah satu produk satu hari dengan empat pilihan suasana. Setiap opsi memiliki time range dan rangkaian aktivitas sendiri, sehingga tim dapat memilih pengalaman yang paling sesuai tanpa mengubah struktur produknya.",
+      starterIncluded: ["Aktivitas tim sesuai opsi", "Meals atau refreshment sesuai program", "Dokumentasi sesuai opsi", "Sustainable goodie bag", "Community atau sustainability element"],
+      variants: {
+        kintamani: ["Tree planting dan opening ceremony", "Team building atau outbound", "Jeep atau ATV di Black Lava", "Lunch, live music, dan refreshment"],
+        ubud: ["Art making dan opening ceremony", "Team building atau outbound", "Rafting atau ATV", "Lunch, live music, dan refreshment"],
+        atlas: ["Recycle waste game", "Beach team building", "Live music, MC, dan buffet dinner", "Pool atau DJ experience"],
+        nuanu: ["Butterfly release dan Nuanu City tour", "Team building atau outbound", "Recycle waste game", "Dinner dan pool atau DJ experience"]
+      },
+      packageDetails: {
+        "bali-silver": {
+          positioning: "Uluwatu corporate experience yang ringkas dengan beach activity, culture, dan team connection.",
+          highlights: ["Hotel 3-star", "Meals, transport, dan tickets", "Photographer dan sustainable goodie bag", "Community atau sustainability initiative"],
+          flow: ["Day 1: Arrival, GWK, beach team building, CSR atau art making, seafood dinner", "Day 2: Tanah Barak, Pandawa, kayaking, dan art market"]
+        },
+        "bali-gold": {
+          positioning: "Kintamani incentive retreat dengan adventure, bonfire, dan pengalaman komunitas.",
+          highlights: ["Eco glamping", "Meals dan coffee break", "Transport, tickets, dan local engagement", "Photo, video, dan drone documentation"],
+          flow: ["Day 1: Arrival, team building, gala dinner, dan bonfire", "Day 2: Sunrise, Jeep atau ATV, community impact atau art making, hot spring atau Trunyan", "Day 3: Coffee plantation atau Tegallalang area dan souvenir stop"]
+        },
+        "bali-premium": {
+          positioning: "Ubud dan Canggu retreat dengan ritme wellness, adventure, dan corporate gathering.",
+          highlights: ["Hotel 4-star", "Meals, transport, dan tickets", "Activity mix sesuai program", "Leadership workshop dan closing"],
+          flow: ["Day 1: Team building, impact atau art making, ATV atau rafting, Ubud, dan dinner", "Day 2: Yoga atau meditation, Melukat atau massage, Tlagha Singha, dan Canggu gala atau team party", "Day 3: Leadership workshop, closing, dan souvenir shopping"]
+        },
+        "jogja-silver": {
+          positioning: "Perjalanan 2D1N dengan heritage, adventure, dan creative team moments.",
+          highlights: ["Prambanan", "Team building", "Goa Pindul atau Jeep", "Obelix atau HeHa", "Community impact dan Malioboro", "Hotel 3-star dan photographer"]
+        },
+        "jogja-gold": {
+          positioning: "Upgrade 3D2N untuk eksplorasi budaya dan gathering yang lebih lengkap.",
+          highlights: ["Jeep Merapi dan Borobudur", "Team building dan art making", "Community impact dan Malioboro", "Gala dinner", "Hotel 4-star", "Photo, video, dan drone"]
+        },
+        "bandung-silver": {
+          positioning: "Retreat 2D1N yang memadukan alam, team activity, dan artisan experience.",
+          highlights: ["Lembang atau nature experience", "Jeep atau luge", "Team building", "Community impact", "Gala dinner", "Coffee atau artisan workshop"]
+        },
+        "bandung-gold": {
+          positioning: "Program 3D2N dengan nature exploration dan koordinasi yang lebih lengkap.",
+          highlights: ["Kawah Putih", "Team building", "CSR atau local engagement", "Artisan workshop", "Premium gala dinner", "Hotel 4-star dan full documentation"]
+        },
+        "lombok-silver": {
+          positioning: "Island journey 3D2N untuk budaya lokal, marine experience, dan team connection.",
+          highlights: ["Sasak Village dan art making", "CSR community program", "Gili Trawangan dan snorkeling", "Team building dan sunset dinner", "Hotel 3-star", "Transport, boat, dan documentation"]
+        },
+        "lombok-gold": {
+          positioning: "Upgrade island retreat dengan private setting dan leadership moment.",
+          highlights: ["Private island", "Sunset cruise", "Leadership workshop", "Local community engagement", "Premium gala dinner", "Hotel 4-star dan professional photographer"]
+        }
+      },
+      capabilityTitle: "Dukungan perjalanan dalam satu alur",
+      capabilityLead: "Scope akhir mengikuti kebutuhan proposal, destinasi, package, dan kondisi operasional.",
+      capabilities: [
+        ["Planning", "Tujuan, peserta, waktu, budget, dan ritme program dipetakan sejak awal."],
+        ["Coordination", "Transportasi, akomodasi, aktivitas, meals, dan kebutuhan lapangan dikoordinasikan sesuai scope."],
+        ["Experience", "Team building, culture, nature, CSR, dan gathering dipilih sesuai package dan tujuan."],
+        ["Documentation", "Cakupan foto, video, drone, atau recap mengikuti package dan proposal yang disepakati."]
+      ],
+      closingTitle: "Design an Indonesia journey around your team",
+      closingBody: "Ceritakan karakter tim, periode, destinasi, dan pengalaman yang ingin dibangun. Kami akan membantu memilih titik awal yang paling relevan.",
+      closingPrimary: "Request a Proposal",
+      closingSecondary: "Talk to Our Team"
+    },
+    study: {
+      heroTitle: "Educational Journeys Beyond the Classroom",
+      heroLead: "Study tour regional dan internasional yang menghubungkan tujuan belajar dengan budaya, alam, sustainability, dan pengalaman sosial yang relevan.",
+      heroPrimary: "Explore Learning Journeys",
+      introTitle: "Belajar melalui tempat, manusia, dan pengalaman",
+      introBody: "Setiap perjalanan dimulai dari learning objective institusi. Destinasi, aktivitas, ritme, dan koordinasi kemudian disusun agar siswa dapat mengamati, mencoba, berdiskusi, dan membawa pulang pemahaman yang lebih utuh.",
+      guideTitle: "Pilih konteks belajar yang paling relevan",
+      guideLead: "Enam destinasi ini menjadi titik awal. Detail program tetap dapat disesuaikan dengan usia siswa, tujuan pembelajaran, waktu, dan kelayakan operasional.",
+      regionalTitle: "Regional Study Tour",
+      regionalLead: "Perjalanan belajar di Indonesia yang dekat dengan budaya, alam, kreativitas, dan komunitas lokal.",
+      internationalTitle: "International Study Tour",
+      internationalLead: "Eksposur lintas budaya dan institusi untuk memperluas perspektif siswa di luar Indonesia.",
+      destinations: {
+        "bali-study-tour": {
+          eyebrow: "Culture, nature, and conservation",
+          intro: "Bali menjadi ruang belajar yang kaya untuk mengenal seni, lanskap, tradisi, serta hubungan antara masyarakat dan lingkungan.",
+          bestFor: ["Pembelajaran budaya dan kreativitas", "Pengenalan konservasi pesisir", "Pengalaman alam dan komunitas"],
+          why: ["Ragam konteks belajar tersedia dalam jarak perjalanan yang terhubung", "Budaya dan lingkungan dapat dipelajari melalui pengalaman langsung"],
+          signature: ["Tari dan batik", "Mangrove atau konservasi penyu sesuai musim dan mitra", "Rice terrace dan pembelajaran di area pura"]
+        },
+        "yogyakarta-study-tour": {
+          eyebrow: "Heritage and creative learning",
+          intro: "Yogyakarta mengajak siswa membaca sejarah, seni, dan kehidupan komunitas melalui warisan budaya serta praktik kreatif.",
+          bestFor: ["Sejarah dan heritage", "Seni tradisional dan ekspresi kreatif", "Interaksi komunitas"],
+          why: ["Situs bersejarah dan praktik budaya hadir dalam satu konteks", "Aktivitas kelompok dapat menghubungkan teori dengan pengalaman"],
+          signature: ["Borobudur atau Prambanan", "Batik atau Karawitan", "Program komunitas dan eksplorasi budaya"]
+        },
+        "bandung-study-tour": {
+          eyebrow: "Science, nature, and creativity",
+          intro: "Bandung menawarkan perpaduan pembelajaran sains, seni, dan lingkungan dalam suasana yang lebih sejuk dan mudah dijelajahi.",
+          bestFor: ["Eksplorasi sains dan lingkungan", "Pembelajaran seni musik", "Community engagement"],
+          why: ["Tema sains, alam, dan kreativitas dapat disatukan", "Format perjalanan cocok untuk kelompok sekolah"],
+          signature: ["Angklung", "Science center", "Nature education dan community engagement"]
+        },
+        "bangkok-study-tour": {
+          eyebrow: "Regional cultural exchange",
+          intro: "Bangkok membuka perspektif siswa melalui pertukaran budaya, pembelajaran institusi, dan eksplorasi kota yang terarah.",
+          bestFor: ["Cultural exchange regional", "Eksposur universitas", "Pembelajaran budaya kota"],
+          why: ["Destinasi internasional yang dekat dengan konteks Asia Tenggara", "Kegiatan institusional dan budaya dapat berjalan beriringan"],
+          signature: ["Cultural exchange", "University visit", "Temple learning, city tour, dan local culture"]
+        },
+        "malaysia-study-tour": {
+          eyebrow: "Innovation and multicultural learning",
+          intro: "Malaysia memberi konteks belajar yang menggabungkan institusi, sains, heritage, dan kehidupan masyarakat multikultural.",
+          bestFor: ["Eksposur universitas", "Sains dan inovasi", "Pembelajaran lintas budaya"],
+          why: ["Konteks budaya terasa dekat namun tetap memperluas perspektif", "Aktivitas akademik dan heritage dapat dipadukan"],
+          signature: ["University visit", "Petrosains", "Cultural exchange dan heritage learning"]
+        },
+        "europe-study-tour": {
+          eyebrow: "Global learning perspective",
+          intro: "Europe dirancang sebagai perjalanan belajar lintas kota untuk memperluas perspektif tentang budaya, institusi, dan sustainability.",
+          bestFor: ["Eksposur global dan lintas budaya", "Pembelajaran museum dan institusi", "Topik sustainability"],
+          why: ["Beragam konteks belajar dapat hadir dalam satu perjalanan", "Cocok untuk learning objective yang membutuhkan perspektif global"],
+          signature: ["Museum dan cultural exchange", "Sustainability workshop", "University visit dan educational tour"]
+        }
+      },
+      packageDetails: {
+        "bali-study-tour": {
+          positioning: "Perjalanan 3D2N yang menghubungkan budaya Bali, alam, dan pembelajaran konservasi.",
+          highlights: ["Tari dan batik", "Konservasi sesuai musim dan mitra", "Rice terrace dan temple learning"],
+          flow: ["Hari 1: Pengenalan budaya dan aktivitas seni", "Hari 2: Pembelajaran alam atau konservasi", "Hari 3: Refleksi perjalanan dan penutup"]
+        },
+        "yogyakarta-study-tour": {
+          positioning: "Perjalanan 3D2N melalui heritage, seni tradisional, dan konteks komunitas.",
+          highlights: ["Borobudur atau Prambanan", "Batik atau Karawitan", "Program komunitas"],
+          flow: ["Hari 1: Orientasi heritage dan kota", "Hari 2: Aktivitas seni dan pembelajaran komunitas", "Hari 3: Refleksi budaya dan penutup"]
+        },
+        "bandung-study-tour": {
+          positioning: "Perjalanan 3D2N dengan fokus sains, kreativitas, alam, dan engagement.",
+          highlights: ["Angklung", "Science center", "Nature education dan community engagement"],
+          flow: ["Hari 1: Pengenalan kota dan seni", "Hari 2: Pembelajaran sains atau alam", "Hari 3: Aktivitas komunitas dan refleksi"]
+        },
+        "bangkok-study-tour": {
+          positioning: "Perjalanan 4D3N untuk cultural exchange, pembelajaran institusi, dan eksplorasi kota.",
+          highlights: ["University visit", "Temple learning", "City tour dan local culture"],
+          flow: ["Hari 1: Orientasi kota dan budaya", "Hari 2: University visit dan cultural exchange", "Hari 3: Temple learning dan local culture", "Hari 4: Refleksi dan penutup"]
+        },
+        "malaysia-study-tour": {
+          positioning: "Perjalanan 4D3N untuk mengenal institusi, sains, dan kehidupan multikultural.",
+          highlights: ["University visit", "Petrosains", "Heritage dan cultural exchange"],
+          flow: ["Hari 1: Orientasi budaya", "Hari 2: University visit", "Hari 3: Science dan heritage learning", "Hari 4: Refleksi dan penutup"]
+        },
+        "europe-study-tour": {
+          positioning: "Perjalanan 8D7N untuk museum, institusi, budaya, dan sustainability dalam perspektif global.",
+          highlights: ["Museum dan cultural exchange", "Sustainability workshop", "University visit dan educational tour"],
+          flow: ["Fase 1: Orientasi budaya dan museum", "Fase 2: Institusi, university visit, dan workshop", "Fase 3: Educational tour dan refleksi lintas budaya"]
+        }
+      },
+      pillarsTitle: "Learning pillars yang membentuk perjalanan",
+      pillarsLead: "Pilar dipilih sesuai learning objective, bukan dipaksakan sama untuk setiap destinasi.",
+      pillars: [
+        ["Culture", "Membaca tempat melalui sejarah, seni, tradisi, dan kehidupan sehari-hari."],
+        ["Nature", "Mengamati lanskap dan hubungan manusia dengan lingkungan."],
+        ["Sustainability", "Mengenal praktik dan pertanyaan keberlanjutan sesuai konteks."],
+        ["Social learning", "Belajar berinteraksi, berkolaborasi, dan merefleksikan pengalaman."]
+      ],
+      supportTitle: "Koordinasi yang mengikuti kebutuhan institusi",
+      supportBody: "Cakupan transportasi, akomodasi, aktivitas, pendampingan, dokumentasi, dan kebutuhan lapangan disepakati dalam proposal. Detail keamanan dan koordinasi mengikuti profil peserta serta kondisi program.",
+      closingTitle: "Design a learning journey with purpose",
+      closingBody: "Bagikan usia siswa, jumlah peserta, periode, dan learning objective. Kami akan membantu memetakan destinasi serta format yang paling relevan.",
+      closingPrimary: "Request a Study Tour Proposal",
+      closingSecondary: "Talk to Our Team"
+    },
+    international: {
+      heroTitle: "International Journeys Designed Around Your Team",
+      heroLead: "Incentive trips, leadership retreats, dan cultural immersion di Bangkok, Vietnam, dan Europe yang disusun sesuai tujuan, ritme, dan profil tim.",
+      heroPrimary: "Explore Destinations",
+      introTitle: "Perjalanan internasional yang dimulai dari tujuan tim",
+      introBody: "Setiap destinasi menjadi titik awal, bukan template yang kaku. Package membantu memberi gambaran scope, lalu pengalaman, ritme, dan kebutuhan koordinasi disesuaikan melalui proposal.",
+      guideTitle: "Tiga arah perjalanan internasional",
+      guideLead: "Pilih karakter destinasi yang paling sesuai sebelum menentukan package dan detail perjalanan.",
+      destinations: {
+        bangkok: {
+          title: "Bangkok",
+          eyebrow: "Culture and team energy",
+          intro: "Bangkok memadukan dinamika kota, budaya, kuliner, dan pengalaman kelompok dalam format perjalanan yang ringkas.",
+          bestFor: ["Incentive trip yang energik", "Cultural immersion regional", "Team retreat 4D3N"],
+          why: ["City experience dan budaya mudah dirangkai dalam ritme singkat", "Pilihan program mendukung team activity maupun leadership"],
+          signature: ["Grand Palace dan Wat Pho", "Chao Phraya cruise", "Art workshop atau CSR", "Ayutthaya dan farewell dinner sesuai tier"]
+        },
+        vietnam: {
+          title: "Vietnam",
+          eyebrow: "City, heritage, and connection",
+          intro: "Vietnam membawa tim melalui kota, heritage, dan perjalanan bersama yang memberi ruang untuk eksplorasi serta koneksi.",
+          bestFor: ["Incentive journey 4D3N", "Cultural immersion", "Leadership dan team connection"],
+          why: ["Hanoi dan Halong Bay memberi dua karakter perjalanan", "Program dapat memadukan budaya, community engagement, dan gathering"],
+          signature: ["Hanoi Old Quarter", "Halong Bay Cruise", "Cultural exchange dan community program", "Leadership workshop atau gala sesuai tier"]
+        },
+        europe: {
+          title: "Europe",
+          eyebrow: "Multi-city perspective",
+          intro: "Europe tersedia sebagai perjalanan khusus untuk tim yang membutuhkan pengalaman lintas kota, budaya, dan format premium.",
+          bestFor: ["Incentive trip lintas kota", "Leadership retreat premium", "Cultural immersion dengan proposal khusus"],
+          why: ["Pilihan arah perjalanan dapat disesuaikan dengan prioritas tim", "Scope multi-city membutuhkan koordinasi dan proposal khusus"],
+          signature: ["France, Belgium, dan Netherlands pada Gold", "Greece dan Turkey pada Premium", "Cultural workshops dan local experiences", "Dokumentasi sesuai package"]
+        }
+      },
+      packageDetails: {
+        "bangkok-silver": {
+          positioning: "Perjalanan 4D3N melalui ikon budaya, city experience, dan aktivitas tim.",
+          highlights: ["Grand Palace dan Wat Pho", "Chao Phraya cruise", "Team building atau art workshop", "Chatuchak dan community market", "Hotel 3-star dan dokumentasi"],
+          flow: ["Hari 1: Arrival dan city orientation", "Hari 2: Grand Palace, Wat Pho, dan group experience", "Hari 3: Team activity serta local market", "Hari 4: Penutup dan departure"]
+        },
+        "bangkok-gold": {
+          positioning: "Upgrade 4D3N dengan leadership, Ayutthaya, dan gathering yang lebih premium.",
+          highlights: ["Hotel 4-star", "Luxury dinner cruise", "Leadership workshop", "Ayutthaya dan CSR atau art", "Thai massage dan farewell dinner"],
+          flow: ["Hari 1: Arrival dan welcome", "Hari 2: Leadership dan cultural immersion", "Hari 3: Ayutthaya, CSR atau art, dan farewell dinner", "Hari 4: Penutup dan departure"]
+        },
+        "vietnam-silver": {
+          positioning: "Perjalanan 4D3N yang menghubungkan Hanoi, Halong Bay, dan cultural exchange.",
+          highlights: ["Hanoi Old Quarter", "Halong Bay Cruise", "Cultural exchange dan community program", "Farewell dinner dan hotel 3-star"],
+          flow: ["Hari 1: Hanoi orientation", "Hari 2: Halong Bay Cruise", "Hari 3: Cultural exchange dan community program", "Hari 4: Penutup dan departure"]
+        },
+        "vietnam-gold": {
+          positioning: "Upgrade 4D3N dengan overnight cruise, leadership, dan gala experience.",
+          highlights: ["Hotel 4-star", "Overnight Halong Bay", "Leadership atau team building", "Art workshop dan gala", "Optional Sapa dan full documentation"],
+          flow: ["Hari 1: Hanoi arrival", "Hari 2: Leadership dan Halong Bay", "Hari 3: Cruise, art workshop, dan gala", "Hari 4: Penutup dan departure"]
+        },
+        "europe-gold": {
+          positioning: "Perjalanan 7D6N melalui France, Belgium, dan Netherlands dengan flight terpisah.",
+          highlights: ["Hotel 4-star", "Paris Like a Local", "Bruges atau Ghent", "Chocolate workshop dan village experience", "Canal cruise dan dokumentasi"],
+          flow: ["Fase 1: Paris dan local experience", "Fase 2: Belgium, heritage, dan workshop", "Fase 3: Netherlands, canal experience, dan penutup"]
+        },
+        "europe-premium": {
+          positioning: "Perjalanan premium 5D4N melalui Greece dan Turkey dengan flight terpisah.",
+          highlights: ["Athens dan Acropolis", "Santorini, Oia, dan Ios", "Ephesus dan Kusadasi", "Hotel 4-star, meals, dan multi-city transport", "Photo dan video documentation"],
+          flow: ["Fase 1: Athens dan Acropolis", "Fase 2: Santorini, Oia, dan island experience", "Fase 3: Ephesus, Kusadasi, dan penutup"]
+        }
+      },
+      workingPriceNote: "Harga Europe adalah indikasi perencanaan dan mudah disesuaikan. Proposal final mengikuti periode perjalanan, ketersediaan, cakupan program, serta kebutuhan tim; flight tidak termasuk.",
+      capabilityTitle: "Dari arah perjalanan hingga koordinasi lintas destinasi",
+      capabilityLead: "Scope akhir mengikuti proposal dan kondisi operasional pada periode perjalanan.",
+      capabilities: [
+        ["Journey direction", "Tujuan tim dan karakter perjalanan menentukan arah destinasi serta package."],
+        ["Program design", "Aktivitas, ritme, dan gathering moments disusun sesuai kebutuhan."],
+        ["International coordination", "Akomodasi, transportasi lokal, aktivitas, dan kebutuhan lapangan mengikuti scope."],
+        ["Documentation", "Cakupan dokumentasi mengikuti package dan proposal yang disepakati."]
+      ],
+      closingTitle: "Build an international journey around your team",
+      closingBody: "Ceritakan tujuan, periode, jumlah peserta, dan karakter perjalanan yang dibutuhkan. Kami akan membantu menyusun arah proposal.",
+      closingPrimary: "Request International Proposal",
+      closingSecondary: "Talk to Our Team"
+    },
+    csr: {
+      heroTitle: "CSR Programs Designed with Context and Care",
+      heroLead: "Program standalone atau add-on corporate journey untuk belajar, terhubung, dan berkontribusi melalui aktivitas yang disusun bersama mitra lokal.",
+      heroPrimary: "Explore CSR Programs",
+      introTitle: "Kontribusi yang dimulai dari konteks",
+      introBody: "Program dipilih berdasarkan tujuan perusahaan, profil peserta, kebutuhan mitra, lokasi, dan kelayakan aktivitas. Kami menjaga narasi tetap proporsional dan menyepakati scope sebelum program berjalan.",
+      featuredTitle: "Lima program unggulan",
+      featuredLead: "Gunakan pilihan ini sebagai titik awal. Aktivitas dan indikator program tetap mengikuti proposal yang disepakati.",
+      programDetails: {
+        "village-empowerment": {
+          intro: "Pengalaman kolaboratif yang membawa peserta mengenal usaha, karya, dan kehidupan komunitas desa.",
+          bestFor: ["Community engagement", "Pembelajaran usaha lokal", "Team contribution"],
+          activities: ["Kunjungan UMKM", "Craft workshop", "Pembelian produk lokal", "Cultural exchange dan community lunch"]
+        },
+        "school-impact-day": {
+          intro: "Hari keterlibatan sekolah yang disusun bersama mitra untuk berbagi pengetahuan dan pengalaman secara relevan.",
+          bestFor: ["Employee volunteering", "Education engagement", "Program satu hari"],
+          activities: ["Aktivitas mengajar", "Dukungan perlengkapan sekolah", "Games dan career inspiration", "Penanaman bersama siswa bila sesuai scope"]
+        },
+        "bicycle-for-education": {
+          intro: "Program kelompok yang menggabungkan proses perakitan, quality check, kreativitas, dan serah terima dukungan pendidikan.",
+          bestFor: ["Team collaboration", "Education access", "Hands-on activity"],
+          activities: ["Perakitan sepeda", "Quality check", "Dekorasi", "Serah terima bersama mitra"]
+        },
+        "build-for-community": {
+          intro: "Aktivitas perbaikan fasilitas yang mengikuti asesmen kebutuhan, kelayakan, dan scope yang disepakati.",
+          bestFor: ["Hands-on contribution", "Team collaboration", "Community facility support"],
+          activities: ["Renovasi sekolah atau perpustakaan", "Perbaikan fasilitas publik", "Painting activity", "Serah terima"]
+        },
+        "mangrove-restoration": {
+          intro: "Pembelajaran ekosistem pesisir dan aktivitas restorasi bersama mitra lokal sesuai kondisi lokasi.",
+          bestFor: ["Environmental learning", "Outdoor team activity", "Coastal ecosystem engagement"],
+          activities: ["Edukasi iklim dan mangrove", "Aktivitas penanaman sesuai kondisi", "Team challenge", "Refleksi bersama mitra"]
+        }
+      },
+      moreTitle: "More CSR Programs",
+      moreLead: "Pilihan tambahan tersedia untuk disesuaikan dengan lokasi, partner, musim, dan tujuan program.",
+      moreDetails: {
+        "coral-reef-restoration": "Pembelajaran dan aktivitas restorasi terumbu bersama mitra yang relevan.",
+        "sea-turtle-conservation": "Aktivitas konservasi penyu berdasarkan musim dan ketersediaan mitra.",
+        "beach-clean-up": "Clean-up challenge dan edukasi pengelolaan sampah.",
+        "sustainable-farming": "Pengalaman belajar pertanian dan praktik yang lebih berkelanjutan.",
+        "animal-welfare": "Program dukungan kesejahteraan hewan bersama mitra yang sesuai."
+      },
+      addOnTitle: "Standalone program atau bagian dari corporate journey",
+      addOnBody: "CSR dapat dirancang sebagai agenda utama atau dipadukan dengan outing, retreat, gathering, dan incentive trip. Ritme program akan disesuaikan agar kontribusi, pembelajaran, dan kebutuhan perjalanan tetap seimbang.",
+      safeClaim: "Program CSR tertentu dapat dilengkapi dengan dokumentasi dampak, pelaporan aktivitas terukur, dan sustainability-related reporting sesuai cakupan program yang disepakati.",
+      processTitle: "Dari tujuan ke program yang dapat dijalankan",
+      process: [
+        ["Brief", "Memahami tujuan, peserta, lokasi, waktu, dan konteks perusahaan."],
+        ["Partner and scope", "Menyelaraskan kebutuhan mitra, aktivitas, serta batas program."],
+        ["Delivery", "Mengoordinasikan aktivitas, peserta, dan kebutuhan lapangan."],
+        ["Documentation", "Menyusun dokumentasi atau reporting sesuai scope yang disepakati."]
+      ],
+      closingTitle: "Design a CSR program with the right context",
+      closingBody: "Bagikan tujuan, jumlah peserta, lokasi, dan bentuk keterlibatan yang dibutuhkan. Kami akan membantu memetakan program yang relevan.",
+      closingPrimary: "Request a CSR Proposal",
+      closingSecondary: "Talk to Our Team"
+    }
+  },
+  en: {
+    labels: {
+      bestFor: "Best for",
+      whyChoose: "Why choose this destination",
+      signature: "Signature experiences",
+      packages: "Available packages",
+      highlights: "Program highlights",
+      sampleFlow: "Sample journey flow",
+      explore: "Explore",
+      proposal: "Request a Proposal",
+      fromBrief: "From brief to journey",
+      options: "options",
+      variantLabel: "Bali Starter options",
+      featured: "Featured package",
+      learningThemes: "Learning themes",
+      programActivities: "Program activities",
+      programOptions: "Program options",
+      workingPrice: "Indicative planning price",
+      byRequest: "Designed by request",
+      regional: "Regional",
+      international: "International",
+      programScope: "Program scope"
+    },
+    corporateHub: {
+      heroTitle: "Meaningful Journeys Designed for Teams",
+      heroLead: "Outings, retreats, incentive travel, CSR, and corporate gatherings shaped around team goals, participant profiles, and the experience you want to create.",
+      heroPrimary: "Explore Corporate Journeys",
+      introTitle: "One partner for a complete corporate journey",
+      introBody: "We bring destinations, accommodation, activities, facilitation, event support, CSR, and package-based documentation into one coordinated flow. Every program begins with the team's needs rather than a rigid travel template.",
+      pathwaysTitle: "Choose your team's journey direction",
+      pathwaysLead: "Start with the context that feels most relevant, then we will help tailor the program details.",
+      pathways: [
+        {
+          key: "indonesia",
+          title: "Indonesia Region",
+          body: "Bali, Jogja, Bandung, and Lombok for outings, retreats, and team journeys connected to culture and nature.",
+          bestFor: "Regional outings, team retreats, and incentive journeys",
+          href: "/corporate-packages/indonesia-region/"
+        },
+        {
+          key: "international",
+          title: "International",
+          body: "Bangkok, Vietnam, and Europe as starting points for an international journey shaped around the team's pace and purpose.",
+          bestFor: "Incentive trips, leadership retreats, and cultural immersion",
+          href: "/corporate-packages/international/"
+        },
+        {
+          key: "csr",
+          title: "CSR Program",
+          body: "A standalone program or part of a corporate journey designed for learning, connection, and contextual contribution.",
+          bestFor: "CSR activation and community engagement",
+          href: "/corporate-packages/csr-program/"
+        },
+        {
+          key: "event",
+          title: "Event Planning",
+          body: "Support for corporate travel, retreats, gatherings, team building, and travel-based events.",
+          bestFor: "Corporate gatherings and multi-vendor programs",
+          href: "/corporate-packages/event-planning-organizer/"
+        }
+      ],
+      supportTitle: "How we support teams",
+      supportLead: "From the first brief to journey delivery, each element is shaped within one clear and flexible workflow.",
+      supportItems: [
+        ["Journey planning", "Goals, participant profiles, timing, destinations, and budgets form the starting point."],
+        ["Local coordination", "Transport, accommodation, venues, vendors, and on-ground needs are coordinated within scope."],
+        ["Group experiences", "Activities are selected to support connection, exploration, learning, or contribution."],
+        ["Flexible customization", "Programs can adapt to team dynamics and operational feasibility."]
+      ],
+      closingTitle: "Design a journey that feels relevant to your team",
+      closingBody: "Share your objective, group size, travel period, and direction. We will help map the next step.",
+      closingPrimary: "Request a Corporate Proposal",
+      closingSecondary: "Start Your Journey"
+    },
+    indonesia: {
+      heroTitle: "Meaningful Corporate Journeys Across Indonesia",
+      heroLead: "From one-day team experiences to multi-day retreats, discover journeys shaped by culture, nature, connection, and flexible coordination.",
+      heroPrimary: "Explore Destinations",
+      guideTitle: "Four destinations, four journey characters",
+      guideLead: "Use each destination's character as a starting point before selecting a package and shaping the proposal.",
+      guide: {
+        bali: "The most flexible mix of culture, adventure, wellness, and retreats.",
+        jogja: "Heritage, creativity, and community connection in a vibrant setting.",
+        bandung: "A cooler climate, accessible nature, and an intimate retreat rhythm.",
+        lombok: "A quieter island escape with local culture and marine experiences."
+      },
+      destinations: {
+        bali: {
+          title: "Bali",
+          eyebrow: "Featured destination",
+          intro: "Bali offers the widest space for shaping a team journey: a one-day outing, an adventure retreat, cultural experiences, or a slower-paced program. Each package can become a starting point and be tailored around the team's goals and participant profile.",
+          bestFor: ["Teams that need flexible formats", "One-day outings through 3D2N retreats", "A mix of culture, nature, adventure, and wellness"],
+          why: ["The broadest range of programs and activities in the current catalog", "Settings ranging from Kintamani and Ubud to a beach club and Nuanu"],
+          signature: ["Team building and outbound activities", "Rafting, ATV, Jeep, or kayaking depending on package", "Art making and community engagement", "Gala dinner, bonfire, or team party depending on program"]
+        },
+        jogja: {
+          title: "Jogja",
+          eyebrow: "Culture and creativity",
+          intro: "Jogja brings teams closer to heritage, arts, creativity, and community experiences. It suits journeys that combine group activities with cultural exploration in a warm and collaborative rhythm.",
+          bestFor: ["Teams interested in heritage and creative activities", "A 2D1N outing or 3D2N retreat", "Programs with cultural immersion and community connection"],
+          why: ["Cultural heritage and creative activities meet in one journey", "Programs can combine adventure, arts, and gathering moments"],
+          signature: ["Prambanan or Borobudur depending on package", "Goa Pindul or Merapi Jeep", "Team building and art making", "Malioboro, community impact, and gala dinner depending on tier"]
+        },
+        bandung: {
+          title: "Bandung",
+          eyebrow: "Nature-led retreat",
+          intro: "Bandung offers a cooler setting with access to nature, team activities, and gathering spaces that allow a slower rhythm. Programs can combine light adventure, workshops, community engagement, and time together.",
+          bestFor: ["Retreats in a cooler, nature-connected setting", "Team activities and company gatherings", "A 2D1N or 3D2N program"],
+          why: ["Nature, workshops, and gathering moments feel easily connected", "Packages support both focused and more complete retreat formats"],
+          signature: ["Lembang or Kawah Putih depending on package", "Jeep, luge, or team building", "Coffee or artisan workshop", "Community engagement and gala dinner"]
+        },
+        lombok: {
+          title: "Lombok",
+          eyebrow: "Island connection",
+          intro: "Lombok creates a more intimate and unhurried island journey. Sasak culture, marine activities, community experiences, and sunset moments suit teams looking to step away from the city and reconnect.",
+          bestFor: ["Teams looking for an island escape", "A 3D2N journey with culture and marine activities", "Retreats with a more intimate atmosphere"],
+          why: ["The journey character feels quieter and more personal", "Local culture and marine experiences can meet in one program"],
+          signature: ["Sasak Village and local art making", "Gili Trawangan or a private island", "Snorkeling, sunset dinner, or sunset cruise", "Team building and local community engagement"]
+        }
+      },
+      starterTitle: "One day, four ways to experience Bali",
+      starterBody: "Bali Starter is one one-day product with four different settings. Each option has its own time range and activity flow, allowing the team to select the most relevant experience without changing the product structure.",
+      starterIncluded: ["Team activities based on the selected option", "Meals or refreshments based on program", "Documentation based on option", "Sustainable goodie bag", "Community or sustainability element"],
+      variants: {
+        kintamani: ["Tree planting and opening ceremony", "Team building or outbound activities", "Jeep or ATV at Black Lava", "Lunch, live music, and refreshments"],
+        ubud: ["Art making and opening ceremony", "Team building or outbound activities", "Rafting or ATV", "Lunch, live music, and refreshments"],
+        atlas: ["Recycle waste game", "Beach team building", "Live music, MC, and buffet dinner", "Pool or DJ experience"],
+        nuanu: ["Butterfly release and Nuanu City tour", "Team building or outbound activities", "Recycle waste game", "Dinner and pool or DJ experience"]
+      },
+      packageDetails: {
+        "bali-silver": {
+          positioning: "A focused Uluwatu corporate experience with beach activities, culture, and team connection.",
+          highlights: ["3-star hotel", "Meals, transport, and tickets", "Photographer and sustainable goodie bag", "Community or sustainability initiative"],
+          flow: ["Day 1: Arrival, GWK, beach team building, CSR or art making, and seafood dinner", "Day 2: Tanah Barak, Pandawa, kayaking, and art market"]
+        },
+        "bali-gold": {
+          positioning: "A Kintamani incentive retreat with adventure, a bonfire, and community experiences.",
+          highlights: ["Eco glamping", "Meals and coffee breaks", "Transport, tickets, and local engagement", "Photo, video, and drone documentation"],
+          flow: ["Day 1: Arrival, team building, gala dinner, and bonfire", "Day 2: Sunrise, Jeep or ATV, community impact or art making, hot spring or Trunyan", "Day 3: Coffee plantation or Tegallalang area and souvenir stop"]
+        },
+        "bali-premium": {
+          positioning: "An Ubud and Canggu retreat shaped by wellness, adventure, and corporate gathering moments.",
+          highlights: ["4-star hotel", "Meals, transport, and tickets", "Activity mix based on program", "Leadership workshop and closing"],
+          flow: ["Day 1: Team building, impact or art making, ATV or rafting, Ubud, and dinner", "Day 2: Yoga or meditation, Melukat or massage, Tlagha Singha, and Canggu gala or team party", "Day 3: Leadership workshop, closing, and souvenir shopping"]
+        },
+        "jogja-silver": {
+          positioning: "A 2D1N journey through heritage, adventure, and creative team moments.",
+          highlights: ["Prambanan", "Team building", "Goa Pindul or Jeep", "Obelix or HeHa", "Community impact and Malioboro", "3-star hotel and photographer"]
+        },
+        "jogja-gold": {
+          positioning: "A 3D2N upgrade for a more complete cultural exploration and gathering.",
+          highlights: ["Merapi Jeep and Borobudur", "Team building and art making", "Community impact and Malioboro", "Gala dinner", "4-star hotel", "Photo, video, and drone"]
+        },
+        "bandung-silver": {
+          positioning: "A 2D1N retreat combining nature, team activities, and an artisan experience.",
+          highlights: ["Lembang or nature experience", "Jeep or luge", "Team building", "Community impact", "Gala dinner", "Coffee or artisan workshop"]
+        },
+        "bandung-gold": {
+          positioning: "A 3D2N program with nature exploration and broader coordination.",
+          highlights: ["Kawah Putih", "Team building", "CSR or local engagement", "Artisan workshop", "Premium gala dinner", "4-star hotel and full documentation"]
+        },
+        "lombok-silver": {
+          positioning: "A 3D2N island journey through local culture, marine experiences, and team connection.",
+          highlights: ["Sasak Village and art making", "CSR community program", "Gili Trawangan and snorkeling", "Team building and sunset dinner", "3-star hotel", "Transport, boat, and documentation"]
+        },
+        "lombok-gold": {
+          positioning: "An upgraded island retreat with a private setting and leadership moments.",
+          highlights: ["Private island", "Sunset cruise", "Leadership workshop", "Local community engagement", "Premium gala dinner", "4-star hotel and professional photographer"]
+        }
+      },
+      capabilityTitle: "Journey support in one flow",
+      capabilityLead: "The final scope follows the proposal, destination, selected package, and operational conditions.",
+      capabilities: [
+        ["Planning", "Goals, participants, timing, budget, and program rhythm are mapped from the start."],
+        ["Coordination", "Transport, accommodation, activities, meals, and on-ground needs are coordinated within scope."],
+        ["Experience", "Team building, culture, nature, CSR, and gathering elements follow the package and objectives."],
+        ["Documentation", "Photo, video, drone, or recap coverage follows the selected package and agreed proposal."]
+      ],
+      closingTitle: "Design an Indonesia journey around your team",
+      closingBody: "Share your team character, travel period, destination, and intended experience. We will help identify the most relevant starting point.",
+      closingPrimary: "Request a Proposal",
+      closingSecondary: "Talk to Our Team"
+    },
+    study: {
+      heroTitle: "Educational Journeys Beyond the Classroom",
+      heroLead: "Regional and international study tours connecting learning objectives with culture, nature, sustainability, and relevant social experiences.",
+      heroPrimary: "Explore Learning Journeys",
+      introTitle: "Learning through places, people, and experience",
+      introBody: "Every journey begins with the institution's learning objective. Destinations, activities, pace, and coordination are then shaped so students can observe, participate, discuss, and return with a more complete understanding.",
+      guideTitle: "Choose the most relevant learning context",
+      guideLead: "These six destinations are starting points. Program details can adapt to student age, learning objectives, timing, and operational feasibility.",
+      regionalTitle: "Regional Study Tour",
+      regionalLead: "Learning journeys in Indonesia connected to culture, nature, creativity, and local communities.",
+      internationalTitle: "International Study Tour",
+      internationalLead: "Cross-cultural and institutional exposure that broadens students' perspectives beyond Indonesia.",
+      destinations: {
+        "bali-study-tour": {
+          eyebrow: "Culture, nature, and conservation",
+          intro: "Bali offers a rich learning environment for understanding arts, landscapes, traditions, and the relationship between communities and nature.",
+          bestFor: ["Cultural and creative learning", "An introduction to coastal conservation", "Nature and community experiences"],
+          why: ["Different learning contexts connect within one journey", "Culture and environment can be explored through direct experience"],
+          signature: ["Dance and batik", "Mangrove or turtle conservation depending on season and partner", "Rice terrace and temple-area learning"]
+        },
+        "yogyakarta-study-tour": {
+          eyebrow: "Heritage and creative learning",
+          intro: "Yogyakarta invites students to interpret history, arts, and community life through cultural heritage and creative practice.",
+          bestFor: ["History and heritage", "Traditional arts and creative expression", "Community interaction"],
+          why: ["Historic sites and living cultural practices meet in one context", "Group activities connect theory with experience"],
+          signature: ["Borobudur or Prambanan", "Batik or Karawitan", "Community program and cultural exploration"]
+        },
+        "bandung-study-tour": {
+          eyebrow: "Science, nature, and creativity",
+          intro: "Bandung combines science, arts, and environmental learning in a cooler setting that is easy for groups to explore.",
+          bestFor: ["Science and environmental exploration", "Music and arts learning", "Community engagement"],
+          why: ["Science, nature, and creativity can form one learning flow", "The journey format works well for school groups"],
+          signature: ["Angklung", "Science center", "Nature education and community engagement"]
+        },
+        "bangkok-study-tour": {
+          eyebrow: "Regional cultural exchange",
+          intro: "Bangkok broadens student perspectives through cultural exchange, institutional learning, and purposeful city exploration.",
+          bestFor: ["Regional cultural exchange", "University exposure", "Urban cultural learning"],
+          why: ["An international destination grounded in Southeast Asian context", "Institutional and cultural activities can work side by side"],
+          signature: ["Cultural exchange", "University visit", "Temple learning, city tour, and local culture"]
+        },
+        "malaysia-study-tour": {
+          eyebrow: "Innovation and multicultural learning",
+          intro: "Malaysia brings together institutions, science, heritage, and multicultural community life as connected learning contexts.",
+          bestFor: ["University exposure", "Science and innovation", "Cross-cultural learning"],
+          why: ["The cultural context feels familiar while widening perspective", "Academic and heritage activities can be combined"],
+          signature: ["University visit", "Petrosains", "Cultural exchange and heritage learning"]
+        },
+        "europe-study-tour": {
+          eyebrow: "Global learning perspective",
+          intro: "Europe is shaped as a multi-city learning journey that expands perspectives on culture, institutions, and sustainability.",
+          bestFor: ["Global and cross-cultural exposure", "Museum and institutional learning", "Sustainability topics"],
+          why: ["Different learning contexts can meet within one journey", "Suited to learning objectives that need a global perspective"],
+          signature: ["Museums and cultural exchange", "Sustainability workshop", "University visit and educational tour"]
+        }
+      },
+      packageDetails: {
+        "bali-study-tour": {
+          positioning: "A 3D2N journey connecting Balinese culture, nature, and conservation learning.",
+          highlights: ["Dance and batik", "Conservation based on season and partner", "Rice terrace and temple learning"],
+          flow: ["Day 1: Cultural introduction and arts activity", "Day 2: Nature or conservation learning", "Day 3: Journey reflection and closing"]
+        },
+        "yogyakarta-study-tour": {
+          positioning: "A 3D2N journey through heritage, traditional arts, and community context.",
+          highlights: ["Borobudur or Prambanan", "Batik or Karawitan", "Community program"],
+          flow: ["Day 1: Heritage and city orientation", "Day 2: Arts activity and community learning", "Day 3: Cultural reflection and closing"]
+        },
+        "bandung-study-tour": {
+          positioning: "A 3D2N journey focused on science, creativity, nature, and engagement.",
+          highlights: ["Angklung", "Science center", "Nature education and community engagement"],
+          flow: ["Day 1: City and arts introduction", "Day 2: Science or nature learning", "Day 3: Community activity and reflection"]
+        },
+        "bangkok-study-tour": {
+          positioning: "A 4D3N journey for cultural exchange, institutional learning, and city exploration.",
+          highlights: ["University visit", "Temple learning", "City tour and local culture"],
+          flow: ["Day 1: City and cultural orientation", "Day 2: University visit and cultural exchange", "Day 3: Temple learning and local culture", "Day 4: Reflection and closing"]
+        },
+        "malaysia-study-tour": {
+          positioning: "A 4D3N journey exploring institutions, science, and multicultural life.",
+          highlights: ["University visit", "Petrosains", "Heritage and cultural exchange"],
+          flow: ["Day 1: Cultural orientation", "Day 2: University visit", "Day 3: Science and heritage learning", "Day 4: Reflection and closing"]
+        },
+        "europe-study-tour": {
+          positioning: "An 8D7N journey through museums, institutions, culture, and sustainability from a global perspective.",
+          highlights: ["Museums and cultural exchange", "Sustainability workshop", "University visit and educational tour"],
+          flow: ["Phase 1: Cultural orientation and museums", "Phase 2: Institutions, university visit, and workshop", "Phase 3: Educational tour and cross-cultural reflection"]
+        }
+      },
+      pillarsTitle: "Learning pillars that shape the journey",
+      pillarsLead: "Pillars are selected around the learning objective rather than applied identically to every destination.",
+      pillars: [
+        ["Culture", "Understanding places through history, arts, traditions, and everyday life."],
+        ["Nature", "Observing landscapes and the relationship between people and the environment."],
+        ["Sustainability", "Exploring relevant sustainability practices and questions."],
+        ["Social learning", "Learning to interact, collaborate, and reflect on experience."]
+      ],
+      supportTitle: "Coordination shaped around institutional needs",
+      supportBody: "Transport, accommodation, activities, facilitation, documentation, and on-ground requirements are agreed in the proposal. Safety and coordination details follow the participant profile and program conditions.",
+      closingTitle: "Design a learning journey with purpose",
+      closingBody: "Share student age, group size, travel period, and learning objectives. We will help map the most relevant destination and format.",
+      closingPrimary: "Request a Study Tour Proposal",
+      closingSecondary: "Talk to Our Team"
+    },
+    international: {
+      heroTitle: "International Journeys Designed Around Your Team",
+      heroLead: "Incentive trips, leadership retreats, and cultural immersion in Bangkok, Vietnam, and Europe shaped around your team's purpose, pace, and profile.",
+      heroPrimary: "Explore Destinations",
+      introTitle: "International travel that begins with the team's purpose",
+      introBody: "Each destination is a starting point rather than a rigid template. Packages clarify the initial scope, while experiences, pace, and coordination needs are tailored through the proposal.",
+      guideTitle: "Three international journey directions",
+      guideLead: "Choose the destination character that best fits before selecting a package and shaping the journey details.",
+      destinations: {
+        bangkok: {
+          title: "Bangkok",
+          eyebrow: "Culture and team energy",
+          intro: "Bangkok combines city energy, culture, food, and group experiences within a focused journey format.",
+          bestFor: ["An energetic incentive trip", "Regional cultural immersion", "A 4D3N team retreat"],
+          why: ["City experiences and culture connect easily in a short format", "Programs can support team activities or leadership"],
+          signature: ["Grand Palace and Wat Pho", "Chao Phraya cruise", "Art workshop or CSR", "Ayutthaya and farewell dinner depending on tier"]
+        },
+        vietnam: {
+          title: "Vietnam",
+          eyebrow: "City, heritage, and connection",
+          intro: "Vietnam takes teams through cities, heritage, and shared journeys with room for exploration and connection.",
+          bestFor: ["A 4D3N incentive journey", "Cultural immersion", "Leadership and team connection"],
+          why: ["Hanoi and Halong Bay offer two distinct journey characters", "Programs can combine culture, community engagement, and gatherings"],
+          signature: ["Hanoi Old Quarter", "Halong Bay Cruise", "Cultural exchange and community program", "Leadership workshop or gala depending on tier"]
+        },
+        europe: {
+          title: "Europe",
+          eyebrow: "Multi-city perspective",
+          intro: "Europe is available as a custom journey for teams seeking multi-city, cultural, and premium experiences.",
+          bestFor: ["Multi-city incentive travel", "Premium leadership retreats", "Cultural immersion with a custom proposal"],
+          why: ["Journey directions can adapt to team priorities", "A multi-city scope needs dedicated coordination and proposal"],
+          signature: ["France, Belgium, and the Netherlands on Gold", "Greece and Turkey on Premium", "Cultural workshops and local experiences", "Package-based documentation"]
+        }
+      },
+      packageDetails: {
+        "bangkok-silver": {
+          positioning: "A 4D3N journey through cultural icons, city experiences, and team activities.",
+          highlights: ["Grand Palace and Wat Pho", "Chao Phraya cruise", "Team building or art workshop", "Chatuchak and community market", "3-star hotel and documentation"],
+          flow: ["Day 1: Arrival and city orientation", "Day 2: Grand Palace, Wat Pho, and group experience", "Day 3: Team activity and local market", "Day 4: Closing and departure"]
+        },
+        "bangkok-gold": {
+          positioning: "An upgraded 4D3N journey with leadership, Ayutthaya, and a more premium gathering.",
+          highlights: ["4-star hotel", "Luxury dinner cruise", "Leadership workshop", "Ayutthaya and CSR or art", "Thai massage and farewell dinner"],
+          flow: ["Day 1: Arrival and welcome", "Day 2: Leadership and cultural immersion", "Day 3: Ayutthaya, CSR or art, and farewell dinner", "Day 4: Closing and departure"]
+        },
+        "vietnam-silver": {
+          positioning: "A 4D3N journey connecting Hanoi, Halong Bay, and cultural exchange.",
+          highlights: ["Hanoi Old Quarter", "Halong Bay Cruise", "Cultural exchange and community program", "Farewell dinner and 3-star hotel"],
+          flow: ["Day 1: Hanoi orientation", "Day 2: Halong Bay Cruise", "Day 3: Cultural exchange and community program", "Day 4: Closing and departure"]
+        },
+        "vietnam-gold": {
+          positioning: "An upgraded 4D3N journey with an overnight cruise, leadership, and gala experience.",
+          highlights: ["4-star hotel", "Overnight Halong Bay", "Leadership or team building", "Art workshop and gala", "Optional Sapa and full documentation"],
+          flow: ["Day 1: Hanoi arrival", "Day 2: Leadership and Halong Bay", "Day 3: Cruise, art workshop, and gala", "Day 4: Closing and departure"]
+        },
+        "europe-gold": {
+          positioning: "A 7D6N journey through France, Belgium, and the Netherlands with flights excluded.",
+          highlights: ["4-star hotel", "Paris Like a Local", "Bruges or Ghent", "Chocolate workshop and village experience", "Canal cruise and documentation"],
+          flow: ["Phase 1: Paris and local experience", "Phase 2: Belgium, heritage, and workshop", "Phase 3: The Netherlands, canal experience, and closing"]
+        },
+        "europe-premium": {
+          positioning: "A premium 5D4N journey through Greece and Turkey with flights excluded.",
+          highlights: ["Athens and the Acropolis", "Santorini, Oia, and Ios", "Ephesus and Kusadasi", "4-star hotel, meals, and multi-city transport", "Photo and video documentation"],
+          flow: ["Phase 1: Athens and the Acropolis", "Phase 2: Santorini, Oia, and island experience", "Phase 3: Ephesus, Kusadasi, and closing"]
+        }
+      },
+      workingPriceNote: "Europe prices are indicative planning figures and remain easy to update. The final proposal follows travel period, availability, program scope, and team requirements; flights are excluded.",
+      capabilityTitle: "From journey direction to cross-destination coordination",
+      capabilityLead: "The final scope follows the proposal and operational conditions during the travel period.",
+      capabilities: [
+        ["Journey direction", "Team goals and journey character shape the destination and package direction."],
+        ["Program design", "Activities, pace, and gathering moments are tailored to the team."],
+        ["International coordination", "Accommodation, local transport, activities, and on-ground needs follow the scope."],
+        ["Documentation", "Documentation coverage follows the selected package and agreed proposal."]
+      ],
+      closingTitle: "Build an international journey around your team",
+      closingBody: "Share the goal, travel period, group size, and journey character you need. We will help shape the proposal direction.",
+      closingPrimary: "Request International Proposal",
+      closingSecondary: "Talk to Our Team"
+    },
+    csr: {
+      heroTitle: "CSR Programs Designed with Context and Care",
+      heroLead: "Standalone programs or corporate journey add-ons for learning, connection, and contribution through activities shaped with local partners.",
+      heroPrimary: "Explore CSR Programs",
+      introTitle: "Contribution that begins with context",
+      introBody: "Programs are selected around company goals, participant profiles, partner needs, location, and activity feasibility. We keep the narrative proportionate and agree on scope before delivery.",
+      featuredTitle: "Five featured programs",
+      featuredLead: "Use these options as starting points. Activities and program indicators follow the agreed proposal.",
+      programDetails: {
+        "village-empowerment": {
+          intro: "A collaborative experience introducing participants to village enterprises, crafts, and community life.",
+          bestFor: ["Community engagement", "Local enterprise learning", "Team contribution"],
+          activities: ["Local enterprise visit", "Craft workshop", "Local product purchasing", "Cultural exchange and community lunch"]
+        },
+        "school-impact-day": {
+          intro: "A school engagement day shaped with the partner around relevant knowledge and experience sharing.",
+          bestFor: ["Employee volunteering", "Education engagement", "A one-day program"],
+          activities: ["Teaching activities", "School supply support", "Games and career inspiration", "Planting with students when included in scope"]
+        },
+        "bicycle-for-education": {
+          intro: "A group program combining assembly, quality checks, creativity, and education support handover.",
+          bestFor: ["Team collaboration", "Education access", "Hands-on activities"],
+          activities: ["Bicycle assembly", "Quality checks", "Decoration", "Handover with the partner"]
+        },
+        "build-for-community": {
+          intro: "A facility improvement activity based on assessed needs, feasibility, and agreed scope.",
+          bestFor: ["Hands-on contribution", "Team collaboration", "Community facility support"],
+          activities: ["School or library renovation", "Public facility improvement", "Painting activity", "Handover"]
+        },
+        "mangrove-restoration": {
+          intro: "Coastal ecosystem learning and restoration activities with a local partner, based on site conditions.",
+          bestFor: ["Environmental learning", "Outdoor team activity", "Coastal ecosystem engagement"],
+          activities: ["Climate and mangrove education", "Planting based on site conditions", "Team challenge", "Partner-led reflection"]
+        }
+      },
+      moreTitle: "More CSR Programs",
+      moreLead: "Additional options can adapt to location, partner, season, and program goals.",
+      moreDetails: {
+        "coral-reef-restoration": "Reef learning and restoration activities with a relevant partner.",
+        "sea-turtle-conservation": "Turtle conservation activities based on season and partner availability.",
+        "beach-clean-up": "A clean-up challenge and waste management learning.",
+        "sustainable-farming": "Learning around farming and more sustainable practices.",
+        "animal-welfare": "Animal welfare support with an appropriate partner."
+      },
+      addOnTitle: "A standalone program or part of a corporate journey",
+      addOnBody: "CSR can become the main agenda or connect with an outing, retreat, gathering, or incentive trip. The program rhythm is shaped to balance contribution, learning, and travel needs.",
+      safeClaim: "Selected CSR programs can include impact documentation, measurable activity reporting, and sustainability-related reporting based on the agreed program scope.",
+      processTitle: "From purpose to a deliverable program",
+      process: [
+        ["Brief", "Understanding company goals, participants, location, timing, and context."],
+        ["Partner and scope", "Aligning partner needs, activities, and program boundaries."],
+        ["Delivery", "Coordinating activities, participants, and on-ground requirements."],
+        ["Documentation", "Preparing documentation or reporting within the agreed scope."]
+      ],
+      closingTitle: "Design a CSR program with the right context",
+      closingBody: "Share the goal, participant count, location, and intended form of engagement. We will help map a relevant program.",
+      closingPrimary: "Request a CSR Proposal",
+      closingSecondary: "Talk to Our Team"
+    }
+  }
+};
+
 window.CT_PRODUCT_COPY = {
   id: {
     "bali-starter": ["Bali Starter", "Satu hari, empat pilihan pengalaman untuk team outing yang ringkas dan fleksibel."],
