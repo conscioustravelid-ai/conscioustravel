@@ -1548,6 +1548,13 @@ body[data-page="event"] .pricing-grid .product-card-featured .product-price smal
 }
 
 @media (max-width: 440px) {
+  body[data-page="indonesia"] .page-hero .hero-lead {
+    -webkit-box-orient: initial;
+    -webkit-line-clamp: initial;
+    display: block;
+    overflow: visible;
+  }
+
   body:is([data-page="study"], [data-page="international"], [data-page="csr"], [data-page="event"]) .page-hero .hero-lead {
     -webkit-box-orient: initial;
     -webkit-line-clamp: initial;
