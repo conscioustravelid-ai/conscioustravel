@@ -791,7 +791,9 @@ function renderPage() {
     contact: renderContact,
     blog: renderBlog
   };
-  root.innerHTML = (renderers[page] || renderHome)();
+  if (document.body.dataset.staticBlog !== "true") {
+    root.innerHTML = (renderers[page] || renderHome)();
+  }
   document.documentElement.lang = CT_STATE.language;
 }
 

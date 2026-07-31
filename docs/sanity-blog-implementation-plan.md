@@ -70,3 +70,30 @@ The following are not implemented in this phase:
 - draft preview
 - scheduled publishing
 - multilingual articles
+
+## Phase A — Static Generation Architecture
+
+Phase A menambahkan data layer build-time tanpa framework frontend dan tanpa dependency website baru. `scripts/build-blog.mjs` menjalankan query native `fetch` ke public Sanity CDN menggunakan Project ID `7k96ai2c`, dataset `production`, API version `2026-07-30`, dan perspective `published`. Query secara eksplisit mengecualikan draft dan tidak menggunakan token.
+
+Modul di `scripts/lib/` menangani konfigurasi, GROQ projection, normalisasi artikel, validasi slug dan tanggal, referensi gambar Sanity, escaping HTML, URL aman, rendering Portable Text, dan cleanup route. Data opsional mendapat fallback yang aman. SEO title menggunakan judul artikel, meta description menggunakan excerpt, Open Graph image menggunakan OG image lalu cover image dan akhirnya aset lokal. `_updatedAt` menjadi modified date. Artikel indexable dengan field kritis yang hilang menggagalkan build; connection-test merupakan pengecualian terdokumentasi untuk cover image.
+
+Generator menulis HTML statis ke `blog/index.html` dan `blog/{slug}/index.html`. Output dan `.blog-generated-manifest.json` disimpan di Git agar static hosting saat ini tidak membutuhkan perubahan build production. Manifest menyimpan hanya slug dan document ID yang dimiliki generator. Saat regenerasi, cleanup hanya menghapus folder slug yang tercatat pada manifest lama tetapi tidak ada pada output baru; path harus berupa slug tervalidasi dan anak langsung folder `blog`. Halaman atau aset manual yang tidak tercatat tidak pernah dihapus.
+
+Portable Text dirender saat build dan mendukung paragraf, H2–H4, bold, italic, bullet/numbered list, blockquote, external link, internal Blog reference, serta gambar dengan alt text dan caption. Semua teks dan atribut di-escape, protokol link dibatasi, raw HTML/iframe/script tidak dirender, dan external link bertab baru menggunakan `noopener noreferrer`.
+
+`js/main.js` memiliki gate minimal `data-static-blog="true"` agar runtime bersama tidak menimpa HTML hasil generator. Header, footer, GTM, dan bahasa Indonesia tetap memakai sistem website saat ini. Listing tetap `noindex, follow`, tidak masuk navigasi atau sitemap, dan connection-test tidak masuk listing, featured, atau related selection.
+
+Perintah dari root repository:
+
+```powershell
+npm run verify:sanity
+npm run build:blog
+npm run validate:blog
+npm run validate:phase2
+npm run validate:editorial
+npm run serve:static
+```
+
+Phase A belum mengubah pipeline Vercel, navigasi, sitemap, atau deployment production. Inkonsistensi global hostname `www`/non-`www` tetap menjadi blocker produksi yang harus diselesaikan pada fase berikutnya; generator mengikuti convention canonical saat ini, yaitu `https://conscioustravel.id`.
+
+Pekerjaan Phase B yang ditunda: final Blog dan article design, image optimization treatment, featured/latest visual presentation, related articles, Article JSON-LD, Breadcrumb JSON-LD, sitemap integration, navigation activation, full responsive QA, dan accessibility refinement.
