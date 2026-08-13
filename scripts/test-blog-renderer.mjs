@@ -1,4 +1,4 @@
-import {normalizeSlug} from './lib/blog-normalize.mjs'
+import {normalizeSlug,sanityImageUrl} from './lib/blog-normalize.mjs'
 import {renderPortableText} from './lib/portable-text.mjs'
 
 const body=[
@@ -17,6 +17,7 @@ const checks=[
   [html.includes('<ul>')&&html.includes('<strong>Satu</strong>')&&html.includes('<em>Dua</em>'),'List atau marks gagal'],
   [!html.includes('<script>'),'Block tidak didukung dirender'],
   [normalizeSlug('artikel-aman')==='artikel-aman'&&!normalizeSlug('../bahaya')&&!normalizeSlug('Huruf-Besar'),'Validasi slug gagal'],
+  [sanityImageUrl({asset:{_ref:'image-abc123-1200x800-webp'}})==='https://cdn.sanity.io/images/7k96ai2c/production/abc123-1200x800.webp','Sanity image URL gagal mempertahankan dimensi asset'],
 ]
 const failure=checks.find(([ok])=>!ok)
 if(failure)throw new Error(failure[1])
