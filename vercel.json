@@ -6,7 +6,12 @@
   "headers": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "staging.conscioustravel.id" }],
+      "has": [
+        {
+          "type": "host",
+          "value": { "eq": "staging.conscioustravel.id" }
+        }
+      ],
       "headers": [
         {
           "key": "X-Robots-Tag",
