@@ -56,7 +56,7 @@ for (const routeFile of [...routeFiles, "blog/index.html"]) {
 }
 
 const blogHtml = read("blog/index.html");
-check(/<meta\s+name="robots"\s+content="noindex, follow">/i.test(blogHtml), "Blog must use noindex, follow");
+check(/<meta\s+name="robots"\s+content="index, follow">/i.test(blogHtml), "Blog must use index, follow");
 check(/<html\s+lang="id">/i.test(blogHtml), "Blog must default to Bahasa Indonesia");
 
 const catalog = JSON.parse(read("data/product-catalog.json"));
@@ -150,7 +150,8 @@ const sitemap = read("sitemap.xml");
 for (const route of expectedRoutes) {
   check(sitemap.includes(`<loc>https://conscioustravel.id${route}</loc>`), `Sitemap missing ${route}`);
 }
-check(!sitemap.includes("/blog/"), "Blog must not be in sitemap");
+check(sitemap.includes(`<loc>https://conscioustravel.id/blog/</loc>`), "Blog listing must be in sitemap");
+check(!sitemap.includes("/blog/sanity-cms-connection-test/"), "Connection test must not be in sitemap");
 check(!sitemap.includes("/company-outing"), "Legacy route must not be in sitemap");
 
 const vercel = JSON.parse(read("vercel.json"));
@@ -168,7 +169,8 @@ for (const legacyRuntimeFile of ["data/packages.json", "data/experiences.json", 
 }
 check(!read("data/content.js").includes("/company-outing"), "Shared content still links to /company-outing");
 check(!read("js/main.js").includes("/company-outing"), "Runtime still links to /company-outing");
-check(!read("data/content.js").includes('blog: "Blog"'), "Blog must not appear in navigation labels");
+check(read("data/content.js").includes('blog: "Blog"'), "Blog navigation label is missing");
+check(read("js/main.js").includes('href="/blog/"'), "Blog navigation link is missing");
 
 if (failures.length) {
   console.error(`Phase 2 validation failed (${failures.length}):`);

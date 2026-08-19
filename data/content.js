@@ -54,6 +54,7 @@ window.CT_CONTENT = {
       experiences: "Experiences",
       study: "Study Tour",
       sailing: "Sailing Package",
+      blog: "Blog",
       about: "About",
       contact: "Contact",
       corporateItems: [
@@ -406,6 +407,7 @@ window.CT_CONTENT = {
       experiences: "Experiences",
       study: "Study Tour",
       sailing: "Sailing Package",
+      blog: "Blog",
       about: "About",
       contact: "Contact",
       corporateItems: [

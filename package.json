@@ -1,0 +1,13 @@
+{
+  "name": "conscioustravel-static-site",
+  "private": true,
+  "scripts": {
+    "build": "npm run verify:sanity && npm run build:blog && npm run validate:blog && npm run validate:phase2 && npm run validate:editorial",
+    "verify:sanity": "node sanity-studio/scripts/verify-sanity-connection.mjs",
+    "build:blog": "node scripts/build-blog.mjs",
+    "validate:blog": "node scripts/validate-blog.mjs && node scripts/test-blog-renderer.mjs && node scripts/test-blog-select.mjs && node scripts/test-blog-cleanup.mjs",
+    "serve:static": "node scripts/serve-static.mjs",
+    "validate:phase2": "node scripts/validate-phase2.js",
+    "validate:editorial": "node scripts/validate-editorial-refinement.js"
+  }
+}

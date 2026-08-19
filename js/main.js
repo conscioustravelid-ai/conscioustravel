@@ -208,6 +208,7 @@ function renderHeader() {
         <a href="/experiences/"${isActive("/experiences") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.experiences)}</a>
         <a href="/study-tour/"${isActive("/study-tour") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.study)}</a>
         <a href="/sailing-package/"${isActive("/sailing-package") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.sailing)}</a>
+        <a href="/blog/"${isActive("/blog") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.blog)}</a>
         ${dropdown("about-menu", c.nav.about, c.nav.aboutItems, ["/about/", "/impact/", "/faq/"].includes(currentPath))}
         <a href="/contact/"${isActive("/contact") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.contact)}</a>
         <div class="nav-actions">
@@ -246,6 +247,7 @@ function renderFooter() {
         <a href="/about/">${escapeHtml(c.nav.aboutItems[0][0])}</a>
         <a href="/impact/">${escapeHtml(c.nav.aboutItems[1][0])}</a>
         <a href="/faq/">FAQ</a>
+        <a href="/blog/">${escapeHtml(c.nav.blog)}</a>
         <a href="/contact/">${escapeHtml(c.nav.contact)}</a>
         <a href="${whatsappUrl("general")}" target="_blank" rel="noopener" data-wa-key="general">WhatsApp</a>
         <a href="/contact/#inquiry">${escapeHtml(c.footer.inquiry)}</a>
@@ -791,7 +793,9 @@ function renderPage() {
     contact: renderContact,
     blog: renderBlog
   };
-  root.innerHTML = (renderers[page] || renderHome)();
+  if (document.body.dataset.staticBlog !== "true") {
+    root.innerHTML = (renderers[page] || renderHome)();
+  }
   document.documentElement.lang = CT_STATE.language;
 }
 
