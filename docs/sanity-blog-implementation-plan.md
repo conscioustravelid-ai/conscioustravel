@@ -99,3 +99,15 @@ Listing menampilkan hero editorial, artikel featured (atau artikel terbaru sebag
 Setiap route mempertahankan title, description, canonical non-`www`, Open Graph, dan Twitter Card. Route artikel juga menghasilkan `Article` serta `BreadcrumbList` JSON-LD build-time. Root command `npm run build` menjalankan connection check, generator, validator Blog, serta validator website yang sudah ada. `npm run validate:blog` mencakup keamanan renderer, aturan seleksi artikel, cleanup ownership, manifest, structured data, dan sitemap.
 
 Output HTML, manifest, dan sitemap tetap disimpan di Git. Konfigurasi deployment (`vercel.json` maupun Deploy Hook) sengaja belum diubah sampai checkpoint staging; pipeline deployment harus menjalankan root `npm run build` atau menerima output hasil build yang sudah di-commit. Canonical production saat ini secara konsisten memakai `https://conscioustravel.id`; redirect hostname `www` ke non-`www` harus dikonfirmasi pada checkpoint staging sebelum launch production.
+
+## Phase C1 — Vercel Build dan Staging
+
+Vercel menjalankan `npm run build` dari root repository dan melayani output statis langsung dari `.`. Konfigurasi ini disimpan di `vercel.json` melalui `buildCommand` dan `outputDirectory`, sehingga deployment tidak bergantung pada override build dashboard. Install standar Vercel tetap digunakan; root project tidak memiliki dependency runtime maupun build tambahan.
+
+Root build memverifikasi koneksi public Sanity, menjalankan generator Blog, lalu menjalankan validator Blog, Phase 2, dan editorial. Published query menggunakan konfigurasi non-secret terpusat: Project ID `7k96ai2c`, dataset `production`, API version `2026-07-30`, dan perspective `published`. Tidak diperlukan Sanity token atau environment variable rahasia. Build mengembalikan exit code non-zero bila Content Lake tidak dapat diakses, data artikel kritis tidak valid, generator gagal, atau validator gagal; zero indexable article tetap merupakan kondisi valid dan menghasilkan intentional empty state.
+
+Workflow staging adalah push/merge ke branch `staging`, menunggu Vercel Git deployment, lalu memeriksa `https://staging.conscioustravel.id`. Header berbasis host di `vercel.json` wajib mempertahankan `X-Robots-Tag: noindex, nofollow` secara global pada staging, meskipun metadata `/blog/` adalah production-intended `index, follow`. Output generated tetap mencakup `blog/index.html`, route artikel, `.blog-generated-manifest.json`, dan kontribusi Blog pada `sitemap.xml`; cleanup hanya menyentuh route yang dimiliki manifest.
+
+Kondisi CMS saat checkpoint C1 masih nol artikel indexable, sehingga listing menampilkan empty state dan sitemap hanya memuat `/blog/`. Connection-test tetap direct-access, `noindex, follow`, dan dikeluarkan dari listing, featured, related, serta sitemap.
+
+Blocker sebelum production: verifikasi GTM Preview/GA4, konfirmasi redirect hostname production, first real article populated-state QA, dan publishing automation. Deploy Hook serta Sanity Webhook sengaja belum dibuat dan menjadi pekerjaan Phase C2.
