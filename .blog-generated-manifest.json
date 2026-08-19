@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "projectId": "7k96ai2c",
   "dataset": "production",
   "apiVersion": "2026-07-30",
@@ -7,6 +7,7 @@
   "generatedSlugs": [
     "sanity-cms-connection-test"
   ],
+  "indexableSlugs": [],
   "sourceDocumentIds": [
     "post-sanity-cms-connection-test"
   ]

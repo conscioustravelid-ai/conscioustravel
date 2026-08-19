@@ -2,7 +2,7 @@
 
 ## Architecture
 
-ConsciousTravel remains an existing static HTML, CSS, and JavaScript website. Sanity Content Lake stores structured blog content in the public `production` dataset, while the standalone Sanity Studio in `/sanity-studio` provides the editorial interface. A future phase will generate static blog listing and article HTML from published Content Lake data and connect that generation to a Vercel publishing workflow. This phase does not alter the public Blog placeholder.
+ConsciousTravel remains an existing static HTML, CSS, and JavaScript website. Sanity Content Lake stores structured blog content in the public `production` dataset, while the standalone Sanity Studio in `/sanity-studio` provides the editorial interface. Published content is converted into committed static listing and article HTML by the root build workflow.
 
 ## Current configuration
 
@@ -59,14 +59,8 @@ The `production` dataset is public, so published documents can be queried withou
 
 The following are not implemented in this phase:
 
-- frontend `/blog`
-- article detail route
-- Portable Text rendering on the website
-- SEO metadata generation
-- Article and Breadcrumb schema
-- blog sitemap
-- related article frontend
 - Vercel Deploy Hook
+- deployment configuration changes
 - draft preview
 - scheduled publishing
 - multilingual articles
@@ -81,7 +75,7 @@ Generator menulis HTML statis ke `blog/index.html` dan `blog/{slug}/index.html`.
 
 Portable Text dirender saat build dan mendukung paragraf, H2–H4, bold, italic, bullet/numbered list, blockquote, external link, internal Blog reference, serta gambar dengan alt text dan caption. Semua teks dan atribut di-escape, protokol link dibatasi, raw HTML/iframe/script tidak dirender, dan external link bertab baru menggunakan `noopener noreferrer`.
 
-`js/main.js` memiliki gate minimal `data-static-blog="true"` agar runtime bersama tidak menimpa HTML hasil generator. Header, footer, GTM, dan bahasa Indonesia tetap memakai sistem website saat ini. Listing tetap `noindex, follow`, tidak masuk navigasi atau sitemap, dan connection-test tidak masuk listing, featured, atau related selection.
+`js/main.js` memiliki gate minimal `data-static-blog="true"` agar runtime bersama tidak menimpa HTML hasil generator. Header, footer, GTM, dan bahasa Indonesia tetap memakai sistem website saat ini. Pada Phase A listing masih `noindex, follow`; ketentuan tersebut digantikan oleh konfigurasi launch Phase B di bawah.
 
 Perintah dari root repository:
 
@@ -94,6 +88,14 @@ npm run validate:editorial
 npm run serve:static
 ```
 
-Phase A belum mengubah pipeline Vercel, navigasi, sitemap, atau deployment production. Inkonsistensi global hostname `www`/non-`www` tetap menjadi blocker produksi yang harus diselesaikan pada fase berikutnya; generator mengikuti convention canonical saat ini, yaitu `https://conscioustravel.id`.
+Phase A belum mengubah pipeline Vercel, navigasi, sitemap, atau deployment production. Generator mengikuti convention canonical saat ini, yaitu `https://conscioustravel.id`.
 
-Pekerjaan Phase B yang ditunda: final Blog dan article design, image optimization treatment, featured/latest visual presentation, related articles, Article JSON-LD, Breadcrumb JSON-LD, sitemap integration, navigation activation, full responsive QA, dan accessibility refinement.
+## Phase B — Blog Launch MVP
+
+Phase B mengaktifkan `/blog/` sebagai halaman `index, follow`, menambahkan Blog ke navigasi utama dan footer, serta memasukkan listing dan setiap artikel published yang indexable ke `sitemap.xml`. Connection-test dan post berstatus `noindex` tetap dikeluarkan dari listing, featured/latest, related, dan sitemap; direct route-nya tetap tersedia sebagai `noindex, follow` untuk pengecekan integrasi.
+
+Listing menampilkan hero editorial, artikel featured (atau artikel terbaru sebagai fallback), latest articles, kategori, empty state, dan CTA. Detail artikel mencakup breadcrumb, metadata, cover image responsif, Portable Text, profil author, related article eksplisit dengan fallback kategori hingga tiga item, dan CTA. Semua gambar Sanity memakai transformasi CDN, `srcset`, dimensi intrinsik bila tersedia, lazy loading di bawah fold, dan posisi hotspot.
+
+Setiap route mempertahankan title, description, canonical non-`www`, Open Graph, dan Twitter Card. Route artikel juga menghasilkan `Article` serta `BreadcrumbList` JSON-LD build-time. Root command `npm run build` menjalankan connection check, generator, validator Blog, serta validator website yang sudah ada. `npm run validate:blog` mencakup keamanan renderer, aturan seleksi artikel, cleanup ownership, manifest, structured data, dan sitemap.
+
+Output HTML, manifest, dan sitemap tetap disimpan di Git. Konfigurasi deployment (`vercel.json` maupun Deploy Hook) sengaja belum diubah sampai checkpoint staging; pipeline deployment harus menjalankan root `npm run build` atau menerima output hasil build yang sudah di-commit. Canonical production saat ini secara konsisten memakai `https://conscioustravel.id`; redirect hostname `www` ke non-`www` harus dikonfirmasi pada checkpoint staging sebelum launch production.

@@ -8,3 +8,4 @@ export const ALL_PUBLISHED_POSTS_QUERY = `*[${filter}]|order(publishedAt desc,_u
 export const BLOG_LISTING_QUERY = `*[${filter}&&noindex!=true&&_id!=$connectionTestId]|order(publishedAt desc,_updatedAt desc)${POST_PROJECTION}`
 export const ARTICLE_DETAIL_QUERY = `*[${filter}&&slug.current==$slug][0]${POST_PROJECTION}`
 export const CONNECTION_TEST_QUERY = `*[${filter}&&_id==$connectionTestId][0]${POST_PROJECTION}`
+export const ALL_CATEGORIES_QUERY = `*[_type=="category"&&!(_id in path("drafts.**"))&&defined(name)&&defined(slug.current)]|order(name asc){_id,name,"slug":slug.current,description}`
