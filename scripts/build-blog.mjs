@@ -4,7 +4,7 @@ import {fileURLToPath} from 'node:url'
 import {ALL_CATEGORIES_QUERY, ALL_PUBLISHED_POSTS_QUERY} from './lib/blog-queries.mjs'
 import {sanityQuery} from './lib/sanity-client.mjs'
 import {normalizePost} from './lib/blog-normalize.mjs'
-import {eligiblePosts, selectFeatured, selectLatest, selectRelated} from './lib/blog-select.mjs'
+import {eligiblePosts, routablePosts, selectFeatured, selectLatest, selectRelated} from './lib/blog-select.mjs'
 import {cleanupGeneratedRoutes} from './lib/blog-cleanup.mjs'
 import {escapeAttribute, escapeHtml, safeJson} from './lib/html-utils.mjs'
 import {renderPortableText} from './lib/portable-text.mjs'
@@ -107,8 +107,9 @@ async function updateSitemap(posts) {
 async function build() {
   const [rawPosts, rawCategories] = await Promise.all([sanityQuery(ALL_PUBLISHED_POSTS_QUERY), sanityQuery(ALL_CATEGORIES_QUERY)])
   if (!Array.isArray(rawPosts) || !Array.isArray(rawCategories)) throw new Error('Sanity tidak mengembalikan data Blog yang diharapkan.')
-  const posts = rawPosts.map(normalizePost)
-  if (!posts.some((post) => post.id === CONNECTION_TEST_ID)) throw new Error('Connection-test post tidak ditemukan pada published perspective.')
+  const normalizedPosts = rawPosts.map(normalizePost)
+  const posts = routablePosts(normalizedPosts, new Date())
+  if (!normalizedPosts.some((post) => post.id === CONNECTION_TEST_ID)) throw new Error('Connection-test post tidak ditemukan pada published perspective.')
   const slugs = posts.map((post) => post.slug)
   if (new Set(slugs).size !== slugs.length) throw new Error('Slug artikel duplikat ditemukan.')
   const categories = rawCategories.map((category) => ({id:category._id,name:String(category.name).trim(),slug:String(category.slug).trim(),description:typeof category.description==='string'?category.description.trim():''}))
@@ -123,6 +124,8 @@ async function build() {
   console.log(`Blog build berhasil: /blog/ + ${posts.length} route artikel (${publicPosts.length} indexable).`)
   for (const slug of [...slugs].sort()) console.log(`- /blog/${slug}/`)
   if (removed.length) console.log(`Route stale dihapus: ${removed.join(', ')}`)
+  const futureCount = normalizedPosts.length - posts.length
+  if (futureCount) console.log(`${futureCount} artikel bertanggal masa depan tidak dibuatkan route.`)
 }
 
 build().catch((error) => { console.error(`Blog build gagal: ${error.message}`); process.exitCode=1 })

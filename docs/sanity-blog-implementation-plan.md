@@ -154,3 +154,19 @@ Jika artikel published tidak berubah di staging:
 11. Eskalasikan kegagalan webhook yang berulang; MVP ini tidak menggunakan custom webhook server.
 
 Staging wajib mempertahankan `X-Robots-Tag: noindex, nofollow` pada seluruh request host `staging.conscioustravel.id`. Dependency Sanity tidak diubah sebagai bagian dari automation closure; audit dan upgrade tetap merupakan pekerjaan keamanan terpisah.
+
+## Phase D3A — Publish Now Workflow
+
+Sanity Studio mengganti built-in Publish khusus dokumen `post` dengan action **Publish Now** melalui Document Actions API resmi. Saat publish, helper deterministik menerapkan aturan berikut:
+
+- `publishedAt` kosong atau tidak valid → waktu publish saat ini;
+- `publishedAt` berada di masa depan → waktu publish saat ini;
+- `publishedAt` sama dengan atau lebih lama dari waktu publish → dipertahankan, termasuk saat republish.
+
+Field **Publication Date** bersifat read-only dan menjelaskan aturan tersebut kepada editor. Validasi required pada field ini sengaja dihapus agar draft baru dapat disiapkan sebelum action mengisinya secara atomik dalam antrean operasi Sanity. Field konten wajib lainnya tetap divalidasi oleh Studio.
+
+Generator juga memfilter dokumen published bertanggal masa depan sebelum membuat route, listing, related article, manifest, atau sitemap. Semua dokumen tetap dinormalisasi lebih dulu agar published document dengan data kritis tidak valid tetap menggagalkan build. Tes helper Publish Now dan future-date routing menjadi bagian dari `npm run validate:blog`.
+
+Workflow ini adalah MVP **publish segera**. Scheduling, custom scheduling UI, perubahan webhook, dan deployment production tetap ditunda sampai fase post-launch yang disetujui terpisah.
+
+Future enhancement: evaluasi **Sanity Scheduled Drafts** untuk scheduled publishing yang sesungguhnya. Arsitektur masa depan harus memastikan tidak ada deployment ketika editor masih mengedit atau menjadwalkan; waktu terjadwal menghasilkan published mutation; published mutation memicu tepat satu rebuild; `datePublished` benar; serta draft dan version tetap dikecualikan dari webhook kecuali arsitektur baru yang telah diuji secara eksplisit membutuhkannya.

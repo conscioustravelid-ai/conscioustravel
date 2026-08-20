@@ -86,10 +86,11 @@ export const postType = defineType({
     }),
     defineField({
       name: 'publishedAt',
-      title: 'Published date',
+      title: 'Publication date',
       type: 'datetime',
       group: 'content',
-      validation: (rule) => rule.required(),
+      readOnly: true,
+      description: 'Diatur otomatis saat artikel pertama kali menggunakan Publish Now. Field ini bukan fitur penjadwalan artikel.',
     }),
     defineField({
       name: 'body',
