@@ -49,7 +49,7 @@ Seed IDs use deterministic hyphenated values (for example, `author-conscious-tea
 - **Category** contains a name, slug, and concise description.
 - **Block content** supports paragraphs, H2–H4 headings, quotes, bold, italic, bullet and numbered lists, external links with an optional new-tab setting, internal post references, and article images with required alt text and optional captions.
 
-The connection-test post intentionally has no cover image because it is test-only seed data. Normal editor-created posts retain required cover-image validation.
+Connection-test merupakan pengecualian test-only terhadap validasi cover image sehingga tetap dapat dibangun bila tidak memiliki cover. Saat cover tersedia, generator tetap memprosesnya seperti gambar Sanity normal. Artikel publik buatan editor selalu memakai validasi cover image dan alt text wajib.
 
 ## Security
 
@@ -57,10 +57,8 @@ The `production` dataset is public, so published documents can be queried withou
 
 ## Deferred work
 
-The following are not implemented in this phase:
+The following remain outside the current MVP:
 
-- Vercel Deploy Hook
-- deployment configuration changes
 - draft preview
 - scheduled publishing
 - multilingual articles
@@ -110,4 +108,49 @@ Workflow staging adalah push/merge ke branch `staging`, menunggu Vercel Git depl
 
 Kondisi CMS saat checkpoint C1 masih nol artikel indexable, sehingga listing menampilkan empty state dan sitemap hanya memuat `/blog/`. Connection-test tetap direct-access, `noindex, follow`, dan dikeluarkan dari listing, featured, related, serta sitemap.
 
-Blocker sebelum production: verifikasi GTM Preview/GA4, konfirmasi redirect hostname production, first real article populated-state QA, dan publishing automation. Deploy Hook serta Sanity Webhook sengaja belum dibuat dan menjadi pekerjaan Phase C2.
+Blocker sebelum production: verifikasi GTM Preview/GA4, konfirmasi redirect hostname production, dan first real article populated-state QA.
+
+## Phase C2 — Publishing Automation
+
+Arsitektur publishing yang telah diverifikasi:
+
+```text
+Sanity Studio
+→ Published document mutation
+→ Sanity Webhook
+→ private Vercel staging Deploy Hook
+→ Vercel deployment
+→ npm run build
+→ published Sanity query
+→ static Blog regeneration
+→ staging.conscioustravel.id
+```
+
+Webhook bernama **Vercel Staging Blog Rebuild** memantau dataset `production` dengan metode `POST`. Event yang dipantau adalah Create, Update, dan Delete, dengan filter `_type in ["post", "author", "category"]`. Draft events dan version events dinonaktifkan. Destination adalah private Vercel staging Deploy Hook; URL aktualnya tidak boleh disimpan di repository, dokumentasi, `.env.example`, log, atau commit message.
+
+### Perilaku terverifikasi
+
+- **Draft:** mengedit dokumen published membuat draft, tetapi tidak memicu webhook atau deployment.
+- **Publish/update:** Publish memicu webhook, deployment Vercel staging, `npm run build`, dan pembaruan HTML statis dari published Content Lake. Konten terbaru kemudian terlihat di staging.
+- **Content-only update:** tidak memerlukan commit Git. Deployment Hook selalu membangun branch `staging` dengan data published terbaru.
+- **Unpublish/delete:** mutasi published diharapkan memicu rebuild; manifest dan stale-route cleanup akan menghapus route artikel obsolete yang sebelumnya dimiliki generator. Pengujian riil terakhir dapat dilakukan saat connection-test dibersihkan sebelum production.
+
+Zero artikel indexable tetap merupakan kondisi valid. Listing menampilkan empty state, `/blog/` tetap ada di sitemap, dan connection-test tetap direct-access tetapi dikeluarkan dari listing, featured, related, serta sitemap.
+
+### Pemulihan kegagalan publishing
+
+Jika artikel published tidak berubah di staging:
+
+1. Pastikan dokumen benar-benar berstatus **Published** di Sanity.
+2. Periksa status **Noindex** bila artikel tidak muncul di listing.
+3. Buka **Attempts Log** pada webhook Sanity dan pastikan respons sukses/2xx.
+4. Buka Vercel Deployments dan pastikan deployment baru tercipta.
+5. Pastikan deployment mencapai status **Ready**.
+6. Jika gagal, periksa Vercel build logs tanpa menyalin Deploy Hook URL.
+7. Jalankan lokal `npm run verify:sanity`.
+8. Jalankan `npm run build`.
+9. Jalankan `npm run validate:blog`.
+10. Bila perlu, lakukan safe manual staging redeployment melalui mekanisme project yang sudah disetujui.
+11. Eskalasikan kegagalan webhook yang berulang; MVP ini tidak menggunakan custom webhook server.
+
+Staging wajib mempertahankan `X-Robots-Tag: noindex, nofollow` pada seluruh request host `staging.conscioustravel.id`. Dependency Sanity tidak diubah sebagai bagian dari automation closure; audit dan upgrade tetap merupakan pekerjaan keamanan terpisah.
