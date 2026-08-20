@@ -1,5 +1,14 @@
 import {CONNECTION_TEST_ID} from './sanity-config.mjs'
 
+export function routablePosts(posts, now = new Date()) {
+  const cutoff = now instanceof Date ? now.getTime() : Date.parse(now)
+  if (!Number.isFinite(cutoff)) throw new Error('Waktu build Blog tidak valid.')
+  return posts.filter((post) => {
+    const publishedAt = Date.parse(post.publishedAt)
+    return Number.isFinite(publishedAt) && publishedAt <= cutoff
+  })
+}
+
 export function eligiblePosts(posts) {
   return posts.filter((post) => !post.noindex && !post.isConnectionTest && post.id !== CONNECTION_TEST_ID)
 }

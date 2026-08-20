@@ -20,7 +20,7 @@ Dokumen yang masih draft tidak tampil pada website publik.
 6. Isi **Cover Image Alt Text** dengan deskripsi gambar yang membantu pembaca dan aksesibilitas. Jangan menulis “gambar” atau nama file saja.
 7. Pilih **Author** dan **Category** yang sesuai.
 8. Tambahkan **Tags** seperlunya. Hindari tag yang berulang atau tidak relevan.
-9. Isi **Published Date** dengan tanggal publikasi yang benar.
+9. Periksa **Publication Date**. Field ini read-only dan akan diisi otomatis ketika artikel diterbitkan.
 10. Tulis konten pada **Article Body**.
 
 Sebelum review, pastikan semua field wajib sudah terisi dan gambar memiliki alt text.
@@ -73,18 +73,26 @@ Artikel publik normal umumnya menggunakan **Noindex OFF**. Gunakan Noindex hanya
 
 Pilih hanya artikel yang benar-benar membantu pembaca melanjutkan topik. Sistem saat ini menampilkan maksimum tiga rekomendasi. Hindari cross-link ke artikel yang tidak relevan. Jika pilihan eksplisit belum mencapai tiga, sistem dapat melengkapi rekomendasi dari kategori yang sama.
 
-## H. Alur Kerja
+## H. Publish Now
 
 ```text
-Draft → Internal Review → Publish
+Draft → Internal Review → Publish Now
 ```
 
-1. Simpan pekerjaan sebagai draft.
-2. Minta review judul, isi, gambar, link, SEO, dan status Noindex.
-3. Perbaiki catatan review pada draft.
-4. Klik **Publish** hanya setelah disetujui.
+Untuk artikel yang akan online segera:
 
-Menyimpan draft tidak memicu rebuild website. Publish memicu rebuild staging secara otomatis melalui webhook.
+1. Selesaikan Draft.
+2. Review konten dan SEO.
+3. Konfirmasi status Featured dan Noindex.
+4. Klik **Publish Now**.
+5. Publication Date ditangani otomatis.
+6. Publishing memicu rebuild website.
+7. Tunggu deployment selesai.
+8. Verifikasi artikel online.
+
+**Publish Now** mengisi Publication Date dengan waktu saat ini jika field masih kosong atau berisi tanggal masa depan. Jika artikel pernah diterbitkan, tanggal publikasi pertamanya dipertahankan. Menyimpan draft tidak memicu rebuild website; Publish Now memicu rebuild staging secara otomatis melalui webhook.
+
+**Jangan gunakan Publication Date sebagai alat penjadwalan manual.** Scheduled publication belum menjadi bagian dari workflow launch saat ini. Artikel akan diterbitkan segera dan tanggal masa depan akan dinormalisasi ke waktu publish.
 
 ## I. Setelah Publish
 
@@ -103,10 +111,10 @@ Staging memang dilindungi dari indexing dan digunakan untuk review sebelum produ
 1. Buka artikel published.
 2. Lakukan perubahan; Sanity membuat draft baru.
 3. Minta internal review.
-4. Klik **Publish** lagi.
+4. Klik **Publish Now** lagi.
 5. Tunggu deployment otomatis dan periksa hasil terbaru di staging.
 
-Draft perubahan tidak menggantikan versi published sampai tombol Publish ditekan.
+Draft perubahan tidak menggantikan versi published sampai tombol Publish Now ditekan. Republish tidak mengubah Publication Date awal.
 
 ## K. Unpublish
 
@@ -120,7 +128,7 @@ Setelah deployment Ready, pastikan artikel tidak lagi muncul pada listing atau s
 
 - Pastikan artikel sudah Published, bukan hanya draft.
 - Pastikan Noindex OFF.
-- Pastikan Title, Slug, Excerpt, Cover Image, Alt Text, Author, Category, Published Date, dan Body terisi.
+- Pastikan Title, Slug, Excerpt, Cover Image, Alt Text, Author, Category, dan Body terisi. Publication Date diisi otomatis saat Publish Now.
 - Tunggu deployment mencapai Ready.
 
 ### Artikel masih menampilkan konten lama
