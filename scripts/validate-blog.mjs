@@ -65,6 +65,11 @@ try {
   check(/<meta name="robots" content="index, follow">/i.test(listing), 'Listing Blog harus index, follow')
   check(!listing.includes(CONNECTION_TEST_SLUG), 'Connection-test muncul di listing')
   check(/blog-categories/.test(listing) && /blog-cta/.test(listing), 'Kategori atau CTA listing hilang')
+  check(/<h1>Conscious Travel Journal<\/h1>/.test(listing), 'H1 editorial ringkas listing hilang')
+  check((listing.match(/class="blog-featured-card"/g) || []).length <= 1, 'Featured Article terduplikasi')
+  check(/class="blog-section-heading blog-listing-heading"/.test(listing), 'Heading listing ringkas hilang')
+  check(/<ul aria-label="Kategori Blog">/.test(listing), 'Category chips listing hilang')
+  if (manifest.indexableSlugs.length === 1) check(!/class="section blog-latest"/.test(listing), 'Latest harus disembunyikan ketika tidak ada artikel tambahan')
 
   const test = await validatePage(`blog/${CONNECTION_TEST_SLUG}/index.html`, { article: true })
   check(/<meta name="robots" content="noindex, follow">/i.test(test), 'Connection-test tidak noindex, follow')
