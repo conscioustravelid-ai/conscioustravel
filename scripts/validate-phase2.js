@@ -155,13 +155,11 @@ check(!sitemap.includes("/blog/sanity-cms-connection-test/"), "Connection test m
 check(!sitemap.includes("/company-outing"), "Legacy route must not be in sitemap");
 
 const vercel = JSON.parse(read("vercel.json"));
-const bulkRedirects = JSON.parse(read(vercel.bulkRedirectsPath));
 for (const source of ["/company-outing", "/company-outing/", "/company-trip", "/company-trip/"]) {
-  const redirect = bulkRedirects.find((item) => item.source === source);
+  const redirect = vercel.redirects.find((item) => item.source === source);
   check(redirect?.destination === "/corporate-packages/indonesia-region/", `${source}: redirect is invalid`);
   check(redirect?.permanent === true, `${source}: redirect must be permanent`);
 }
-check(!vercel.redirects.some((item) => item.source.includes("company-outing") || item.source.includes("company-trip")), "Legacy redirects must run before trailing-slash normalization");
 check(vercel.trailingSlash === true, "Vercel must normalize public routes to trailing slashes");
 check(!vercel.redirects.some((item) => item.source.includes("study-tour")), "Study Tour must not redirect");
 
