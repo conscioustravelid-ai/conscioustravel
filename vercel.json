@@ -48,6 +48,16 @@
       "permanent": true
     },
     {
+      "source": "/corporate-trip",
+      "destination": "/corporate-packages/indonesia-region/",
+      "permanent": true
+    },
+    {
+      "source": "/corporate-trip/",
+      "destination": "/corporate-packages/indonesia-region/",
+      "permanent": true
+    },
+    {
       "source": "/bali/",
       "destination": "/",
       "permanent": true

@@ -155,7 +155,7 @@ check(!sitemap.includes("/blog/sanity-cms-connection-test/"), "Connection test m
 check(!sitemap.includes("/company-outing"), "Legacy route must not be in sitemap");
 
 const vercel = JSON.parse(read("vercel.json"));
-for (const source of ["/company-outing", "/company-outing/", "/company-trip", "/company-trip/"]) {
+for (const source of ["/company-outing", "/company-outing/", "/company-trip", "/company-trip/", "/corporate-trip", "/corporate-trip/"]) {
   const redirect = vercel.redirects.find((item) => item.source === source);
   check(redirect?.destination === "/corporate-packages/indonesia-region/", `${source}: redirect is invalid`);
   check(redirect?.permanent === true, `${source}: redirect must be permanent`);
