@@ -1,0 +1,22 @@
+[
+  {
+    "source": "/company-outing",
+    "destination": "/corporate-packages/indonesia-region/",
+    "permanent": true
+  },
+  {
+    "source": "/company-outing/",
+    "destination": "/corporate-packages/indonesia-region/",
+    "permanent": true
+  },
+  {
+    "source": "/company-trip",
+    "destination": "/corporate-packages/indonesia-region/",
+    "permanent": true
+  },
+  {
+    "source": "/company-trip/",
+    "destination": "/corporate-packages/indonesia-region/",
+    "permanent": true
+  }
+]
