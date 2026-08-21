@@ -8,7 +8,7 @@ import {eligiblePosts, routablePosts, selectFeatured, selectLatest, selectRelate
 import {cleanupGeneratedRoutes} from './lib/blog-cleanup.mjs'
 import {escapeAttribute, escapeHtml, safeJson} from './lib/html-utils.mjs'
 import {renderPortableText} from './lib/portable-text.mjs'
-import {CONNECTION_TEST_ID, SANITY_CONFIG, SITE_ORIGIN} from './lib/sanity-config.mjs'
+import {SANITY_CONFIG, SITE_ORIGIN} from './lib/sanity-config.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const blogRoot = path.join(root, 'blog')
@@ -109,7 +109,6 @@ async function build() {
   if (!Array.isArray(rawPosts) || !Array.isArray(rawCategories)) throw new Error('Sanity tidak mengembalikan data Blog yang diharapkan.')
   const normalizedPosts = rawPosts.map(normalizePost)
   const posts = routablePosts(normalizedPosts, new Date())
-  if (!normalizedPosts.some((post) => post.id === CONNECTION_TEST_ID)) throw new Error('Connection-test post tidak ditemukan pada published perspective.')
   const slugs = posts.map((post) => post.slug)
   if (new Set(slugs).size !== slugs.length) throw new Error('Slug artikel duplikat ditemukan.')
   const categories = rawCategories.map((category) => ({id:category._id,name:String(category.name).trim(),slug:String(category.slug).trim(),description:typeof category.description==='string'?category.description.trim():''}))
