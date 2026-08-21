@@ -133,9 +133,9 @@ Webhook bernama **Vercel Staging Blog Rebuild** memantau dataset `production` de
 - **Draft:** mengedit dokumen published membuat draft, tetapi tidak memicu webhook atau deployment.
 - **Publish/update:** Publish memicu webhook, deployment Vercel staging, `npm run build`, dan pembaruan HTML statis dari published Content Lake. Konten terbaru kemudian terlihat di staging.
 - **Content-only update:** tidak memerlukan commit Git. Deployment Hook selalu membangun branch `staging` dengan data published terbaru.
-- **Unpublish/delete:** mutasi published diharapkan memicu rebuild; manifest dan stale-route cleanup akan menghapus route artikel obsolete yang sebelumnya dimiliki generator. Pengujian riil terakhir dapat dilakukan saat connection-test dibersihkan sebelum production.
+- **Unpublish/delete:** mutasi published memicu rebuild; manifest dan stale-route cleanup menghapus route artikel obsolete yang sebelumnya dimiliki generator. Connection-test adalah konten QA infrastruktur sementara dan telah sengaja di-unpublish pada cleanup sebelum production.
 
-Zero artikel indexable tetap merupakan kondisi valid. Listing menampilkan empty state, `/blog/` tetap ada di sitemap, dan connection-test tetap direct-access tetapi dikeluarkan dari listing, featured, related, serta sitemap.
+Zero published post maupun zero artikel indexable merupakan kondisi CMS yang valid. Listing menampilkan empty state dan `/blog/` tetap ada di sitemap. `verify:sanity` memvalidasi koneksi publik, konfigurasi, published perspective, serta foundation author/category tanpa bergantung pada connection-test atau artikel sementara lain.
 
 ### Pemulihan kegagalan publishing
 

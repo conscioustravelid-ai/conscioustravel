@@ -58,6 +58,7 @@ try {
   check(Array.isArray(manifest.indexableSlugs), 'Manifest indexableSlugs tidak valid')
   check(manifest.generatedSlugs.every(normalizeSlug), 'Manifest memuat slug tidak valid')
   check(manifest.indexableSlugs.every((slug) => manifest.generatedSlugs.includes(slug)), 'Manifest indexableSlugs tidak konsisten')
+  check(!manifest.generatedSlugs.includes(CONNECTION_TEST_SLUG), 'Connection-test masih dimiliki generator')
   check(!manifest.indexableSlugs.includes(CONNECTION_TEST_SLUG), 'Connection-test tidak boleh indexable')
   check(!manifest.sourceDocumentIds.some((id) => id.startsWith('drafts.')), 'Draft ditemukan dalam manifest')
 
@@ -71,9 +72,12 @@ try {
   check(/<ul aria-label="Kategori Blog">/.test(listing), 'Category chips listing hilang')
   if (manifest.indexableSlugs.length === 1) check(!/class="section blog-latest"/.test(listing), 'Latest harus disembunyikan ketika tidak ada artikel tambahan')
 
-  const test = await validatePage(`blog/${CONNECTION_TEST_SLUG}/index.html`, { article: true })
-  check(/<meta name="robots" content="noindex, follow">/i.test(test), 'Connection-test tidak noindex, follow')
-  check(!/<img class="blog-cover"[^>]+(?:src=""|undefined|null)/i.test(test), 'Connection-test memiliki cover rusak')
+  try {
+    await access(path.join(blogRoot, CONNECTION_TEST_SLUG, 'index.html'))
+    check(false, 'Route stale connection-test masih tersedia')
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error
+  }
   for (const slug of manifest.generatedSlugs) await validatePage(`blog/${slug}/index.html`, { article: true })
 
   const directories = (await readdir(blogRoot, { withFileTypes: true })).filter((entry) => entry.isDirectory()).map((entry) => entry.name)
