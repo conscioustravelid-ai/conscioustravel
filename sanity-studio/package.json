@@ -1,0 +1,27 @@
+{
+  "name": "conscioustravel-content-studio",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "typecheck": "tsc --noEmit",
+    "seed": "sanity exec scripts/seed.ts --with-user-token",
+    "verify:connection": "node scripts/verify-sanity-connection.mjs"
+  },
+  "dependencies": {
+    "@sanity/vision": "6.7.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "sanity": "6.7.0",
+    "styled-components": "6.4.4"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "typescript": "^7.0.2"
+  }
+}

@@ -3,9 +3,20 @@
   --color-primary: #2D6A4F;
   --color-primary-light: #45C95A;
   --color-primary-dark: #1F4D2B;
-  --color-cream: #F9F5EF;
-  --color-sand: #EBDCC7;
+  --color-primary-deep: #123526;
+  --color-primary-ink: #10271d;
+  --color-cream: #FBF6EC;
+  --color-off-white: #FCFDF9;
+  --color-mist: #EDF4ED;
+  --color-sand: #F1E4D2;
+  --color-sage: #C9DCC7;
+  --color-moss: #79936E;
+  --color-clay: #C97752;
+  --color-clay-soft: #F2D8C9;
+  --color-sky-soft: #DCECF0;
   --color-dark: #1A1A1A;
+  --color-text: #24362d;
+  --color-text-soft: #647269;
   --color-grey: #6B7280;
   --color-grey-light: #E5E7EB;
   --color-white: #FFFFFF;
@@ -15,7 +26,18 @@
   --color-earth: #7A5739;
 
   /* Typography */
+  --font-primary: 'DM Sans', 'Avenir Next', 'Segoe UI', sans-serif;
+  --font-editorial: 'DM Serif Display', 'Iowan Old Style', Baskerville, 'Times New Roman', serif;
   --font-family: 'Plus Jakarta Sans', sans-serif;
+  --type-display: 72px;
+  --type-h1: 56px;
+  --type-h2: 44px;
+  --type-h3: 28px;
+  --type-body-large: 18px;
+  --type-body: 16px;
+  --type-body-small: 14px;
+  --type-eyebrow: 12px;
+  --type-button: 14px;
   --text-xs: 12px;
   --text-sm: 13px;
   --text-base: 15px;
@@ -27,6 +49,13 @@
   --text-4xl: 32px;
   --text-5xl: 40px;
   --text-6xl: 56px;
+  --text-hero: 72px;
+  --text-brand: 52px;
+  --text-section: 42px;
+  --text-editorial: 48px;
+  --text-feature: 28px;
+  --text-body: 16px;
+  --text-label: 12px;
   --weight-regular: 400;
   --weight-medium: 500;
   --weight-semibold: 600;
@@ -46,22 +75,28 @@
   --space-14: 56px;
   --space-16: 64px;
   --space-20: 80px;
-  --section-padding-desktop: 80px;
-  --section-padding-mobile: 56px;
-  --container-max-width: 1200px;
-  --container-padding: 24px;
+  --space-24: 96px;
+  --space-28: 112px;
+  --space-32: 128px;
+  --space-36: 144px;
+  --section-padding-desktop: 104px;
+  --section-padding-major: 128px;
+  --section-padding-mobile: 64px;
+  --container-max-width: 1280px;
+  --container-text-width: 760px;
+  --container-padding: 32px;
 
   /* Radius */
   --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  --radius-md: 8px;
+  --radius-lg: 8px;
+  --radius-xl: 8px;
   --radius-full: 9999px;
 
   /* Shadows */
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
-  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+  --shadow-md: 0 12px 32px rgba(16, 39, 29, 0.10);
+  --shadow-lg: 0 24px 64px rgba(16, 39, 29, 0.16);
 
   /* Motion */
   --transition-fast: 150ms ease;

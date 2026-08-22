@@ -1,0 +1,14 @@
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Sanity Studio dependencies and generated output
+sanity-studio/node_modules/
+sanity-studio/dist/
+sanity-studio/.sanity/
+
+# Logs and local caches
+*.log
+.DS_Store
+Thumbs.db

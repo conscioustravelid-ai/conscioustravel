@@ -1,18 +1,65 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".",
+  "trailingSlash": true,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": { "eq": "staging.conscioustravel.id" }
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    }
+  ],
   "redirects": [
     {
-      "source": "/bali/",
-      "destination": "/",
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.conscioustravel.id" }],
+      "destination": "https://conscioustravel.id/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/company-outing",
+      "destination": "/corporate-packages/indonesia-region/",
+      "permanent": true
+    },
+    {
+      "source": "/company-outing/",
+      "destination": "/corporate-packages/indonesia-region/",
+      "permanent": true
+    },
+    {
+      "source": "/company-trip",
+      "destination": "/corporate-packages/indonesia-region/",
       "permanent": true
     },
     {
       "source": "/company-trip/",
-      "destination": "/company-outing/",
+      "destination": "/corporate-packages/indonesia-region/",
       "permanent": true
     },
     {
-      "source": "/study-tour/",
-      "destination": "/contact/",
+      "source": "/corporate-trip",
+      "destination": "/corporate-packages/indonesia-region/",
+      "permanent": true
+    },
+    {
+      "source": "/corporate-trip/",
+      "destination": "/corporate-packages/indonesia-region/",
+      "permanent": true
+    },
+    {
+      "source": "/bali/",
+      "destination": "/",
       "permanent": true
     },
     {
