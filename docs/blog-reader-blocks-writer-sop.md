@@ -53,6 +53,23 @@ Tabel dari Google Docs atau tabel Markdown dari ChatGPT dapat ditempel langsung 
 
 ## 5. Itinerary Block
 
+### Alur utama yang direkomendasikan: paste dari Google Docs atau ChatGPT
+
+Susun setiap judul hari sebagai H3 (`### Day X — Judul`). Hari yang hanya berisi cerita dapat langsung diikuti paragraf. Untuk hari dengan jadwal, buat tabel dengan minimal kolom **Waktu** dan **Agenda** tepat setelah judul hari, lalu salin seluruh bagian dan paste ke **Article Body**.
+
+| Waktu | Agenda | Area | Catatan | Opsional |
+| --- | --- | --- | --- | --- |
+| 09.00 | Sarapan | Sanur | Santai | Tidak |
+| 10.30 | Kunjungan desa | Ubud | Gunakan alas kaki nyaman | Ya |
+
+Sanity akan mempertahankan H3 dan paragraf sesuai urutan, serta mengubah tabel **Waktu + Agenda** menjadi Itinerary Block. **Area** dan **Catatan** boleh dikosongkan. Kolom **Opsional** menerima Ya/Tidak (atau Yes/No). Kata “opsional” di dalam Agenda tidak otomatis mengaktifkan pilihan Opsional. Tabel tanpa H3 yang jelas tetap menjadi Table biasa agar judul hari tidak ditebak.
+
+Tabel pembanding seperti `Route | Base | Ritme` tetap menjadi Table, bukan itinerary.
+
+### Alur manual sebagai fallback
+
+Gunakan Itinerary Block manual untuk koreksi kecil, membuat jadwal langsung di Studio, atau melengkapi Area, Catatan, dan Opsional setelah paste.
+
 Gunakan Itinerary Block untuk jadwal Day 1, Day 2, Day 3, atau rencana perjalanan berbasis waktu.
 
 - **Judul hari:** nama hari atau bagian itinerary.
@@ -64,7 +81,7 @@ Gunakan Itinerary Block untuk jadwal Day 1, Day 2, Day 3, atau rencana perjalana
 
 Contoh: `Day 1 — Bali Selatan`, dengan agenda `09.00–10.30 | Workshop budaya | Sanur | Gunakan pakaian nyaman`.
 
-Jangan menyusun itinerary panjang secara manual menggunakan tabel banyak kolom.
+Penulis tetap dapat menambah, menghapus, mengurutkan ulang, dan mengedit agenda secara manual. Untuk itinerary panjang, alur paste di atas lebih efisien.
 
 ## 6. Callout Block
 

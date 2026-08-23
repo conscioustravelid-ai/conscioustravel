@@ -9,19 +9,8 @@ const normalizeCellText = (value: string) => value
   .replace(/[\t\r\n ]+/gu, ' ')
   .trim()
 
-export function parseHtmlTable(html: string, createDocument?: (html: string) => Document): ParsedTable | undefined {
-  if (!/<table[\s>]/iu.test(html)) return undefined
-  const parse = createDocument || ((value: string) => new DOMParser().parseFromString(value, 'text/html'))
-  const document = parse(html)
-  const tables = [...document.querySelectorAll('table')]
-  if (tables.length !== 1) return undefined
-  const table = tables[0]
+export function parseHtmlTableElement(table: Element): ParsedTable | undefined {
   if (table.querySelector('table')) return undefined
-
-  const outside = document.body.cloneNode(true) as HTMLElement
-  outside.querySelectorAll('table,style,meta,link').forEach((element) => element.remove())
-  if (normalizeCellText(outside.textContent || '')) return undefined
-
   const rows = [...table.querySelectorAll(':scope > thead > tr, :scope > tbody > tr, :scope > tfoot > tr, :scope > tr')]
   const values = rows.map((row) => [...row.children]
     .filter((cell) => cell.matches('th,td'))
@@ -31,10 +20,24 @@ export function parseHtmlTable(html: string, createDocument?: (html: string) => 
       return normalizeCellText(safeCell.textContent || '')
     }))
   if (!isUsableTable(values)) return undefined
-
   const firstRow = rows[0]
   const explicitHeader = Boolean(firstRow.closest('thead')) || [...firstRow.children].some((cell) => cell.matches('th'))
   return {headerRows: explicitHeader ? 1 : 0, rows: values}
+}
+
+export function parseHtmlTable(html: string, createDocument?: (html: string) => Document): ParsedTable | undefined {
+  if (!/<table[\s>]/iu.test(html)) return undefined
+  const parse = createDocument || ((value: string) => new DOMParser().parseFromString(value, 'text/html'))
+  const document = parse(html)
+  const tables = [...document.querySelectorAll('table')]
+  if (tables.length !== 1) return undefined
+  const table = tables[0]
+
+  const outside = document.body.cloneNode(true) as HTMLElement
+  outside.querySelectorAll('table,style,meta,link').forEach((element) => element.remove())
+  if (normalizeCellText(outside.textContent || '')) return undefined
+
+  return parseHtmlTableElement(table)
 }
 
 function splitMarkdownRow(line: string): string[] {

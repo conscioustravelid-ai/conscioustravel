@@ -35,6 +35,12 @@ assert.doesNotMatch(html,/<script>/)
 fails({...itinerary,items:[]},/items must contain 1–12/)
 fails({...itinerary,dayTitle:''},/dayTitle is required/)
 fails({...itinerary,items:[{...itinerary.items[0],activity:'x'.repeat(141)}]},/exceeds 140/)
+const importedHeading={_type:'block',style:'h3',markDefs:[],children:[span('Hari Pertama')]}
+const importedItinerary=normalize({...itinerary,dayTitle:'Hari Pertama'})
+html=renderPortableText([importedHeading,importedItinerary],{articleSlug:slug,headingIds:new Map([[0,'hari-pertama']])})
+assert.equal((html.match(/Hari Pertama/g)||[]).length,1)
+assert.match(html,/<h3 id="hari-pertama">Hari Pertama<\/h3>/)
+assert.match(html,/<section class="blog-itinerary" aria-labelledby="hari-pertama"><ol>/)
 
 for(const type of ['tip','important','warning','goodToKnow']){
   const callout=normalize({_type:'calloutBlock',type,body:[paragraph('Isi aman'),paragraph('Daftar',{listItem:'bullet'})]})
