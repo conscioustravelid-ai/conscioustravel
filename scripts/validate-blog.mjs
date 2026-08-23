@@ -27,7 +27,7 @@ async function validatePage(relative, { article = false } = {}) {
   check(/<meta name="description" content="[^"]+">/i.test(html), `${relative}: meta description hilang`)
   check(new RegExp(`<link rel="canonical" href="${SITE_ORIGIN.replaceAll('.', '\\.')}/`).test(html), `${relative}: canonical hilang`)
   check(/data-static-blog="true"/.test(html), `${relative}: static Blog gate hilang`)
-  check(/blog-foundation\.css\?v=blog-reader-blocks-1/.test(html), `${relative}: Reader Blocks stylesheet version hilang`)
+  check(/blog-foundation\.css\?v=blog-toc-1/.test(html), `${relative}: Blog stylesheet version hilang`)
   for (const property of ['og:title', 'og:description', 'og:url', 'og:image']) {
     check(new RegExp(`<meta property="${property}" content="[^"]+"`, 'i').test(html), `${relative}: ${property} hilang`)
   }
@@ -35,10 +35,23 @@ async function validatePage(relative, { article = false } = {}) {
     check(new RegExp(`<meta name="${name}" content="[^"]+"`, 'i').test(html), `${relative}: ${name} hilang`)
   }
   if (article) {
-    const body = html.match(/<div class="container blog-prose" data-blog-article-body>([\s\S]*?)<\/div>/i)?.[1] || ''
+    const body = html.match(/<div class="container blog-prose" data-blog-article-body>([\s\S]*?)<\/div><!-- \/blog-article-body -->/i)?.[1] || ''
     check(body.trim().length > 0, `${relative}: body artikel kosong`)
     check(!/<(?:script|iframe|object|embed)\b|javascript:/i.test(body), `${relative}: HTML tidak aman`)
     check(!/<[^>]+\son(?:error|click)=/i.test(body), `${relative}: event handler tidak aman`)
+    const pageIds = [...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1])
+    check(new Set(pageIds).size === pageIds.length, `${relative}: duplicate id attribute ditemukan`)
+    const headingIds = [...body.matchAll(/<h2 id="([^"]+)"/g)].map((match) => match[1])
+    const tocMarkup = html.match(/<nav class="blog-toc"[\s\S]*?<\/nav>/i)?.[0] || ''
+    check(headingIds.length >= 3 ? Boolean(tocMarkup) : !tocMarkup, `${relative}: threshold TOC tidak sesuai jumlah H2`)
+    if (tocMarkup) {
+      check(/aria-labelledby="blog-toc-title-[^"]+"/.test(tocMarkup) && />Dalam Artikel Ini<\/p>/.test(tocMarkup), `${relative}: label TOC tidak aksesibel`)
+      const tocIds = [...tocMarkup.matchAll(/href="#([^"]+)"/g)].map((match) => match[1])
+      check(tocIds.length === headingIds.length, `${relative}: jumlah anchor TOC tidak sesuai H2`)
+      check(tocIds.every((id, index) => id === headingIds[index]), `${relative}: urutan atau target TOC tidak cocok`)
+      check(tocIds.every((id) => /^[\p{L}\p{N}]+(?:-[\p{L}\p{N}]+)*$/u.test(id)), `${relative}: anchor TOC tidak aman`)
+      check(tocIds.every((id) => headingIds.filter((candidate) => candidate === id).length === 1), `${relative}: anchor TOC tidak resolve tepat satu H2`)
+    }
     for (const match of body.matchAll(/href="(\/blog\/([^/]+)\/)"/g)) {
       check(Boolean(normalizeSlug(match[2])), `${relative}: internal Blog link tidak valid`)
     }
