@@ -9,6 +9,9 @@
     "build": "sanity build",
     "deploy": "sanity deploy",
     "typecheck": "tsc --noEmit",
+    "test:reader-block-schemas": "node scripts/test-reader-block-schemas.mts",
+    "test:table-paste": "node scripts/test-table-paste.mts",
+    "test:itinerary-paste": "node scripts/test-itinerary-paste.mts",
     "seed": "sanity exec scripts/seed.ts --with-user-token",
     "verify:connection": "node scripts/verify-sanity-connection.mjs"
   },

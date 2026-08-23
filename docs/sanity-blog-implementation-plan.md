@@ -170,3 +170,35 @@ Generator juga memfilter dokumen published bertanggal masa depan sebelum membuat
 Workflow ini adalah MVP **publish segera**. Scheduling, custom scheduling UI, perubahan webhook, dan deployment production tetap ditunda sampai fase post-launch yang disetujui terpisah.
 
 Future enhancement: evaluasi **Sanity Scheduled Drafts** untuk scheduled publishing yang sesungguhnya. Arsitektur masa depan harus memastikan tidak ada deployment ketika editor masih mengedit atau menjadwalkan; waktu terjadwal menghasilkan published mutation; published mutation memicu tepat satu rebuild; `datePublished` benar; serta draft dan version tetap dikecualikan dari webhook kecuali arsitektur baru yang telah diuji secara eksplisit membutuhkannya.
+
+## Blog Reader Blocks v1
+
+**Status rilis BRB1G:** Sanity Studio dan frontend staging telah dideploy serta lulus owner QA. Frontend Reader Blocks belum dideploy ke production. Sampai BRB1H selesai dan dikonfirmasi, editor tidak boleh mem-publish konten yang menggunakan Reader Blocks untuk konsumsi production.
+
+Sanity Studio mendukung komponen terstruktur berikut di dalam `blockContent`:
+
+- native `table` untuk data perbandingan;
+- `itineraryBlock` untuk agenda berbasis hari dan waktu;
+- `calloutBlock` untuk Tip, Penting, Perhatian, dan Good to Know;
+- `ctaBlock` untuk tujuan CTA yang dibatasi dan dapat dilacak;
+- Image serta Portable Text H2/H3 yang sudah tersedia sebelumnya.
+
+Regresi image memastikan alt text, caption, dimensi intrinsik, `srcset`, lazy loading, escaping, dan fallback aset tetap aman bersama Reader Blocks.
+
+Frontend membangun Table of Contents secara otomatis dari H2 dan H3 top-level. H2 menjadi bagian utama, H3 menjadi anak dari H2 terdekat, dan H4 tidak dimasukkan. TOC tampil mulai tiga H2; artikel dengan lebih dari enam H2 memakai progressive enhancement agar enam H2 pertama terlihat pada state ringkas, sementara HTML tanpa JavaScript tetap memuat hierarki lengkap.
+
+**Aturan sequencing peluncuran:** Studio sudah mendukung Reader Blocks, tetapi konten yang menggunakan `table`, `itineraryBlock`, `calloutBlock`, atau `ctaBlock` tidak boleh dipublish ke production sampai rilis frontend BRB1H selesai dan dikonfirmasi. Draft-only QA tidak memicu webhook karena Drafts tetap OFF. Panduan praktis untuk penulis tersedia di `docs/blog-reader-blocks-writer-sop.md`.
+
+### Smart Table Paste
+
+Input Portable Text khusus `blockContent` memakai kontrak `PortableTextInputProps.onPaste` dari Sanity 6.7.0. Clipboard HTML yang berisi satu tabel terfokus serta tabel Markdown valid dikonversi ke struktur native `table` pada posisi cursor. Parser hanya menyimpan teks sel, menggunakan semantik `<thead>`/`<th>` untuk `headerRows`, dan mengabaikan markup presentasional maupun HTML berbahaya. Tabel Markdown memerlukan header, separator valid, minimal satu data row, dan jumlah kolom yang konsisten; escaped pipe didukung.
+
+Paste paragraph, URL, tabel malformed, atau pilihan campuran prose+tabel biasa mengembalikan `undefined` secara sinkron sehingga perilaku default Sanity tetap berjalan. Pembatasan tabel biasa ini sengaja mencegah teks di sekitar tabel terbuang: editor perlu menyeleksi tabel saja. Custom handler hanya dipasang pada body artikel, bukan table cell, callout body, atau editor terbatas lain.
+
+### Smart Itinerary Paste
+
+Smart Itinerary memperluas handler dan utilitas Smart Table yang sama. Parser subset aman untuk Google Docs HTML dan Markdown ChatGPT mempertahankan urutan H3, paragraf, list sederhana, tabel biasa, dan tabel itinerary. Klasifikasi itinerary bersifat ketat: baris pertama wajib berisi kombinasi `Waktu|Time` dan `Agenda|Aktivitas|Rencana|Activity`; kolom tambahan hanya `Area`, `Catatan|Notes`, serta `Opsional|Optional`. Google Docs dapat menyalin header visual sebagai sel `<td>` biasa, sehingga classifier memvalidasi isi baris pertama alih-alih bergantung pada `<thead>`/`<th>`. Nilai opsional dipetakan hanya dari kolom eksplisit, tidak ditebak dari teks aktivitas.
+
+Konversi hanya dilakukan bila tabel memiliki H3 terdekat yang tidak ambigu (langsung sesudah H3 atau setelah maksimal satu paragraf pendek). Tanpa judul tersebut tabel tetap memakai fallback native Table. Handler mixed-content hanya mengambil alih clipboard jika minimal satu itinerary berhasil diklasifikasikan; paste biasa tetap diserahkan ke Sanity.
+
+H3 dan `itineraryBlock.dayTitle` sengaja sama di data agar TOC dan integritas block tetap terjaga. Saat block langsung didahului H3 dengan teks yang sama, renderer menghilangkan heading internal yang duplikat dan memberi `<section>` `aria-labelledby` ke anchor H3 top-level. Itinerary manual atau block yang tidak berdampingan tetap merender judul internalnya. Solusi berbasis konteks ini menjaga satu judul visual, TOC, dan nama aksesibel tanpa CSS hiding atau perubahan schema/GROQ.

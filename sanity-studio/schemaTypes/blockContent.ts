@@ -1,4 +1,5 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {BlogPortableTextInput} from '../components/BlogPortableTextInput'
 
 export const blockContentType = defineType({
   name: 'blockContent',
@@ -81,5 +82,21 @@ export const blockContentType = defineType({
         }),
       ],
     }),
+    defineArrayMember({type: 'table'}),
+    defineArrayMember({type: 'itineraryBlock'}),
+    defineArrayMember({type: 'calloutBlock'}),
+    defineArrayMember({type: 'ctaBlock'}),
   ],
+  components: {
+    input: BlogPortableTextInput,
+    portableText: {
+      plugins: (props) => props.renderDefault({
+        ...props,
+        plugins: {
+          ...props.plugins,
+          table: {enabled: true},
+        },
+      }),
+    },
+  },
 })
