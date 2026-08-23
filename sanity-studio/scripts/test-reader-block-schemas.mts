@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import {readFile} from 'node:fs/promises'
 import {
   CALLOUT_TYPES,
   CTA_DESTINATIONS,
@@ -56,5 +57,10 @@ assert.equal(validateTrackingId('blog-itinerary-bali-cta'), true)
 assert.notEqual(validateTrackingId('Blog CTA'), true)
 assert.notEqual(validateTrackingId(' blog-cta'), true)
 assert.notEqual(validateTrackingId('javascript:alert'), true)
+
+const blockContentSource=await readFile(new URL('../schemaTypes/blockContent.ts',import.meta.url),'utf8')
+assert.match(blockContentSource,/input: BlogPortableTextInput/)
+for(const type of ["type: 'block'","type: 'image'","type: 'table'","type: 'itineraryBlock'","type: 'calloutBlock'","type: 'ctaBlock'"])assert.match(blockContentSource,new RegExp(type.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')))
+assert.match(blockContentSource,/table: \{enabled: true\}/)
 
 console.log('Reader Blocks schema validation tests lulus.')
