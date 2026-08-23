@@ -5,7 +5,7 @@ import {createBlogTablePasteHandler, parseHtmlTableElement, parseMarkdownTable, 
 type KeyGenerator = () => string
 type PasteOptions = {createDocument?: (html: string) => Document; createKey?: KeyGenerator}
 type Member = {_type:string; [key:string]:unknown}
-const aliases = new Map([['waktu','time'],['time','time'],['agenda','activity'],['aktivitas','activity'],['activity','activity'],['area','area'],['catatan','notes'],['notes','notes'],['opsional','optional'],['optional','optional']])
+const aliases = new Map([['waktu','time'],['time','time'],['agenda','activity'],['aktivitas','activity'],['rencana','activity'],['activity','activity'],['area','area'],['catatan','notes'],['notes','notes'],['opsional','optional'],['optional','optional']])
 const yes = new Set(['ya','yes','true','✓'])
 const no = new Set(['','tidak','no','false'])
 const clean = (value: string) => value.replace(/\u00a0/gu,' ').replace(/[\t\r\n ]+/gu,' ').trim()
@@ -16,7 +16,7 @@ function textBlock(text: string, style: 'normal'|'h3', createKey: KeyGenerator, 
 }
 
 export function classifyItinerary(table: ParsedTable, dayTitle: string, createKey: KeyGenerator = keyGenerator): Member | undefined {
-  if (table.headerRows !== 1 || table.rows.length < 2 || !clean(dayTitle)) return undefined
+  if (table.rows.length < 2 || !clean(dayTitle)) return undefined
   const fields = table.rows[0].map((header) => aliases.get(normalized(header)))
   if (fields.some((field) => !field) || new Set(fields).size !== fields.length || !fields.includes('time') || !fields.includes('activity')) return undefined
   const items: Member[] = []

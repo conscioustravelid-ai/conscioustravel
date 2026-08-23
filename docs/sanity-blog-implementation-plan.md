@@ -193,7 +193,7 @@ Paste paragraph, URL, tabel malformed, atau pilihan campuran prose+tabel biasa m
 
 ### Smart Itinerary Paste
 
-Smart Itinerary memperluas handler dan utilitas Smart Table yang sama. Parser subset aman untuk Google Docs HTML dan Markdown ChatGPT mempertahankan urutan H3, paragraf, list sederhana, tabel biasa, dan tabel itinerary. Klasifikasi itinerary bersifat ketat: tabel wajib memiliki header tunggal dengan kombinasi `Waktu|Time` dan `Agenda|Aktivitas|Activity`; kolom tambahan hanya `Area`, `Catatan|Notes`, serta `Opsional|Optional`. Nilai opsional dipetakan hanya dari kolom eksplisit, tidak ditebak dari teks aktivitas.
+Smart Itinerary memperluas handler dan utilitas Smart Table yang sama. Parser subset aman untuk Google Docs HTML dan Markdown ChatGPT mempertahankan urutan H3, paragraf, list sederhana, tabel biasa, dan tabel itinerary. Klasifikasi itinerary bersifat ketat: baris pertama wajib berisi kombinasi `Waktu|Time` dan `Agenda|Aktivitas|Rencana|Activity`; kolom tambahan hanya `Area`, `Catatan|Notes`, serta `Opsional|Optional`. Google Docs dapat menyalin header visual sebagai sel `<td>` biasa, sehingga classifier memvalidasi isi baris pertama alih-alih bergantung pada `<thead>`/`<th>`. Nilai opsional dipetakan hanya dari kolom eksplisit, tidak ditebak dari teks aktivitas.
 
 Konversi hanya dilakukan bila tabel memiliki H3 terdekat yang tidak ambigu (langsung sesudah H3 atau setelah maksimal satu paragraf pendek). Tanpa judul tersebut tabel tetap memakai fallback native Table. Handler mixed-content hanya mengambil alih clipboard jika minimal satu itinerary berhasil diklasifikasikan; paste biasa tetap diserahkan ke Sanity.
 
