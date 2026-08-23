@@ -899,6 +899,23 @@ function bindBlogReaderCtaTracking() {
   });
 }
 
+function bindBlogTocToggle() {
+  document.querySelectorAll("[data-blog-toc-long]").forEach((toc) => {
+    if (toc.dataset.blogTocBound === "true") return;
+    const toggle = toc.querySelector("[data-blog-toc-toggle]");
+    if (!toggle) return;
+    toc.dataset.blogTocBound = "true";
+    toc.classList.add("is-enhanced", "is-collapsed");
+    toggle.hidden = false;
+    toggle.addEventListener("click", () => {
+      const expanded = toggle.getAttribute("aria-expanded") !== "true";
+      toggle.setAttribute("aria-expanded", String(expanded));
+      toggle.textContent = expanded ? "Tampilkan lebih sedikit" : "Lihat semua bagian";
+      toc.classList.toggle("is-collapsed", !expanded);
+    });
+  });
+}
+
 function bindVariantTabs() {
   const tabs = [...document.querySelectorAll("[data-variant-tab]")];
   const activate = (tab) => {
@@ -1036,6 +1053,7 @@ function initializeUi() {
   bindLanguageToggle();
   bindWhatsappTracking();
   bindBlogReaderCtaTracking();
+  bindBlogTocToggle();
   bindVariantTabs();
   prepareInquiryForm();
 }
