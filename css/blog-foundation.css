@@ -69,10 +69,19 @@ body[data-page="blog"] h1, .blog-section-heading h2, .blog-featured-copy h3, .bl
 .blog-related { border-top: 1px solid rgba(31, 68, 55, .12); background: #fff; }
 .blog-toc { margin: 0 0 .75rem; padding: 1.25rem 1.4rem; border: 1px solid rgba(31,68,55,.15); border-radius: .75rem; background: #f5f4ed; }
 .blog-toc-title { margin: 0 0 .7rem; color: var(--color-primary-dark); font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-.blog-toc ol { display: grid; gap: .3rem; margin: 0; padding-left: 1.35rem; }
+.blog-toc-list { display: grid; gap: .3rem; margin: 0; padding-left: 1.35rem; }
 .blog-toc li { padding-left: .2rem; color: #66726c; }
 .blog-toc a { display: inline-flex; min-height: 44px; align-items: center; padding: .35rem 0; color: var(--color-primary-dark); line-height: 1.45; text-decoration: underline; text-decoration-color: rgba(31,68,55,.3); text-underline-offset: .2em; }
 .blog-toc a:hover { text-decoration-color: currentColor; }
+.blog-toc-children { display: grid; gap: .05rem; margin: .05rem 0 .25rem; padding-left: 1.2rem; list-style: disc; }
+.blog-toc-children li { padding-left: .15rem; color: #7a847f; }
+.blog-toc-children a { min-height: 40px; color: #53635c; font-size: .92rem; }
+.blog-toc-toggle { min-height: 44px; margin-top: .8rem; padding: .55rem .9rem; border: 1px solid var(--color-primary-dark); border-radius: .35rem; color: var(--color-primary-dark); background: transparent; font: inherit; font-weight: 700; cursor: pointer; }
+.blog-toc-toggle:hover { color: #fff; background: var(--color-primary-dark); }
+.blog-toc-toggle:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 3px; }
+.blog-toc-toggle[hidden] { display: none; }
+.blog-toc.is-enhanced.is-collapsed [data-blog-toc-overflow],
+.blog-toc.is-enhanced.is-collapsed .blog-toc-children { display: none; }
 .blog-table-scroll { max-width: 100%; margin: 2.25rem 0; overflow-x: auto; border: 1px solid rgba(31,68,55,.18); border-radius: .75rem; background: #fff; scrollbar-width: thin; }
 .blog-table-scroll:focus-visible { outline: 3px solid rgba(38,111,82,.35); outline-offset: 3px; }
 .blog-data-table { width: 100%; min-width: 620px; border-collapse: collapse; font-size: .96rem; line-height: 1.55; }

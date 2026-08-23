@@ -50,6 +50,9 @@ const html=`<!doctype html><html lang="id"><head><meta charset="utf-8"><meta nam
 assert.equal(toc.visible,true)
 assert.equal(toc.items.length,5)
 assert.deepEqual(toc.items.map((item)=>item.text),['Merencanakan Rute Bali','Rute Pertama','Perbandingan Rute','Catatan Perencanaan','Langkah Berikutnya'])
+assert.deepEqual(toc.items[1].children.map((item)=>item.text),['Hari Pertama'])
+assert.deepEqual(toc.items[3].children.map((item)=>item.text),['Detail Tambahan'])
+assert.equal(toc.collapsible,false)
 assert.equal((articleBody.match(/<h3/g)||[]).length>=3,true)
 assert.equal((articleBody.match(/blog-data-table/g)||[]).length,2)
 assert.match(articleBody,/<thead>/);assert.match(articleBody,/<table class="blog-data-table"><tbody>/)
@@ -63,9 +66,11 @@ assert.match(articleBody,/href="\/blog\/conscious-travel-corporate-travel-sustai
 assert.match(articleBody,/href="https:\/\/www\.indonesia\.travel\/" target="_blank" rel="noopener noreferrer"/)
 assert.match(articleBody,/width="1200" height="800"/);assert.match(articleBody,/srcset=/);assert.match(articleBody,/loading="lazy" decoding="async"/);assert.match(articleBody,/<figcaption>Fixture gambar/)
 const hrefs=[...tocHtml.matchAll(/href="#([^"]+)"/g)].map((match)=>match[1])
-const ids=[...articleBody.matchAll(/<h2 id="([^"]+)"/g)].map((match)=>match[1])
+const ids=[...toc.headingIds.values()]
 assert.deepEqual(hrefs,ids);assert.equal(new Set(ids).size,ids.length)
-assert.doesNotMatch(tocHtml,/Hari Pertama|Hari 1|Mulai dari prioritas|Rancang perjalanan|Rute A/)
+for(const id of ids)assert.match(articleBody,new RegExp(`<h[23] id="${id}">`))
+assert.match(tocHtml,/<ul class="blog-toc-children"><li><a href="#hari-pertama">Hari Pertama<\/a><\/li><\/ul>/)
+assert.doesNotMatch(tocHtml,/data-blog-toc-toggle|Hari 1|Mulai dari prioritas|Rancang perjalanan|Rute A/)
 assert.doesNotMatch(html,/<(?:script onclick|iframe|object|embed)\b|javascript:|data:text\/html/i)
 
 const invalidCases=[
@@ -84,6 +89,7 @@ assert.equal((runtime.match(/pushTrackingEvent\("whatsapp_cta_click"/g)||[]).len
 assert.match(runtime,/trackingId: link\.dataset\.trackingId[\s\S]*destinationType: link\.dataset\.destinationType[\s\S]*articleSlug: link\.dataset\.articleSlug/)
 assert.match(runtime,/blogReaderTrackingBound === "true"/)
 assert.match(runtime,/waTrackingBound === "true"/)
+assert.match(runtime,/blogTocBound === "true"/)
 
 assert.throws(()=>normalizeReaderBlocks([
   {_type:'calloutBlock',type:'tip',title:'Unsafe link',body:[block('Tautan ditolak',{markDefs:[{_key:'bad',_type:'externalLink',href:'javascript:alert(1)'}],marks:['bad']})]},
