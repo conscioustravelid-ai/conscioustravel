@@ -51,6 +51,8 @@ Jangan gunakan Table untuk jadwal perjalanan harian. Gunakan Itinerary Block unt
 
 Tabel dari Google Docs atau tabel Markdown dari ChatGPT dapat ditempel langsung ke **Article Body** dan akan menjadi native Table. Pilih dan salin tabelnya saja. Jika pilihan juga memuat paragraf sebelum atau sesudah tabel, Sanity mempertahankan perilaku paste normal agar teks tersebut tidak hilang; dalam kondisi itu, ulangi dengan menyeleksi tabel saja.
 
+Untuk membuat atau mengedit Table secara manual, gunakan tampilan penuh/maximized **Article Body** agar kontrol tabel lebih mudah terlihat. Normal paragraph yang ditempel tetap menjadi paragraph biasa.
+
 ## 5. Itinerary Block
 
 ### Alur utama yang direkomendasikan: paste dari Google Docs atau ChatGPT
@@ -62,7 +64,7 @@ Susun setiap judul hari sebagai H3 (`### Day X — Judul`). Hari yang hanya beri
 | 09.00 | Sarapan | Sanur | Santai | Tidak |
 | 10.30 | Kunjungan desa | Ubud | Gunakan alas kaki nyaman | Ya |
 
-Sanity akan mempertahankan H3 dan paragraf sesuai urutan, serta mengubah tabel **Waktu + Agenda** menjadi Itinerary Block. Header **Rencana** juga dapat digunakan sebagai pengganti Agenda. **Area** dan **Catatan** boleh dikosongkan. Kolom **Opsional** menerima Ya/Tidak (atau Yes/No). Kata “opsional” di dalam Agenda atau Rencana tidak otomatis mengaktifkan pilihan Opsional. Tabel tanpa H3 yang jelas tetap menjadi Table biasa agar judul hari tidak ditebak.
+Sanity akan mempertahankan H3 dan paragraf sesuai urutan, serta mengubah jadwal menjadi Itinerary Block. Kolom waktu mendukung **Waktu** atau **Time**. Kolom kegiatan mendukung **Agenda**, **Aktivitas**, **Rencana**, atau **Activity**. Kolom tambahan yang boleh digunakan adalah **Area**, **Catatan/Notes**, dan **Opsional/Optional**. Area dan Catatan tidak wajib diisi. Kolom Opsional menerima Ya/Tidak (atau Yes/No). Kata “opsional” di dalam Agenda atau Rencana tidak otomatis mengaktifkan pilihan Opsional. Tabel tanpa H3 yang jelas tetap menjadi Table biasa agar judul hari tidak ditebak.
 
 Tabel pembanding seperti `Route | Base | Ritme` tetap menjadi Table, bukan itinerary.
 
@@ -133,6 +135,8 @@ Hindari terlalu banyak CTA bergaya Primary dalam satu artikel.
 
 - Menggunakan H2 hanya untuk memperbesar teks.
 - Menggunakan Table untuk itinerary.
+- Membuat ulang tabel secara manual setelah tabel Google Docs atau ChatGPT berhasil ditempel.
+- Mengisi Area, Catatan, atau Opsional padahal informasi tersebut tidak diperlukan.
 - Menambahkan terlalu banyak Callout.
 - Menambahkan terlalu banyak CTA agresif.
 - Membiarkan Alt Text kosong atau mengisinya dengan keyword berulang.
@@ -147,6 +151,7 @@ Hindari terlalu banyak CTA bergaya Primary dalam satu artikel.
 - [ ] Cover Image dan Alt Text sudah terisi.
 - [ ] Author dan Category sudah dipilih.
 - [ ] Struktur H2/H3 logis.
+- [ ] Perilaku TOC sesuai jumlah H2 dan H3 tampil sebagai subbagian yang benar.
 - [ ] Semua gambar memiliki Alt Text.
 - [ ] Table mudah dibaca dan bukan itinerary.
 - [ ] Itinerary lengkap dan urut.
@@ -156,4 +161,5 @@ Hindari terlalu banyak CTA bergaya Primary dalam satu artikel.
 - [ ] SEO Title dan Meta Description sudah diperiksa.
 - [ ] Featured dan Noindex sudah sesuai tujuan artikel.
 - [ ] Preview/staging QA sudah dilakukan.
+- [ ] Tampilan artikel sudah diperiksa pada layar mobile.
 - [ ] Tim teknis telah mengonfirmasi BRB1H sebelum Reader Blocks dipublish ke production.

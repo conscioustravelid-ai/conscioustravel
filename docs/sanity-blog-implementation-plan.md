@@ -173,6 +173,8 @@ Future enhancement: evaluasi **Sanity Scheduled Drafts** untuk scheduled publish
 
 ## Blog Reader Blocks v1
 
+**Status rilis BRB1G:** Sanity Studio dan frontend staging telah dideploy serta lulus owner QA. Frontend Reader Blocks belum dideploy ke production. Sampai BRB1H selesai dan dikonfirmasi, editor tidak boleh mem-publish konten yang menggunakan Reader Blocks untuk konsumsi production.
+
 Sanity Studio mendukung komponen terstruktur berikut di dalam `blockContent`:
 
 - native `table` untuk data perbandingan;
@@ -180,6 +182,8 @@ Sanity Studio mendukung komponen terstruktur berikut di dalam `blockContent`:
 - `calloutBlock` untuk Tip, Penting, Perhatian, dan Good to Know;
 - `ctaBlock` untuk tujuan CTA yang dibatasi dan dapat dilacak;
 - Image serta Portable Text H2/H3 yang sudah tersedia sebelumnya.
+
+Regresi image memastikan alt text, caption, dimensi intrinsik, `srcset`, lazy loading, escaping, dan fallback aset tetap aman bersama Reader Blocks.
 
 Frontend membangun Table of Contents secara otomatis dari H2 dan H3 top-level. H2 menjadi bagian utama, H3 menjadi anak dari H2 terdekat, dan H4 tidak dimasukkan. TOC tampil mulai tiga H2; artikel dengan lebih dari enam H2 memakai progressive enhancement agar enam H2 pertama terlihat pada state ringkas, sementara HTML tanpa JavaScript tetap memuat hierarki lengkap.
 
