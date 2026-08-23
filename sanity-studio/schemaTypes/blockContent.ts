@@ -81,5 +81,20 @@ export const blockContentType = defineType({
         }),
       ],
     }),
+    defineArrayMember({type: 'table'}),
+    defineArrayMember({type: 'itineraryBlock'}),
+    defineArrayMember({type: 'calloutBlock'}),
+    defineArrayMember({type: 'ctaBlock'}),
   ],
+  components: {
+    portableText: {
+      plugins: (props) => props.renderDefault({
+        ...props,
+        plugins: {
+          ...props.plugins,
+          table: {enabled: true},
+        },
+      }),
+    },
+  },
 })
