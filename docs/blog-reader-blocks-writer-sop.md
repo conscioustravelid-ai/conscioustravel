@@ -62,7 +62,7 @@ Susun setiap judul hari sebagai H3 (`### Day X — Judul`). Hari yang hanya beri
 | 09.00 | Sarapan | Sanur | Santai | Tidak |
 | 10.30 | Kunjungan desa | Ubud | Gunakan alas kaki nyaman | Ya |
 
-Sanity akan mempertahankan H3 dan paragraf sesuai urutan, serta mengubah tabel **Waktu + Agenda** menjadi Itinerary Block. **Area** dan **Catatan** boleh dikosongkan. Kolom **Opsional** menerima Ya/Tidak (atau Yes/No). Kata “opsional” di dalam Agenda tidak otomatis mengaktifkan pilihan Opsional. Tabel tanpa H3 yang jelas tetap menjadi Table biasa agar judul hari tidak ditebak.
+Sanity akan mempertahankan H3 dan paragraf sesuai urutan, serta mengubah tabel **Waktu + Agenda** menjadi Itinerary Block. Header **Rencana** juga dapat digunakan sebagai pengganti Agenda. **Area** dan **Catatan** boleh dikosongkan. Kolom **Opsional** menerima Ya/Tidak (atau Yes/No). Kata “opsional” di dalam Agenda atau Rencana tidak otomatis mengaktifkan pilihan Opsional. Tabel tanpa H3 yang jelas tetap menjadi Table biasa agar judul hari tidak ditebak.
 
 Tabel pembanding seperti `Route | Base | Ritme` tetap menjadi Table, bukan itinerary.
 
