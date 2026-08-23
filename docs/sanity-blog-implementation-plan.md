@@ -184,3 +184,9 @@ Sanity Studio mendukung komponen terstruktur berikut di dalam `blockContent`:
 Frontend membangun Table of Contents secara otomatis dari H2 dan H3 top-level. H2 menjadi bagian utama, H3 menjadi anak dari H2 terdekat, dan H4 tidak dimasukkan. TOC tampil mulai tiga H2; artikel dengan lebih dari enam H2 memakai progressive enhancement agar enam H2 pertama terlihat pada state ringkas, sementara HTML tanpa JavaScript tetap memuat hierarki lengkap.
 
 **Aturan sequencing peluncuran:** Studio sudah mendukung Reader Blocks, tetapi konten yang menggunakan `table`, `itineraryBlock`, `calloutBlock`, atau `ctaBlock` tidak boleh dipublish ke production sampai rilis frontend BRB1H selesai dan dikonfirmasi. Draft-only QA tidak memicu webhook karena Drafts tetap OFF. Panduan praktis untuk penulis tersedia di `docs/blog-reader-blocks-writer-sop.md`.
+
+### Smart Table Paste
+
+Input Portable Text khusus `blockContent` memakai kontrak `PortableTextInputProps.onPaste` dari Sanity 6.7.0. Clipboard HTML yang berisi satu tabel terfokus serta tabel Markdown valid dikonversi ke struktur native `table` pada posisi cursor. Parser hanya menyimpan teks sel, menggunakan semantik `<thead>`/`<th>` untuk `headerRows`, dan mengabaikan markup presentasional maupun HTML berbahaya. Tabel Markdown memerlukan header, separator valid, minimal satu data row, dan jumlah kolom yang konsisten; escaped pipe didukung.
+
+Paste paragraph, URL, tabel malformed, atau pilihan campuran prose+table mengembalikan `undefined` secara sinkron sehingga perilaku default Sanity tetap berjalan. Pembatasan MVP ini sengaja mencegah teks di sekitar tabel terbuang: editor perlu menyeleksi tabel saja. Custom handler hanya dipasang pada body artikel, bukan table cell, callout body, atau editor terbatas lain.

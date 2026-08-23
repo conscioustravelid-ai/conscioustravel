@@ -49,6 +49,8 @@ Contoh:
 
 Jangan gunakan Table untuk jadwal perjalanan harian. Gunakan Itinerary Block untuk jadwal berbasis hari dan waktu.
 
+Tabel dari Google Docs atau tabel Markdown dari ChatGPT dapat ditempel langsung ke **Article Body** dan akan menjadi native Table. Pilih dan salin tabelnya saja. Jika pilihan juga memuat paragraf sebelum atau sesudah tabel, Sanity mempertahankan perilaku paste normal agar teks tersebut tidak hilang; dalam kondisi itu, ulangi dengan menyeleksi tabel saja.
+
 ## 5. Itinerary Block
 
 Gunakan Itinerary Block untuk jadwal Day 1, Day 2, Day 3, atau rencana perjalanan berbasis waktu.
