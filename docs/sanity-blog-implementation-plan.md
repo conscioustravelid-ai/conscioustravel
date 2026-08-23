@@ -170,3 +170,17 @@ Generator juga memfilter dokumen published bertanggal masa depan sebelum membuat
 Workflow ini adalah MVP **publish segera**. Scheduling, custom scheduling UI, perubahan webhook, dan deployment production tetap ditunda sampai fase post-launch yang disetujui terpisah.
 
 Future enhancement: evaluasi **Sanity Scheduled Drafts** untuk scheduled publishing yang sesungguhnya. Arsitektur masa depan harus memastikan tidak ada deployment ketika editor masih mengedit atau menjadwalkan; waktu terjadwal menghasilkan published mutation; published mutation memicu tepat satu rebuild; `datePublished` benar; serta draft dan version tetap dikecualikan dari webhook kecuali arsitektur baru yang telah diuji secara eksplisit membutuhkannya.
+
+## Blog Reader Blocks v1
+
+Sanity Studio mendukung komponen terstruktur berikut di dalam `blockContent`:
+
+- native `table` untuk data perbandingan;
+- `itineraryBlock` untuk agenda berbasis hari dan waktu;
+- `calloutBlock` untuk Tip, Penting, Perhatian, dan Good to Know;
+- `ctaBlock` untuk tujuan CTA yang dibatasi dan dapat dilacak;
+- Image serta Portable Text H2/H3 yang sudah tersedia sebelumnya.
+
+Frontend membangun Table of Contents secara otomatis dari H2 dan H3 top-level. H2 menjadi bagian utama, H3 menjadi anak dari H2 terdekat, dan H4 tidak dimasukkan. TOC tampil mulai tiga H2; artikel dengan lebih dari enam H2 memakai progressive enhancement agar enam H2 pertama terlihat pada state ringkas, sementara HTML tanpa JavaScript tetap memuat hierarki lengkap.
+
+**Aturan sequencing peluncuran:** Studio sudah mendukung Reader Blocks, tetapi konten yang menggunakan `table`, `itineraryBlock`, `calloutBlock`, atau `ctaBlock` tidak boleh dipublish ke production sampai rilis frontend BRB1H selesai dan dikonfirmasi. Draft-only QA tidak memicu webhook karena Drafts tetap OFF. Panduan praktis untuk penulis tersedia di `docs/blog-reader-blocks-writer-sop.md`.
