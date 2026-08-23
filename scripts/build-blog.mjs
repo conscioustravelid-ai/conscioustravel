@@ -49,7 +49,7 @@ function articleCard(post, className = 'blog-card') {
 
 function sharedHead() {
   return `<link rel="icon" type="image/png" sizes="377x377" href="/assets/images/favicon-logo-only.png">
-  <link rel="apple-touch-icon" href="/assets/images/favicon-logo-only.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/variables.css?v=phase2-editorial-4"><link rel="stylesheet" href="/css/style.css?v=phase2-visual-a-1"><link rel="stylesheet" href="/css/editorial.css?v=phase2-editorial-4"><link rel="stylesheet" href="/css/blog-foundation.css?v=sanity-phase-d4-1"><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NVVKFSSN');</script>`
+  <link rel="apple-touch-icon" href="/assets/images/favicon-logo-only.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/variables.css?v=phase2-editorial-4"><link rel="stylesheet" href="/css/style.css?v=phase2-visual-a-1"><link rel="stylesheet" href="/css/editorial.css?v=phase2-editorial-4"><link rel="stylesheet" href="/css/blog-foundation.css?v=blog-reader-blocks-1"><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NVVKFSSN');</script>`
 }
 
 function shell({head, content}) {
@@ -60,7 +60,7 @@ function shell({head, content}) {
   ${head}
   ${sharedHead()}
 </head>
-<body data-page="blog" data-static-blog="true"><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NVVKFSSN" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript><header id="site-header"></header><main id="main-content"><div id="page-root">${content}</div></main><footer id="site-footer"></footer><script src="/data/content.js?v=phase2-revised-2" defer></script><script src="/js/main.js?v=phase2-editorial-4" defer></script></body>
+<body data-page="blog" data-static-blog="true"><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NVVKFSSN" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript><header id="site-header"></header><main id="main-content"><div id="page-root">${content}</div></main><footer id="site-footer"></footer><script src="/data/content.js?v=phase2-revised-2" defer></script><script src="/js/main.js?v=blog-reader-blocks-1" defer></script></body>
 </html>
 `
 }
@@ -82,7 +82,7 @@ function listingHtml(posts, categories) {
 function articleHtml(post, posts) {
   const canonical = `${SITE_ORIGIN}/blog/${post.slug}/`
   const image = post.ogImageUrl || fallbackImage
-  const body = renderPortableText(post.body)
+  const body = renderPortableText(post.body, {articleSlug:post.slug})
   const related = selectRelated(post, posts)
   const articleLd = {'@context':'https://schema.org','@type':'Article',headline:post.title,description:post.metaDescription,image:[image],datePublished:post.publishedAt,dateModified:post.updatedAt||post.publishedAt,author:{'@type':'Person',name:post.author.name},publisher:{'@type':'Organization',name:'Conscious Travel',url:SITE_ORIGIN,logo:{'@type':'ImageObject',url:publisherLogo}},mainEntityOfPage:{'@type':'WebPage','@id':canonical},articleSection:post.category.name}
   const breadcrumbLd = {'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Home',item:`${SITE_ORIGIN}/`},{'@type':'ListItem',position:2,name:'Blog',item:`${SITE_ORIGIN}/blog/`},{'@type':'ListItem',position:3,name:post.title,item:canonical}]}

@@ -875,12 +875,26 @@ function bindLanguageToggle() {
 
 function bindWhatsappTracking() {
   document.querySelectorAll("[data-wa-key]").forEach((link) => {
+    if (link.dataset.waTrackingBound === "true") return;
+    link.dataset.waTrackingBound = "true";
     const key = link.dataset.waKey || "general";
     link.href = whatsappUrl(key);
     link.addEventListener("click", () => pushTrackingEvent("whatsapp_cta_click", {
       messageKey: key,
       sourcePage: window.location.pathname,
       language: CT_STATE.language
+    }));
+  });
+}
+
+function bindBlogReaderCtaTracking() {
+  document.querySelectorAll("[data-blog-reader-cta]").forEach((link) => {
+    if (link.dataset.blogReaderTrackingBound === "true") return;
+    link.dataset.blogReaderTrackingBound = "true";
+    link.addEventListener("click", () => pushTrackingEvent("blog_reader_cta_click", {
+      trackingId: link.dataset.trackingId || "",
+      destinationType: link.dataset.destinationType || "",
+      articleSlug: link.dataset.articleSlug || ""
     }));
   });
 }
@@ -1021,6 +1035,7 @@ function initializeUi() {
   bindNavigation();
   bindLanguageToggle();
   bindWhatsappTracking();
+  bindBlogReaderCtaTracking();
   bindVariantTabs();
   prepareInquiryForm();
 }

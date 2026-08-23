@@ -27,6 +27,7 @@ async function validatePage(relative, { article = false } = {}) {
   check(/<meta name="description" content="[^"]+">/i.test(html), `${relative}: meta description hilang`)
   check(new RegExp(`<link rel="canonical" href="${SITE_ORIGIN.replaceAll('.', '\\.')}/`).test(html), `${relative}: canonical hilang`)
   check(/data-static-blog="true"/.test(html), `${relative}: static Blog gate hilang`)
+  check(/blog-foundation\.css\?v=blog-reader-blocks-1/.test(html), `${relative}: Reader Blocks stylesheet version hilang`)
   for (const property of ['og:title', 'og:description', 'og:url', 'og:image']) {
     check(new RegExp(`<meta property="${property}" content="[^"]+"`, 'i').test(html), `${relative}: ${property} hilang`)
   }
@@ -37,6 +38,7 @@ async function validatePage(relative, { article = false } = {}) {
     const body = html.match(/<div class="container blog-prose" data-blog-article-body>([\s\S]*?)<\/div>/i)?.[1] || ''
     check(body.trim().length > 0, `${relative}: body artikel kosong`)
     check(!/<(?:script|iframe|object|embed)\b|javascript:/i.test(body), `${relative}: HTML tidak aman`)
+    check(!/<[^>]+\son(?:error|click)=/i.test(body), `${relative}: event handler tidak aman`)
     for (const match of body.matchAll(/href="(\/blog\/([^/]+)\/)"/g)) {
       check(Boolean(normalizeSlug(match[2])), `${relative}: internal Blog link tidak valid`)
     }
