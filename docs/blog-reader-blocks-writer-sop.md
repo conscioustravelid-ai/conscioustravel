@@ -49,7 +49,9 @@ Contoh:
 
 Jangan gunakan Table untuk jadwal perjalanan harian. Gunakan Itinerary Block untuk jadwal berbasis hari dan waktu.
 
-Tabel dari Google Docs atau tabel Markdown dari ChatGPT dapat ditempel langsung ke **Article Body** dan akan menjadi native Table. Pilih dan salin tabelnya saja. Jika pilihan juga memuat paragraf sebelum atau sesudah tabel, Sanity mempertahankan perilaku paste normal agar teks tersebut tidak hilang; dalam kondisi itu, ulangi dengan menyeleksi tabel saja.
+Untuk konten editorial standar, penulis dapat menyalin satu bagian campuran dari Google Docs atau ChatGPT lalu menempelkannya **sekali** ke **Article Body**. Sanity mempertahankan urutan H2, H3, paragraf, daftar bullet/nomor, bold, italic, link aman, tabel perbandingan, dan itinerary. Beberapa tabel biasa serta itinerary boleh berada dalam pilihan yang sama; tabel biasa menjadi native Table dan tabel jadwal setelah H3 yang jelas menjadi Itinerary Block.
+
+Callout, CTA, dan Image tetap ditambahkan secara manual melalui Studio. Daftar bertingkat dapat diratakan menjadi satu tingkat. Link `http`, `https`, `mailto`, dan `tel` dipertahankan; link tidak aman dibuang tanpa menghilangkan teks yang dapat dibaca.
 
 Untuk membuat atau mengedit Table secara manual, gunakan tampilan penuh/maximized **Article Body** agar kontrol tabel lebih mudah terlihat. Normal paragraph yang ditempel tetap menjadi paragraph biasa.
 
