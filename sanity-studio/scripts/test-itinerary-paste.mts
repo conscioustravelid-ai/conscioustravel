@@ -9,7 +9,7 @@ assert.deepEqual(parsed.map((block)=>block._type),['block','block','block','itin
 assert.equal((parsed[3].items as any[])[0].optional,false)
 assert.equal((parsed[3].items as any[])[1].optional,true)
 assert.equal((parsed[3].items as any[])[1].activity,'Ubud ringan / opsional')
-assert.equal(parseMarkdownItineraryPaste('### Day 1\n\nNarasi saja.',key),undefined)
+assert.deepEqual(parseMarkdownItineraryPaste('### Day 1\n\nNarasi saja.',key)!.map((block)=>block.style),['h3','normal'])
 
 const html=`<h3 onclick="bad()">Day 2 &lt;script&gt;</h3><p>Pengantar <img src=x onerror=bad></p><table><thead><tr><th>Time</th><th>Activity</th></tr></thead><tbody><tr><td>10.00<script>bad()</script></td><td>Bird Park<iframe></iframe></td></tr></tbody></table><p>Penutup</p><h3>Day 3</h3><p>Narasi</p>`
 const htmlParsed=parseHtmlItineraryPaste(html,{createDocument:document,createKey:key})!
@@ -35,7 +35,7 @@ assert.equal(classifyItinerary({headerRows:1,rows:[['Waktu','Agenda'],['','Sarap
 assert.equal(classifyItinerary({headerRows:1,rows:[['Waktu','Agenda'],['08.00','Sarapan']]},'',key),undefined)
 assert.equal((classifyItinerary({headerRows:0,rows:[['Waktu','Rencana'],['08.00','Sarapan']]},'Hari 1',key)!.items as any[])[0].activity,'Sarapan')
 const noHeading=parseMarkdownItineraryPaste('| Waktu | Agenda |\n| --- | --- |\n| 08.00 | Sarapan |',key)
-assert.equal(noHeading,undefined)
+assert.deepEqual(noHeading!.map((block)=>block._type),['table'])
 
 const mixed=`### Hari 1\n\n| Route | Base | Ritme |\n| --- | --- | --- |\n| A | B | C |\n\n### Hari 2\n\n| Waktu | Agenda |\n| --- | --- |\n| 09.00 | Jalan |`
 assert.deepEqual(parseMarkdownItineraryPaste(mixed,key)!.map((block)=>block._type),['block','table','block','itineraryBlock'])
@@ -49,8 +49,39 @@ assert.ok(handler({event:event('| A | B |\n| --- | --- |\n| 1 | 2 |'),path:['bod
 assert.equal(handler({event:event('| broken |'),path:['body']} as any),undefined)
 const docsHandled=handler({event:event('',googleDocsHtml),path:['body']} as any) as any
 assert.deepEqual(docsHandled.insert.map((block:any)=>block._type),['block','block','block','block','itineraryBlock','block','block','block'])
-assert.equal(handler({event:event('','<h3><span>Day 1</span></h3><p>Narasi saja.</p>'),path:['body']} as any),undefined)
+assert.deepEqual((handler({event:event('','<h3><span>Day 1</span></h3><p>Narasi saja.</p>'),path:['body']} as any) as any).insert.map((block:any)=>block.style),['h3','normal'])
 const docsComparison='<table><tbody><tr><td>Route</td><td>Base</td><td>Ritme</td></tr><tr><td>A</td><td>Sanur</td><td>Aktif</td></tr></tbody></table>'
 const comparisonHandled=handler({event:event('',docsComparison),path:['body']} as any) as any
 assert.deepEqual(comparisonHandled.insert.map((block:any)=>block._type),['table'])
-console.log('Smart Itinerary Paste tests passed.')
+
+// Universal Google Docs flow: preserve document order, H2, inline marks, links,
+// multiple ordinary tables, and a later itinerary in one paste operation.
+const universalHtml='<div><h2>Route <strong>A</strong></h2><p>Cocok untuk <em>pemula</em> dan <a href="https://example.com">referensi</a> <a href="javascript:alert(1)">tidak aman</a>.</p><table><tr><td>Base</td><td>Ritme</td></tr><tr><td>Sanur</td><td>Aktif</td></tr></table><section><p>Pengantar kedua.</p><table><tr><th>Harga</th><th>Catatan</th></tr><tr><td>100</td><td>Aman</td></tr></table></section><h3>Day 1 — Selatan</h3><p>Mulai pagi.</p><table><tr><th>Waktu</th><th>Rencana</th><th>Area</th></tr><tr><td>09.00</td><td>GWK</td><td>Ungasan</td></tr></table></div>'
+const universal=parseHtmlItineraryPaste(universalHtml,{createDocument:document,createKey:key})!
+assert.deepEqual(universal.map((item)=>item._type),['block','block','table','block','table','block','block','itineraryBlock'])
+assert.equal(universal[0].style,'h2')
+assert.equal((universal[0].children as any[]).map((span)=>span.text).join(''),'Route A')
+assert.equal((universal[0].children as any[])[1].marks.includes('strong'),true)
+assert.equal((universal[1].children as any[]).some((span)=>span.marks.includes('em')),true)
+assert.equal((universal[1].markDefs as any[]).length,1)
+assert.equal(JSON.stringify(universal).includes('javascript:'),false)
+assert.equal(universal.at(-1)!.dayTitle,'Day 1 — Selatan')
+
+const wrapped='<div><custom-wrapper><h2>Judul</h2><p>Teks</p><table><tr><td>A</td><td>B</td></tr><tr><td>1</td><td>2</td></tr></table></custom-wrapper><script>alert(1)</script><iframe src="x"></iframe></div>'
+const wrappedParsed=parseHtmlItineraryPaste(wrapped,{createDocument:document,createKey:key})!
+assert.deepEqual(wrappedParsed.map((item)=>item._type),['block','block','table'])
+assert.equal(JSON.stringify(wrappedParsed).includes('alert'),false)
+
+const universalMarkdown='## Route A\n\nParagraf **tebal**, *miring*, [aman](https://example.com), dan [jahat](javascript:alert(1)).\n\n| Base | Ritme |\n| --- | --- |\n| Sanur | Aktif |\n\n- Poin satu\n- Poin dua\n\n### Day 1\n\nPengantar.\n\n| Waktu | Rencana |\n| --- | --- |\n| 09.00 | GWK |'
+const markdownUniversal=parseMarkdownItineraryPaste(universalMarkdown,key)!
+assert.deepEqual(markdownUniversal.map((item)=>item._type),['block','block','table','block','block','block','block','itineraryBlock'])
+assert.equal(markdownUniversal[0].style,'h2')
+assert.equal((markdownUniversal[1].children as any[]).map((span)=>span.text).join('').startsWith('Paragraf tebal, miring,'),true)
+assert.equal((markdownUniversal[1].markDefs as any[]).length,1)
+assert.equal(JSON.stringify(markdownUniversal).includes('javascript:'),false)
+assert.equal(markdownUniversal[3].listItem,'bullet')
+
+assert.equal(parseMarkdownItineraryPaste('Paragraf biasa tanpa struktur.',key),undefined)
+assert.equal(parseMarkdownItineraryPaste('https://example.com',key),undefined)
+assert.equal(parseMarkdownItineraryPaste('| malformed |',key),undefined)
+console.log('Universal Mixed Content Paste tests passed.')
