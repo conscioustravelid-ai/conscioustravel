@@ -90,7 +90,7 @@ Untuk artikel yang akan online segera:
 7. Tunggu deployment selesai.
 8. Verifikasi artikel online.
 
-**Publish Now** mengisi Publication Date dengan waktu saat ini jika field masih kosong atau berisi tanggal masa depan. Jika artikel pernah diterbitkan, tanggal publikasi pertamanya dipertahankan. Menyimpan draft tidak memicu rebuild website; Publish Now memicu rebuild staging secara otomatis melalui webhook.
+**Publish Now** mengisi Publication Date dengan waktu saat ini jika field masih kosong atau berisi tanggal masa depan. Jika artikel pernah diterbitkan, tanggal publikasi pertamanya dipertahankan. Menyimpan draft tidak memicu rebuild website; Publish Now memicu rebuild production secara otomatis melalui webhook khusus post published.
 
 **Jangan gunakan Publication Date sebagai alat penjadwalan manual.** Scheduled publication belum menjadi bagian dari workflow launch saat ini. Artikel akan diterbitkan segera dan tanggal masa depan akan dinormalisasi ke waktu publish.
 
@@ -98,13 +98,13 @@ Untuk artikel yang akan online segera:
 
 Deployment membutuhkan waktu untuk diproses; durasinya dapat berbeda setiap saat. Setelah deployment Ready:
 
-1. Buka listing Blog staging dan pastikan artikel muncul jika Noindex OFF.
+1. Buka listing Blog production dan pastikan artikel muncul jika Noindex OFF.
 2. Buka URL artikel dan pastikan slug benar.
 3. Periksa Cover Image dan gambar di dalam artikel.
 4. Periksa heading, list, link, quote, serta jarak antarbagian.
 5. Periksa SEO Title, Meta Description, dan social image bila diperlukan.
 
-Staging memang dilindungi dari indexing dan digunakan untuk review sebelum production.
+Staging tetap dilindungi dari indexing dan dapat digunakan untuk QA perubahan kode. Publikasi konten harian tidak memerlukan merge Git atau promosi staging: deployment production baru akan menggantikan deployment aktif hanya jika seluruh build dan validator berhasil.
 
 ## J. Mengedit Artikel yang Sudah Ada
 
@@ -112,7 +112,7 @@ Staging memang dilindungi dari indexing dan digunakan untuk review sebelum produ
 2. Lakukan perubahan; Sanity membuat draft baru.
 3. Minta internal review.
 4. Klik **Publish Now** lagi.
-5. Tunggu deployment otomatis dan periksa hasil terbaru di staging.
+5. Tunggu deployment otomatis dan periksa hasil terbaru di production.
 
 Draft perubahan tidak menggantikan versi published sampai tombol Publish Now ditekan. Republish tidak mengubah Publication Date awal.
 
@@ -178,7 +178,7 @@ Jika artikel published tetap tidak diperbarui:
 5. Jalankan `npm run verify:sanity` dari root repository.
 6. Jalankan `npm run build`.
 7. Jalankan `npm run validate:blog`.
-8. Bila perlu, lakukan safe manual staging redeployment melalui mekanisme yang sudah disetujui.
+8. Bila perlu, lakukan safe manual production redeployment melalui mekanisme yang sudah disetujui; jangan membuat Deploy Hook baru.
 9. Eskalasikan kegagalan webhook yang terus berulang.
 
 Jangan meminta atau membagikan private Vercel Deploy Hook URL. MVP ini tidak memerlukan custom webhook server.

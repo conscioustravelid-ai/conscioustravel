@@ -110,7 +110,7 @@ Kondisi CMS saat checkpoint C1 masih nol artikel indexable, sehingga listing men
 
 Blocker sebelum production: verifikasi GTM Preview/GA4, konfirmasi redirect hostname production, dan first real article populated-state QA.
 
-## Phase C2 — Publishing Automation
+## Phase C2 — Publishing Automation (historical staging workflow)
 
 Arsitektur publishing yang telah diverifikasi:
 
@@ -126,7 +126,7 @@ Sanity Studio
 → staging.conscioustravel.id
 ```
 
-Webhook bernama **Vercel Staging Blog Rebuild** memantau dataset `production` dengan metode `POST`. Event yang dipantau adalah Create, Update, dan Delete, dengan filter `_type in ["post", "author", "category"]`. Draft events dan version events dinonaktifkan. Destination adalah private Vercel staging Deploy Hook; URL aktualnya tidak boleh disimpan di repository, dokumentasi, `.env.example`, log, atau commit message.
+Webhook bernama **Vercel Staging Blog Rebuild** pernah memantau dataset `production` dengan metode `POST`. Event-nya adalah Create, Update, dan Delete, dengan filter `_type in ["post", "author", "category"]`; Draft dan Version events dinonaktifkan. Webhook ini sekarang **Disabled** agar routine publish tidak membuat deployment staging kedua. Staging dan private staging Deploy Hook tetap tersedia untuk QA manual perubahan berisiko atau perubahan kode. URL aktualnya tidak boleh disimpan di repository, dokumentasi, `.env.example`, log, atau commit message.
 
 ### Perilaku terverifikasi
 
@@ -167,13 +167,33 @@ Field **Publication Date** bersifat read-only dan menjelaskan aturan tersebut ke
 
 Generator juga memfilter dokumen published bertanggal masa depan sebelum membuat route, listing, related article, manifest, atau sitemap. Semua dokumen tetap dinormalisasi lebih dulu agar published document dengan data kritis tidak valid tetap menggagalkan build. Tes helper Publish Now dan future-date routing menjadi bagian dari `npm run validate:blog`.
 
-Workflow ini adalah MVP **publish segera**. Scheduling, custom scheduling UI, perubahan webhook, dan deployment production tetap ditunda sampai fase post-launch yang disetujui terpisah.
+Workflow ini adalah MVP **publish segera**. Scheduling dan custom scheduling UI tetap ditunda sampai fase post-launch yang disetujui terpisah; automation production dijelaskan pada bagian berikutnya.
 
 Future enhancement: evaluasi **Sanity Scheduled Drafts** untuk scheduled publishing yang sesungguhnya. Arsitektur masa depan harus memastikan tidak ada deployment ketika editor masih mengedit atau menjadwalkan; waktu terjadwal menghasilkan published mutation; published mutation memicu tepat satu rebuild; `datePublished` benar; serta draft dan version tetap dikecualikan dari webhook kecuali arsitektur baru yang telah diuji secara eksplisit membutuhkannya.
 
+## Blog Publish Automation v1 — Production
+
+Alur publikasi konten production adalah:
+
+```text
+Sanity Publish Now / update / unpublish post
+→ Sanity webhook production (published post only)
+→ private Vercel Deploy Hook untuk branch main
+→ npm run build
+→ query published Content Lake tanpa token
+→ generator dan seluruh validator
+→ atomic Vercel production deployment
+```
+
+Webhook production terpisah dari webhook staging yang berstatus Disabled. Webhook production hanya memantau dokumen `_type == "post"` pada dataset `production`, dengan Drafts dan Versions dinonaktifkan. Create, Update, dan Delete published mutation dipantau agar publish, republish, unpublish, dan delete menghasilkan regenerasi yang konsisten. URL Deploy Hook bersifat rahasia dan tidak disimpan di repository, dokumentasi, environment example, output CI, atau commit message.
+
+Build production memakai `npm run build` dari root dan branch `main`. Generator membaca perspective `published`, sehingga draft tidak dapat masuk ke HTML, manifest, listing, related article, atau sitemap. Perubahan konten tidak membuat commit Git. Output baru hanya menjadi aktif ketika build, validator Blog, validator Phase 2, dan validator editorial semuanya sukses; deployment gagal tidak menggantikan deployment production terakhir yang sehat.
+
+Operasional harian tidak memerlukan staging. Staging tetap tersedia untuk QA perubahan kode dan tetap memiliki perlindungan `X-Robots-Tag: noindex, nofollow`. Untuk observability, periksa Attempts Log webhook Sanity terlebih dahulu, kemudian Vercel Deployments dan build log. Satu mutasi published post harus menghasilkan satu request webhook dan satu deployment; retry hanya dilakukan setelah penyebab kegagalan dipahami.
+
 ## Blog Reader Blocks v1
 
-**Status rilis BRB1G:** Sanity Studio dan frontend staging telah dideploy serta lulus owner QA. Frontend Reader Blocks belum dideploy ke production. Sampai BRB1H selesai dan dikonfirmasi, editor tidak boleh mem-publish konten yang menggunakan Reader Blocks untuk konsumsi production.
+**Status rilis:** Sanity Studio dan frontend Reader Blocks v1 telah dideploy ke production dan lulus owner QA. Editor dapat menggunakan blok yang didukung setelah menyelesaikan checklist editorial dan preview.
 
 Sanity Studio mendukung komponen terstruktur berikut di dalam `blockContent`:
 
@@ -187,7 +207,7 @@ Regresi image memastikan alt text, caption, dimensi intrinsik, `srcset`, lazy lo
 
 Frontend membangun Table of Contents secara otomatis dari H2 dan H3 top-level. H2 menjadi bagian utama, H3 menjadi anak dari H2 terdekat, dan H4 tidak dimasukkan. TOC tampil mulai tiga H2; artikel dengan lebih dari enam H2 memakai progressive enhancement agar enam H2 pertama terlihat pada state ringkas, sementara HTML tanpa JavaScript tetap memuat hierarki lengkap.
 
-**Aturan sequencing peluncuran:** Studio sudah mendukung Reader Blocks, tetapi konten yang menggunakan `table`, `itineraryBlock`, `calloutBlock`, atau `ctaBlock` tidak boleh dipublish ke production sampai rilis frontend BRB1H selesai dan dikonfirmasi. Draft-only QA tidak memicu webhook karena Drafts tetap OFF. Panduan praktis untuk penulis tersedia di `docs/blog-reader-blocks-writer-sop.md`.
+Draft-only QA Reader Blocks tidak memicu webhook karena Drafts tetap OFF. Setelah review, publish atau republish post memicu automation production. Panduan praktis untuk penulis tersedia di `docs/blog-reader-blocks-writer-sop.md`.
 
 ### Smart Table Paste
 

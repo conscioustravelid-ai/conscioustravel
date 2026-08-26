@@ -2,7 +2,7 @@
 
 Panduan ini ditujukan untuk penulis dan editor non-teknis. Semua komponen di bawah tersedia melalui **Article Body** di Sanity Studio; penulis tidak perlu menulis HTML, CSS, JavaScript, GROQ, atau kode analitik.
 
-> **Peringatan sementara:** jangan publish artikel yang menggunakan Table, Itinerary Block, Callout Block, atau CTA Block ke production sebelum tim teknis mengonfirmasi bahwa rilis frontend BRB1H selesai.
+> Reader Blocks v1 sudah tersedia di production. Tetap lakukan preview dan checklist editorial sebelum publish.
 
 ## 1. Struktur dasar artikel
 
@@ -162,6 +162,12 @@ Hindari terlalu banyak CTA bergaya Primary dalam satu artikel.
 - [ ] Tracking ID unik dan sesuai format.
 - [ ] SEO Title dan Meta Description sudah diperiksa.
 - [ ] Featured dan Noindex sudah sesuai tujuan artikel.
-- [ ] Preview/staging QA sudah dilakukan.
+- [ ] Preview dan QA editorial sudah dilakukan.
 - [ ] Tampilan artikel sudah diperiksa pada layar mobile.
-- [ ] Tim teknis telah mengonfirmasi BRB1H sebelum Reader Blocks dipublish ke production.
+- [ ] Semua Reader Blocks telah diperiksa pada desktop dan mobile.
+
+## 12. Publikasi ke website
+
+Setelah checklist selesai, klik **Publish Now** di Sanity Studio. Mutasi post published akan memicu satu build production Vercel. Draft biasa tidak memicu deployment. Tunggu deployment berstatus **Ready**, lalu periksa listing `/blog/` dan route artikel di production. Penulis tidak perlu membuat commit Git, membuka Vercel, atau mempromosikan staging untuk perubahan konten harian.
+
+Jika deployment gagal, website production sebelumnya tetap aktif. Jangan membuat webhook atau Deploy Hook baru; laporkan kegagalan kepada tim teknis untuk pemeriksaan Attempts Log Sanity dan build log Vercel.
