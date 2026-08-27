@@ -134,15 +134,6 @@ body[data-page="indonesia"] .page-hero .btn-primary:hover {
   background: linear-gradient(0deg, rgba(7, 28, 19, 0.94) 0%, rgba(7, 28, 19, 0.44) 66%, rgba(7, 28, 19, 0.08) 100%);
 }
 
-.journey-pathway-index {
-  font-size: var(--type-eyebrow);
-  font-weight: var(--weight-bold);
-  left: var(--space-8);
-  position: absolute;
-  top: var(--space-8);
-  z-index: 1;
-}
-
 .journey-pathway-copy {
   bottom: 0;
   display: flex;

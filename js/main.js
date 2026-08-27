@@ -24,8 +24,8 @@ const PAGE_IMAGES = {
 
 const PRODUCT_PAGE_IMAGES = {
   corporateHub: {
-    indonesia: "/assets/images/kintamani-outing-cover.webp",
-    international: "/assets/images/group-dinner-party.webp",
+    indonesia: "/assets/images/corporate/indonesia-corporate-outing.webp",
+    international: "/assets/images/corporate/international-corporate-outing.webp",
     csr: "/assets/images/home/impact-home-card.webp",
     event: "/assets/images/beach-team-building.webp"
   },
@@ -401,7 +401,6 @@ function renderPathwayGateways(pathways) {
     <a class="journey-pathway${index < 2 ? " journey-pathway-primary" : " journey-pathway-supporting"}" href="${escapeHtml(pathway.href)}">
       <img src="${escapeHtml(images[pathway.key])}" alt="${escapeHtml(pathway.title)} corporate journey" width="1200" height="900" loading="lazy" decoding="async">
       <span class="journey-pathway-overlay" aria-hidden="true"></span>
-      <span class="journey-pathway-index" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
       <span class="journey-pathway-copy">
         <strong>${escapeHtml(pathway.title)}</strong>
         <span>${escapeHtml(pathway.body)}</span>
