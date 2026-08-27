@@ -63,6 +63,10 @@ window.CT_CONTENT = {
         ["CSR Program", "/corporate-packages/csr-program/"],
         ["Event Planning for Corporate Travel", "/corporate-packages/event-planning-organizer/"]
       ],
+      experiencesItems: [
+        ["Experiences", "/experiences/"],
+        ["Sailing Package", "/sailing-package/"]
+      ],
       aboutItems: [
         ["About Us", "/about/"],
         ["Impact & Sustainability", "/impact/"],
@@ -416,6 +420,7 @@ window.CT_CONTENT = {
         ["CSR Program", "/corporate-packages/csr-program/"],
         ["Event Planning for Corporate Travel", "/corporate-packages/event-planning-organizer/"]
       ],
+      experiencesItems: [["Experiences", "/experiences/"], ["Sailing Package", "/sailing-package/"]],
       aboutItems: [["About Us", "/about/"], ["Impact & Sustainability", "/impact/"], ["FAQ", "/faq/"], ["Contact", "/contact/"]]
     },
     ui: {

@@ -1,6 +1,8 @@
 const CT_STATE = {
   language: localStorage.getItem("ct-language") === "en" ? "en" : "id",
-  catalog: null
+  catalog: null,
+  clientCarouselTimer: null,
+  clientCarouselAbortController: null
 };
 
 const PAGE_IMAGES = {
@@ -205,12 +207,10 @@ function renderHeader() {
       <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation">
         <a href="/"${isActive("/") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.home)}</a>
         ${dropdown("corporate-menu", c.nav.corporate, c.nav.corporateItems, isActive("/corporate-packages"))}
-        <a href="/experiences/"${isActive("/experiences") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.experiences)}</a>
+        ${dropdown("experiences-menu", c.nav.experiences, c.nav.experiencesItems, ["/experiences/", "/sailing-package/"].includes(currentPath))}
         <a href="/study-tour/"${isActive("/study-tour") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.study)}</a>
-        <a href="/sailing-package/"${isActive("/sailing-package") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.sailing)}</a>
         <a href="/blog/"${isActive("/blog") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.blog)}</a>
-        ${dropdown("about-menu", c.nav.about, c.nav.aboutItems, ["/about/", "/impact/", "/faq/"].includes(currentPath))}
-        <a href="/contact/"${isActive("/contact") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.contact)}</a>
+        ${dropdown("about-menu", c.nav.about, c.nav.aboutItems, ["/about/", "/impact/", "/faq/", "/contact/"].includes(currentPath))}
         <div class="nav-actions">
           ${isBlog ? "" : `<button class="language-toggle" type="button" data-language-toggle aria-label="${escapeHtml(c.ui.changeLanguage)}">${CT_STATE.language === "id" ? "EN" : "ID"}</button>`}
           <a class="btn btn-primary nav-cta" href="${whatsappUrl("general")}" target="_blank" rel="noopener" data-wa-key="general">Start Your Journey</a>
@@ -304,11 +304,34 @@ function renderResponsiveImage({ desktop, mobile, alt, className, width, height,
   return `<picture class="${escapeHtml(className)}-picture">${source}<img class="${escapeHtml(className)}" src="${escapeHtml(desktop)}" alt="${escapeHtml(alt)}" width="${width}" height="${height}"${loadingAttribute}${priorityAttribute} decoding="async"></picture>`;
 }
 
-function renderTrustedBy(label) {
-  const logos = CLIENT_LOGOS.map(([name, src]) => `
-    <li><img src="${src}" alt="${escapeHtml(name)}" width="180" height="72" loading="lazy"></li>`).join("");
+function renderTrustedBy(label, options = {}) {
   const supportingLabel = CT_STATE.language === "id" ? "Kolaborasi terpilih" : "Selected collaborations";
-  return `<section class="trust-strip" aria-label="Client trust"><div class="container"><div class="trust-heading"><p>${escapeHtml(label)}</p><span>${supportingLabel}</span></div><ul>${logos}</ul></div></section>`;
+  const trustLabel = CT_STATE.language === "id" ? "Klien Conscious Travel" : "Conscious Travel clients";
+  if (!options.carousel) {
+    const logos = CLIENT_LOGOS.map(([name, src]) => `
+      <li><img src="${src}" alt="${escapeHtml(name)}" width="180" height="72" loading="lazy"></li>`).join("");
+    return `<section class="trust-strip" aria-label="${trustLabel}"><div class="container"><div class="trust-heading"><p>${escapeHtml(label)}</p><span>${supportingLabel}</span></div><ul>${logos}</ul></div></section>`;
+  }
+
+  const previousLabel = CT_STATE.language === "id" ? "Logo klien sebelumnya" : "Previous client logo";
+  const nextLabel = CT_STATE.language === "id" ? "Logo klien berikutnya" : "Next client logo";
+  const slides = CLIENT_LOGOS.map(([name, src], index) => `
+    <li class="trust-carousel-slide${index === 0 ? " is-active" : ""}" data-client-slide data-client-name="${escapeHtml(name)}" aria-hidden="${index === 0 ? "false" : "true"}">
+      <img src="${src}" alt="${escapeHtml(name)}" width="240" height="88"${index === 0 ? "" : ' loading="lazy"'}>
+    </li>`).join("");
+  return `<section class="trust-strip trust-strip-carousel" aria-label="${trustLabel}">
+    <div class="container">
+      <div class="trust-heading"><p>${escapeHtml(label)}</p><span>${supportingLabel}</span></div>
+      <div class="trust-carousel" data-client-carousel role="region" aria-roledescription="carousel" aria-label="${trustLabel}">
+        <button class="trust-carousel-control" type="button" data-client-prev aria-label="${previousLabel}" title="${previousLabel}"><span aria-hidden="true">&#8592;</span></button>
+        <div class="trust-carousel-viewport" data-client-viewport>
+          <ul class="trust-carousel-track">${slides}</ul>
+          <p class="sr-only" data-client-status aria-live="polite"></p>
+        </div>
+        <button class="trust-carousel-control" type="button" data-client-next aria-label="${nextLabel}" title="${nextLabel}"><span aria-hidden="true">&#8594;</span></button>
+      </div>
+    </div>
+  </section>`;
 }
 
 function renderBreadcrumb(items) {
@@ -498,7 +521,7 @@ function renderHome() {
   const primaryServices = p.services.slice(0, 2).map((item, index) => renderHomeServiceCard(item, index, serviceCards[index])).join("");
   const supportingServices = p.services.slice(2).map((item, index) => renderHomeServiceCard(item, index + 2, serviceCards[index + 2])).join("");
   return `${renderHero("home", p, { home: true, primaryLabel: p.title, secondaryHref: "/corporate-packages/", secondaryLabel: content().nav.corporate })}
-    ${renderTrustedBy(p.trust)}
+    ${renderTrustedBy(p.trust, { carousel: true })}
     <section class="section home-intro"><div class="container home-intro-grid"><div><p class="section-kicker">Conscious Travel</p><h2>${escapeHtml(p.introTitle)}</h2></div><p class="section-lead">${escapeHtml(p.introBody)}</p></div></section>
     <section class="section home-services"><div class="container"><div class="section-heading home-section-heading"><p class="section-kicker">Service ecosystem</p><h2>${escapeHtml(p.whatTitle)}</h2><p>${escapeHtml(p.whatLead)}</p></div><div class="home-service-primary-grid">${primaryServices}</div><div class="home-service-supporting-grid">${supportingServices}</div></div></section>
     <section class="section home-impact"><div class="container home-impact-grid"><div class="home-impact-copy"><p class="section-kicker">${escapeHtml(p.impactEyebrow)}</p><h2>${escapeHtml(p.impactTitle)}</h2><p>${escapeHtml(p.impactBody)}</p><a class="text-link" href="/impact/">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></a></div>${renderHomeImpactMetrics(p.impactMetrics)}</div></section>
@@ -862,6 +885,105 @@ function bindNavigation() {
   nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeNavigation));
 }
 
+function bindClientCarousel() {
+  window.clearTimeout(CT_STATE.clientCarouselTimer);
+  CT_STATE.clientCarouselAbortController?.abort();
+  CT_STATE.clientCarouselTimer = null;
+  CT_STATE.clientCarouselAbortController = null;
+
+  const root = document.querySelector("[data-client-carousel]");
+  if (!root) return;
+
+  const slides = [...root.querySelectorAll("[data-client-slide]")];
+  const previous = root.querySelector("[data-client-prev]");
+  const next = root.querySelector("[data-client-next]");
+  const viewport = root.querySelector("[data-client-viewport]");
+  const status = root.querySelector("[data-client-status]");
+  if (!slides.length || !previous || !next || !viewport || !status) return;
+
+  const controller = new AbortController();
+  const { signal } = controller;
+  const allowsAutoAdvance = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  CT_STATE.clientCarouselAbortController = controller;
+  let activeIndex = 0;
+  let paused = false;
+  let touchStartX = null;
+
+  const positionLabel = (index) => {
+    const name = slides[index].dataset.clientName || "";
+    return CT_STATE.language === "id"
+      ? `Logo klien ${index + 1} dari ${slides.length}: ${name}`
+      : `Client logo ${index + 1} of ${slides.length}: ${name}`;
+  };
+
+  const showSlide = (index, announce = false) => {
+    activeIndex = (index + slides.length) % slides.length;
+    slides.forEach((slide, slideIndex) => {
+      const active = slideIndex === activeIndex;
+      slide.classList.toggle("is-active", active);
+      slide.setAttribute("aria-hidden", String(!active));
+    });
+    if (announce) status.textContent = positionLabel(activeIndex);
+  };
+
+  const schedule = () => {
+    window.clearTimeout(CT_STATE.clientCarouselTimer);
+    if (!allowsAutoAdvance || paused || document.hidden) return;
+    CT_STATE.clientCarouselTimer = window.setTimeout(() => {
+      showSlide(activeIndex + 1);
+      schedule();
+    }, 6000);
+  };
+
+  const move = (direction) => {
+    showSlide(activeIndex + direction, true);
+    schedule();
+  };
+
+  previous.addEventListener("click", () => move(-1), { signal });
+  next.addEventListener("click", () => move(1), { signal });
+  root.addEventListener("keydown", (event) => {
+    if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+    event.preventDefault();
+    move(event.key === "ArrowLeft" ? -1 : 1);
+  }, { signal });
+  root.addEventListener("mouseenter", () => {
+    paused = true;
+    window.clearTimeout(CT_STATE.clientCarouselTimer);
+  }, { signal });
+  root.addEventListener("mouseleave", () => {
+    paused = false;
+    schedule();
+  }, { signal });
+  root.addEventListener("focusin", () => {
+    paused = true;
+    window.clearTimeout(CT_STATE.clientCarouselTimer);
+  }, { signal });
+  root.addEventListener("focusout", (event) => {
+    if (root.contains(event.relatedTarget)) return;
+    paused = false;
+    schedule();
+  }, { signal });
+  viewport.addEventListener("touchstart", (event) => {
+    touchStartX = event.changedTouches[0]?.clientX ?? null;
+    paused = true;
+    window.clearTimeout(CT_STATE.clientCarouselTimer);
+  }, { passive: true, signal });
+  viewport.addEventListener("touchend", (event) => {
+    const touchEndX = event.changedTouches[0]?.clientX ?? null;
+    if (touchStartX !== null && touchEndX !== null && Math.abs(touchEndX - touchStartX) >= 40) {
+      move(touchEndX < touchStartX ? 1 : -1);
+    }
+    touchStartX = null;
+    paused = false;
+    schedule();
+  }, { passive: true, signal });
+  document.addEventListener("visibilitychange", schedule, { signal });
+
+  showSlide(0);
+  schedule();
+}
+
 function bindLanguageToggle() {
   document.querySelectorAll("[data-language-toggle]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -1050,6 +1172,7 @@ function initializeUi() {
   renderFooter();
   bindHeaderVisualState();
   bindNavigation();
+  bindClientCarousel();
   bindLanguageToggle();
   bindWhatsappTracking();
   bindBlogReaderCtaTracking();
