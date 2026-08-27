@@ -198,8 +198,8 @@ function renderHeader() {
     <a class="skip-link" href="#main-content">${escapeHtml(c.skip)}</a>
     <div class="nav-shell">
       <a class="brand-link" href="/" aria-label="Conscious Travel home">
-        <img class="brand-logo-default" src="/assets/images/new-logo-conscious.webp" alt="Conscious Travel" width="174" height="58">
-        <img class="brand-logo-on-dark" src="/assets/images/new-logo-conscious-on-dark.webp" alt="" width="174" height="58" aria-hidden="true">
+        <img class="brand-logo-default" src="/assets/images/brand/conscious-travel-logo-dark.webp" alt="Conscious Travel" width="865" height="330">
+        <img class="brand-logo-on-dark" src="/assets/images/brand/conscious-travel-logo-light.webp" alt="" width="865" height="330" aria-hidden="true">
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="${escapeHtml(c.ui.menu)}">
         <span></span><span></span><span></span>
@@ -225,7 +225,7 @@ function renderFooter() {
   document.getElementById("site-footer").innerHTML = `
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="/assets/images/new-logo-conscious-on-dark.webp" alt="Conscious Travel" width="174" height="58" loading="lazy">
+        <img src="/assets/images/brand/conscious-travel-logo-light.webp" alt="Conscious Travel" width="865" height="330" loading="lazy">
         <p>${escapeHtml(c.footer.description)}</p>
         <a href="mailto:${config.email}">${config.email}</a>
         <a href="tel:+${config.whatsappNumber}">${config.phoneDisplay}</a>
