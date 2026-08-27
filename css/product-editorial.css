@@ -1111,6 +1111,462 @@ body[data-page="indonesia"] .page-hero .btn-primary:hover {
   }
 }
 
+/* Indonesia Region: compact destination and package exploration. */
+
+body[data-page="indonesia"] .page-hero .hero-media {
+  object-position: center 50%;
+}
+
+.indonesia-destination-section {
+  background: var(--color-off-white);
+  padding: var(--space-5) 0;
+  scroll-margin-top: 96px;
+}
+
+.indonesia-destination-section:nth-of-type(even) {
+  background: var(--color-mist);
+}
+
+.indonesia-destination {
+  margin: 0;
+}
+
+.destination-gateway {
+  border-radius: 8px;
+  color: var(--color-white);
+  cursor: pointer;
+  display: block;
+  min-height: 330px;
+  overflow: hidden;
+  position: relative;
+}
+
+.destination-gateway::-webkit-details-marker,
+.compact-package > summary::-webkit-details-marker {
+  display: none;
+}
+
+.destination-gateway img,
+.destination-gateway-overlay {
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.destination-gateway img {
+  object-fit: cover;
+  object-position: center 48%;
+  transition: transform var(--transition-slow);
+}
+
+.destination-gateway-overlay {
+  background: linear-gradient(90deg, rgba(7, 28, 19, 0.9) 0%, rgba(7, 28, 19, 0.56) 48%, rgba(7, 28, 19, 0.12) 80%), linear-gradient(0deg, rgba(7, 28, 19, 0.58), transparent 52%);
+}
+
+.destination-gateway-copy {
+  bottom: 0;
+  display: grid;
+  gap: var(--space-3);
+  left: 0;
+  max-width: 760px;
+  padding: var(--space-10);
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+
+.destination-gateway-copy > small {
+  font-size: var(--type-eyebrow);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+}
+
+.destination-gateway-copy > strong {
+  color: var(--color-white);
+  font-family: var(--font-editorial);
+  font-size: 52px;
+  font-weight: var(--weight-regular);
+  line-height: 1;
+}
+
+.destination-gateway-copy > em {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: var(--type-body-large);
+  font-style: normal;
+  line-height: 1.55;
+}
+
+.destination-gateway-copy > span {
+  align-items: center;
+  display: inline-flex;
+  font-size: var(--type-button);
+  font-weight: var(--weight-semibold);
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.destination-gateway-copy b,
+.compact-package-toggle b {
+  font-size: 24px;
+  font-weight: var(--weight-regular);
+  transition: transform var(--transition-fast);
+}
+
+.destination-gateway:hover img {
+  transform: scale(1.02);
+}
+
+.destination-gateway:focus-visible,
+.compact-package > summary:focus-visible {
+  outline: 3px solid var(--color-clay);
+  outline-offset: 3px;
+}
+
+.when-open {
+  display: none;
+}
+
+[open] > summary .when-open {
+  display: inline;
+}
+
+[open] > summary .when-closed {
+  display: none;
+}
+
+.indonesia-destination[open] > .destination-gateway .destination-gateway-copy b,
+.compact-package[open] > summary .compact-package-toggle b {
+  transform: rotate(45deg);
+}
+
+.indonesia-destination-body {
+  padding: var(--space-14) 0 var(--space-10);
+}
+
+.destination-overview-grid {
+  align-items: start;
+  display: grid;
+  gap: var(--space-16);
+  grid-template-columns: minmax(0, 0.9fr) minmax(380px, 1.1fr);
+}
+
+.destination-overview-grid h2 {
+  font-family: var(--font-editorial);
+  font-size: 52px;
+  font-weight: var(--weight-regular);
+  line-height: 1.06;
+}
+
+.destination-overview-grid .destination-decision {
+  margin-top: 0;
+}
+
+.indonesia-destination-body .destination-package-section {
+  margin-top: var(--space-14);
+}
+
+.compact-package-list {
+  border-bottom: 1px solid rgba(16, 39, 29, 0.22);
+  border-top: 1px solid rgba(16, 39, 29, 0.22);
+}
+
+.compact-package + .compact-package {
+  border-top: 1px solid rgba(16, 39, 29, 0.22);
+}
+
+.compact-package > summary {
+  align-items: center;
+  cursor: pointer;
+  display: grid;
+  gap: var(--space-8);
+  grid-template-columns: minmax(260px, 0.9fr) minmax(250px, 0.72fr) auto;
+  list-style: none;
+  min-height: 122px;
+  padding: var(--space-6) 0;
+}
+
+.compact-package-title {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.compact-package-title small {
+  color: var(--color-primary);
+  font-size: var(--type-eyebrow);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+}
+
+.compact-package-title strong {
+  color: var(--color-primary-ink);
+  font-size: 25px;
+  line-height: 1.2;
+}
+
+.compact-package-title em {
+  color: var(--color-text);
+  display: -webkit-box;
+  font-size: var(--type-body-small);
+  font-style: normal;
+  line-height: 1.55;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.compact-package-price .product-price {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.compact-package-price .product-price strong {
+  font-size: 25px;
+}
+
+.compact-package-price .product-meta {
+  gap: var(--space-3);
+}
+
+.compact-package-toggle {
+  align-items: center;
+  color: var(--color-primary);
+  display: inline-flex;
+  font-size: var(--type-body-small);
+  font-weight: var(--weight-semibold);
+  gap: var(--space-3);
+  justify-self: end;
+  white-space: nowrap;
+}
+
+.compact-package-body {
+  border-top: 1px solid rgba(16, 39, 29, 0.14);
+  padding: var(--space-8) 0 var(--space-10);
+}
+
+.compact-package-body.has-media {
+  align-items: stretch;
+  display: grid;
+  gap: var(--space-10);
+  grid-template-columns: minmax(0, 0.86fr) minmax(340px, 1.14fr);
+}
+
+.compact-package-media {
+  aspect-ratio: 4 / 3;
+  border-radius: 6px;
+  margin: 0;
+  overflow: hidden;
+}
+
+.compact-package-media img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.compact-package-copy {
+  align-self: center;
+}
+
+.compact-package-copy > .text-link {
+  margin-top: var(--space-5);
+}
+
+.starter-package-body {
+  padding-bottom: var(--space-8);
+}
+
+.compact-package .starter-product-spotlight {
+  margin-top: 0;
+}
+
+.compact-package .starter-product-summary,
+.compact-package .starter-variant-section {
+  padding: var(--space-10);
+}
+
+.compact-package .starter-product-facts {
+  margin-top: var(--space-8);
+}
+
+.compact-package .starter-product-spotlight .variant-panels {
+  min-height: 0;
+  padding: 0;
+}
+
+.compact-package .starter-product-spotlight .variant-panels > div {
+  align-items: stretch;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.85fr) minmax(280px, 1.15fr);
+  min-height: 360px;
+}
+
+.compact-package .starter-product-spotlight .variant-panels > div[hidden] {
+  display: none;
+}
+
+.variant-panel-copy {
+  align-self: center;
+  padding: var(--space-8);
+}
+
+.variant-panel-copy > p {
+  color: var(--color-sage);
+}
+
+.compact-package .starter-product-spotlight .variant-panels figure,
+.variant-mobile figure {
+  margin: 0;
+  overflow: hidden;
+}
+
+.compact-package .starter-product-spotlight .variant-panels img,
+.variant-mobile img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.variant-mobile figure {
+  aspect-ratio: 4 / 3;
+  margin-top: var(--space-3);
+}
+
+.variant-mobile-copy {
+  padding-top: var(--space-3);
+}
+
+@media (max-width: 900px) {
+  .destination-gateway {
+    min-height: 300px;
+  }
+
+  .destination-overview-grid,
+  .compact-package-body.has-media {
+    grid-template-columns: 1fr;
+  }
+
+  .compact-package > summary {
+    gap: var(--space-5);
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .compact-package-price {
+    grid-column: 1;
+  }
+
+  .compact-package-toggle {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+}
+
+@media (max-width: 700px) {
+  body[data-page="indonesia"] .page-hero .hero-media {
+    object-position: 62% center;
+  }
+
+  .indonesia-destination-section {
+    padding: var(--space-3) 0;
+  }
+
+  body[data-page="indonesia"] .destination-guide {
+    scrollbar-width: none;
+  }
+
+  body[data-page="indonesia"] .destination-guide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .destination-gateway {
+    min-height: 360px;
+  }
+
+  .destination-gateway-copy {
+    padding: var(--space-7);
+  }
+
+  .destination-gateway-copy > strong,
+  .destination-overview-grid h2 {
+    font-size: 40px;
+  }
+
+  .destination-gateway-copy > em {
+    font-size: var(--type-body);
+  }
+
+  .indonesia-destination-body {
+    padding: var(--space-10) 0 var(--space-7);
+  }
+
+  .destination-overview-grid {
+    gap: var(--space-8);
+  }
+
+  .indonesia-destination-body .destination-package-section {
+    margin-top: var(--space-10);
+  }
+
+  .compact-package > summary {
+    grid-template-columns: minmax(0, 1fr) auto;
+    min-height: 0;
+    padding: var(--space-6) 0;
+  }
+
+  .compact-package-title {
+    grid-column: 1 / -1;
+  }
+
+  .compact-package-title strong {
+    font-size: 23px;
+  }
+
+  .compact-package-title em {
+    display: none;
+  }
+
+  .compact-package-price {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .compact-package-toggle {
+    align-self: center;
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
+  }
+
+  .compact-package-body {
+    padding-top: var(--space-6);
+  }
+
+  .compact-package .starter-product-summary,
+  .compact-package .starter-variant-section {
+    padding: var(--space-6);
+  }
+
+  .compact-package .starter-product-summary h2 {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 440px) {
+  .destination-gateway {
+    min-height: 330px;
+  }
+
+  .destination-gateway-copy {
+    padding: var(--space-6);
+  }
+
+  .destination-gateway-copy > strong,
+  .destination-overview-grid h2 {
+    font-size: 36px;
+  }
+}
+
 /* Editorial product pages: Study Tour, International, CSR, and Event Planning. */
 
 body:is([data-page="study"], [data-page="international"], [data-page="csr"], [data-page="event"]) {

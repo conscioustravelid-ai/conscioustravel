@@ -501,7 +501,11 @@ window.CT_EDITORIAL_CONTENT = {
       byRequest: "Disusun berdasarkan permintaan",
       regional: "Regional",
       international: "International",
-      programScope: "Cakupan program"
+      programScope: "Cakupan program",
+      viewPackages: "Lihat pilihan package",
+      hidePackages: "Tutup pilihan package",
+      viewDetails: "Lihat detail",
+      hideDetails: "Tutup detail"
     },
     corporateHub: {
       heroTitle: "Perjalanan Tim yang Dirancang dengan Makna",
@@ -927,7 +931,11 @@ window.CT_EDITORIAL_CONTENT = {
       byRequest: "Designed by request",
       regional: "Regional",
       international: "International",
-      programScope: "Program scope"
+      programScope: "Program scope",
+      viewPackages: "View packages",
+      hidePackages: "Close packages",
+      viewDetails: "View details",
+      hideDetails: "Close details"
     },
     corporateHub: {
       heroTitle: "Meaningful Journeys Designed for Teams",
