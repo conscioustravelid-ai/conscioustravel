@@ -9,7 +9,7 @@ const PAGE_IMAGES = {
   home: "/assets/images/beach-team-building.webp",
   corporateHub: "/assets/images/beach-team-building.webp",
   indonesia: "/assets/images/corporate/indonesia-region/hero-corporate-indonesia.webp",
-  international: "/assets/images/group-dinner-party.webp",
+  international: "/assets/images/corporate/international/hero-international-corporate.webp",
   csr: "/assets/images/group-local-lunch.webp",
   event: "/assets/images/beach-team-building.webp",
   experiences: "/assets/images/group-local-lunch.webp",
@@ -47,9 +47,9 @@ const PRODUCT_PAGE_IMAGES = {
     }
   },
   international: {
-    bangkok: "/assets/images/group-dinner-party.webp",
-    vietnam: "/assets/images/website-hero-mockup-03.webp",
-    europe: "/assets/images/website-hero-mockup-02.webp"
+    bangkok: "/assets/images/corporate/international/bangkok-destination.webp",
+    vietnam: "/assets/images/corporate/international/vietnam-destination.webp",
+    europe: "/assets/images/corporate/international/europe-destination.webp"
   },
   study: {
     "bali-study-tour": "/assets/images/home/study-tour-home-card.webp",
@@ -455,6 +455,9 @@ function renderDestinationStory(destination, story, packages, image, options = {
   const details = options.details || editorialContent().indonesia.packageDetails;
   const service = options.service || "Corporate Packages";
   const alt = options.alt || `${story.title} ${service.toLowerCase()} journey`;
+  const packageContent = options.compactPackages
+    ? `<div class="compact-package-list" data-package-list>${packages.map((product) => renderCompactPackageAccordion(product, details[product.id])).join("")}</div>`
+    : renderPackageComparison(packages, details, { service });
   return `<section class="section destination-editorial destination-editorial-${layout}" id="${escapeHtml(destination.id)}">
     <div class="container">
       <div class="destination-story-grid">
@@ -474,7 +477,7 @@ function renderDestinationStory(destination, story, packages, image, options = {
       </div>
       <div class="destination-package-section">
         <div class="destination-package-heading"><p class="section-kicker">${escapeHtml(labels.packages)}</p><span>${escapeHtml(destination.name)}</span></div>
-        ${renderPackageComparison(packages, details, { service })}
+        ${packageContent}
       </div>
     </div>
   </section>`;
@@ -675,6 +678,7 @@ function renderInternational() {
         layout: ["standard", "reverse", "wide"][index],
         details: e.packageDetails,
         service: "Corporate Packages",
+        compactPackages: true,
         alt: `${e.destinations[id].title} international corporate journey`
       }
     );

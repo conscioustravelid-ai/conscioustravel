@@ -2054,3 +2054,72 @@ body[data-page="event"] .pricing-grid .product-card-featured .product-price smal
     padding-left: var(--space-5);
   }
 }
+
+/* International packages: retain destination stories with compact package disclosure. */
+
+body[data-page="international"] .page-hero .hero-media {
+  object-position: center 48%;
+}
+
+body[data-page="international"] .destination-package-section {
+  color: var(--color-primary-ink);
+}
+
+body[data-page="international"] .destination-package-section .compact-package-title strong,
+body[data-page="international"] .destination-package-section .compact-package-price,
+body[data-page="international"] .destination-package-section .compact-package-price strong,
+body[data-page="international"] .destination-package-section .editorial-list h3,
+body[data-page="international"] .destination-package-section .editorial-list li,
+body[data-page="international"] .destination-package-section .editorial-disclosure summary,
+body[data-page="international"] .destination-package-section .editorial-disclosure ul {
+  color: var(--color-primary-ink);
+}
+
+body[data-page="international"] .compact-package-toggle b {
+  display: inline-grid;
+  font-size: 0;
+  place-items: center;
+  transform: none;
+  width: 24px;
+}
+
+body[data-page="international"] .compact-package-toggle b::before {
+  content: "+";
+  font-size: 24px;
+}
+
+body[data-page="international"] .compact-package[open] > summary .compact-package-toggle b {
+  transform: none;
+}
+
+body[data-page="international"] .compact-package[open] > summary .compact-package-toggle b::before {
+  content: "\00d7";
+}
+
+body[data-page="international"] #europe .destination-package-section {
+  background: var(--color-off-white);
+  margin-inline: calc(var(--space-10) * -1);
+  padding: var(--space-10);
+}
+
+body[data-page="international"] #europe .destination-package-section .compact-package-title em,
+body[data-page="international"] #europe .destination-package-section .product-price span,
+body[data-page="international"] #europe .destination-package-section .product-price small,
+body[data-page="international"] #europe .destination-package-section .product-meta span {
+  color: var(--color-text);
+}
+
+@media (max-width: 700px) {
+  body[data-page="international"] .destination-guide {
+    scrollbar-width: none;
+  }
+
+  body[data-page="international"] .destination-guide::-webkit-scrollbar {
+    display: none;
+  }
+
+  body[data-page="international"] #europe .destination-package-section {
+    margin-inline: calc(var(--space-6) * -1);
+    padding: var(--space-6);
+  }
+}
