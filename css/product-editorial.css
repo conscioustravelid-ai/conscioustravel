@@ -733,20 +733,20 @@ body[data-page="indonesia"] .page-hero .btn-primary:hover {
 
 .destination-editorial-wide .destination-story-copy h2,
 .destination-editorial-wide .destination-story-copy .section-kicker,
-.destination-editorial-wide .editorial-list h3,
-.destination-editorial-wide .editorial-list li,
-.destination-editorial-wide .editorial-disclosure summary {
+.destination-editorial-wide .destination-story-copy .editorial-list h3,
+.destination-editorial-wide .destination-story-copy .editorial-list li,
+.destination-editorial-wide .destination-story-copy .editorial-disclosure summary {
   color: var(--color-white);
 }
 
 .destination-editorial-wide .destination-intro,
-.destination-editorial-wide .editorial-disclosure ul {
+.destination-editorial-wide .destination-story-copy .editorial-disclosure ul {
   color: rgba(255, 255, 255, 0.76);
 }
 
-.destination-editorial-wide .editorial-list li,
-.destination-editorial-wide .editorial-disclosure,
-.destination-editorial-wide .destination-disclosures {
+.destination-editorial-wide .destination-story-copy .editorial-list li,
+.destination-editorial-wide .destination-story-copy .editorial-disclosure,
+.destination-editorial-wide .destination-story-copy .destination-disclosures {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
