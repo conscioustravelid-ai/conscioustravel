@@ -13,7 +13,7 @@ const PAGE_IMAGES = {
   csr: "/assets/images/group-local-lunch.webp",
   event: "/assets/images/beach-team-building.webp",
   experiences: "/assets/images/group-local-lunch.webp",
-  study: "/assets/images/group-dinner-party.webp",
+  study: "/assets/images/study-tour/hero-study-tour.webp",
   sailing: "/assets/images/group-dinner-party.webp",
   impact: "/assets/images/group-local-lunch.webp",
   about: "/assets/images/group-dinner-party.webp",
@@ -52,12 +52,12 @@ const PRODUCT_PAGE_IMAGES = {
     europe: "/assets/images/corporate/international/europe-destination.webp"
   },
   study: {
-    "bali-study-tour": "/assets/images/home/study-tour-home-card.webp",
-    "yogyakarta-study-tour": "/assets/images/website-hero-mockup-01.webp",
-    "bandung-study-tour": "/assets/images/games-in-nature.webp",
-    "bangkok-study-tour": "/assets/images/group-dinner-party.webp",
-    "malaysia-study-tour": "/assets/images/website-hero-mockup-03.webp",
-    "europe-study-tour": "/assets/images/website-hero-mockup-02.webp"
+    "bali-study-tour": "/assets/images/study-tour/bali-destination.webp",
+    "yogyakarta-study-tour": "/assets/images/study-tour/yogyakarta-destination.webp",
+    "bandung-study-tour": "/assets/images/study-tour/bandung-destination.webp",
+    "bangkok-study-tour": "/assets/images/study-tour/bangkok-destination.webp",
+    "malaysia-study-tour": "/assets/images/study-tour/malaysia-destination.webp",
+    "europe-study-tour": "/assets/images/study-tour/europe-destination.webp"
   },
   csr: {
     "village-empowerment": "/assets/images/group-local-lunch.webp",
