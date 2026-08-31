@@ -10,7 +10,7 @@ const PAGE_IMAGES = {
   corporateHub: "/assets/images/beach-team-building.webp",
   indonesia: "/assets/images/corporate/indonesia-region/hero-corporate-indonesia.webp",
   international: "/assets/images/corporate/international/hero-international-corporate.webp",
-  csr: "/assets/images/group-local-lunch.webp",
+  csr: "/assets/images/corporate/csr-program/hero-csr-program.webp",
   event: "/assets/images/beach-team-building.webp",
   experiences: "/assets/images/group-local-lunch.webp",
   study: "/assets/images/study-tour/hero-study-tour.webp",
@@ -60,11 +60,11 @@ const PRODUCT_PAGE_IMAGES = {
     "europe-study-tour": "/assets/images/study-tour/europe-destination.webp"
   },
   csr: {
-    "village-empowerment": "/assets/images/group-local-lunch.webp",
-    "school-impact-day": "/assets/images/home/impact-home-card.webp",
-    "bicycle-for-education": "/assets/images/games-in-nature.webp",
-    "build-for-community": "/assets/images/website-hero-mockup-01.webp",
-    "mangrove-restoration": "/assets/images/local-restaurant-simple.webp"
+    "village-empowerment": "/assets/images/corporate/csr-program/village-empowerment.webp",
+    "school-impact-day": "/assets/images/corporate/csr-program/school-impact-day.webp",
+    "bicycle-for-education": "/assets/images/corporate/csr-program/bicycle-for-education.webp",
+    "build-for-community": "/assets/images/corporate/csr-program/build-for-community.webp",
+    "mangrove-restoration": "/assets/images/corporate/csr-program/mangrove-restoration.webp"
   }
 };
 
