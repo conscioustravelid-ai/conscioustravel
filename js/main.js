@@ -12,7 +12,7 @@ const PAGE_IMAGES = {
   international: "/assets/images/corporate/international/hero-international-corporate.webp",
   csr: "/assets/images/corporate/csr-program/hero-csr-program.webp",
   event: "/assets/images/beach-team-building.webp",
-  experiences: "/assets/images/group-local-lunch.webp",
+  experiences: "/assets/images/experiences/hero-experiences.webp",
   study: "/assets/images/study-tour/hero-study-tour.webp",
   sailing: "/assets/images/sailing-package/hero-sailing-experience.webp",
   impact: "/assets/images/group-local-lunch.webp",
@@ -728,8 +728,8 @@ function renderExperiences() {
   return `${renderHero("experiences", p, { waKey: "experiences", secondaryHref: inquiryUrl("Experiences"), secondaryLabel: content().ui.inquiry })}
     ${renderBreadcrumb([[content().nav.experiences, "/experiences/"]])}
     ${renderIntro(p.introTitle, p.introBody)}
-    <section class="section" id="local"><div class="container split-layout"><div><p class="section-kicker">Indonesia</p><h2>${escapeHtml(p.localTitle)}</h2><p>${escapeHtml(p.localBody)}</p>${placeCards(p.localPlaces)}</div><img src="/assets/images/group-local-lunch.webp" alt="Local travel experience in Indonesia" width="900" height="650" loading="lazy"></div></section>
-    <section class="section muted-band" id="international"><div class="container split-layout reverse"><div><p class="section-kicker">Beyond Indonesia</p><h2>${escapeHtml(p.internationalTitle)}</h2><p>${escapeHtml(p.internationalBody)}</p>${placeCards(p.internationalPlaces)}</div><img src="/assets/images/group-dinner-party.webp" alt="International group travel experience" width="900" height="650" loading="lazy"></div></section>
+    <section class="section" id="local"><div class="container split-layout"><div><p class="section-kicker">Indonesia</p><h2>${escapeHtml(p.localTitle)}</h2><p>${escapeHtml(p.localBody)}</p>${placeCards(p.localPlaces)}</div><img src="/assets/images/experiences/local-experience.webp" alt="Local travel experience in Indonesia" width="1122" height="1402" loading="lazy" decoding="async"></div></section>
+    <section class="section muted-band" id="international"><div class="container split-layout reverse"><div><p class="section-kicker">Beyond Indonesia</p><h2>${escapeHtml(p.internationalTitle)}</h2><p>${escapeHtml(p.internationalBody)}</p>${placeCards(p.internationalPlaces)}</div><img src="/assets/images/experiences/international-experience.webp" alt="International group travel experience" width="1122" height="1402" loading="lazy" decoding="async"></div></section>
     <section class="section green-soft"><div class="container"><div class="section-heading"><h2>${escapeHtml(p.whyTitle)}</h2></div>${renderFeatureList(p.why)}</div></section>
     ${renderCta(p.ctaTitle, p.ctaBody, { waKey: "experiences", service: "Experiences" })}`;
 }
