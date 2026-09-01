@@ -1,18 +1,20 @@
 const CT_STATE = {
   language: localStorage.getItem("ct-language") === "en" ? "en" : "id",
-  catalog: null
+  catalog: null,
+  clientCarouselTimer: null,
+  clientCarouselAbortController: null
 };
 
 const PAGE_IMAGES = {
   home: "/assets/images/beach-team-building.webp",
   corporateHub: "/assets/images/beach-team-building.webp",
-  indonesia: "/assets/images/kintamani-outing-cover.webp",
-  international: "/assets/images/group-dinner-party.webp",
-  csr: "/assets/images/group-local-lunch.webp",
+  indonesia: "/assets/images/corporate/indonesia-region/hero-corporate-indonesia.webp",
+  international: "/assets/images/corporate/international/hero-international-corporate.webp",
+  csr: "/assets/images/corporate/csr-program/hero-csr-program.webp",
   event: "/assets/images/beach-team-building.webp",
-  experiences: "/assets/images/group-local-lunch.webp",
-  study: "/assets/images/group-dinner-party.webp",
-  sailing: "/assets/images/group-dinner-party.webp",
+  experiences: "/assets/images/experiences/hero-experiences.webp",
+  study: "/assets/images/study-tour/hero-study-tour.webp",
+  sailing: "/assets/images/sailing-package/hero-sailing-experience.webp",
   impact: "/assets/images/group-local-lunch.webp",
   about: "/assets/images/group-dinner-party.webp",
   faq: "/assets/images/group-dinner-party.webp",
@@ -22,36 +24,47 @@ const PAGE_IMAGES = {
 
 const PRODUCT_PAGE_IMAGES = {
   corporateHub: {
-    indonesia: "/assets/images/kintamani-outing-cover.webp",
-    international: "/assets/images/group-dinner-party.webp",
+    indonesia: "/assets/images/corporate/indonesia-corporate-outing.webp",
+    international: "/assets/images/corporate/international-corporate-outing.webp",
     csr: "/assets/images/home/impact-home-card.webp",
     event: "/assets/images/beach-team-building.webp"
   },
   indonesia: {
-    bali: "/assets/images/kintamani-incentive-retreat-poster.webp",
-    jogja: "/assets/images/website-hero-mockup-01.webp",
-    bandung: "/assets/images/games-in-nature.webp",
-    lombok: "/assets/images/jeep-adventure.webp"
+    bali: "/assets/images/corporate/indonesia-region/bali-destination.webp",
+    jogja: "/assets/images/corporate/indonesia-region/jogja-destination.webp",
+    bandung: "/assets/images/corporate/indonesia-region/bandung-destination.webp",
+    lombok: "/assets/images/corporate/indonesia-region/lombok-destination.webp",
+    variants: {
+      kintamani: "/assets/images/corporate/indonesia-region/bali-starter-kintamani.webp",
+      ubud: "/assets/images/corporate/indonesia-region/bali-starter-ubud.webp",
+      atlas: "/assets/images/corporate/indonesia-region/bali-starter-atlas.webp",
+      nuanu: "/assets/images/corporate/indonesia-region/bali-starter-nuanu.webp"
+    },
+    packages: {
+      "bali-silver": "/assets/images/corporate/indonesia-region/bali-silver.webp",
+      "bali-gold": "/assets/images/corporate/indonesia-region/bali-gold.webp",
+      "bali-premium": "/assets/images/corporate/indonesia-region/bali-premium.webp"
+    }
   },
   international: {
-    bangkok: "/assets/images/group-dinner-party.webp",
-    vietnam: "/assets/images/website-hero-mockup-03.webp",
-    europe: "/assets/images/website-hero-mockup-02.webp"
+    bangkok: "/assets/images/corporate/international/bangkok-destination.webp",
+    vietnam: "/assets/images/corporate/international/vietnam-destination.webp",
+    europe: "/assets/images/corporate/international/europe-destination.webp"
   },
   study: {
-    "bali-study-tour": "/assets/images/home/study-tour-home-card.webp",
-    "yogyakarta-study-tour": "/assets/images/website-hero-mockup-01.webp",
-    "bandung-study-tour": "/assets/images/games-in-nature.webp",
-    "bangkok-study-tour": "/assets/images/group-dinner-party.webp",
-    "malaysia-study-tour": "/assets/images/website-hero-mockup-03.webp",
-    "europe-study-tour": "/assets/images/website-hero-mockup-02.webp"
+    "bali-study-tour": "/assets/images/study-tour/bali-destination.webp",
+    "yogyakarta-study-tour": "/assets/images/study-tour/yogyakarta-destination.webp",
+    "bandung-study-tour": "/assets/images/study-tour/bandung-destination.webp",
+    "bangkok-study-tour": "/assets/images/study-tour/bangkok-destination.webp",
+    "malaysia-study-tour": "/assets/images/study-tour/malaysia-destination.webp",
+    "europe-study-tour": "/assets/images/study-tour/europe-destination.webp"
   },
   csr: {
-    "village-empowerment": "/assets/images/group-local-lunch.webp",
-    "school-impact-day": "/assets/images/home/impact-home-card.webp",
-    "bicycle-for-education": "/assets/images/games-in-nature.webp",
-    "build-for-community": "/assets/images/website-hero-mockup-01.webp",
-    "mangrove-restoration": "/assets/images/local-restaurant-simple.webp"
+    "village-empowerment": "/assets/images/corporate/csr-program/village-empowerment.webp",
+    "school-impact-day": "/assets/images/corporate/csr-program/school-impact-day.webp",
+    "bicycle-for-education": "/assets/images/corporate/csr-program/bicycle-for-education.webp",
+    "build-for-community": "/assets/images/corporate/csr-program/build-for-community.webp",
+    "mangrove-restoration": "/assets/images/corporate/csr-program/mangrove-restoration.webp"
   }
 };
 
@@ -196,8 +209,8 @@ function renderHeader() {
     <a class="skip-link" href="#main-content">${escapeHtml(c.skip)}</a>
     <div class="nav-shell">
       <a class="brand-link" href="/" aria-label="Conscious Travel home">
-        <img class="brand-logo-default" src="/assets/images/new-logo-conscious.webp" alt="Conscious Travel" width="174" height="58">
-        <img class="brand-logo-on-dark" src="/assets/images/new-logo-conscious-on-dark.webp" alt="" width="174" height="58" aria-hidden="true">
+        <img class="brand-logo-default" src="/assets/images/brand/conscious-travel-logo-dark.webp" alt="Conscious Travel" width="865" height="330">
+        <img class="brand-logo-on-dark" src="/assets/images/brand/conscious-travel-logo-light.webp" alt="" width="865" height="330" aria-hidden="true">
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="${escapeHtml(c.ui.menu)}">
         <span></span><span></span><span></span>
@@ -205,12 +218,10 @@ function renderHeader() {
       <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation">
         <a href="/"${isActive("/") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.home)}</a>
         ${dropdown("corporate-menu", c.nav.corporate, c.nav.corporateItems, isActive("/corporate-packages"))}
-        <a href="/experiences/"${isActive("/experiences") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.experiences)}</a>
+        ${dropdown("experiences-menu", c.nav.experiences, c.nav.experiencesItems, ["/experiences/", "/sailing-package/"].includes(currentPath))}
         <a href="/study-tour/"${isActive("/study-tour") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.study)}</a>
-        <a href="/sailing-package/"${isActive("/sailing-package") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.sailing)}</a>
         <a href="/blog/"${isActive("/blog") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.blog)}</a>
-        ${dropdown("about-menu", c.nav.about, c.nav.aboutItems, ["/about/", "/impact/", "/faq/"].includes(currentPath))}
-        <a href="/contact/"${isActive("/contact") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.contact)}</a>
+        ${dropdown("about-menu", c.nav.about, c.nav.aboutItems, ["/about/", "/impact/", "/faq/", "/contact/"].includes(currentPath))}
         <div class="nav-actions">
           ${isBlog ? "" : `<button class="language-toggle" type="button" data-language-toggle aria-label="${escapeHtml(c.ui.changeLanguage)}">${CT_STATE.language === "id" ? "EN" : "ID"}</button>`}
           <a class="btn btn-primary nav-cta" href="${whatsappUrl("general")}" target="_blank" rel="noopener" data-wa-key="general">Start Your Journey</a>
@@ -225,7 +236,7 @@ function renderFooter() {
   document.getElementById("site-footer").innerHTML = `
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="/assets/images/new-logo-conscious-on-dark.webp" alt="Conscious Travel" width="174" height="58" loading="lazy">
+        <img src="/assets/images/brand/conscious-travel-logo-light.webp" alt="Conscious Travel" width="865" height="330" loading="lazy">
         <p>${escapeHtml(c.footer.description)}</p>
         <a href="mailto:${config.email}">${config.email}</a>
         <a href="tel:+${config.whatsappNumber}">${config.phoneDisplay}</a>
@@ -304,11 +315,34 @@ function renderResponsiveImage({ desktop, mobile, alt, className, width, height,
   return `<picture class="${escapeHtml(className)}-picture">${source}<img class="${escapeHtml(className)}" src="${escapeHtml(desktop)}" alt="${escapeHtml(alt)}" width="${width}" height="${height}"${loadingAttribute}${priorityAttribute} decoding="async"></picture>`;
 }
 
-function renderTrustedBy(label) {
-  const logos = CLIENT_LOGOS.map(([name, src]) => `
-    <li><img src="${src}" alt="${escapeHtml(name)}" width="180" height="72" loading="lazy"></li>`).join("");
+function renderTrustedBy(label, options = {}) {
   const supportingLabel = CT_STATE.language === "id" ? "Kolaborasi terpilih" : "Selected collaborations";
-  return `<section class="trust-strip" aria-label="Client trust"><div class="container"><div class="trust-heading"><p>${escapeHtml(label)}</p><span>${supportingLabel}</span></div><ul>${logos}</ul></div></section>`;
+  const trustLabel = CT_STATE.language === "id" ? "Klien Conscious Travel" : "Conscious Travel clients";
+  if (!options.carousel) {
+    const logos = CLIENT_LOGOS.map(([name, src]) => `
+      <li><img src="${src}" alt="${escapeHtml(name)}" width="180" height="72" loading="lazy"></li>`).join("");
+    return `<section class="trust-strip" aria-label="${trustLabel}"><div class="container"><div class="trust-heading"><p>${escapeHtml(label)}</p><span>${supportingLabel}</span></div><ul>${logos}</ul></div></section>`;
+  }
+
+  const previousLabel = CT_STATE.language === "id" ? "Logo klien sebelumnya" : "Previous client logo";
+  const nextLabel = CT_STATE.language === "id" ? "Logo klien berikutnya" : "Next client logo";
+  const slides = CLIENT_LOGOS.map(([name, src], index) => `
+    <li class="trust-carousel-slide${index === 0 ? " is-active" : ""}" data-client-slide data-client-name="${escapeHtml(name)}" aria-hidden="${index === 0 ? "false" : "true"}">
+      <img src="${src}" alt="${escapeHtml(name)}" width="240" height="88"${index === 0 ? "" : ' loading="lazy"'}>
+    </li>`).join("");
+  return `<section class="trust-strip trust-strip-carousel" aria-label="${trustLabel}">
+    <div class="container">
+      <div class="trust-heading"><p>${escapeHtml(label)}</p><span>${supportingLabel}</span></div>
+      <div class="trust-carousel" data-client-carousel role="region" aria-roledescription="carousel" aria-label="${trustLabel}">
+        <button class="trust-carousel-control" type="button" data-client-prev aria-label="${previousLabel}" title="${previousLabel}"><span aria-hidden="true">&#8592;</span></button>
+        <div class="trust-carousel-viewport" data-client-viewport>
+          <ul class="trust-carousel-track">${slides}</ul>
+          <p class="sr-only" data-client-status aria-live="polite"></p>
+        </div>
+        <button class="trust-carousel-control" type="button" data-client-next aria-label="${nextLabel}" title="${nextLabel}"><span aria-hidden="true">&#8594;</span></button>
+      </div>
+    </div>
+  </section>`;
 }
 
 function renderBreadcrumb(items) {
@@ -378,7 +412,6 @@ function renderPathwayGateways(pathways) {
     <a class="journey-pathway${index < 2 ? " journey-pathway-primary" : " journey-pathway-supporting"}" href="${escapeHtml(pathway.href)}">
       <img src="${escapeHtml(images[pathway.key])}" alt="${escapeHtml(pathway.title)} corporate journey" width="1200" height="900" loading="lazy" decoding="async">
       <span class="journey-pathway-overlay" aria-hidden="true"></span>
-      <span class="journey-pathway-index" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
       <span class="journey-pathway-copy">
         <strong>${escapeHtml(pathway.title)}</strong>
         <span>${escapeHtml(pathway.body)}</span>
@@ -422,6 +455,9 @@ function renderDestinationStory(destination, story, packages, image, options = {
   const details = options.details || editorialContent().indonesia.packageDetails;
   const service = options.service || "Corporate Packages";
   const alt = options.alt || `${story.title} ${service.toLowerCase()} journey`;
+  const packageContent = options.compactPackages
+    ? `<div class="compact-package-list" data-package-list>${packages.map((product) => renderCompactPackageAccordion(product, details[product.id])).join("")}</div>`
+    : renderPackageComparison(packages, details, { service });
   return `<section class="section destination-editorial destination-editorial-${layout}" id="${escapeHtml(destination.id)}">
     <div class="container">
       <div class="destination-story-grid">
@@ -441,7 +477,7 @@ function renderDestinationStory(destination, story, packages, image, options = {
       </div>
       <div class="destination-package-section">
         <div class="destination-package-heading"><p class="section-kicker">${escapeHtml(labels.packages)}</p><span>${escapeHtml(destination.name)}</span></div>
-        ${renderPackageComparison(packages, details, { service })}
+        ${packageContent}
       </div>
     </div>
   </section>`;
@@ -498,7 +534,7 @@ function renderHome() {
   const primaryServices = p.services.slice(0, 2).map((item, index) => renderHomeServiceCard(item, index, serviceCards[index])).join("");
   const supportingServices = p.services.slice(2).map((item, index) => renderHomeServiceCard(item, index + 2, serviceCards[index + 2])).join("");
   return `${renderHero("home", p, { home: true, primaryLabel: p.title, secondaryHref: "/corporate-packages/", secondaryLabel: content().nav.corporate })}
-    ${renderTrustedBy(p.trust)}
+    ${renderTrustedBy(p.trust, { carousel: true })}
     <section class="section home-intro"><div class="container home-intro-grid"><div><p class="section-kicker">Conscious Travel</p><h2>${escapeHtml(p.introTitle)}</h2></div><p class="section-lead">${escapeHtml(p.introBody)}</p></div></section>
     <section class="section home-services"><div class="container"><div class="section-heading home-section-heading"><p class="section-kicker">Service ecosystem</p><h2>${escapeHtml(p.whatTitle)}</h2><p>${escapeHtml(p.whatLead)}</p></div><div class="home-service-primary-grid">${primaryServices}</div><div class="home-service-supporting-grid">${supportingServices}</div></div></section>
     <section class="section home-impact"><div class="container home-impact-grid"><div class="home-impact-copy"><p class="section-kicker">${escapeHtml(p.impactEyebrow)}</p><h2>${escapeHtml(p.impactTitle)}</h2><p>${escapeHtml(p.impactBody)}</p><a class="text-link" href="/impact/">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></a></div>${renderHomeImpactMetrics(p.impactMetrics)}</div></section>
@@ -518,13 +554,88 @@ function renderCorporateHub() {
     ${renderProductClosingCta(e.closingTitle, e.closingBody, { service: "Corporate Packages", waKey: "corporate", primaryLabel: e.closingPrimary, secondaryLabel: e.closingSecondary })}`;
 }
 
-function renderBaliVariants(product, variantDetails = {}) {
+function renderBaliVariants(product, variantDetails = {}, variantImages = {}) {
   if (!product.variants) return "";
   const firstId = product.variants[0].id;
   const tabButtons = product.variants.map((variant, index) => `<button type="button" role="tab" id="tab-${variant.id}" aria-controls="panel-${variant.id}" aria-selected="${index === 0}" tabindex="${index === 0 ? 0 : -1}" data-variant-tab="${variant.id}">${escapeHtml(variant.name)}</button>`).join("");
-  const panels = product.variants.map((variant, index) => `<div role="tabpanel" id="panel-${variant.id}" aria-labelledby="tab-${variant.id}"${index ? " hidden" : ""}><h4>${escapeHtml(variant.name)}</h4><p>${escapeHtml(variant.time)}</p>${renderEditorialList(editorialContent().labels.highlights, variantDetails[variant.id] || [], "variant-highlight-list")}<a class="text-link" href="${escapeHtml(inquiryUrl("Corporate Packages"))}">${escapeHtml(content().ui.requestProposal)} <span aria-hidden="true">&#8594;</span></a></div>`).join("");
-  const mobile = product.variants.map((variant, index) => `<details class="variant-mobile"${index === 0 ? " open" : ""}><summary>${escapeHtml(variant.name)}</summary><p>${escapeHtml(variant.time)}</p>${renderEditorialList(editorialContent().labels.highlights, variantDetails[variant.id] || [], "variant-highlight-list")}<a class="text-link" href="${escapeHtml(inquiryUrl("Corporate Packages"))}">${escapeHtml(content().ui.requestProposal)} <span aria-hidden="true">&#8594;</span></a></details>`).join("");
+  const panels = product.variants.map((variant, index) => `<div role="tabpanel" id="panel-${variant.id}" aria-labelledby="tab-${variant.id}"${index ? " hidden" : ""}><div class="variant-panel-copy"><h4>${escapeHtml(variant.name)}</h4><p>${escapeHtml(variant.time)}</p>${renderEditorialList(editorialContent().labels.highlights, variantDetails[variant.id] || [], "variant-highlight-list")}<a class="text-link" href="${escapeHtml(inquiryUrl("Corporate Packages"))}">${escapeHtml(content().ui.requestProposal)} <span aria-hidden="true">&#8594;</span></a></div><figure><img src="${escapeHtml(variantImages[variant.id] || PRODUCT_PAGE_IMAGES.indonesia.bali)}" alt="${escapeHtml(variant.name)} Bali Starter experience" width="1448" height="1086" loading="lazy" decoding="async"></figure></div>`).join("");
+  const mobile = product.variants.map((variant, index) => `<details class="variant-mobile" data-variant-mobile${index === 0 ? " open" : ""}><summary>${escapeHtml(variant.name)}</summary><figure><img src="${escapeHtml(variantImages[variant.id] || PRODUCT_PAGE_IMAGES.indonesia.bali)}" alt="${escapeHtml(variant.name)} Bali Starter experience" width="1448" height="1086" loading="lazy" decoding="async"></figure><div class="variant-mobile-copy"><p>${escapeHtml(variant.time)}</p>${renderEditorialList(editorialContent().labels.highlights, variantDetails[variant.id] || [], "variant-highlight-list")}<a class="text-link" href="${escapeHtml(inquiryUrl("Corporate Packages"))}">${escapeHtml(content().ui.requestProposal)} <span aria-hidden="true">&#8594;</span></a></div></details>`).join("");
   return `<div class="variant-explorer"><div class="variant-desktop"><div class="variant-tabs" role="tablist" aria-label="${escapeHtml(editorialContent().labels.variantLabel)}">${tabButtons}</div><div class="variant-panels">${panels}</div></div><div class="variant-mobile-list">${mobile}</div></div><input type="hidden" value="${firstId}">`;
+}
+
+function renderCompactPackageAccordion(product, detail = {}, options = {}) {
+  const labels = editorialContent().labels;
+  const copy = productCopy(product);
+  const image = options.image || "";
+  const open = options.open ? " open" : "";
+  const tier = product.tier || labels.featured;
+  const visual = image ? `<figure class="compact-package-media"><img src="${escapeHtml(image)}" alt="${escapeHtml(copy[0])} experience" width="1600" height="1067" loading="lazy" decoding="async"></figure>` : "";
+  return `<details class="compact-package" data-package-accordion${open}>
+    <summary>
+      <span class="compact-package-title"><small>${escapeHtml(tier)}</small><strong>${escapeHtml(copy[0])}</strong><em>${escapeHtml(detail.positioning || copy[1])}</em></span>
+      <span class="compact-package-price">${renderPrice(product)}</span>
+      <span class="compact-package-toggle"><span class="when-closed">${escapeHtml(labels.viewDetails)}</span><span class="when-open">${escapeHtml(labels.hideDetails)}</span><b aria-hidden="true">+</b></span>
+    </summary>
+    <div class="compact-package-body${image ? " has-media" : ""}">
+      ${visual}
+      <div class="compact-package-copy">
+        ${renderEditorialList(labels.highlights, detail.highlights || [])}
+        ${detail.flow ? renderEditorialDisclosure(labels.sampleFlow, detail.flow) : ""}
+        <a class="text-link" href="${escapeHtml(inquiryUrl("Corporate Packages"))}">${escapeHtml(labels.proposal)} <span aria-hidden="true">&#8594;</span></a>
+      </div>
+    </div>
+  </details>`;
+}
+
+function renderStarterPackageAccordion(product, details, options = {}) {
+  const e = editorialContent().indonesia;
+  const labels = editorialContent().labels;
+  const copy = productCopy(product);
+  return `<details class="compact-package compact-package-starter" data-package-accordion${options.open ? " open" : ""}>
+    <summary>
+      <span class="compact-package-title"><small>${escapeHtml(labels.featured)}</small><strong>${escapeHtml(copy[0])}</strong><em>${escapeHtml(e.starterBody)}</em></span>
+      <span class="compact-package-price">${renderPrice(product)}</span>
+      <span class="compact-package-toggle"><span class="when-closed">${escapeHtml(labels.viewDetails)}</span><span class="when-open">${escapeHtml(labels.hideDetails)}</span><b aria-hidden="true">+</b></span>
+    </summary>
+    <div class="compact-package-body starter-package-body">
+      <article class="starter-product-spotlight">
+        <div class="starter-product-summary">
+          <p class="section-kicker">${escapeHtml(copy[0])} / ${escapeHtml(product.duration)}</p>
+          <h2>${escapeHtml(e.starterTitle)}</h2>
+          <p>${escapeHtml(e.starterBody)}</p>
+          <div class="starter-product-facts">${renderEditorialList(labels.highlights, e.starterIncluded)}</div>
+        </div>
+        <div class="starter-variant-section"><div class="starter-variant-heading"><p class="section-kicker">${escapeHtml(content().ui.packageOptions)}</p><span>${escapeHtml(product.variants.length)} ${escapeHtml(labels.options)}</span></div>${renderBaliVariants(product, e.variants, PRODUCT_PAGE_IMAGES.indonesia.variants)}</div>
+      </article>
+    </div>
+  </details>`;
+}
+
+function renderIndonesiaDestination(destination, story, options = {}) {
+  const labels = editorialContent().labels;
+  const image = PRODUCT_PAGE_IMAGES.indonesia[destination.id];
+  const packages = destination.packages.map((product) => {
+    if (product.id === "bali-starter") return renderStarterPackageAccordion(product, options.details, { open: true });
+    return renderCompactPackageAccordion(product, options.details[product.id], { image: PRODUCT_PAGE_IMAGES.indonesia.packages[product.id] });
+  }).join("");
+  return `<section class="indonesia-destination-section" id="${escapeHtml(destination.id)}">
+    <div class="container">
+      <details class="indonesia-destination" data-destination-accordion${options.open ? " open" : ""}>
+        <summary class="destination-gateway">
+          <img src="${escapeHtml(image)}" alt="${escapeHtml(story.title)} corporate journey" width="1122" height="1402" loading="lazy" decoding="async">
+          <span class="destination-gateway-overlay" aria-hidden="true"></span>
+          <span class="destination-gateway-copy"><small>${escapeHtml(story.eyebrow)}</small><strong>${escapeHtml(story.title)}</strong><em>${escapeHtml(options.guide)}</em><span><span class="when-closed">${escapeHtml(labels.viewPackages)}</span><span class="when-open">${escapeHtml(labels.hidePackages)}</span><b aria-hidden="true">+</b></span></span>
+        </summary>
+        <div class="indonesia-destination-body">
+          <div class="destination-overview-grid">
+            <div><p class="section-kicker">${escapeHtml(story.eyebrow)}</p><h2>${escapeHtml(story.title)}</h2><p class="destination-intro">${escapeHtml(story.intro)}</p></div>
+            <div class="destination-decision">${renderEditorialList(labels.bestFor, story.bestFor, "editorial-list-best-for")}<div class="destination-disclosures">${renderEditorialDisclosure(labels.whyChoose, story.why, true)}${renderEditorialDisclosure(labels.signature, story.signature)}</div></div>
+          </div>
+          <div class="destination-package-section"><div class="destination-package-heading"><p class="section-kicker">${escapeHtml(labels.packages)}</p><span>${escapeHtml(destination.name)}</span></div><div class="compact-package-list" data-package-list>${packages}</div></div>
+        </div>
+      </details>
+    </div>
+  </section>`;
 }
 
 function renderIndonesia() {
@@ -536,49 +647,15 @@ function renderIndonesia() {
     const destination = byId[id];
     return `<a class="destination-guide-item" href="#${escapeHtml(id)}"><span aria-hidden="true">${String(index + 1).padStart(2, "0")}</span><strong>${escapeHtml(destination.name)}</strong><small>${escapeHtml(e.guide[id])}</small><em aria-hidden="true">&#8595;</em></a>`;
   }).join("");
-  const bali = byId.bali;
-  const starter = bali.packages.find((item) => item.id === "bali-starter");
-  const starterCopy = productCopy(starter);
-  const destinationSections = data.displayOrder.filter((id) => id !== "bali").map((id, index) => {
+  const destinationSections = data.displayOrder.map((id, index) => {
     const destination = byId[id];
-    const layouts = ["standard", "reverse", "wide"];
-    return renderDestinationStory(destination, e.destinations[id], destination.packages, PRODUCT_PAGE_IMAGES.indonesia[id], { layout: layouts[index] });
+    return renderIndonesiaDestination(destination, e.destinations[id], { details: e.packageDetails, guide: e.guide[id], open: index === 0 });
   }).join("");
   const hero = { ...p, title: e.heroTitle, lead: e.heroLead };
   return `${renderHero("indonesia", hero, { primaryHref: "#destination-guide", primaryLabel: e.heroPrimary, secondaryHref: inquiryUrl("Corporate Packages"), secondaryLabel: content().ui.requestProposal })}
     ${renderBreadcrumb([[content().nav.corporate, "/corporate-packages/"], ["Indonesia Region", "/corporate-packages/indonesia-region/"]])}
     ${renderIntro(p.introTitle, p.introBody)}
     <section class="section destination-guide-section" id="destination-guide"><div class="container"><div class="product-section-heading"><div><p class="section-kicker">${escapeHtml(content().ui.primaryDestinations)}</p><h2>${escapeHtml(e.guideTitle)}</h2></div><p>${escapeHtml(e.guideLead)}</p></div><nav class="destination-guide" aria-label="${escapeHtml(content().ui.primaryDestinations)}">${guide}</nav></div></section>
-    <section class="section destination-editorial destination-editorial-featured" id="bali"><div class="container">
-      <div class="destination-story-grid">
-        <figure class="destination-story-media"><img src="${escapeHtml(PRODUCT_PAGE_IMAGES.indonesia.bali)}" alt="Corporate retreat experience in Bali" width="1200" height="900" loading="lazy" decoding="async"></figure>
-        <div class="destination-story-copy">
-          <p class="section-kicker">${escapeHtml(e.destinations.bali.eyebrow)}</p>
-          <h2>${escapeHtml(e.destinations.bali.title)}</h2>
-          <p class="destination-intro">${escapeHtml(e.destinations.bali.intro)}</p>
-          <div class="destination-decision">
-            ${renderEditorialList(editorialContent().labels.bestFor, e.destinations.bali.bestFor, "editorial-list-best-for")}
-            <div class="destination-disclosures">
-              ${renderEditorialDisclosure(editorialContent().labels.whyChoose, e.destinations.bali.why, true)}
-              ${renderEditorialDisclosure(editorialContent().labels.signature, e.destinations.bali.signature)}
-            </div>
-          </div>
-        </div>
-      </div>
-      <article class="starter-product-spotlight">
-        <div class="starter-product-summary">
-          <p class="section-kicker">${escapeHtml(starterCopy[0])} / ${escapeHtml(starter.duration)}</p>
-          <h2>${escapeHtml(e.starterTitle)}</h2>
-          <p>${escapeHtml(e.starterBody)}</p>
-          <div class="starter-product-facts"><div><h3>${escapeHtml(starterCopy[0])}</h3><p>${escapeHtml(starterCopy[1])}</p>${renderPrice(starter)}</div>${renderEditorialList(editorialContent().labels.highlights, e.starterIncluded)}</div>
-        </div>
-        <div class="starter-variant-section"><div class="starter-variant-heading"><p class="section-kicker">${escapeHtml(content().ui.packageOptions)}</p><span>${escapeHtml(starter.variants.length)} ${escapeHtml(editorialContent().labels.options)}</span></div>${renderBaliVariants(starter, e.variants)}</div>
-      </article>
-      <div class="destination-package-section bali-package-comparison">
-        <div class="destination-package-heading"><p class="section-kicker">${escapeHtml(editorialContent().labels.packages)}</p><span>Bali / Multi-day</span></div>
-        ${renderPackageComparison(bali.packages.filter((product) => product.id !== starter.id), e.packageDetails)}
-      </div>
-    </div></section>
     ${destinationSections}
     <section class="section editorial-proof-section indonesia-proof"><div class="container editorial-proof-grid"><div><p class="section-kicker">Conscious Travel</p><h2>${escapeHtml(e.capabilityTitle)}</h2><p>${escapeHtml(e.capabilityLead)}</p></div>${renderFeatureList(e.capabilities)}</div></section>
     ${renderProductClosingCta(e.closingTitle, e.closingBody, { service: "Corporate Packages", waKey: "corporate", primaryLabel: e.closingPrimary, secondaryLabel: e.closingSecondary })}`;
@@ -601,6 +678,7 @@ function renderInternational() {
         layout: ["standard", "reverse", "wide"][index],
         details: e.packageDetails,
         service: "Corporate Packages",
+        compactPackages: true,
         alt: `${e.destinations[id].title} international corporate journey`
       }
     );
@@ -650,8 +728,8 @@ function renderExperiences() {
   return `${renderHero("experiences", p, { waKey: "experiences", secondaryHref: inquiryUrl("Experiences"), secondaryLabel: content().ui.inquiry })}
     ${renderBreadcrumb([[content().nav.experiences, "/experiences/"]])}
     ${renderIntro(p.introTitle, p.introBody)}
-    <section class="section" id="local"><div class="container split-layout"><div><p class="section-kicker">Indonesia</p><h2>${escapeHtml(p.localTitle)}</h2><p>${escapeHtml(p.localBody)}</p>${placeCards(p.localPlaces)}</div><img src="/assets/images/group-local-lunch.webp" alt="Local travel experience in Indonesia" width="900" height="650" loading="lazy"></div></section>
-    <section class="section muted-band" id="international"><div class="container split-layout reverse"><div><p class="section-kicker">Beyond Indonesia</p><h2>${escapeHtml(p.internationalTitle)}</h2><p>${escapeHtml(p.internationalBody)}</p>${placeCards(p.internationalPlaces)}</div><img src="/assets/images/group-dinner-party.webp" alt="International group travel experience" width="900" height="650" loading="lazy"></div></section>
+    <section class="section" id="local"><div class="container split-layout"><div><p class="section-kicker">Indonesia</p><h2>${escapeHtml(p.localTitle)}</h2><p>${escapeHtml(p.localBody)}</p>${placeCards(p.localPlaces)}</div><img src="/assets/images/experiences/local-experience.webp" alt="Local travel experience in Indonesia" width="1122" height="1402" loading="lazy" decoding="async"></div></section>
+    <section class="section muted-band" id="international"><div class="container split-layout reverse"><div><p class="section-kicker">Beyond Indonesia</p><h2>${escapeHtml(p.internationalTitle)}</h2><p>${escapeHtml(p.internationalBody)}</p>${placeCards(p.internationalPlaces)}</div><img src="/assets/images/experiences/international-experience.webp" alt="International group travel experience" width="1122" height="1402" loading="lazy" decoding="async"></div></section>
     <section class="section green-soft"><div class="container"><div class="section-heading"><h2>${escapeHtml(p.whyTitle)}</h2></div>${renderFeatureList(p.why)}</div></section>
     ${renderCta(p.ctaTitle, p.ctaBody, { waKey: "experiences", service: "Experiences" })}`;
 }
@@ -862,6 +940,105 @@ function bindNavigation() {
   nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeNavigation));
 }
 
+function bindClientCarousel() {
+  window.clearTimeout(CT_STATE.clientCarouselTimer);
+  CT_STATE.clientCarouselAbortController?.abort();
+  CT_STATE.clientCarouselTimer = null;
+  CT_STATE.clientCarouselAbortController = null;
+
+  const root = document.querySelector("[data-client-carousel]");
+  if (!root) return;
+
+  const slides = [...root.querySelectorAll("[data-client-slide]")];
+  const previous = root.querySelector("[data-client-prev]");
+  const next = root.querySelector("[data-client-next]");
+  const viewport = root.querySelector("[data-client-viewport]");
+  const status = root.querySelector("[data-client-status]");
+  if (!slides.length || !previous || !next || !viewport || !status) return;
+
+  const controller = new AbortController();
+  const { signal } = controller;
+  const allowsAutoAdvance = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  CT_STATE.clientCarouselAbortController = controller;
+  let activeIndex = 0;
+  let paused = false;
+  let touchStartX = null;
+
+  const positionLabel = (index) => {
+    const name = slides[index].dataset.clientName || "";
+    return CT_STATE.language === "id"
+      ? `Logo klien ${index + 1} dari ${slides.length}: ${name}`
+      : `Client logo ${index + 1} of ${slides.length}: ${name}`;
+  };
+
+  const showSlide = (index, announce = false) => {
+    activeIndex = (index + slides.length) % slides.length;
+    slides.forEach((slide, slideIndex) => {
+      const active = slideIndex === activeIndex;
+      slide.classList.toggle("is-active", active);
+      slide.setAttribute("aria-hidden", String(!active));
+    });
+    if (announce) status.textContent = positionLabel(activeIndex);
+  };
+
+  const schedule = () => {
+    window.clearTimeout(CT_STATE.clientCarouselTimer);
+    if (!allowsAutoAdvance || paused || document.hidden) return;
+    CT_STATE.clientCarouselTimer = window.setTimeout(() => {
+      showSlide(activeIndex + 1);
+      schedule();
+    }, 6000);
+  };
+
+  const move = (direction) => {
+    showSlide(activeIndex + direction, true);
+    schedule();
+  };
+
+  previous.addEventListener("click", () => move(-1), { signal });
+  next.addEventListener("click", () => move(1), { signal });
+  root.addEventListener("keydown", (event) => {
+    if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+    event.preventDefault();
+    move(event.key === "ArrowLeft" ? -1 : 1);
+  }, { signal });
+  root.addEventListener("mouseenter", () => {
+    paused = true;
+    window.clearTimeout(CT_STATE.clientCarouselTimer);
+  }, { signal });
+  root.addEventListener("mouseleave", () => {
+    paused = false;
+    schedule();
+  }, { signal });
+  root.addEventListener("focusin", () => {
+    paused = true;
+    window.clearTimeout(CT_STATE.clientCarouselTimer);
+  }, { signal });
+  root.addEventListener("focusout", (event) => {
+    if (root.contains(event.relatedTarget)) return;
+    paused = false;
+    schedule();
+  }, { signal });
+  viewport.addEventListener("touchstart", (event) => {
+    touchStartX = event.changedTouches[0]?.clientX ?? null;
+    paused = true;
+    window.clearTimeout(CT_STATE.clientCarouselTimer);
+  }, { passive: true, signal });
+  viewport.addEventListener("touchend", (event) => {
+    const touchEndX = event.changedTouches[0]?.clientX ?? null;
+    if (touchStartX !== null && touchEndX !== null && Math.abs(touchEndX - touchStartX) >= 40) {
+      move(touchEndX < touchStartX ? 1 : -1);
+    }
+    touchStartX = null;
+    paused = false;
+    schedule();
+  }, { passive: true, signal });
+  document.addEventListener("visibilitychange", schedule, { signal });
+
+  showSlide(0);
+  schedule();
+}
+
 function bindLanguageToggle() {
   document.querySelectorAll("[data-language-toggle]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -939,6 +1116,47 @@ function bindVariantTabs() {
       if (event.key === "End") next = tabs.length - 1;
       tabs[next].focus();
       activate(tabs[next]);
+    });
+  });
+}
+
+function bindIndonesiaAccordions() {
+  const destinations = [...document.querySelectorAll("[data-destination-accordion]")];
+  const closeSiblings = (current, selector, scope = document) => {
+    scope.querySelectorAll(selector).forEach((candidate) => {
+      if (candidate !== current) candidate.open = false;
+    });
+  };
+
+  destinations.forEach((destination) => {
+    destination.addEventListener("toggle", () => {
+      if (destination.open) closeSiblings(destination, "[data-destination-accordion]");
+    });
+  });
+
+  document.querySelectorAll("[data-package-list]").forEach((list) => {
+    list.querySelectorAll("[data-package-accordion]").forEach((item) => {
+      item.addEventListener("toggle", () => {
+        if (item.open) closeSiblings(item, "[data-package-accordion]", list);
+      });
+    });
+  });
+
+  const mobileVariants = [...document.querySelectorAll("[data-variant-mobile]")];
+  mobileVariants.forEach((variant) => {
+    variant.addEventListener("toggle", () => {
+      if (variant.open) closeSiblings(variant, "[data-variant-mobile]", variant.closest(".variant-mobile-list"));
+    });
+  });
+
+  document.querySelectorAll('.destination-guide-item[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const target = document.querySelector(link.getAttribute("href"));
+      const disclosure = target?.querySelector("[data-destination-accordion]");
+      if (!target || !disclosure) return;
+      event.preventDefault();
+      disclosure.open = true;
+      target.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
     });
   });
 }
@@ -1050,11 +1268,13 @@ function initializeUi() {
   renderFooter();
   bindHeaderVisualState();
   bindNavigation();
+  bindClientCarousel();
   bindLanguageToggle();
   bindWhatsappTracking();
   bindBlogReaderCtaTracking();
   bindBlogTocToggle();
   bindVariantTabs();
+  bindIndonesiaAccordions();
   prepareInquiryForm();
 }
 
