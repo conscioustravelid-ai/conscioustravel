@@ -772,6 +772,12 @@ body[data-page="sailing"] .service-grid .service-card:nth-child(3) {
   background: var(--color-mist);
 }
 
+body[data-page="sailing"] .service-grid .service-card p {
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+}
+
 body[data-page="impact"] .image-feature {
   background: var(--color-primary-deep);
 }
