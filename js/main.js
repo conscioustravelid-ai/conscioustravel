@@ -14,7 +14,7 @@ const PAGE_IMAGES = {
   event: "/assets/images/beach-team-building.webp",
   experiences: "/assets/images/group-local-lunch.webp",
   study: "/assets/images/study-tour/hero-study-tour.webp",
-  sailing: "/assets/images/group-dinner-party.webp",
+  sailing: "/assets/images/sailing-package/hero-sailing-experience.webp",
   impact: "/assets/images/group-local-lunch.webp",
   about: "/assets/images/group-dinner-party.webp",
   faq: "/assets/images/group-dinner-party.webp",
