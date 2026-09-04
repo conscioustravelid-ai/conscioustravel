@@ -197,6 +197,8 @@ Output Blog merender header dan footer Bahasa Indonesia secara statis saat build
 
 Gambar Sanity menggunakan kandidat responsif tambahan 360px dan 640px, `auto=format`, serta kualitas 78 untuk mengurangi transfer mobile sambil mempertahankan dimensi intrinsik, hotspot, alt text, lazy loading di bawah fold, dan prioritas tinggi pada cover/LCP. GTM tidak diubah pada fase ini; kontribusi third-party dievaluasi terpisah sebelum perubahan tag atau trigger.
 
+CSS Blog juga dipisahkan ke `css/blog.css`. Generator tidak lagi memuat `variables.css`, `style.css`, `editorial.css`, atau `blog-foundation.css` pada route Blog; stylesheet website umum tersebut tetap digunakan oleh halaman non-Blog. Bundle khusus mencakup foundation, header/footer statis, listing, artikel, Reader Blocks, TOC, dan breakpoint Blog saja. Font Blog dibatasi ke DM Sans 400/600/700 dan DM Serif Display, dimuat secara non-blocking dengan fallback `noscript`; Plus Jakarta Sans tidak diminta oleh Blog. GTM/GA4 tetap tidak diubah.
+
 ## Blog Reader Blocks v1
 
 **Status rilis:** Sanity Studio dan frontend Reader Blocks v1 telah dideploy ke production dan lulus owner QA. Editor dapat menggunakan blok yang didukung setelah menyelesaikan checklist editorial dan preview.
