@@ -28,7 +28,10 @@ async function validatePage(relative, { article = false } = {}) {
   check(new RegExp(`<link rel="canonical" href="${SITE_ORIGIN.replaceAll('.', '\\.')}/`).test(html), `${relative}: canonical hilang`)
   check(/data-static-blog="true"/.test(html), `${relative}: static Blog gate hilang`)
   check(/blog-foundation\.css\?v=blog-toc-hierarchy-1/.test(html), `${relative}: Blog stylesheet version hilang`)
-  check(/main\.js\?v=brand-assets-1/.test(html), `${relative}: Blog runtime version hilang`)
+  check(/blog\.js\?v=blog-performance-1/.test(html), `${relative}: Blog runtime khusus hilang`)
+  check(!/\/data\/content\.js|\/js\/main\.js|product-catalog\.json/.test(html), `${relative}: runtime website penuh masih dimuat`)
+  check(/<header id="site-header">[\s\S]+<\/header>/.test(html), `${relative}: header statis hilang`)
+  check(/<footer id="site-footer">[\s\S]+<\/footer>/.test(html), `${relative}: footer statis hilang`)
   for (const property of ['og:title', 'og:description', 'og:url', 'og:image']) {
     check(new RegExp(`<meta property="${property}" content="[^"]+"`, 'i').test(html), `${relative}: ${property} hilang`)
   }

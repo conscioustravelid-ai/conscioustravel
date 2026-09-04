@@ -51,8 +51,13 @@ for (const routeFile of [...routeFiles, "blog/index.html"]) {
     check(new RegExp(`<meta\\s+property="${property}"\\s+content="[^"]+"`, "i").test(html), `${routeFile}: missing ${property}`);
   }
   check(/data-page="[^"]+"/.test(html), `${routeFile}: missing page renderer key`);
-  check(/src="\/data\/content\.js(?:\?[^\"]+)?"/.test(html), `${routeFile}: missing shared content`);
-  check(/src="\/js\/main\.js(?:\?[^\"]+)?"/.test(html), `${routeFile}: missing shared runtime`);
+  if (routeFile === "blog/index.html") {
+    check(/src="\/js\/blog\.js(?:\?[^\"]+)?"/.test(html), `${routeFile}: missing optimized Blog runtime`);
+    check(!/src="\/data\/content\.js|src="\/js\/main\.js/.test(html), `${routeFile}: full website runtime must not load`);
+  } else {
+    check(/src="\/data\/content\.js(?:\?[^\"]+)?"/.test(html), `${routeFile}: missing shared content`);
+    check(/src="\/js\/main\.js(?:\?[^\"]+)?"/.test(html), `${routeFile}: missing shared runtime`);
+  }
 }
 
 const blogHtml = read("blog/index.html");

@@ -191,6 +191,12 @@ Build production memakai `npm run build` dari root dan branch `main`. Generator 
 
 Operasional harian tidak memerlukan staging. Staging tetap tersedia untuk QA perubahan kode dan tetap memiliki perlindungan `X-Robots-Tag: noindex, nofollow`. Untuk observability, periksa Attempts Log webhook Sanity terlebih dahulu, kemudian Vercel Deployments dan build log. Satu mutasi published post harus menghasilkan satu request webhook dan satu deployment; retry hanya dilakukan setelah penyebab kegagalan dipahami.
 
+## Blog Mobile Performance
+
+Output Blog merender header dan footer Bahasa Indonesia secara statis saat build. Halaman listing dan artikel hanya memuat `js/blog.js` untuk navigasi mobile, dropdown, TOC, serta tracking CTA/WhatsApp. Runtime website umum `data/content.js`, `js/main.js`, dan request `product-catalog.json` tidak dimuat pada route Blog. Halaman non-Blog tetap memakai runtime bersama yang sama seperti sebelumnya.
+
+Gambar Sanity menggunakan kandidat responsif tambahan 360px dan 640px, `auto=format`, serta kualitas 78 untuk mengurangi transfer mobile sambil mempertahankan dimensi intrinsik, hotspot, alt text, lazy loading di bawah fold, dan prioritas tinggi pada cover/LCP. GTM tidak diubah pada fase ini; kontribusi third-party dievaluasi terpisah sebelum perubahan tag atau trigger.
+
 ## Blog Reader Blocks v1
 
 **Status rilis:** Sanity Studio dan frontend Reader Blocks v1 telah dideploy ke production dan lulus owner QA. Editor dapat menggunakan blok yang didukung setelah menyelesaikan checklist editorial dan preview.

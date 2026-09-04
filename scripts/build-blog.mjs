@@ -17,6 +17,8 @@ const manifestPath = path.join(root, '.blog-generated-manifest.json')
 const sitemapPath = path.join(root, 'sitemap.xml')
 const fallbackImage = `${SITE_ORIGIN}/assets/images/group-local-lunch.webp`
 const publisherLogo = `${SITE_ORIGIN}/assets/images/brand/conscious-travel-logo-dark.png`
+const whatsappMessage = 'Halo Conscious Travel, saya tertarik membuat perjalanan bermakna. Bisa dibantu rekomendasi untuk corporate, study tour, experiences, atau custom trip?'
+const whatsappUrl = `https://wa.me/6285195559749?text=${encodeURIComponent(whatsappMessage)}`
 
 async function readManifest() {
   try { return JSON.parse(await readFile(manifestPath, 'utf8')) }
@@ -30,14 +32,14 @@ const jsonLd = (value) => `<script type="application/ld+json">${safeJson(value)}
 
 function transformedImageUrl(baseUrl, width) {
   const url = new URL(baseUrl)
-  url.searchParams.set('w', String(width)); url.searchParams.set('fit', 'max'); url.searchParams.set('auto', 'format'); url.searchParams.set('q', '85')
+  url.searchParams.set('w', String(width)); url.searchParams.set('fit', 'max'); url.searchParams.set('auto', 'format'); url.searchParams.set('q', '78')
   return url.href
 }
 
 function imageMarkup(post, {className = '', loading = 'lazy', sizes = '(max-width: 760px) calc(100vw - 40px), 760px'} = {}) {
   const info = post.coverImage
   if (!info || !post.coverImageAlt) return ''
-  const variants = [480, 800, 1200, 1600].filter((width) => width < info.width).map((width) => `${escapeAttribute(transformedImageUrl(info.baseUrl, width))} ${width}w`)
+  const variants = [360, 480, 640, 800, 1200, 1600].filter((width) => width < info.width).map((width) => `${escapeAttribute(transformedImageUrl(info.baseUrl, width))} ${width}w`)
   variants.push(`${escapeAttribute(info.baseUrl)} ${info.width}w`)
   const position = info.hotspot ? ` style="object-position:${Math.round(info.hotspot.x * 100)}% ${Math.round(info.hotspot.y * 100)}%"` : ''
   return `<img${className ? ` class="${className}"` : ''} src="${escapeAttribute(info.baseUrl)}" srcset="${variants.join(', ')}" sizes="${escapeAttribute(sizes)}" width="${info.width}" height="${info.height}" alt="${escapeAttribute(post.coverImageAlt)}"${loading ? ` loading="${loading}"` : ' fetchpriority="high"'} decoding="async"${position}>`
@@ -54,6 +56,15 @@ function sharedHead() {
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/variables.css?v=phase2-editorial-4"><link rel="stylesheet" href="/css/style.css?v=phase2-visual-a-1"><link rel="stylesheet" href="/css/editorial.css?v=nav-trust-carousel-3"><link rel="stylesheet" href="/css/blog-foundation.css?v=blog-toc-hierarchy-1"><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NVVKFSSN');</script>`
 }
 
+function blogHeader() {
+  const dropdown = (id, label, items) => `<div class="nav-dropdown"><button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-controls="${id}">${label} <span class="chevron" aria-hidden="true"></span></button><div class="nav-dropdown-menu" id="${id}">${items.map(([text, href]) => `<a href="${href}">${text}</a>`).join('')}</div></div>`
+  return `<a class="skip-link" href="#main-content">Lewati ke konten utama</a><div class="nav-shell"><a class="brand-link" href="/" aria-label="Conscious Travel home"><img class="brand-logo-default" src="/assets/images/brand/conscious-travel-logo-dark.webp" alt="Conscious Travel" width="865" height="330"><img class="brand-logo-on-dark" src="/assets/images/brand/conscious-travel-logo-light.webp" alt="" width="865" height="330" aria-hidden="true"></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Buka menu"><span></span><span></span><span></span></button><nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation"><a href="/">Home</a>${dropdown('corporate-menu','Corporate Packages',[['Corporate Outing Indonesia Region','/corporate-packages/indonesia-region/'],['Corporate Outing International','/corporate-packages/international/'],['CSR Program','/corporate-packages/csr-program/'],['Event Planning for Corporate Travel','/corporate-packages/event-planning-organizer/']])}${dropdown('experiences-menu','Experiences',[['Experiences','/experiences/'],['Sailing Package','/sailing-package/']])}<a href="/study-tour/">Study Tour</a><a href="/blog/" aria-current="page">Blog</a>${dropdown('about-menu','About',[['About Us','/about/'],['Impact & Sustainability','/impact/'],['FAQ','/faq/'],['Contact','/contact/']])}<div class="nav-actions"><a class="btn btn-primary nav-cta" href="${escapeAttribute(whatsappUrl)}" target="_blank" rel="noopener" data-wa-key="general">Start Your Journey</a></div></nav></div>`
+}
+
+function blogFooter() {
+  return `<div class="footer-inner"><div class="footer-brand"><img src="/assets/images/brand/conscious-travel-logo-light.webp" alt="Conscious Travel" width="865" height="330" loading="lazy"><p>Meaningful travel company untuk perjalanan corporate, pendidikan, komunitas, dan personal yang lebih sadar dan bermakna.</p><a href="mailto:happy@conscioustravel.id">happy@conscioustravel.id</a><a href="tel:+6285195559749">+62 851-9555-9749</a></div><div class="footer-column"><h2>Corporate Packages</h2><a href="/corporate-packages/indonesia-region/">Indonesia Region</a><a href="/corporate-packages/international/">International</a><a href="/corporate-packages/csr-program/">CSR Program</a><a href="/corporate-packages/event-planning-organizer/">Event Planning</a></div><div class="footer-column"><h2>Experiences</h2><a href="/experiences/#local">Local Experiences</a><a href="/experiences/#international">International Experiences</a><h2 class="footer-subheading">Study Tour</h2><a href="/study-tour/#regional">Regional Study Tour</a><a href="/study-tour/#international">International Study Tour</a></div><div class="footer-column"><h2>Company</h2><a href="/about/">About Us</a><a href="/impact/">Impact & Sustainability</a><a href="/faq/">FAQ</a><a href="/blog/">Blog</a><a href="/contact/">Contact</a><a href="${escapeAttribute(whatsappUrl)}" target="_blank" rel="noopener" data-wa-key="general">WhatsApp</a><a href="/contact/#inquiry">Inquiry Form</a><a href="https://g.page/r/CaDYluc5v2nQEAE/review" target="_blank" rel="noopener">Google Reviews</a></div></div><div class="footer-bottom"><span>&copy; ${new Date().getUTCFullYear()} PT Wisata Perjalanan Bermakna. Hak cipta dilindungi.</span><a href="https://www.instagram.com/conscioustravel.id/" target="_blank" rel="noopener">Instagram</a></div>`
+}
+
 function shell({head, content}) {
   return `<!doctype html>
 <html lang="id">
@@ -62,7 +73,7 @@ function shell({head, content}) {
   ${head}
   ${sharedHead()}
 </head>
-<body data-page="blog" data-static-blog="true"><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NVVKFSSN" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript><header id="site-header"></header><main id="main-content"><div id="page-root">${content}</div></main><footer id="site-footer"></footer><script src="/data/content.js?v=nav-trust-carousel-3" defer></script><script src="/js/main.js?v=brand-assets-1" defer></script></body>
+<body data-page="blog" data-static-blog="true"><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NVVKFSSN" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript><header id="site-header">${blogHeader()}</header><main id="main-content"><div id="page-root">${content}</div></main><footer id="site-footer">${blogFooter()}</footer><script src="/js/blog.js?v=blog-performance-1" defer></script></body>
 </html>
 `
 }
