@@ -152,7 +152,12 @@ for (const route of expectedRoutes) {
 }
 check(sitemap.includes(`<loc>https://conscioustravel.id/blog/</loc>`), "Blog listing must be in sitemap");
 check(!sitemap.includes("/blog/sanity-cms-connection-test/"), "Connection test must not be in sitemap");
-check(!sitemap.includes("/company-outing"), "Legacy route must not be in sitemap");
+for (const legacyRoute of ["/company-outing", "/company-outing/", "/company-trip", "/company-trip/", "/corporate-trip", "/corporate-trip/"]) {
+  check(
+    !sitemap.includes(`<loc>https://conscioustravel.id${legacyRoute}</loc>`),
+    `Legacy route must not be in sitemap: ${legacyRoute}`,
+  );
+}
 
 const vercel = JSON.parse(read("vercel.json"));
 for (const source of ["/company-outing", "/company-outing/", "/company-trip", "/company-trip/", "/corporate-trip", "/corporate-trip/"]) {
