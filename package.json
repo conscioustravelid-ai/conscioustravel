@@ -2,7 +2,7 @@
   "name": "conscioustravel-static-site",
   "private": true,
   "scripts": {
-    "build": "npm run verify:sanity && npm run build:blog && npm run validate:blog && npm run validate:phase2 && npm run validate:editorial",
+    "build": "npm run verify:sanity && npm run build:site && npm run build:blog && npm run validate:site && npm run validate:blog && npm run validate:phase2 && npm run validate:editorial",
     "verify:sanity": "node sanity-studio/scripts/verify-sanity-connection.mjs",
     "build:blog": "node scripts/build-blog.mjs",
     "validate:blog": "node scripts/validate-blog.mjs && node scripts/test-blog-renderer.mjs && node scripts/test-blog-reader-blocks.mjs && node scripts/test-blog-toc.mjs && node scripts/test-blog-reader-integration.mjs && node scripts/test-blog-select.mjs && node scripts/test-blog-publish-state.mjs && node scripts/test-blog-cleanup.mjs && node sanity-studio/scripts/test-publish-now.mts",
@@ -11,6 +11,8 @@
     "test:blog-reader-integration": "node scripts/test-blog-reader-integration.mjs",
     "serve:static": "node scripts/serve-static.mjs",
     "validate:phase2": "node scripts/validate-phase2.js",
-    "validate:editorial": "node scripts/validate-editorial-refinement.js"
+    "validate:editorial": "node scripts/validate-editorial-refinement.js",
+    "build:site": "node scripts/build-site.mjs",
+    "validate:site": "node scripts/validate-site.mjs && node scripts/test-site-language.mjs && node scripts/test-site-render.mjs"
   }
 }

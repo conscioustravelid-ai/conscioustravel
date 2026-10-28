@@ -155,6 +155,18 @@ const sitemap = read("sitemap.xml");
 for (const route of expectedRoutes) {
   check(sitemap.includes(`<loc>https://conscioustravel.id${route}</loc>`), `Sitemap missing ${route}`);
 }
+// Phase 1B extends the checks; all existing ID, Blog and exact legacy rules below remain active.
+for (let index = 0; index < routeFiles.length; index += 1) {
+  const enFile = `en/${routeFiles[index]}`;
+  const html = read(enFile);
+  const route = `/en${expectedRoutes[index]}`;
+  check(html.includes('<html lang="en">'), `${enFile}: incorrect source language`);
+  check(html.includes('data-static-site="true" data-language="en"'), `${enFile}: missing static gate`);
+  check((html.match(/<h1\b/gi) || []).length === 1, `${enFile}: expected one source H1`);
+  check(html.includes(`<link rel="canonical" href="https://conscioustravel.id${route}">`), `${enFile}: incorrect self-canonical`);
+  check(sitemap.includes(`<loc>https://conscioustravel.id${route}</loc>`), `Sitemap missing ${route}`);
+}
+check(!sitemap.includes('/en/blog/'), 'Phase 1B must not advertise an English Blog');
 check(sitemap.includes(`<loc>https://conscioustravel.id/blog/</loc>`), "Blog listing must be in sitemap");
 check(!sitemap.includes("/blog/sanity-cms-connection-test/"), "Connection test must not be in sitemap");
 for (const legacyRoute of ["/company-outing", "/company-outing/", "/company-trip", "/company-trip/", "/corporate-trip", "/corporate-trip/"]) {

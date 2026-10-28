@@ -1,5 +1,5 @@
 const CT_STATE = {
-  language: localStorage.getItem("ct-language") === "en" ? "en" : "id",
+  language: window.CT_SITE_LANGUAGE.localeFromPath(window.location.pathname),
   catalog: null,
   clientCarouselTimer: null,
   clientCarouselAbortController: null
@@ -105,9 +105,25 @@ function whatsappUrl(key = "general") {
   return `https://wa.me/${window.CT_CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
+function siteUrl(value) {
+  return window.CT_SITE_LANGUAGE.localizedUrl(value, CT_STATE.language);
+}
+
+// Preserve approved ID serialization at legacy trusted-copy href boundaries.
+function legacySiteHref(value) {
+  const url = siteUrl(value);
+  return CT_STATE.language === "id" ? url : escapeHtml(url);
+}
+
+function renderLanguageSwitch() {
+  const target = CT_STATE.language === "id" ? "en" : "id";
+  const href = window.CT_SITE_LANGUAGE.languageSwitchUrl(window.location.pathname);
+  return href ? `<a class="language-toggle" data-language-toggle href="${escapeHtml(href)}" lang="${target}" hreflang="${target}" aria-label="${escapeHtml(content().ui.changeLanguage)}">${target.toUpperCase()}</a>` : `<span class="language-unavailable">English translation unavailable</span>`;
+}
+
 function inquiryUrl(service = "Custom Trip", sourcePage = window.location.pathname) {
   const params = new URLSearchParams({ service, sourcePage });
-  return `/contact/?${params.toString()}#inquiry`;
+  return siteUrl(`/contact/?${params.toString()}#inquiry`);
 }
 
 function formatCurrency(price) {
@@ -129,6 +145,7 @@ function formatUnit(unit) {
 
 function productCopy(product) {
   const entry = window.CT_PRODUCT_COPY[CT_STATE.language][product.id];
+  if (!entry && CT_STATE.language === "en") throw new Error(`Missing English product copy: ${product.id}`);
   return entry || [product.name, ""];
 }
 
@@ -171,7 +188,7 @@ function renderHomeServiceCard(item, index, options) {
       height: options.height
     })
     : `<img class="home-service-card-image" src="${options.image}" alt="${escapeHtml(item[0])}" width="${options.width}" height="${options.height}" loading="lazy" decoding="async">`;
-  return `<a class="home-service-gateway ${options.supporting ? "home-service-support" : "home-service-primary"}" href="${escapeHtml(item[2])}">
+  return `<a class="home-service-gateway ${options.supporting ? "home-service-support" : "home-service-primary"}" href="${escapeHtml(siteUrl(item[2]))}">
     ${media}
     <div class="home-service-overlay" aria-hidden="true"></div>
     <div class="home-service-copy"><span>0${index + 1}</span><h3>${escapeHtml(item[0])}</h3>${renderHomeServicePrice(options.price)}<p>${escapeHtml(item[1])}</p><span class="text-link">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></span></div>
@@ -192,7 +209,7 @@ function renderProductCard(product, options = {}) {
 
 function renderHeader() {
   const c = content();
-  const currentPath = window.location.pathname;
+  const currentPath = window.CT_SITE_LANGUAGE.pageFromPath(window.location.pathname)?.paths.id || window.location.pathname;
   const isBlog = document.body.dataset.page === "blog";
   const isActive = (path) => path === "/" ? currentPath === "/" : currentPath.startsWith(path);
   const dropdown = (id, label, items, active) => `
@@ -201,14 +218,14 @@ function renderHeader() {
         ${escapeHtml(label)} <span class="chevron" aria-hidden="true"></span>
       </button>
       <div class="nav-dropdown-menu" id="${id}">
-        ${items.map(([itemLabel, href]) => `<a href="${href}"${currentPath === href ? ' aria-current="page"' : ""}>${escapeHtml(itemLabel)}</a>`).join("")}
+        ${items.map(([itemLabel, href]) => `<a href="${escapeHtml(siteUrl(href))}"${currentPath === href ? ' aria-current="page"' : ""}>${escapeHtml(itemLabel)}</a>`).join("")}
       </div>
     </div>`;
 
   document.getElementById("site-header").innerHTML = `
     <a class="skip-link" href="#main-content">${escapeHtml(c.skip)}</a>
     <div class="nav-shell">
-      <a class="brand-link" href="/" aria-label="Conscious Travel home">
+      <a class="brand-link" href="${escapeHtml(siteUrl("/"))}" aria-label="Conscious Travel home">
         <img class="brand-logo-default" src="/assets/images/brand/conscious-travel-logo-dark.webp" alt="Conscious Travel" width="865" height="330">
         <img class="brand-logo-on-dark" src="/assets/images/brand/conscious-travel-logo-light.webp" alt="" width="865" height="330" aria-hidden="true">
       </a>
@@ -216,14 +233,14 @@ function renderHeader() {
         <span></span><span></span><span></span>
       </button>
       <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation">
-        <a href="/"${isActive("/") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.home)}</a>
+        <a href="${escapeHtml(siteUrl("/"))}"${isActive("/") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.home)}</a>
         ${dropdown("corporate-menu", c.nav.corporate, c.nav.corporateItems, isActive("/corporate-packages"))}
         ${dropdown("experiences-menu", c.nav.experiences, c.nav.experiencesItems, ["/experiences/", "/sailing-package/"].includes(currentPath))}
-        <a href="/study-tour/"${isActive("/study-tour") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.study)}</a>
-        <a href="/blog/"${isActive("/blog") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.blog)}</a>
+        <a href="${escapeHtml(siteUrl("/study-tour/"))}"${isActive("/study-tour") ? ' aria-current="page"' : ""}>${escapeHtml(c.nav.study)}</a>
+        <a href="/blog/"${CT_STATE.language === "en" ? ' hreflang="id"' : ""}${isActive("/blog") ? ' aria-current="page"' : ""}>${escapeHtml(CT_STATE.language === "en" ? "Blog (Bahasa Indonesia)" : c.nav.blog)}</a>
         ${dropdown("about-menu", c.nav.about, c.nav.aboutItems, ["/about/", "/impact/", "/faq/", "/contact/"].includes(currentPath))}
         <div class="nav-actions">
-          ${isBlog ? "" : `<button class="language-toggle" type="button" data-language-toggle aria-label="${escapeHtml(c.ui.changeLanguage)}">${CT_STATE.language === "id" ? "EN" : "ID"}</button>`}
+          ${isBlog ? "" : renderLanguageSwitch()}
           <a class="btn btn-primary nav-cta" href="${whatsappUrl("general")}" target="_blank" rel="noopener" data-wa-key="general">Start Your Journey</a>
         </div>
       </nav>
@@ -242,26 +259,26 @@ function renderFooter() {
         <a href="tel:+${config.whatsappNumber}">${config.phoneDisplay}</a>
       </div>
       <div class="footer-column"><h2>${escapeHtml(c.footer.corporate)}</h2>
-        <a href="/corporate-packages/indonesia-region/">Indonesia Region</a>
-        <a href="/corporate-packages/international/">International</a>
-        <a href="/corporate-packages/csr-program/">CSR Program</a>
-        <a href="/corporate-packages/event-planning-organizer/">Event Planning</a>
+        <a href="${escapeHtml(siteUrl("/corporate-packages/indonesia-region/"))}">Indonesia Region</a>
+        <a href="${escapeHtml(siteUrl("/corporate-packages/international/"))}">International</a>
+        <a href="${escapeHtml(siteUrl("/corporate-packages/csr-program/"))}">CSR Program</a>
+        <a href="${escapeHtml(siteUrl("/corporate-packages/event-planning-organizer/"))}">Event Planning</a>
       </div>
       <div class="footer-column"><h2>${escapeHtml(c.footer.experiences)}</h2>
-        <a href="/experiences/#local">${escapeHtml(c.footer.local)}</a>
-        <a href="/experiences/#international">${escapeHtml(c.footer.internationalExperiences)}</a>
+        <a href="${escapeHtml(siteUrl("/experiences/#local"))}">${escapeHtml(c.footer.local)}</a>
+        <a href="${escapeHtml(siteUrl("/experiences/#international"))}">${escapeHtml(c.footer.internationalExperiences)}</a>
         <h2 class="footer-subheading">${escapeHtml(c.footer.study)}</h2>
-        <a href="/study-tour/#regional">${escapeHtml(c.footer.regionalStudy)}</a>
-        <a href="/study-tour/#international">${escapeHtml(c.footer.internationalStudy)}</a>
+        <a href="${escapeHtml(siteUrl("/study-tour/#regional"))}">${escapeHtml(c.footer.regionalStudy)}</a>
+        <a href="${escapeHtml(siteUrl("/study-tour/#international"))}">${escapeHtml(c.footer.internationalStudy)}</a>
       </div>
       <div class="footer-column"><h2>${escapeHtml(c.footer.company)}</h2>
-        <a href="/about/">${escapeHtml(c.nav.aboutItems[0][0])}</a>
-        <a href="/impact/">${escapeHtml(c.nav.aboutItems[1][0])}</a>
-        <a href="/faq/">FAQ</a>
-        <a href="/blog/">${escapeHtml(c.nav.blog)}</a>
-        <a href="/contact/">${escapeHtml(c.nav.contact)}</a>
+        <a href="${escapeHtml(siteUrl("/about/"))}">${escapeHtml(c.nav.aboutItems[0][0])}</a>
+        <a href="${escapeHtml(siteUrl("/impact/"))}">${escapeHtml(c.nav.aboutItems[1][0])}</a>
+        <a href="${escapeHtml(siteUrl("/faq/"))}">FAQ</a>
+        <a href="/blog/"${CT_STATE.language === "en" ? ' hreflang="id"' : ""}>${escapeHtml(CT_STATE.language === "en" ? "Blog (Bahasa Indonesia)" : c.nav.blog)}</a>
+        <a href="${escapeHtml(siteUrl("/contact/"))}">${escapeHtml(c.nav.contact)}</a>
         <a href="${whatsappUrl("general")}" target="_blank" rel="noopener" data-wa-key="general">WhatsApp</a>
-        <a href="/contact/#inquiry">${escapeHtml(c.footer.inquiry)}</a>
+        <a href="${escapeHtml(siteUrl("/contact/#inquiry"))}">${escapeHtml(c.footer.inquiry)}</a>
         <a href="${config.googleReview}" target="_blank" rel="noopener">${escapeHtml(c.footer.review)}</a>
       </div>
     </div>
@@ -299,8 +316,8 @@ function renderHero(pageKey, page, options = {}) {
           <h1>${escapeHtml(page.title)}</h1>
           <p class="hero-lead">${escapeHtml(page.lead)}</p>
           <div class="button-row">
-            <a class="btn btn-primary" href="${escapeHtml(primaryHref)}"${primaryAttributes}>${escapeHtml(options.primaryLabel || content().ui.whatsapp)}</a>
-            ${options.secondaryHref ? `<a class="btn btn-secondary" href="${options.secondaryHref}">${escapeHtml(options.secondaryLabel || content().ui.explore)}</a>` : ""}
+            <a class="btn btn-primary" href="${escapeHtml(siteUrl(primaryHref))}"${primaryAttributes}>${escapeHtml(options.primaryLabel || content().ui.whatsapp)}</a>
+            ${options.secondaryHref ? `<a class="btn btn-secondary" href="${legacySiteHref(options.secondaryHref)}">${escapeHtml(options.secondaryLabel || content().ui.explore)}</a>` : ""}
           </div>
         </div>
         <p class="hero-signature" aria-hidden="true">Travel / Connect / Contribute</p>
@@ -346,7 +363,7 @@ function renderTrustedBy(label, options = {}) {
 }
 
 function renderBreadcrumb(items) {
-  return `<nav class="breadcrumb container" aria-label="Breadcrumb"><a href="/">${escapeHtml(content().ui.breadcrumbHome)}</a>${items.map(([label, href], index) => `<span aria-hidden="true">/</span>${href && index < items.length - 1 ? `<a href="${href}">${escapeHtml(label)}</a>` : `<span aria-current="page">${escapeHtml(label)}</span>`}`).join("")}</nav>`;
+  return `<nav class="breadcrumb container" aria-label="Breadcrumb"><a href="${escapeHtml(siteUrl("/"))}">${escapeHtml(content().ui.breadcrumbHome)}</a>${items.map(([label, href], index) => `<span aria-hidden="true">/</span>${href && index < items.length - 1 ? `<a href="${escapeHtml(siteUrl(href))}">${escapeHtml(label)}</a>` : `<span aria-current="page">${escapeHtml(label)}</span>`}`).join("")}</nav>`;
 }
 
 function renderIntro(title, body) {
@@ -360,7 +377,7 @@ function renderCards(items, className = "service-grid") {
       ${item[3] ? `<span class="service-symbol" aria-hidden="true">${escapeHtml(item[3].slice(0, 1).toUpperCase())}</span>` : ""}
       <h3>${escapeHtml(item[0])}</h3>
       <p>${escapeHtml(item[1])}</p>
-      ${item[2] ? `<a class="text-link" href="${item[2]}">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></a>` : ""}
+      ${item[2] ? `<a class="text-link" href="${escapeHtml(siteUrl(item[2]))}">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></a>` : ""}
     </article>`).join("")}</div>`;
 }
 
@@ -409,7 +426,7 @@ function renderPathwayGateways(pathways) {
   const labels = editorialContent().labels;
   const images = PRODUCT_PAGE_IMAGES.corporateHub;
   return `<div class="journey-pathway-grid">${pathways.map((pathway, index) => `
-    <a class="journey-pathway${index < 2 ? " journey-pathway-primary" : " journey-pathway-supporting"}" href="${escapeHtml(pathway.href)}">
+    <a class="journey-pathway${index < 2 ? " journey-pathway-primary" : " journey-pathway-supporting"}" href="${escapeHtml(siteUrl(pathway.href))}">
       <img src="${escapeHtml(images[pathway.key])}" alt="${escapeHtml(pathway.title)} corporate journey" width="1200" height="900" loading="lazy" decoding="async">
       <span class="journey-pathway-overlay" aria-hidden="true"></span>
       <span class="journey-pathway-copy">
@@ -537,7 +554,7 @@ function renderHome() {
     ${renderTrustedBy(p.trust, { carousel: true })}
     <section class="section home-intro"><div class="container home-intro-grid"><div><p class="section-kicker">Conscious Travel</p><h2>${escapeHtml(p.introTitle)}</h2></div><p class="section-lead">${escapeHtml(p.introBody)}</p></div></section>
     <section class="section home-services"><div class="container"><div class="section-heading home-section-heading"><p class="section-kicker">Service ecosystem</p><h2>${escapeHtml(p.whatTitle)}</h2><p>${escapeHtml(p.whatLead)}</p></div><div class="home-service-primary-grid">${primaryServices}</div><div class="home-service-supporting-grid">${supportingServices}</div></div></section>
-    <section class="section home-impact"><div class="container home-impact-grid"><div class="home-impact-copy"><p class="section-kicker">${escapeHtml(p.impactEyebrow)}</p><h2>${escapeHtml(p.impactTitle)}</h2><p>${escapeHtml(p.impactBody)}</p><a class="text-link" href="/impact/">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></a></div>${renderHomeImpactMetrics(p.impactMetrics)}</div></section>
+    <section class="section home-impact"><div class="container home-impact-grid"><div class="home-impact-copy"><p class="section-kicker">${escapeHtml(p.impactEyebrow)}</p><h2>${escapeHtml(p.impactTitle)}</h2><p>${escapeHtml(p.impactBody)}</p><a class="text-link" href="${escapeHtml(siteUrl("/impact/"))}">${escapeHtml(content().ui.learnMore)} <span aria-hidden="true">&#8594;</span></a></div>${renderHomeImpactMetrics(p.impactMetrics)}</div></section>
     <section class="section home-why home-offerings"><div class="container"><div class="section-heading home-offerings-heading"><div><p class="section-kicker">${escapeHtml(p.ourServicesEyebrow)}</p><h2>${escapeHtml(p.ourServicesTitle)}</h2></div><p>${escapeHtml(p.ourServicesLead)}</p></div>${renderHomeOurServices(p.ourServices)}</div></section>
     <section class="home-closing-cta">${renderResponsiveImage({ desktop: "/assets/images/home/storytelling-home-campfire.webp", alt: "Travelers sharing a meaningful evening around a campfire", className: "home-closing-media", width: 1448, height: 1086 })}<div class="home-closing-overlay" aria-hidden="true"></div><div class="container home-closing-inner"><p class="eyebrow">Conscious Travel</p><h2>${escapeHtml(p.ctaTitle)}</h2><p>${escapeHtml(p.ctaBody)}</p><div class="button-row"><a class="btn btn-light" href="${whatsappUrl("general")}" target="_blank" rel="noopener" data-wa-key="general">${escapeHtml(p.title)}</a><a class="btn btn-outline-light" href="${escapeHtml(inquiryUrl("Custom Trip"))}">${escapeHtml(content().ui.inquiry)}</a></div></div></section>`;
 }
@@ -781,7 +798,7 @@ function renderImpact() {
     ${renderBreadcrumb([[content().nav.aboutItems[1][0], "/impact/"]])}
     ${renderIntro(p.introTitle, p.introBody)}
     <section class="section"><div class="container"><div class="section-heading"><h2>${escapeHtml(p.principlesTitle)}</h2></div>${renderFeatureList(p.principles)}</div></section>
-    <section class="section image-feature muted-band"><div class="container split-layout"><div><p class="section-kicker">Travel consciously</p><h2>${escapeHtml(content().csr.safeClaim)}</h2><a class="text-link" href="/corporate-packages/csr-program/">CSR Program <span aria-hidden="true">&#8594;</span></a></div><img src="/assets/images/group-local-lunch.webp" alt="Community-centered travel activity" width="900" height="650" loading="lazy"></div></section>
+    <section class="section image-feature muted-band"><div class="container split-layout"><div><p class="section-kicker">Travel consciously</p><h2>${escapeHtml(content().csr.safeClaim)}</h2><a class="text-link" href="${escapeHtml(siteUrl("/corporate-packages/csr-program/"))}">CSR Program <span aria-hidden="true">&#8594;</span></a></div><img src="/assets/images/group-local-lunch.webp" alt="Community-centered travel activity" width="900" height="650" loading="lazy"></div></section>
     ${renderCta(p.ctaTitle, p.ctaBody, { waKey: "csr", service: "CSR Program" })}`;
 }
 
@@ -849,7 +866,7 @@ function renderContact() {
 function renderBlog() {
   const p = content().blog;
   return `${renderHero("blog", p, { secondaryHref: "/experiences/", secondaryLabel: content().nav.experiences })}
-    <section class="section"><div class="container narrow placeholder-panel"><p class="section-kicker">Blog</p><h2>${escapeHtml(p.statusTitle)}</h2><p>${escapeHtml(p.statusBody)}</p><div class="button-row"><a class="btn btn-secondary" href="/corporate-packages/">Corporate Packages</a><a class="text-link" href="/contact/">${escapeHtml(content().nav.contact)} <span aria-hidden="true">&#8594;</span></a></div></div></section>`;
+    <section class="section"><div class="container narrow placeholder-panel"><p class="section-kicker">Blog</p><h2>${escapeHtml(p.statusTitle)}</h2><p>${escapeHtml(p.statusBody)}</p><div class="button-row"><a class="btn btn-secondary" href="${escapeHtml(siteUrl("/corporate-packages/"))}">Corporate Packages</a><a class="text-link" href="${escapeHtml(siteUrl("/contact/"))}">${escapeHtml(content().nav.contact)} <span aria-hidden="true">&#8594;</span></a></div></div></section>`;
 }
 
 function renderPage() {
@@ -1040,13 +1057,49 @@ function bindClientCarousel() {
 }
 
 function bindLanguageToggle() {
-  document.querySelectorAll("[data-language-toggle]").forEach((button) => {
-    button.addEventListener("click", () => {
-      CT_STATE.language = CT_STATE.language === "id" ? "en" : "id";
-      localStorage.setItem("ct-language", CT_STATE.language);
-      initializeUi();
-      pushTrackingEvent("language_change", { language: CT_STATE.language, sourcePage: window.location.pathname });
+  const page = window.CT_SITE_LANGUAGE.pageFromPath(window.location.pathname);
+  const target = CT_STATE.language === "id" ? "en" : "id";
+  const anchors = window.CT_SITE_ANCHORS?.[page?.paths[target]] || [];
+  document.querySelectorAll("[data-language-toggle]").forEach((link) => {
+    const update = () => {
+      const href = window.CT_SITE_LANGUAGE.languageSwitchUrl(window.location.pathname, window.location.search, window.location.hash, anchors);
+      if (href) link.href = href;
+    };
+    update();
+    window.addEventListener("hashchange", update);
+    link.addEventListener("click", () => {
+      update();
+      try { localStorage.setItem("ct-language", target); } catch (_) { /* Storage is optional. URL remains authoritative. */ }
+      pushTrackingEvent("language_change", { language: target, sourcePage: window.location.pathname });
     });
+  });
+}
+
+function revealHashTarget() {
+  let id;
+  try { id = decodeURIComponent(window.location.hash.slice(1)); } catch (_) { return; }
+  const target = id && document.getElementById(id);
+  if (!target) return;
+  const panel = target.closest('[role="tabpanel"]');
+  const tab = panel && document.querySelector('[aria-controls="' + CSS.escape(panel.id) + '"][data-variant-tab]');
+  if (panel?.hidden) tab?.click();
+  let parent = target;
+  while (parent) { if (parent.tagName === "DETAILS") parent.open = true; parent = parent.parentElement; }
+  target.querySelector('[data-destination-accordion]')?.setAttribute('open', '');
+  window.requestAnimationFrame(() => {
+    let scrollTarget = target;
+    // The same variant is a disclosure on mobile and a tab panel on desktop.
+    // Keep its existing fragment ID while revealing the visible representation.
+    if (panel && tab && panel.getClientRects().length === 0) {
+      const explorer = panel.closest('.variant-explorer');
+      const index = [...explorer.querySelectorAll('[data-variant-tab]')].indexOf(tab);
+      const variants = [...explorer.querySelectorAll('[data-variant-mobile]')];
+      if (variants[index]) {
+        variants.forEach((variant, position) => { variant.open = position === index; });
+        scrollTarget = variants[index];
+      }
+    }
+    scrollTarget.scrollIntoView({ behavior: "auto", block: "start" });
   });
 }
 
@@ -1262,10 +1315,10 @@ function prepareInquiryForm() {
   });
 }
 
-function initializeUi() {
-  renderHeader();
-  renderPage();
-  renderFooter();
+function initializeUi({ render = true } = {}) {
+  if (render) { renderHeader(); renderPage(); renderFooter(); }
+  if (document.body.dataset.siteBound === "true") return;
+  document.body.dataset.siteBound = "true";
   bindHeaderVisualState();
   bindNavigation();
   bindClientCarousel();
@@ -1276,9 +1329,16 @@ function initializeUi() {
   bindVariantTabs();
   bindIndonesiaAccordions();
   prepareInquiryForm();
+  revealHashTarget();
+  window.addEventListener("hashchange", revealHashTarget);
 }
 
 async function initializeSite() {
+  CT_STATE.language = window.CT_SITE_LANGUAGE.localeFromPath(window.location.pathname);
+  if (document.body.dataset.staticSite === "true") {
+    initializeUi({ render: false });
+    return;
+  }
   try {
     if (document.body.dataset.page === "blog") CT_STATE.language = "id";
     const response = await fetch("/data/product-catalog.json", { cache: "no-cache" });

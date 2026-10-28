@@ -1344,6 +1344,12 @@ window.CT_EDITORIAL_CONTENT = {
 
 window.CT_PRODUCT_COPY = {
   id: {
+    "bali-study-tour": ["Bali Study Tour", ""],
+    "yogyakarta-study-tour": ["Yogyakarta Study Tour", ""],
+    "bandung-study-tour": ["Bandung Study Tour", ""],
+    "bangkok-study-tour": ["Bangkok Study Tour", ""],
+    "malaysia-study-tour": ["Malaysia Study Tour", ""],
+    "europe-study-tour": ["Europe Study Tour", ""],
     "bali-starter": ["Bali Starter", "Satu hari, empat pilihan pengalaman untuk team outing yang ringkas dan fleksibel."],
     "bali-silver": ["Bali Silver", "Program Bali yang lebih lengkap untuk membangun koneksi dan pengalaman tim."],
     "bali-gold": ["Bali Gold", "Upgrade program dengan cakupan pengalaman dan dukungan yang lebih menyeluruh."],
@@ -1377,6 +1383,12 @@ window.CT_PRODUCT_COPY = {
     "study-international": ["International Study Tour", "Perjalanan belajar internasional yang disusun berdasarkan learning objective."]
   },
   en: {
+    "bali-study-tour": ["Bali Study Tour", ""],
+    "yogyakarta-study-tour": ["Yogyakarta Study Tour", ""],
+    "bandung-study-tour": ["Bandung Study Tour", ""],
+    "bangkok-study-tour": ["Bangkok Study Tour", ""],
+    "malaysia-study-tour": ["Malaysia Study Tour", ""],
+    "europe-study-tour": ["Europe Study Tour", ""],
     "bali-starter": ["Bali Starter", "One day, four experience options for a focused and flexible team outing."],
     "bali-silver": ["Bali Silver", "A more complete Bali program for team connection and shared experiences."],
     "bali-gold": ["Bali Gold", "An upgraded program with broader experiences and support."],
