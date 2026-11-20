@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "inputFingerprint": "0c39e8bc3275c202e316490a31c1f1379d5a67601759fe8ef84cebf8c922ed28",
+  "inputFingerprint": "76fff20690df2ea5d35e2da8855b41834deb7249bf81ed24118784b965a38b73",
   "ownedEnFiles": [
     "en/index.html",
     "en/corporate-packages/index.html",
@@ -396,14 +396,14 @@
       "page": "home",
       "locale": "id",
       "path": "/",
-      "fingerprint": "4dfacbf4f3aeceab768cb8ac928e769988c3f68fe6f00f4d8d6ea0d225b28041"
+      "fingerprint": "520413bbd9dd3c95b8646d241269ca371e34c878101868bfc12e68454dc02309"
     },
     {
       "file": "en/index.html",
       "page": "home",
       "locale": "en",
       "path": "/en/",
-      "fingerprint": "39a15c0b1366ad3c1fa602209763ba82d31c6ecc6fc5313d4e63783440da165f"
+      "fingerprint": "b984ede0bf12fbd58ce40beb172ac8a25aa21219fa2cb17ec4a1d61d4e0affbb"
     },
     {
       "file": "corporate-packages/index.html",

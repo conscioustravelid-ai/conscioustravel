@@ -116,39 +116,42 @@ window.CT_CONTENT = {
       review: "Google Reviews"
     },
     home: {
-      eyebrow: "Meaningful travel company",
-      title: "Create Your Meaningful Journey",
-      lead: "Conscious Travel membantu perusahaan, institusi pendidikan, komunitas, dan traveler merancang perjalanan yang lebih sadar, bermakna, dan berdampak, dari corporate outing, study tour, CSR program, hingga custom travel experiences.",
+      title: "bepergian dengan tujuan",
+      heroNote: "Mengenal tempat lewat orang-orangnya",
+      lead: "Kami merancang perjalanan bersama perusahaan, sekolah, dan komunitas untuk mengenal budaya, menjelajahi alam, dan belajar dari warga setempat.",
+      heroAlt: "Lima pendaki berdiri berangkulan di punggung bukit menghadap pegunungan saat matahari terbenam.",
       trust: "Dipercaya untuk perjalanan tim dan pengalaman yang lebih bermakna",
-      introTitle: "Perjalanan yang dirancang dengan tujuan",
-      introBody: "Sebagai meaningful travel company dan travel agent Indonesia, kami memadukan koordinasi perjalanan yang rapi dengan pengalaman budaya, alam, pembelajaran, dan kontribusi komunitas. Kami mendampingi kebutuhan corporate outing Indonesia, company outing Bali, study tour Indonesia, CSR travel program, serta custom travel experiences di Indonesia dan luar negeri.",
-      whatTitle: "What Conscious Travel Does",
-      whatLead: "Satu partner untuk merancang perjalanan yang relevan dengan tujuan, peserta, dan nilai organisasi Anda.",
-      services: [
-        ["Corporate Packages", "Outing, retreat, incentive trip, CSR activation, dan corporate gathering yang dirancang sesuai kebutuhan tim.", "/corporate-packages/", "corporate"],
-        ["Experiences", "Custom local dan international experiences untuk grup kecil, komunitas, maupun traveler.", "/experiences/", "experiences"],
-        ["Study Tour", "Educational journey dengan budaya, alam, sustainability, dan social impact.", "/study-tour/", "study"],
-        ["Impact & Sustainability", "Pilihan perjalanan dan aktivitas yang memberi ruang untuk belajar, terhubung, dan berkontribusi.", "/impact/", "impact"]
-      ],
-      corporateTitle: "Corporate journeys for meaningful teams",
-      corporateBody: "Dari perjalanan regional di Bali, Jogja, Bandung, dan Lombok hingga incentive trip internasional, kami membantu tim merancang program dengan alur, pengalaman, dan koordinasi yang utuh.",
-      experienceTitle: "Experiences shaped around your journey",
-      experienceBody: "Jelajahi Indonesia atau rancang perjalanan internasional secara fleksibel. Kami membantu menyusun ritme, aktivitas, dan rekomendasi yang sesuai dengan cara Anda ingin bepergian.",
-      impactEyebrow: "Our Impact",
-      impactTitle: "Travel That Gives Back",
-      impactBody: "Kami percaya perjalanan bermakna dapat menciptakan perubahan positif. Hingga saat ini, perjalanan bersama Conscious Travel telah mendukung aksi lingkungan, komunitas lokal, serta kegiatan CSR dan sosial melalui pengalaman yang dirancang dengan tujuan.",
-      impactMetrics: [["5+", "Aksi lingkungan"], ["10+", "Komunitas lokal didukung"], ["20+", "Kegiatan CSR & sosial"], ["1.000+", "Traveler dalam perjalanan bermakna"]],
-      ourServicesEyebrow: "Dari rencana hingga dampak",
-      ourServicesTitle: "Our Services",
-      ourServicesLead: "Kami mendampingi perjalanan dari perencanaan hingga dokumentasi dan kontribusi, sehingga setiap pengalaman tetap terarah, personal, dan bermakna.",
-      ourServices: [
-        ["Meaningful Travel Plan", "Kami merancang perjalanan berdasarkan tujuan, profil peserta, ritme, anggaran, dan pengalaman yang ingin dibangun."],
-        ["Event Planning", "Kami mengoordinasikan gathering, retreat, team building, dan travel-based event dari konsep hingga pelaksanaan."],
-        ["Journey Storytelling", "Setiap perjalanan mencakup dokumentasi dasar. Cakupan foto, video, dan recap disesuaikan dengan program atau paket yang dipilih."],
-        ["Impactful Journey", "Kami membuka ruang untuk terhubung dengan komunitas, belajar dari lingkungan, dan berkontribusi secara bertanggung jawab."]
-      ],
-      ctaTitle: "Mari rancang perjalanan yang benar-benar berarti",
-      ctaBody: "Ceritakan siapa yang akan bepergian, tujuan perjalanan, dan waktu yang Anda pertimbangkan. Kami akan membantu menemukan arah program yang tepat."
+      clients: "Klien yang pernah bepergian bersama kami",
+      announcement: "Temukan ide perjalanan untuk grup Anda",
+      plan: "Mari Rencanakan", navigation: "Navigasi utama",
+      nav: {
+        corporateHub: "Perjalanan perusahaan", experiences: "Pengalaman", study: "Wisata edukasi",
+        about: "Cerita kami", csr: "Program CSR", sailing: "Wisata bahari", impact: "Dampak kami",
+        faq: "Tanya jawab", contact: "Hubungi kami", indonesia: "Di Indonesia", international: "Di luar negeri"
+      },
+      tripsLabel: "Inspirasi perjalanan", tripsTitle: "Perjalanan yang patut dinantikan.",
+      tripsLead: "Inilah ide perjalanan kami. Jadwal keberangkatan belum diumumkan dan pemesanan belum dibuka.",
+      previous: "Tema sebelumnya", next: "Tema berikutnya",
+      trips: {
+        heritage: ["Menelusuri warisan budaya", "Melihat lebih dekat kisah yang tersimpan di relief dan bangunan candi.", "Pengunjung berjalan di teras sebuah candi batu di Yogyakarta."],
+        sea: ["Menyusuri kepulauan", "Mengenal bentang pesisir dari sudut pandang laut.", "Sebuah kapal melintasi laut di antara perbukitan pesisir."],
+        community: ["Bertemu budaya setempat", "Menyusuri ruang tempat warga berkumpul dan tradisi hidup sehari-hari.", "Rombongan berkumpul di halaman rindang di depan bangunan bata tradisional di Vietnam."]
+      },
+      servicesLabel: "Pilihan perjalanan", servicesTitle: ["Beragam perjalanan,", "satu tujuan."],
+      servicesLead: "Mulailah dari orang-orang yang akan ikut. Kami menyusun setiap perjalanan sesuai minat, ritme, dan tujuan grup Anda.",
+      services: {
+        experiences: ["Pengalaman lokal", "Jelajahi alam dan budaya bersama grup kecil Anda.", "Peserta berhelm kuning memegang dayung di jalan setapak di antara sawah."],
+        corporateHub: ["Perjalanan perusahaan", "Luangkan waktu bagi tim untuk berkumpul di luar kantor.", "Rekan kerja duduk di pasir saat mengikuti kegiatan kelompok di pantai."],
+        study: ["Wisata edukasi", "Ajak siswa belajar lewat perjumpaan langsung di lapangan.", "Sekelompok siswa mengenakan pelampung biru saat kegiatan di luar ruangan."]
+      },
+      impactLabel: "Dampak kami", impactTitle: ["Perjalanan yang", "memberi kembali."],
+      impactLead: "Cara kami bepergian dimulai dengan mendengarkan warga setempat. Kami mempertimbangkan lingkungan, kebutuhan komunitas, dan hal yang dapat dipelajari bersama.",
+      impactLink: "Kenali pendekatan kami", impactThemes: ["Mendengarkan", "Pelaporan", "Komunitas", "Pembelajaran"],
+      newsletterLabel: "Surat perjalanan", newsletterTitle: ["Kabar dari", "perjalanan kami…"],
+      newsletterLead: "Cerita tentang tempat dan orang yang kami jumpai sepanjang jalan.", newsletterStatus: "Pendaftaran buletin belum dibuka.",
+      faqLabel: "Sebelum berangkat", faqTitle: ["Seputar", "perjalanan Anda."], faqLink: "Lihat semua tanya jawab",
+      footerIntro: "Perjalanan untuk mengenal tempat, belajar bersama, dan terhubung dengan masyarakat setempat.",
+      footerJourneys: "Jelajahi", footerCompany: "Conscious Travel", footerContact: "Terhubung"
     },
     corporateHub: {
       eyebrow: "Corporate Packages",
@@ -430,12 +433,42 @@ window.CT_CONTENT = {
       description: "A meaningful travel company for more conscious corporate, educational, community, and personal journeys.", corporate: "Corporate Packages", experiences: "Experiences", study: "Study Tour", company: "Company", local: "Local Experiences", internationalExperiences: "International Experiences", regionalStudy: "Regional Study Tour", internationalStudy: "International Study Tour", inquiry: "Inquiry Form", rights: "All rights reserved.", review: "Google Reviews"
     },
     home: {
-      eyebrow: "Meaningful travel company", title: "Create Your Meaningful Journey", lead: "Conscious Travel helps companies, schools, communities, and travelers design more conscious, meaningful, and impactful journeys, from corporate outings and study tours to CSR programs and custom travel experiences.", trust: "Trusted for team journeys and more meaningful experiences", introTitle: "Journeys designed with purpose", introBody: "As a meaningful travel company and travel agent in Indonesia, we combine thoughtful coordination with culture, nature, learning, and community connection. We support corporate outings across Indonesia, company outings in Bali, study tours, CSR travel programs, and custom travel experiences in Indonesia and beyond.", whatTitle: "What Conscious Travel Does", whatLead: "One partner to design a journey around your goals, participants, and organizational values.",
-      services: [["Corporate Packages", "Outings, retreats, incentive trips, CSR activations, and corporate gatherings tailored to your team.", "/corporate-packages/", "corporate"], ["Experiences", "Custom local and international experiences for small groups, communities, and travelers.", "/experiences/", "experiences"], ["Study Tour", "Educational journeys through culture, nature, sustainability, and social impact.", "/study-tour/", "study"], ["Impact & Sustainability", "Journeys that create space to learn, connect, and contribute with care.", "/impact/", "impact"]],
-      corporateTitle: "Corporate journeys for meaningful teams", corporateBody: "From regional programs in Bali, Jogja, Bandung, and Lombok to international incentive trips, we help teams build a complete journey with thoughtful flow, experiences, and coordination.", experienceTitle: "Experiences shaped around your journey", experienceBody: "Explore Indonesia or design an international journey with flexibility. We help shape the pace, activities, and recommendations around the way you want to travel.",
-      impactEyebrow: "Our Impact", impactTitle: "Travel That Gives Back", impactBody: "We believe meaningful travel can create positive change. To date, journeys with Conscious Travel have supported environmental actions, local communities, and CSR and social activities through experiences designed with purpose.", impactMetrics: [["5+", "Environmental actions"], ["10+", "Local communities supported"], ["20+", "CSR & social activities"], ["1,000+", "Travelers creating meaningful journeys"]],
-      ourServicesEyebrow: "From plan to impact", ourServicesTitle: "Our Services", ourServicesLead: "We support each journey from planning through documentation and contribution, keeping every experience purposeful, personal, and well coordinated.", ourServices: [["Meaningful Travel Plan", "We design each journey around its goals, participant profile, pace, budget, and intended experience."], ["Event Planning", "We coordinate gatherings, retreats, team building, and travel-based events from concept through delivery."], ["Journey Storytelling", "Every journey includes basic documentation. Photo, video, and recap coverage may vary based on the selected program or package."], ["Impactful Journey", "We create room to connect with communities, learn from the environment, and contribute responsibly."]],
-      ctaTitle: "Let's design a journey that truly matters", ctaBody: "Tell us who is traveling, the purpose of the journey, and the timing you are considering. We will help you find the right direction."
+      title: "travel with purpose",
+      heroNote: "Get to know a place through its people",
+      lead: "We design journeys for companies, schools, and communities to explore the outdoors, spend time with local people, and learn together.",
+      heroAlt: "Five hikers stand with their arms around each other on a ridge facing the mountains at sunset.",
+      trust: "Trusted for team journeys and more meaningful experiences",
+      clients: "Clients who have traveled with us",
+      announcement: "Find a journey for your group",
+      plan: "Let’s Plan", navigation: "Main navigation",
+      nav: {
+        corporateHub: "Corporate Outing", experiences: "Experiences", study: "Study Tour",
+        about: "Our Story", csr: "CSR Program", sailing: "Sailing", impact: "Our Impact",
+        faq: "FAQ", contact: "Contact us", indonesia: "Within Indonesia", international: "International outings"
+      },
+      tripsLabel: "Upcoming trips", tripsTitle: "Trips worth looking forward to.",
+      tripsLead: "Explore these travel ideas. We haven’t announced departures or opened bookings.",
+      previous: "Previous theme", next: "Next theme",
+      trips: {
+        heritage: ["Walk through history", "Look closer at the stories carved into temple walls.", "Visitors walk along a stone temple terrace in Yogyakarta."],
+        sea: ["Between the islands", "See the shape of the coastline from out on the water.", "A boat crosses open water beside dry coastal hills."],
+        community: ["Meet the local culture", "Explore the gathering places where everyday traditions take shape.", "A group gathers in a leafy courtyard outside a traditional brick building in Vietnam."]
+      },
+      servicesLabel: "Our journeys", servicesTitle: ["Different journeys,", "shared purpose."],
+      servicesLead: "Start with the people coming along. We shape each journey around your group’s interests, pace, and reason for traveling.",
+      services: {
+        experiences: ["Experiences", "Explore nature and everyday culture with your own small group.", "Travelers in yellow helmets hold paddles on a path between rice fields."],
+        corporateHub: ["Corporate Outing", "Give your team time to reconnect away from the office.", "Colleagues sit on the sand during an outdoor team activity."],
+        study: ["Study Tour", "Take learning into the field through first-hand encounters.", "A group of students in blue life jackets takes part in an outdoor activity."]
+      },
+      impactLabel: "Our impact", impactTitle: ["Travel that", "gives back."],
+      impactLead: "How we travel starts with listening to local people. We consider the environment, what communities need, and what we can learn together.",
+      impactLink: "Explore our approach", impactThemes: ["Listening", "Reporting", "Community", "Learning"],
+      newsletterLabel: "From the road", newsletterTitle: ["We’ll write you", "from the road…"],
+      newsletterLead: "Letters about the places we visit and the people we meet along the way.", newsletterStatus: "Newsletter sign-ups aren’t open yet.",
+      faqLabel: "Before you go", faqTitle: ["About", "your journey."], faqLink: "See all questions",
+      footerIntro: "Journeys for getting to know a place, learning together, and connecting with the people who call it home.",
+      footerJourneys: "Explore", footerCompany: "Conscious Travel", footerContact: "Get in touch"
     },
     corporateHub: {
       eyebrow: "Corporate Packages", title: "Corporate Travel Programs for Meaningful Teams", lead: "Corporate journeys that combine team connection, professional coordination, local experiences, and space for relevant impact.", introTitle: "More than a company outing", introBody: "We help companies design outings, retreats, incentive trips, CSR activations, gatherings, and travel-based events in Indonesia and overseas. Every proposal is tailored to the company's goals, participant profile, duration, and budget.", categories: [["Indonesia Region", "Bali, Jogja, Bandung, and Lombok with customizable starting packages.", "/corporate-packages/indonesia-region/"], ["International", "Bangkok, Vietnam, Europe, and other international destinations by request.", "/corporate-packages/international/"], ["CSR Program", "Standalone programs or travel add-ons supporting relevant social and environmental engagement.", "/corporate-packages/csr-program/"], ["Event Planning", "Planning for corporate travel, retreats, gatherings, team building, and relevant MICE programs.", "/corporate-packages/event-planning-organizer/"]], processTitle: "How Conscious Travel Works", process: [["01", "Discover", "We map your goals, participants, timing, location, and budget."], ["02", "Design", "Our team develops the concept, activities, travel flow, and proposal."], ["03", "Coordinate", "Vendors, transport, accommodation, activities, and operational needs are coordinated."], ["04", "Deliver", "The program is delivered with team support and documentation within the agreed scope."]], ctaTitle: "Build a team journey with purpose", ctaBody: "Discuss your corporate needs and receive a proposal designed around your team."

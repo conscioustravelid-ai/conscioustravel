@@ -10,17 +10,37 @@ import { normalizeText, verifyProtectedSources } from './lib/site-input-hash.mjs
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 const registry = loadRegistry(root);
 const baseline = JSON.parse(read('scripts/fixtures/site-id-baseline.json'));
+const pilotHome = JSON.parse(read('scripts/fixtures/site-v2-home.json'));
 for (const page of registry.pages) {
   const id = renderSite(root, page, 'id', { year: registry.renderYear });
   const en = renderSite(root, page, 'en', { year: registry.renderYear });
   const before = baseline.pages.find(item => item.key === page.key);
-  assert.equal(hash(id.primary), before.primarySha256, `${page.key}: approved ID primary HTML changed`);
-  assert.equal(hash(id.footer), before.footerSha256, `${page.key}: ID footer changed`);
-  const expectedHeader = before.header.replace(/<button class="language-toggle" type="button" data-language-toggle aria-label="([^"]+)">EN<\/button>/, `<a class="language-toggle" data-language-toggle href="${page.paths.en}" lang="en" hreflang="en" aria-label="$1">EN</a>`);
-  assert.equal(id.header, expectedHeader, `${page.key}: ID header differs outside approved switch`);
+  const isPilot = page.key === 'home';
+  if (!isPilot) {
+    assert.equal(hash(id.primary), before.primarySha256, `${page.key}: approved ID primary HTML changed`);
+    assert.equal(hash(id.footer), before.footerSha256, `${page.key}: ID footer changed`);
+    const expectedHeader = before.header.replace(/<button class="language-toggle" type="button" data-language-toggle aria-label="([^"]+)">EN<\/button>/, `<a class="language-toggle" data-language-toggle href="${page.paths.en}" lang="en" hreflang="en" aria-label="$1">EN</a>`);
+    assert.equal(id.header, expectedHeader, `${page.key}: ID header differs outside approved switch`);
+  }
   assert.deepEqual(page.metadata.id, before.metadata, `${page.key}: approved ID metadata`);
   for (const [locale, rendered] of [['id', id], ['en', en]]) {
     const source = read(page.paths[locale].slice(1) + 'index.html');
+    assert.equal(source.includes('data-ui-version="v2"'), isPilot, `${page.key}/${locale}: pilot scope`);
+    assert.equal(source.includes('href="/css/v2.css?'), isPilot, `${page.key}/${locale}: stylesheet scope`);
+    if (isPilot) {
+      for (const name of ['header', 'primary', 'footer']) {
+        assert.equal(hash(rendered[name]), pilotHome[locale][name], `home/${locale}: V.2 ${name} changed`);
+      }
+      assert.match(rendered.header, /class="v2-announcement"/);
+      assert.match(rendered.header, /data-wa-key="general"/);
+      assert.match(rendered.primary, /fetchpriority="high"/);
+      assert.equal((rendered.primary.match(/<details><summary>/g) || []).length, 3);
+      assert.doesNotMatch(rendered.primary, /<form\b|<input\b|data-client-carousel/);
+      const trips = rendered.primary.match(/<section class="v2-trips[^"]*">([\s\S]*?)<\/section>/)[1];
+      assert.doesNotMatch(trips, /<a\b|data-wa-key/);
+      const impact = rendered.primary.match(/<section class="v2-impact[^"]*">([\s\S]*?)<\/section>/)[1];
+      assert.doesNotMatch((trips + impact).replace(/<[^>]+>/g, ''), /\d/);
+    }
     const normalizeSerialization = value => normalizeText(value).replace(/^[ \t]+$/gm, '').trim();
     for (const name of ['header', 'primary', 'footer']) {
       const actual = source.split(`<!-- site:${name}:start -->`)[1]?.split(`<!-- site:${name}:end -->`)[0];

@@ -1,5 +1,35 @@
 # Page Structure — Conscioustravel.id
 
+## ConsciousTravel V.2 Implementation Contract v1.1
+
+Kontrak 20 November 2026 ini berlaku untuk pilot V.2. Acuan kode yang disetujui adalah `df181dba187ce11cb043c4356e4d483cd461a2c2` pada `feature/bilingual-website-seo-v1`. Pekerjaan pilot berlangsung di cabang lokal `feature/conscious-v2-ui-pilot`. Acuan visual Homepage adalah [frame 5:1308 di Figma](https://www.figma.com/design/Cbt9ONpyhyoVxq0kQT0VIK/Conscious-Travel-V.2?node-id=5-1308).
+
+### Keputusan arsitektur
+
+- Tujuh halaman utama yang dituju adalah Homepage, Corporate Outing, Study Tour, Sports Trip, CSR Program, Conscious Ride, dan Our Story.
+- Setiap halaman utama memiliki FAQ kontekstual. Satu halaman FAQ mandiri melengkapi ketujuh halaman. Indeks Blog berbahasa Indonesia dan seluruh artikel terbit tetap beroperasi pada jalurnya sekarang.
+- Satu tujuan WhatsApp melayani semua CTA. Konfigurasi yang ada menentukan nomor dan templat pesan sesuai bahasa serta konteks layanan. CTA Homepage menggunakan konteks umum.
+- Konten utama ID dan EN berasal dari kamus lokal dan dirender menjadi HTML statis. Registry menentukan pasangan rute, canonical, hreflang, serta sakelar bahasa. Komponen bersama menggunakan renderer yang ada dan CSS V.2 diaktifkan oleh atribut `data-ui-version="v2"` pada halaman pilot.
+- Rincian produk dan trip dibuka dalam modal yang dapat digunakan ulang. Katalog menjadi sumber rincian bersama. Arsitektur akhir tidak memiliki halaman detail produk terpisah.
+
+### Batas pilot dan migrasi
+
+| Tahap | Cakupan |
+| --- | --- |
+| Milestone 1 | Fondasi visual dan dua Homepage di `/` serta `/en/`, termasuk FAQ kontekstual. Tautan layanan memakai tujuan yang sudah tersedia. |
+| Milestone Study Tour | Desain dua halaman Study Tour dan modal rincian pertama. Hubungkan kartu ke ID produk yang stabil, pakai kembali katalog dan terjemahan, pertahankan ringkasan semantik pada halaman layanan, dan gunakan pesan WhatsApp kontekstual. Uji nama dialog, fokus awal, pembatasan fokus, Escape, pengembalian fokus ke pemicu, serta gulir pada layar kecil. |
+| Migrasi berikutnya | Tinjau pemetaan tujuh halaman dan penggunaan kembali `/faq/` serta `/en/faq/` dengan persetujuan tersendiri. Ketiga belas pasangan rute yang ada tetap terdaftar. Perubahan sembilan URL lama, pengalihan, dan penghapusan halaman memerlukan rencana migrasi tersendiri. |
+
+### Pilihan sementara dan persetujuan rilis
+
+Foto hero berasal dari aset foto individual pada frame. Foto kartu memakai koleksi situs. Tema trip merupakan pratinjau editorial tanpa jadwal, harga, ketersediaan, atau tindakan pemesanan. Bagian dampak memakai prinsip kualitatif. Buletin hanya menyajikan tampilan dan status pendaftaran. Tata letak seluler merupakan adaptasi untuk ditinjau karena belum ada desain seluler final.
+
+Validasi lokal mencakup build dari root, dua Homepage, 24 halaman teknis lainnya, fixture historis, inventaris Blog/Sanity terbit, sitemap, dan pengujian gerbang produksi. Integrasi dan deployment ke staging memerlukan persetujuan terpisah atas cabang, kumpulan perubahan dan target staging. Staging harus tetap memiliki proteksi pengindeksan dan menjalani tinjauan visual desktop/seluler serta tinjauan editorial ID/EN. Perubahan produksi memerlukan persetujuan eksplisit terpisah dan pemenuhan gerbang editorial EN untuk fingerprint yang akan dirilis.
+
+### Arsip struktur sebelumnya
+
+Bagian berikut menyimpan struktur dan usulan historis. Jika ada perbedaan, keputusan V.2 di atas berlaku, termasuk untuk usulan lama `/experiences/[slug]`.
+
 ## Overview
 
 Dokumen ini menjelaskan struktur section dari setiap halaman Phase 1.
