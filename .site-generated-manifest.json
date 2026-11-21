@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "inputFingerprint": "d9679683523a945de685ad8a983fe69d13f3b3a3f2a7e9406a45dcc3453d202d",
+  "inputFingerprint": "3114b393f793eccc75ad403377353880bc542208fea25f951a97aa88febb1fe9",
   "ownedEnFiles": [
     "en/index.html",
     "en/corporate-packages/index.html",
@@ -396,28 +396,28 @@
       "page": "home",
       "locale": "id",
       "path": "/",
-      "fingerprint": "520413bbd9dd3c95b8646d241269ca371e34c878101868bfc12e68454dc02309"
+      "fingerprint": "c76f7716a18da44fad720f373d0fc406f5806198a95627e8fdfaef871dd5b065"
     },
     {
       "file": "en/index.html",
       "page": "home",
       "locale": "en",
       "path": "/en/",
-      "fingerprint": "b984ede0bf12fbd58ce40beb172ac8a25aa21219fa2cb17ec4a1d61d4e0affbb"
+      "fingerprint": "3655cf8a3ecd35d2a37cdb3a4a19de94aff1f9c76b072b7087a7209c7a1e1215"
     },
     {
       "file": "corporate-packages/index.html",
       "page": "corporateHub",
       "locale": "id",
       "path": "/corporate-packages/",
-      "fingerprint": "d6bb663419bcea3ef321f18090fcb1817eb07a454a14c324b5e4aa031965de75"
+      "fingerprint": "e53f269b2b1b04fd6e2e0d77db8dfaf4d516503660075f7812fab9d4bcefb82d"
     },
     {
       "file": "en/corporate-packages/index.html",
       "page": "corporateHub",
       "locale": "en",
       "path": "/en/corporate-packages/",
-      "fingerprint": "08624f9097b3e8880c42bb2bd005b9a9a1a32ba275b836d8b27197fcee74363f"
+      "fingerprint": "f4744c9e249af3fa304eb3087026621e3f571a5a8f233a5b20040900b063e925"
     },
     {
       "file": "corporate-packages/indonesia-region/index.html",

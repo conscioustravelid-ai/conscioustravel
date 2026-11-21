@@ -13,6 +13,9 @@ window.CT_CONFIG = {
   ],
   clients: ["DBS", "Astra FSCM", "Lumbung Architecture Bali", "BFB", "Lazada", "PT Gesit"],
   whatsappMessages: {
+    tripJapan: { id: "Halo Conscious Travel, saya ingin menanyakan detail Japan Autumn Explorer.", en: "Hi Conscious Travel, I'd like to enquire about Japan Autumn Explorer." },
+    tripF1: { id: "Halo Conscious Travel, saya ingin menanyakan detail F1 Race Weekend.", en: "Hi Conscious Travel, I'd like to enquire about F1 Race Weekend." },
+    tripVietnam: { id: "Halo Conscious Travel, saya ingin menanyakan detail Vietnam Discovery.", en: "Hi Conscious Travel, I'd like to enquire about Vietnam Discovery." },
     general: {
       id: "Halo Conscious Travel, saya tertarik membuat perjalanan bermakna. Bisa dibantu rekomendasi untuk corporate, study tour, experiences, atau custom trip?",
       en: "Hi Conscious Travel, I'm interested in creating a meaningful journey. Could you help me explore the right option for corporate travel, study tours, experiences, or a custom trip?"
@@ -116,9 +119,9 @@ window.CT_CONTENT = {
       review: "Google Reviews"
     },
     home: {
-      title: "bepergian dengan tujuan",
-      heroNote: "Mengenal tempat lewat orang-orangnya",
-      lead: "Kami merancang perjalanan bersama perusahaan, sekolah, dan komunitas untuk mengenal budaya, menjelajahi alam, dan belajar dari warga setempat.",
+      title: "Setiap perjalanan punya cerita.",
+      heroNote: "Mari buat cerita Anda bermakna.",
+      lead: "Dari liburan spontan dan petualangan tak terlupakan hingga perjalanan grup yang bermakna dan corporate retreat, kami mendekatkan orang-orang dengan dunia di sekitarnya. Temukan tempat baru, bangun hubungan yang abadi, dan rasakan perjalanan yang melampaui hal biasa.",
       heroAlt: "Lima pendaki berdiri berangkulan di punggung bukit menghadap pegunungan saat matahari terbenam.",
       trust: "Dipercaya untuk perjalanan tim dan pengalaman yang lebih bermakna",
       clients: "Klien yang pernah bepergian bersama kami",
@@ -130,26 +133,27 @@ window.CT_CONTENT = {
         faq: "Tanya jawab", contact: "Hubungi kami", indonesia: "Di Indonesia", international: "Di luar negeri"
       },
       tripsLabel: "Inspirasi perjalanan", tripsTitle: "Perjalanan yang patut dinantikan.",
-      tripsLead: "Inilah ide perjalanan kami. Jadwal keberangkatan belum diumumkan dan pemesanan belum dibuka.",
+      tripsLead: "Perjalanan terkurasi, keberangkatan mendatang, dan pengalaman yang ingin kami bagikan. Temukan petualangan berikutnya dan ajak orang-orang terdekat Anda.",
+      tripDetails: "Lihat detail", tripEnquire: "Tanyakan detail", tripSoon: "Detail perjalanan segera hadir.", close: "Tutup", tripAvailable: "Open Trip · Tempat terbatas", tripOpen: "Group Trip · Pendaftaran dibuka", upcoming: "Akan datang",
       previous: "Tema sebelumnya", next: "Tema berikutnya",
       trips: {
-        heritage: ["Menelusuri warisan budaya", "Melihat lebih dekat kisah yang tersimpan di relief dan bangunan candi.", "Pengunjung berjalan di teras sebuah candi batu di Yogyakarta."],
-        sea: ["Menyusuri kepulauan", "Mengenal bentang pesisir dari sudut pandang laut.", "Sebuah kapal melintasi laut di antara perbukitan pesisir."],
-        community: ["Bertemu budaya setempat", "Menyusuri ruang tempat warga berkumpul dan tradisi hidup sehari-hari.", "Rombongan berkumpul di halaman rindang di depan bangunan bata tradisional di Vietnam."]
+        heritage: ["Japan Autumn Explorer", "Sepekan penuh budaya, warna, dan penemuan yang tak terlupakan.", "Pengunjung berjalan di teras sebuah candi batu di Yogyakarta.", "JAPAN · GROUP ADVENTURE", "12 – 19 Nov 2026", "Tokyo · Kyoto · Osaka"],
+        sea: ["F1 Race Weekend", "Lebih dekat dengan aksi dalam pengalaman akhir pekan balapan.", "Sebuah kapal melintasi laut di antara perbukitan pesisir.", "INTERNATIONAL · SPORTS & LIFESTYLE", "4 – 7 Dec 2026", "Abu Dhabi, UAE"],
+        community: ["Vietnam Discovery", "Kelezatan lokal, sudut tersembunyi, dan hubungan baru.", "Rombongan berkumpul di halaman rindang di depan bangunan bata tradisional di Vietnam.", "VIETNAM · GROUP ADVENTURE", "16 – 22 Jan 2027", "Hanoi · Ha Long · Ninh Binh"]
       },
-      servicesLabel: "Pilihan perjalanan", servicesTitle: ["Beragam perjalanan,", "satu tujuan."],
-      servicesLead: "Mulailah dari orang-orang yang akan ikut. Kami menyusun setiap perjalanan sesuai minat, ritme, dan tujuan grup Anda.",
+      servicesLabel: "Pilihan perjalanan kami", servicesTitle: ["Beragam perjalanan,", "satu tujuan."],
+      servicesLead: "Dari petualangan grup hingga company retreat dan perjalanan edukasi, kami merancang perjalanan yang mendekatkan orang, menciptakan dampak, dan membuka perspektif baru.",
       services: {
-        experiences: ["Pengalaman lokal", "Jelajahi alam dan budaya bersama grup kecil Anda.", "Peserta berhelm kuning memegang dayung di jalan setapak di antara sawah."],
-        corporateHub: ["Perjalanan perusahaan", "Luangkan waktu bagi tim untuk berkumpul di luar kantor.", "Rekan kerja duduk di pasir saat mengikuti kegiatan kelompok di pantai."],
-        study: ["Wisata edukasi", "Ajak siswa belajar lewat perjumpaan langsung di lapangan.", "Sekelompok siswa mengenakan pelampung biru saat kegiatan di luar ruangan."]
+        experiences: ["Experiences", "Petualangan, olahraga, wellness, dan perjalanan grup yang dirancang sesuai minat Anda.", "Peserta berhelm kuning memegang dayung di jalan setapak di antara sawah."],
+        corporateHub: ["Corporate", "Company outing, retreat, dan perjalanan CSR yang mendekatkan tim serta menciptakan dampak.", "Rekan kerja duduk di pasir saat mengikuti kegiatan kelompok di pantai."],
+        study: ["Study Tour", "Perjalanan edukasi bagi sekolah dan siswa yang menginspirasi pembelajaran di luar kelas.", "Sekelompok siswa mengenakan pelampung biru saat kegiatan di luar ruangan."]
       },
       impactLabel: "Dampak kami", impactTitle: ["Perjalanan yang", "memberi kembali."],
-      impactLead: "Cara kami bepergian dimulai dengan mendengarkan warga setempat. Kami mempertimbangkan lingkungan, kebutuhan komunitas, dan hal yang dapat dipelajari bersama.",
-      impactLink: "Kenali pendekatan kami", impactThemes: ["Mendengarkan", "Pelaporan", "Komunitas", "Pembelajaran"],
+      impactLead: "Kami percaya perjalanan bermakna dapat menciptakan perubahan positif. Perjalanan kami mendukung aksi lingkungan, komunitas lokal, dan inisiatif CSR melalui pengalaman yang dirancang dengan tujuan.",
+      impactLink: "Pelajari lebih lanjut", impactThemes: [["5+", "Aksi lingkungan"], ["10+", "Komunitas lokal didukung"], ["20+", "Kegiatan CSR dan sosial"], ["1.000+", "Pelancong dalam perjalanan bermakna"]],
       newsletterLabel: "Surat perjalanan", newsletterTitle: ["Kabar dari", "perjalanan kami…"],
-      newsletterLead: "Cerita tentang tempat dan orang yang kami jumpai sepanjang jalan.", newsletterStatus: "Pendaftaran buletin belum dibuka.",
-      faqLabel: "Sebelum berangkat", faqTitle: ["Seputar", "perjalanan Anda."], faqLink: "Lihat semua tanya jawab",
+      newsletterLead: "Cerita tentang tempat dan orang yang kami jumpai sepanjang jalan.", newsletterStatus: "Pendaftaran buletin belum aktif. Data belum dikirim atau disimpan.", firstName: "Nama depan", lastName: "Nama belakang", emailLabel: "Email",
+      faqLink: "Lihat selengkapnya",
       footerIntro: "Perjalanan untuk mengenal tempat, belajar bersama, dan terhubung dengan masyarakat setempat.",
       footerJourneys: "Jelajahi", footerCompany: "Conscious Travel", footerContact: "Terhubung"
     },
@@ -433,9 +437,9 @@ window.CT_CONTENT = {
       description: "A meaningful travel company for more conscious corporate, educational, community, and personal journeys.", corporate: "Corporate Packages", experiences: "Experiences", study: "Study Tour", company: "Company", local: "Local Experiences", internationalExperiences: "International Experiences", regionalStudy: "Regional Study Tour", internationalStudy: "International Study Tour", inquiry: "Inquiry Form", rights: "All rights reserved.", review: "Google Reviews"
     },
     home: {
-      title: "travel with purpose",
-      heroNote: "Get to know a place through its people",
-      lead: "We design journeys for companies, schools, and communities to explore the outdoors, spend time with local people, and learn together.",
+      title: "Every journey has a story.",
+      heroNote: "Let's make yours count.",
+      lead: "From spontaneous getaways and unforgettable adventures to meaningful group experiences and corporate retreats, we bring people closer to the world around them. Discover new places, create lasting connections and experience travel that goes beyond the ordinary.",
       heroAlt: "Five hikers stand with their arms around each other on a ridge facing the mountains at sunset.",
       trust: "Trusted for team journeys and more meaningful experiences",
       clients: "Clients who have traveled with us",
@@ -447,26 +451,27 @@ window.CT_CONTENT = {
         faq: "FAQ", contact: "Contact us", indonesia: "Within Indonesia", international: "International outings"
       },
       tripsLabel: "Upcoming trips", tripsTitle: "Trips worth looking forward to.",
-      tripsLead: "Explore these travel ideas. We haven’t announced departures or opened bookings.",
+      tripsLead: "Curated journeys, upcoming departures and experiences we can’t wait to share. Find your next adventure, gather your people and make plans worth getting excited about.",
+      tripDetails: "View details", tripEnquire: "Enquire for details", tripSoon: "Trip details coming soon.", close: "Close", tripAvailable: "Open Trip · Limited Spots", tripOpen: "Group Trip · Open for Bookings", upcoming: "Upcoming",
       previous: "Previous theme", next: "Next theme",
       trips: {
-        heritage: ["Walk through history", "Look closer at the stories carved into temple walls.", "Visitors walk along a stone temple terrace in Yogyakarta."],
-        sea: ["Between the islands", "See the shape of the coastline from out on the water.", "A boat crosses open water beside dry coastal hills."],
-        community: ["Meet the local culture", "Explore the gathering places where everyday traditions take shape.", "A group gathers in a leafy courtyard outside a traditional brick building in Vietnam."]
+        heritage: ["Japan Autumn Explorer", "A week of culture, colour and unforgettable discoveries.", "Visitors walk along a stone temple terrace in Yogyakarta.", "JAPAN · GROUP ADVENTURE", "12 – 19 Nov 2026", "Tokyo · Kyoto · Osaka"],
+        sea: ["F1 Race Weekend", "Get closer to the action with a race-weekend experience.", "A boat crosses open water beside dry coastal hills.", "INTERNATIONAL · SPORTS & LIFESTYLE", "4 – 7 Dec 2026", "Abu Dhabi, UAE"],
+        community: ["Vietnam Discovery", "Local flavours, hidden corners and new connections.", "A group gathers in a leafy courtyard outside a traditional brick building in Vietnam.", "VIETNAM · GROUP ADVENTURE", "16 – 22 Jan 2027", "Hanoi · Ha Long · Ninh Binh"]
       },
-      servicesLabel: "Our journeys", servicesTitle: ["Different journeys,", "shared purpose."],
-      servicesLead: "Start with the people coming along. We shape each journey around your group’s interests, pace, and reason for traveling.",
+      servicesLabel: "Our travel offerings", servicesTitle: ["Different Journeys,", "Shared Purpose"],
+      servicesLead: "From group adventures to company retreats and educational travel, we design journeys that bring people together, create lasting impact and open new perspectives.",
       services: {
-        experiences: ["Experiences", "Explore nature and everyday culture with your own small group.", "Travelers in yellow helmets hold paddles on a path between rice fields."],
-        corporateHub: ["Corporate Outing", "Give your team time to reconnect away from the office.", "Colleagues sit on the sand during an outdoor team activity."],
-        study: ["Study Tour", "Take learning into the field through first-hand encounters.", "A group of students in blue life jackets takes part in an outdoor activity."]
+        experiences: ["Experiences", "Curated adventures, sports, wellness and group journeys around the things you love.", "Travelers in yellow helmets hold paddles on a path between rice fields."],
+        corporateHub: ["Corporate", "Company outings, retreats and CSR trips that bring teams closer and create lasting impact.", "Colleagues sit on the sand during an outdoor team activity."],
+        study: ["Study Tour", "Educational travel for schools and students that inspires learning beyond the classroom.", "A group of students in blue life jackets takes part in an outdoor activity."]
       },
-      impactLabel: "Our impact", impactTitle: ["Travel that", "gives back."],
-      impactLead: "How we travel starts with listening to local people. We consider the environment, what communities need, and what we can learn together.",
-      impactLink: "Explore our approach", impactThemes: ["Listening", "Reporting", "Community", "Learning"],
+      impactLabel: "Our impact", impactTitle: ["Travel That", "Gives Back"],
+      impactLead: "We believe meaningful travel can create positive change. Our trips support environmental actions, local communities and CSR initiatives through experiences designed with purpose.",
+      impactLink: "Learn more", impactThemes: [["5+", "Environmental actions"], ["10+", "Local communities supported"], ["20+", "CSR & social activities"], ["1,000+", "Travellers creating meaningful journeys"]],
       newsletterLabel: "From the road", newsletterTitle: ["We’ll write you", "from the road…"],
-      newsletterLead: "Letters about the places we visit and the people we meet along the way.", newsletterStatus: "Newsletter sign-ups aren’t open yet.",
-      faqLabel: "Before you go", faqTitle: ["About", "your journey."], faqLink: "See all questions",
+      newsletterLead: "Letters about the places we visit and the people we meet along the way.", newsletterStatus: "Newsletter sign-up is not active yet. Your details will not be sent or saved.", firstName: "First Name", lastName: "Last Name", emailLabel: "Email",
+      faqLink: "See more",
       footerIntro: "Journeys for getting to know a place, learning together, and connecting with the people who call it home.",
       footerJourneys: "Explore", footerCompany: "Conscious Travel", footerContact: "Get in touch"
     },
@@ -509,6 +514,31 @@ window.CT_CONTENT = {
     blog: {
       eyebrow: "Conscious Travel Journal", title: "Stories for More Meaningful Journeys", lead: "We are preparing Indonesian-language stories about meaningful travel, corporate journeys, study tours, culture, and sustainability.", statusTitle: "Coming soon", statusBody: "The blog is not yet an active content channel. For now, explore our services or discuss the journey you want to create."
     }
+  }
+};
+
+window.CT_CORPORATE_V2 = {
+  id: {
+    eyebrow: "Corporate Outing", hero: "Dekatkan tim Anda", lead: "Company outing dan perjalanan tim yang direncanakan dengan saksama",
+    intro: "Suasana baru. Tim yang lebih kuat.", introBody: "Ajak rekan kerja Anda terhubung melalui pengalaman bersama di tempat-tempat baru yang menginspirasi.",
+    choose: "Pilih destinasi Anda", where: "Ke mana tim Anda akan pergi?", indonesia: "Indonesia Region", indonesiaBody: "Bali · Yogyakarta · Bandung · Lombok", international: "International", internationalBody: "Perjalanan yang dirancang sesuai kebutuhan ke destinasi mancanegara.", exploreIndonesia: "Jelajahi Indonesia", exploreInternational: "Jelajahi Internasional",
+    made: "Untuk tim Anda", more: "Lebih dari company trip.", moreLead: "Pengalaman bermakna untuk tim Anda, dengan ruang untuk memberi kontribusi kepada tempat dan masyarakat yang dikunjungi.",
+    pillars: [["Koneksi tim", "Bangun hubungan yang lebih kuat melalui pengalaman bersama."], ["Pengalaman lokal", "Kenali budaya, bertemu komunitas lokal, dan ciptakan kenangan."], ["Kontribusi", "Buka ruang untuk kegiatan CSR bersama komunitas dan lingkungan."], ["Dirancang untuk Anda", "Rencana perjalanan dan dukungan yang disesuaikan dengan kebutuhan tim."]],
+    packages: "Corporate Packages di Indonesia", packagesLead: "Pilihan perjalanan tim ke berbagai destinasi di Indonesia.", inclusions: "Sorotan program", view: "Lihat paket", starting: "Mulai dari", min: "Minimum", pax: "pax",
+    intlLabel: "Internasional", intlTitle: "International Corporate Packages", intlSub: "Ajak tim Anda menjelajah lebih jauh.", intlLead: "Perjalanan yang dirancang untuk orang-orang, tujuan, dan anggaran Anda.", custom: "Proposal khusus", intlDetails: "Perjalanan dirancang sesuai kebutuhan tim.", proposal: "Minta proposal",
+    ctaTitle: "Sudah punya destinasi?", ctaBody: "Mari rancang perjalanan Anda.", galleryLabel: "Galeri", galleryTitle: "Corporate Outing Kami", galleryAlt: ["Grup berjalan bersama di alam terbuka", "Peserta bersiap mengikuti aktivitas bersama", "Grup berkumpul di sekitar api unggun", "Grup melakukan kegiatan bersama", "Tim menikmati aktivitas luar ruang", "Grup menikmati makan bersama", "Peserta mengikuti kegiatan kelompok"],
+    faq: "FAQ", faqMore: "Lihat selengkapnya"
+  },
+  en: {
+    eyebrow: "Corporate Outing", hero: "Bring your team closer", lead: "Company outings and team journeys, thoughtfully planned",
+    intro: "A change of scene. A stronger team.", introBody: "Bring your colleagues together through shared experiences in new and inspiring places.",
+    choose: "Choose your destination", where: "Where your team will go?", indonesia: "Indonesia Region", indonesiaBody: "Bali · Yogyakarta · Bandung · Lombok", international: "International", internationalBody: "Custom journeys to inspiring destinations worldwide.", exploreIndonesia: "Explore Indonesia", exploreInternational: "Explore International",
+    made: "Made for your team", more: "More Than a Company Trip.", moreLead: "Meaningful experiences for your team, with space to contribute to the places and people we visit.",
+    pillars: [["Team Connection", "Build stronger relationships through shared experiences."], ["Local Experiences", "Immerse in culture, meet local communities and create lasting memories."], ["Impact Contribution", "Make space for CSR activities with local communities and the environment."], ["Planned Around You", "Tailored itineraries and support for your team's journey."]],
+    packages: "Corporate Packages Across Indonesia", packagesLead: "Curated company trip packages to destinations across Indonesia.", inclusions: "Program highlights", view: "View package", starting: "From", min: "Minimum", pax: "pax",
+    intlLabel: "International", intlTitle: "International Corporate Packages", intlSub: "Take your team beyond borders.", intlLead: "Purposeful journeys designed around your people, goals and budget.", custom: "Custom proposal", intlDetails: "A journey tailored to your team.", proposal: "Request a proposal",
+    ctaTitle: "Have a destination in mind?", ctaBody: "Let’s design your journey.", galleryLabel: "Gallery", galleryTitle: "Our Corporate Outings in Action", galleryAlt: ["A group walks together outdoors", "Travelers prepare for an activity together", "A group gathers around a campfire", "A group takes part in an activity", "A team enjoys an outdoor activity", "A group shares a meal", "Participants take part in a group activity"],
+    faq: "FAQ", faqMore: "See more"
   }
 };
 

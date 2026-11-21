@@ -183,24 +183,21 @@ function v2BlogLink() {
 
 function renderV2Header() {
   const { home, skip, ui } = content();
-  const group = (id, key, links) => `<div class="nav-dropdown">
-    <button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-controls="${id}">${escapeHtml(home.nav[key])}<span class="chevron" aria-hidden="true"></span></button>
-    <div id="${id}" class="nav-dropdown-menu">${links.map(link => v2PageLink(link)).join("")}</div>
-  </div>`;
+  const isHome = document.body.dataset.page === "home";
   return `<a class="skip-link" href="#main-content">${escapeHtml(skip)}</a>
     <div class="v2-announcement"><a href="${escapeHtml(v2PageUrl("experiences"))}">${escapeHtml(home.announcement)} <span aria-hidden="true">→</span></a></div>
     <div class="v2-nav-bar v2-wrap">
-      <a class="v2-brand" href="${escapeHtml(v2PageUrl("home"))}" aria-current="page"><img src="/assets/images/brand/conscious-travel-logo-light.webp" alt="Conscious Travel" width="865" height="330"></a>
+      <a class="v2-brand" href="${escapeHtml(v2PageUrl("home"))}"${isHome ? ' aria-current="page"' : ""}><img src="/assets/images/brand/conscious-travel-logo-light.webp" alt="Conscious Travel" width="865" height="330"></a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="${escapeHtml(ui.menu)}"><span></span><span></span><span></span></button>
       <nav class="v2-nav" id="primary-navigation" aria-label="${escapeHtml(home.navigation)}">
-        ${group("corporate-menu", "corporateHub", ["corporateHub", "indonesia", "international"])}
+        <a id="corporate-menu" href="${escapeHtml(v2PageUrl("corporateHub"))}">${escapeHtml(home.nav.corporateHub)}</a>
         ${v2PageLink("study")}
-        ${group("experiences-menu", "experiences", ["experiences", "sailing"])}
+        <a id="experiences-menu" href="${escapeHtml(v2PageUrl("corporateHub"))}">Sports Trip</a>
         ${v2PageLink("csr")}
-        ${v2BlogLink()}
-        ${group("about-menu", "about", ["about", "impact", "faq", "contact"])}
+        <a href="${escapeHtml(v2PageUrl("corporateHub"))}">Conscious Ride</a>
+        <a id="about-menu" href="${escapeHtml(v2PageUrl("about"))}">${escapeHtml(home.nav.about)}</a>
       </nav>
-      <div class="v2-actions">${renderLanguageSwitch()}<a class="v2-button" href="${escapeHtml(whatsappUrl("general"))}" target="_blank" rel="noopener" data-wa-key="general">${escapeHtml(home.plan)} <span aria-hidden="true">↗</span></a></div>
+      <div class="v2-actions">${renderLanguageSwitch()}<a class="v2-button" href="${escapeHtml(whatsappUrl(isHome ? "general" : "corporate"))}" target="_blank" rel="noopener" data-wa-key="${isHome ? "general" : "corporate"}">${escapeHtml(home.plan)} <span aria-hidden="true">↗</span></a></div>
       <noscript><a class="v2-menu-fallback" href="#site-footer">${escapeHtml(home.navigation)}</a></noscript>
     </div>`;
 }
@@ -210,7 +207,7 @@ function renderV2Footer() {
   const config = window.CT_CONFIG;
   return `<div class="v2-wrap">
     <div class="v2-footer-grid">
-      <div class="v2-footer-brand"><a href="${escapeHtml(v2PageUrl("home"))}"><img src="/assets/images/brand/conscious-travel-logo-light.webp" alt="Conscious Travel" width="865" height="330" loading="lazy"></a><p>${escapeHtml(home.footerIntro)}</p></div>
+      <div class="v2-footer-brand"><a href="${escapeHtml(v2PageUrl("home"))}"><img src="/assets/images/v2/footer-wordmark.png" alt="Conscious Travel" width="747" height="267" loading="lazy"></a><p>${escapeHtml(home.footerIntro)}</p></div>
       <div><h2>${escapeHtml(home.footerJourneys)}</h2>${["experiences", "corporateHub", "study", "csr", "sailing"].map(key => v2PageLink(key)).join("")}</div>
       <div><h2>${escapeHtml(home.footerCompany)}</h2>${["about", "impact", "faq"].map(key => v2PageLink(key)).join("")}${v2BlogLink()}</div>
       <div><h2>${escapeHtml(home.footerContact)}</h2>${v2PageLink("contact")}<a href="mailto:${escapeHtml(config.email)}">${escapeHtml(config.email)}</a><a href="${escapeHtml(config.instagram)}" target="_blank" rel="noopener">Instagram <span aria-hidden="true">↗</span></a></div>
@@ -232,7 +229,7 @@ function renderProductCard(product, options = {}) {
 }
 
 function renderHeader() {
-  if (document.body.dataset.page === "home") {
+  if (["home", "corporateHub"].includes(document.body.dataset.page)) {
     document.getElementById("site-header").innerHTML = renderV2Header();
     return;
   }
@@ -276,7 +273,7 @@ function renderHeader() {
 }
 
 function renderFooter() {
-  if (document.body.dataset.page === "home") {
+  if (["home", "corporateHub"].includes(document.body.dataset.page)) {
     document.getElementById("site-footer").innerHTML = renderV2Footer();
     return;
   }
@@ -558,29 +555,28 @@ function v2Heading(label, [first, emphasis]) {
 }
 
 function renderHome() {
-  const { home, impact, faq } = content();
+  const { home } = content();
+  const tripKeys = { heritage: "tripJapan", sea: "tripF1", community: "tripVietnam" };
   const tripCards = Object.entries(HOME_TRIP_MEDIA).map(([key, image]) => {
-    const [title, body, alt] = home.trips[key];
-    return `<li class="v2-trip">${v2CardImage(image, alt)}<div><h3>${escapeHtml(title)}</h3><p>${escapeHtml(body)}</p></div></li>`;
+    const [title, body, alt, category, date, destination] = home.trips[key];
+    const waKey = tripKeys[key];
+    const availability = key === "sea" ? home.tripOpen : home.tripAvailable;
+    return `<li class="v2-trip"><div class="v2-trip-image">${v2CardImage(image, alt)}<h3>${escapeHtml(title)}</h3></div><div class="v2-trip-body"><p class="v2-trip-category">${escapeHtml(category)}</p><p>${escapeHtml(body)}</p><ul class="v2-trip-meta"><li>◷ <span>${escapeHtml(date)}</span></li><li>⌖ <span>${escapeHtml(destination)}</span></li><li>♧ <span>${escapeHtml(availability)}</span></li></ul><span class="v2-trip-status">${escapeHtml(home.upcoming)}</span><div class="v2-trip-actions"><a href="${escapeHtml(whatsappUrl(waKey))}" target="_blank" rel="noopener" data-wa-key="${waKey}">${escapeHtml(home.tripEnquire)} <span aria-hidden="true">↗</span></a><button type="button" data-trip-details="${escapeHtml(title)}" aria-label="${escapeHtml(home.tripDetails + ': ' + title)}">→</button></div></div></li>`;
   }).join("");
   const serviceCards = Object.entries(HOME_SERVICE_MEDIA).map(([key, image]) => {
     const [title, body, alt] = home.services[key];
     return `<article class="v2-service">${v2CardImage(image, alt)}<div><h3><a href="${escapeHtml(v2PageUrl(key))}">${escapeHtml(title)} <span aria-hidden="true">↗</span></a></h3><p>${escapeHtml(body)}</p></div></article>`;
   }).join("");
-  const questions = [0, 2, 5].map(index => {
-    const [question, answer] = faq.items[index];
-    return `<details><summary>${escapeHtml(question)}</summary><p>${escapeHtml(answer)}</p></details>`;
-  }).join("");
   return `<section class="v2-hero">
       <picture><source media="(max-width: 600px)" srcset="/assets/images/v2/hero-mobile.webp" width="800" height="900"><source media="(max-width: 1100px)" srcset="/assets/images/v2/hero-tablet.webp" width="1200" height="800"><img src="/assets/images/v2/hero-desktop.webp" alt="${escapeHtml(home.heroAlt)}" width="1672" height="941" fetchpriority="high"></picture>
       <div class="v2-wrap v2-hero-copy"><h1>${escapeHtml(home.title)}</h1><div><p class="v2-hero-note">${escapeHtml(home.heroNote)}</p><p>${escapeHtml(home.lead)}</p></div></div>
     </section>
-    <section class="v2-clients" aria-label="${escapeHtml(home.clients)}"><ul class="v2-wrap">${CLIENT_LOGOS.map(([name, src, width, height]) => `<li><img src="${src}" alt="${escapeHtml(name)}" width="${width}" height="${height}" loading="lazy"></li>`).join("")}</ul></section>
+    <section class="v2-clients" aria-label="${escapeHtml(home.clients)}"><div class="v2-client-track"><ul>${CLIENT_LOGOS.map(([name, src, width, height]) => `<li><img src="${src}" alt="${escapeHtml(name)}" width="${width}" height="${height}" loading="lazy"></li>`).join("")}</ul><ul aria-hidden="true">${CLIENT_LOGOS.map(([, src, width, height]) => `<li><img src="${src}" alt="" width="${width}" height="${height}" loading="lazy"></li>`).join("")}</ul></div></section>
     <section class="v2-trips v2-section">
       <div class="v2-wrap v2-trips-layout"><div class="v2-trip-intro">
         <p class="v2-kicker">${escapeHtml(home.tripsLabel)}</p><h2>${escapeHtml(home.tripsTitle)}</h2><p>${escapeHtml(home.tripsLead)}</p>
         <div class="v2-rail-controls" hidden><button type="button" data-trip-prev aria-label="${escapeHtml(home.previous)}">←</button><button type="button" data-trip-next aria-label="${escapeHtml(home.next)}">→</button></div>
-      </div><ul class="v2-rail" tabindex="0" aria-label="${escapeHtml(home.tripsLabel)}">${tripCards}</ul></div>
+      </div><ul class="v2-rail" tabindex="0" aria-label="${escapeHtml(home.tripsLabel)}">${tripCards}</ul></div><dialog class="v2-dialog" aria-label="${escapeHtml(home.tripDetails)}"><button type="button" class="v2-dialog-close" aria-label="${escapeHtml(home.close)}">×</button><h3></h3><p>${escapeHtml(home.tripSoon)}</p></dialog>
     </section>
     <section class="v2-services v2-section"><div class="v2-wrap">
       <div class="v2-section-intro"><div>${v2Heading(home.servicesLabel, home.servicesTitle)}</div><p>${escapeHtml(home.servicesLead)}</p></div>
@@ -588,24 +584,46 @@ function renderHome() {
     </div></section>
     <section class="v2-impact v2-section"><div class="v2-wrap v2-split">
       <div>${v2Heading(home.impactLabel, home.impactTitle)}<p class="v2-lead">${escapeHtml(home.impactLead)}</p><div class="v2-text-link">${v2PageLink("impact", home.impactLink)}</div></div>
-      <dl>${impact.principles.map(([, description], index) => `<div><dt>${escapeHtml(home.impactThemes[index])}</dt><dd>${escapeHtml(description)}</dd></div>`).join("")}</dl>
+      <dl>${home.impactThemes.map(([value, label]) => `<div><dt>${escapeHtml(value)}</dt><dd>${escapeHtml(label)}</dd></div>`).join("")}</dl>
     </div></section>
     <section class="v2-news v2-section"><div class="v2-wrap">
-      ${v2Heading(home.newsletterLabel, home.newsletterTitle)}<p>${escapeHtml(home.newsletterLead)}</p><p class="v2-news-status">${escapeHtml(home.newsletterStatus)}</p>
+      ${v2Heading(home.newsletterLabel, home.newsletterTitle)}<div class="v2-news-fields"><label><span class="sr-only">${escapeHtml(home.firstName)}</span><input type="text" autocomplete="given-name" placeholder="${escapeHtml(home.firstName)}"></label><label><span class="sr-only">${escapeHtml(home.lastName)}</span><input type="text" autocomplete="family-name" placeholder="${escapeHtml(home.lastName)}"></label><label><span class="sr-only">${escapeHtml(home.emailLabel)}</span><input type="email" autocomplete="email" placeholder="${escapeHtml(home.emailLabel)}"></label><button class="v2-subscribe" type="button">Subscribe</button></div><p class="v2-news-notice">${escapeHtml(home.newsletterStatus)}</p><p class="v2-news-status" role="status" hidden>Coming soon</p>
     </div></section>
-    <section class="v2-faq v2-section"><div class="v2-wrap v2-split"><div>${v2Heading(home.faqLabel, home.faqTitle)}<div class="v2-text-link">${v2PageLink("faq", home.faqLink)}</div></div><div class="v2-questions">${questions}</div></div></section>`;
+    <section class="v2-faq v2-section"><div class="v2-wrap v2-faq-content"><h2 class="v2-heading">FAQ</h2><a class="v2-faq-button" href="${escapeHtml(v2PageUrl("faq"))}">${escapeHtml(home.faqLink)} <span aria-hidden="true">→</span></a></div></section>`;
 }
 
 function renderCorporateHub() {
-  const p = content().corporateHub;
-  const e = editorialContent().corporateHub;
-  const hero = { ...p, title: e.heroTitle, lead: e.heroLead };
-  return `${renderHero("corporateHub", hero, { primaryHref: "#corporate-pathways", primaryLabel: e.heroPrimary, secondaryHref: inquiryUrl("Corporate Packages"), secondaryLabel: content().ui.requestProposal })}
-    ${renderBreadcrumb([[content().nav.corporate, "/corporate-packages/"]])}
-    <section class="section product-page-intro"><div class="container product-page-intro-grid"><div><p class="section-kicker">Corporate journeys</p><h2>${escapeHtml(e.introTitle)}</h2></div><p class="section-lead">${escapeHtml(e.introBody)}</p></div></section>
-    <section class="section journey-pathways" id="corporate-pathways"><div class="container"><div class="product-section-heading"><div><p class="section-kicker">Corporate service ecosystem</p><h2>${escapeHtml(e.pathwaysTitle)}</h2></div><p>${escapeHtml(e.pathwaysLead)}</p></div>${renderPathwayGateways(e.pathways)}</div></section>
-    <section class="section editorial-proof-section"><div class="container editorial-proof-grid"><div><p class="section-kicker">${escapeHtml(editorialContent().labels.fromBrief)}</p><h2>${escapeHtml(e.supportTitle)}</h2><p>${escapeHtml(e.supportLead)}</p></div>${renderFeatureList(e.supportItems)}</div></section>
-    ${renderProductClosingCta(e.closingTitle, e.closingBody, { service: "Corporate Packages", waKey: "corporate", primaryLabel: e.closingPrimary, secondaryLabel: e.closingSecondary })}`;
+  const p = window.CT_CORPORATE_V2[CT_STATE.language];
+  const home = content().home;
+  const places = CT_STATE.catalog.corporateIndonesia.destinations;
+  const images = PRODUCT_PAGE_IMAGES.indonesia;
+  const cardImages = ["/assets/images/v2/hero-desktop.webp", "/assets/images/group-local-lunch.webp", "/assets/images/home/impact-home-card.webp", "/assets/images/games-in-nature.webp"];
+  const gallery = ["/assets/images/v2/hero-desktop.webp", "/assets/images/v2/experiences-card.webp", "/assets/images/home/storytelling-home-campfire.webp", "/assets/images/games-in-nature.webp", "/assets/images/home/impact-home-card.webp", "/assets/images/group-local-lunch.webp", "/assets/images/group-dinner-party.webp"];
+  const buttons = places.map((place, index) => `<button type="button" data-corporate-filter="${escapeHtml(place.id)}" aria-pressed="${index === 0}">${escapeHtml(place.id === "jogja" ? "Yogyakarta" : place.name)}</button>`).join("");
+  const groups = places.map((place) => {
+    const cards = place.packages.map((product) => {
+      const image = images.packages[product.id] || images[place.id] || images.bali;
+      const highlights = editorialContent().indonesia.packageDetails[product.id]?.highlights || [];
+      return `<article class="corp-package"><img src="${escapeHtml(image)}" alt="" width="800" height="500" loading="lazy"><div class="corp-package-body"><h3>${escapeHtml(productCopy(product)[0])}</h3><p class="corp-price">${escapeHtml(p.starting)} <strong>${escapeHtml(formatCurrency(product.price))}</strong> / ${escapeHtml(formatUnit(product.price.unit))}</p><p class="corp-meta">◷ ${escapeHtml(product.duration)} &nbsp; ♧ ${escapeHtml(p.min)} ${escapeHtml(product.minimumPax)} ${escapeHtml(p.pax)}</p>${highlights.length ? `<div class="corp-inclusions"><strong>${escapeHtml(p.inclusions)}</strong><ul>${highlights.slice(0, 4).map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>` : ""}<a class="corp-button" href="${escapeHtml(siteUrl("/corporate-packages/indonesia-region/#" + place.id))}">${escapeHtml(p.view)} <span aria-hidden="true">→</span></a></div></article>`;
+    }).join("");
+    return `<div class="corp-package-group" data-corporate-group="${escapeHtml(place.id)}"><h3 class="corp-destination-name">${escapeHtml(place.name)}</h3><div class="corp-package-grid">${cards}</div></div>`;
+  }).join("");
+  const internationalCards = [
+    ["Singapore", "/assets/images/corporate/international-corporate-outing.webp"],
+    ["Bangkok, Thailand", "/assets/images/corporate/international/bangkok-destination.webp"],
+    ["Kuala Lumpur, Malaysia", "/assets/images/study-tour/malaysia-destination.webp"],
+    ["Vietnam", "/assets/images/corporate/international/vietnam-destination.webp"]
+  ].map(([name, image]) => `<article class="corp-package"><img src="${image}" alt="" width="800" height="500" loading="lazy"><div class="corp-package-body"><h3>${escapeHtml(name)}</h3><p class="corp-badge">${escapeHtml(p.custom)}</p><p class="corp-intl-description">${escapeHtml(p.intlDetails)}</p><a class="corp-button" href="${escapeHtml(siteUrl("/corporate-packages/international/"))}">${escapeHtml(p.view)} <span aria-hidden="true">→</span></a></div></article>`).join("");
+  return `<section class="corp-hero"><picture><source media="(max-width: 600px)" srcset="/assets/images/v2/corporate-hero-mobile.webp"><img src="/assets/images/v2/corporate-hero-desktop.webp" alt="" width="1512" height="754" fetchpriority="high"></picture><div class="corp-wrap corp-hero-copy"><p>${escapeHtml(p.eyebrow)}</p><h1>${escapeHtml(p.hero)}</h1><p>${escapeHtml(p.lead)}</p></div></section>
+    <section class="corp-intro"><div class="corp-wrap"><h2>${escapeHtml(p.intro)}</h2><p>${escapeHtml(p.introBody)}</p></div></section>
+    <section class="corp-destinations" id="corporate-pathways"><div class="corp-wrap"><p>${escapeHtml(p.choose)}</p><h2>${escapeHtml(p.where)}</h2><div class="corp-destination-grid"><a class="corp-destination" href="${escapeHtml(siteUrl("/corporate-packages/indonesia-region/"))}"><img src="/assets/images/corporate/indonesia-region/bali-destination.webp" alt="" width="800" height="500" loading="lazy"><div><h3>${escapeHtml(p.indonesia)}</h3><p>${escapeHtml(p.indonesiaBody)}</p><span>${escapeHtml(p.exploreIndonesia)} →</span></div></a><a class="corp-destination" href="${escapeHtml(siteUrl("/corporate-packages/international/"))}"><img src="/assets/images/corporate/international/hero-international-corporate.webp" alt="" width="800" height="500" loading="lazy"><div><h3>${escapeHtml(p.international)}</h3><p>${escapeHtml(p.internationalBody)}</p><span>${escapeHtml(p.exploreInternational)} →</span></div></a></div></div></section>
+    <section class="corp-pillars corp-section"><div class="corp-wrap"><div class="corp-centered"><p class="corp-kicker">${escapeHtml(p.made)}</p><h2>${escapeHtml(p.more)}</h2><p>${escapeHtml(p.moreLead)}</p></div><div class="corp-pillar-grid">${p.pillars.map(([title, body], index) => `<article><img src="${cardImages[index]}" alt="" width="800" height="450" loading="lazy"><div><h3>${escapeHtml(title)}</h3><p>${escapeHtml(body)}</p></div></article>`).join("")}</div></div></section>
+    <section class="corp-packages corp-section"><div class="corp-wrap"><h2>${escapeHtml(p.packages)}</h2><p>${escapeHtml(p.packagesLead)}</p><div class="corp-filters" aria-label="${escapeHtml(p.choose)}">${buttons}</div>${groups}</div></section>
+    <section class="corp-international corp-section"><div class="corp-wrap"><p class="corp-kicker">${escapeHtml(p.intlLabel)}</p><h2>${escapeHtml(p.intlTitle)}</h2><p class="corp-italic">${escapeHtml(p.intlSub)}</p><p>${escapeHtml(p.intlLead)}</p><div class="corp-package-grid">${internationalCards}</div></div></section>
+    <section class="corp-cta"><div class="corp-wrap"><div><h2>${escapeHtml(p.ctaTitle)}</h2><p>${escapeHtml(p.ctaBody)}</p></div><a class="corp-button-light" href="${escapeHtml(inquiryUrl("Corporate Packages"))}">${escapeHtml(p.proposal)} →</a></div></section>
+    <section class="corp-gallery corp-section"><div class="corp-wrap"><div class="corp-centered"><p class="corp-kicker">${escapeHtml(p.galleryLabel)}</p><h2>${escapeHtml(p.galleryTitle)}</h2></div><div class="corp-gallery-grid">${gallery.map((image, index) => `<img src="${image}" alt="${escapeHtml(p.galleryAlt[index])}" width="800" height="500" loading="lazy">`).join("")}</div></div></section>
+    <section class="v2-news v2-section"><div class="v2-wrap">${v2Heading(home.newsletterLabel, home.newsletterTitle)}<div class="v2-news-fields"><label><span class="sr-only">${escapeHtml(home.firstName)}</span><input type="text" autocomplete="given-name" placeholder="${escapeHtml(home.firstName)}"></label><label><span class="sr-only">${escapeHtml(home.lastName)}</span><input type="text" autocomplete="family-name" placeholder="${escapeHtml(home.lastName)}"></label><label><span class="sr-only">${escapeHtml(home.emailLabel)}</span><input type="email" autocomplete="email" placeholder="${escapeHtml(home.emailLabel)}"></label><button class="v2-subscribe" type="button">Subscribe</button></div><p class="v2-news-notice">${escapeHtml(home.newsletterStatus)}</p><p class="v2-news-status" role="status" hidden>Coming soon</p></div></section>
+    <section class="v2-faq v2-section"><div class="v2-wrap v2-faq-content"><h2 class="v2-heading">${escapeHtml(p.faq)}</h2><a class="v2-faq-button" href="${escapeHtml(v2PageUrl("faq"))}">${escapeHtml(p.faqMore)} →</a></div></section>`;
 }
 
 function renderBaliVariants(product, variantDetails = {}, variantImages = {}) {
@@ -1037,6 +1055,34 @@ function bindTripRail() {
   update();
 }
 
+function bindHomeInteractions() {
+  const dialog = document.querySelector('.v2-dialog');
+  document.querySelectorAll('[data-trip-details]').forEach(button => {
+    button.addEventListener('click', () => {
+      dialog.querySelector('h3').textContent = button.dataset.tripDetails;
+      dialog.showModal();
+    });
+  });
+  dialog.querySelector('.v2-dialog-close').addEventListener('click', () => dialog.close());
+  document.querySelector('.v2-subscribe').addEventListener('click', () => {
+    document.querySelector('.v2-news-status').hidden = false;
+  });
+}
+
+function bindCorporatePage() {
+  const buttons = [...document.querySelectorAll("[data-corporate-filter]")];
+  const groups = [...document.querySelectorAll("[data-corporate-group]")];
+  const select = (id) => {
+    buttons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.corporateFilter === id)));
+    groups.forEach(group => { group.hidden = group.dataset.corporateGroup !== id; });
+  };
+  buttons.forEach(button => button.addEventListener("click", () => select(button.dataset.corporateFilter)));
+  select(buttons[0].dataset.corporateFilter);
+  document.querySelector(".v2-subscribe").addEventListener("click", () => {
+    document.querySelector(".v2-news-status").hidden = false;
+  });
+}
+
 function bindClientCarousel() {
   window.clearTimeout(CT_STATE.clientCarouselTimer);
   CT_STATE.clientCarouselAbortController?.abort();
@@ -1401,7 +1447,11 @@ function initializeUi({ render = true } = {}) {
   document.body.dataset.siteBound = "true";
   bindHeaderVisualState();
   bindNavigation();
-  if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "home") bindTripRail();
+  if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "home") {
+    bindTripRail();
+    bindHomeInteractions();
+  }
+  if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "corporateHub") bindCorporatePage();
   bindClientCarousel();
   bindLanguageToggle();
   bindWhatsappTracking();

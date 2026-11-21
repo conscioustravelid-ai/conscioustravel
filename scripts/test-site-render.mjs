@@ -11,11 +11,12 @@ const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 const registry = loadRegistry(root);
 const baseline = JSON.parse(read('scripts/fixtures/site-id-baseline.json'));
 const pilotHome = JSON.parse(read('scripts/fixtures/site-v2-home.json'));
+const pilotCorporate = JSON.parse(read('scripts/fixtures/site-v2-corporate.json'));
 for (const page of registry.pages) {
   const id = renderSite(root, page, 'id', { year: registry.renderYear });
   const en = renderSite(root, page, 'en', { year: registry.renderYear });
   const before = baseline.pages.find(item => item.key === page.key);
-  const isPilot = page.key === 'home';
+  const isPilot = ['home', 'corporateHub'].includes(page.key);
   if (!isPilot) {
     assert.equal(hash(id.primary), before.primarySha256, `${page.key}: approved ID primary HTML changed`);
     assert.equal(hash(id.footer), before.footerSha256, `${page.key}: ID footer changed`);
@@ -29,17 +30,29 @@ for (const page of registry.pages) {
     assert.equal(source.includes('href="/css/v2.css?'), isPilot, `${page.key}/${locale}: stylesheet scope`);
     if (isPilot) {
       for (const name of ['header', 'primary', 'footer']) {
-        assert.equal(hash(rendered[name]), pilotHome[locale][name], `home/${locale}: V.2 ${name} changed`);
+        const expected = page.key === 'home' ? pilotHome : pilotCorporate;
+        assert.equal(hash(rendered[name]), expected[locale][name], `${page.key}/${locale}: V.2 ${name} changed`);
       }
       assert.match(rendered.header, /class="v2-announcement"/);
-      assert.match(rendered.header, /data-wa-key="general"/);
+      assert.match(rendered.header, page.key === 'home' ? /data-wa-key="general"/ : /data-wa-key="corporate"/);
       assert.match(rendered.primary, /fetchpriority="high"/);
-      assert.equal((rendered.primary.match(/<details><summary>/g) || []).length, 3);
-      assert.doesNotMatch(rendered.primary, /<form\b|<input\b|data-client-carousel/);
+    }
+    if (page.key === 'home') {
+      assert.match(rendered.primary, /<h2 class="v2-heading">FAQ<\/h2>/);
+      assert.equal((rendered.primary.match(/<input\b/g) || []).length, 3);
+      assert.doesNotMatch(rendered.primary, /<form\b|data-client-carousel/);
       const trips = rendered.primary.match(/<section class="v2-trips[^"]*">([\s\S]*?)<\/section>/)[1];
-      assert.doesNotMatch(trips, /<a\b|data-wa-key/);
+      assert.equal((trips.match(/data-trip-details=/g) || []).length, 3);
+      for (const key of ['tripJapan', 'tripF1', 'tripVietnam']) assert.ok(trips.includes(`data-wa-key="${key}"`));
       const impact = rendered.primary.match(/<section class="v2-impact[^"]*">([\s\S]*?)<\/section>/)[1];
-      assert.doesNotMatch((trips + impact).replace(/<[^>]+>/g, ''), /\d/);
+      for (const metric of ['5+', '10+', '20+', locale === 'id' ? '1.000+' : '1,000+']) assert.ok(impact.includes(metric));
+    }
+    if (page.key === 'corporateHub') {
+      assert.equal((rendered.primary.match(/data-corporate-filter=/g) || []).length, 4);
+      assert.equal((rendered.primary.match(/data-corporate-group=/g) || []).length, 4);
+      assert.match(rendered.primary, /corporate-hero-desktop.webp/);
+      assert.equal((rendered.primary.match(/class="corp-package"/g) || []).length, 14);
+      assert.doesNotMatch(rendered.primary, /<form\b/);
     }
     const normalizeSerialization = value => normalizeText(value).replace(/^[ \t]+$/gm, '').trim();
     for (const name of ['header', 'primary', 'footer']) {
