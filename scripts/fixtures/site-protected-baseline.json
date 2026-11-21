@@ -114,6 +114,6 @@
     "scripts/test-blog-select.mjs": "04b2c76866f64e75f26e8651d5111f8f1bd8d374f2b7d9a4584fff8b4c6e362a",
     "scripts/test-blog-toc.mjs": "92d1e25db082ab25a85698e410d49c73cd42c532b66d411b6e2b64cadbc335b8",
     "scripts/validate-blog.mjs": "6336f58aed476176ada0c2bdb49cfb5a86994c4f289ab3a22c8c2247d1b58538",
-    "vercel.json": "4a25953ad9ef42279a02b1fc3b88cc6282ce098360f85633a564a42be476fdac"
+    "vercel.json": "78ddb9c7301410c0a135c0df6167b10e283f90165782493e82163824aa35fb5c"
   }
 }

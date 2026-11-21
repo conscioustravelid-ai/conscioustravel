@@ -17,23 +17,58 @@ export function contentDigest(input, kind = 'binary') {
   return sha256(kind === 'text' ? normalizeText(input) : input);
 }
 
-export function diagnoseVercelFile(root, checkpoint) {
-  const file = fs.realpathSync(path.join(root, 'vercel.json'));
-  const bytes = fs.readFileSync(file);
-  const text = bytes.toString('utf8');
-  let normalizedSha256;
-  try { normalizedSha256 = contentDigest(bytes, 'text'); } catch { normalizedSha256 = null; }
-  console.log(`Vercel integrity checkpoint ${checkpoint}: ${JSON.stringify({
-    path: file,
-    normalizedSha256,
-    rawSha256: sha256(bytes),
-    byteLength: bytes.length,
-    utf8Bom: bytes.subarray(0, 3).equals(Buffer.from([0xef, 0xbb, 0xbf])),
-    crlf: (text.match(/\r\n/g) || []).length,
-    lf: (text.match(/(?<!\r)\n/g) || []).length,
-    loneCr: (text.match(/\r(?!\n)/g) || []).length,
-    trailingNewline: text.endsWith('\r\n') ? 'CRLF' : text.endsWith('\n') ? 'LF' : text.endsWith('\r') ? 'CR' : 'none'
-  })}`);
+// Canonicalize JSON with sorted object keys and preserved array order.
+// Reject duplicate keys, including equivalent escaped spellings, before hashing.
+export function canonicalJsonDigest(input) {
+  const text = new TextDecoder('utf-8', { fatal: true }).decode(input);
+  const parsed = JSON.parse(text);
+  let position = 0;
+  const space = () => { while (/\s/.test(text[position] || '') && position < text.length) position++; };
+  const string = () => {
+    const start = position++;
+    while (position < text.length) {
+      if (text[position] === '\\') { position += 2; continue; }
+      if (text[position++] === '"') return JSON.parse(text.slice(start, position));
+    }
+    throw new Error('Invalid JSON string');
+  };
+  const scan = () => {
+    space();
+    if (text[position] === '{') {
+      position++; space();
+      const keys = new Set();
+      if (text[position] === '}') { position++; return; }
+      while (true) {
+        space();
+        const key = string();
+        if (keys.has(key)) throw new Error('Duplicate JSON key: ' + key);
+        keys.add(key);
+        space(); position++; scan(); space();
+        if (text[position++] === '}') return;
+      }
+    }
+    if (text[position] === '[') {
+      position++; space();
+      if (text[position] === ']') { position++; return; }
+      while (true) {
+        scan(); space();
+        if (text[position++] === ']') return;
+      }
+    }
+    if (text[position] === '"') { string(); return; }
+    const token = text.slice(position).match(/^[^,\]}\s]+/)[0];
+    if (/^-?\d/.test(token) && (!/^-?(?:0|[1-9]\d*)$/.test(token) || !Number.isSafeInteger(Number(token)) || Object.is(Number(token), -0))) {
+      throw new Error('JSON number cannot be represented safely');
+    }
+    position += token.length;
+  };
+  scan();
+  const canonical = (value) => {
+    if (Array.isArray(value)) return '[' + value.map(canonical).join(',') + ']';
+    if (value && typeof value === 'object') return '{' + Object.keys(value).sort().map(key => JSON.stringify(key) + ':' + canonical(value[key])).join(',') + '}';
+    return JSON.stringify(value);
+  };
+  return sha256(canonical(parsed));
 }
 
 export function fingerprintInputs(inputs) {
@@ -54,8 +89,8 @@ export function verifyProtectedSources(root, fixture) {
   if (textFiles.size !== fixture.textFiles.length || fixture.textFiles.some(file => !Object.hasOwn(fixture.hashes, file))) throw new Error('Invalid protected text inventory');
   for (const [file, expected] of Object.entries(fixture.hashes)) {
     if (path.isAbsolute(file) || file.split('/').includes('..') || !/^[a-f0-9]{64}$/.test(expected)) throw new Error(`Invalid protected baseline entry: ${file}`);
-    if (file === 'vercel.json') diagnoseVercelFile(root, 'B');
-    const actual = contentDigest(fs.readFileSync(path.join(root, file)), textFiles.has(file) ? 'text' : 'binary');
+    const bytes = fs.readFileSync(path.join(root, file));
+    const actual = file === 'vercel.json' ? canonicalJsonDigest(bytes) : contentDigest(bytes, textFiles.has(file) ? 'text' : 'binary');
     if (actual !== expected) throw new Error(`Protected source changed: ${file}`);
   }
   return Object.keys(fixture.hashes).length;

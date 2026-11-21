@@ -54,6 +54,36 @@ try {
   const lf = copyInputs('lf'), crlf = copyInputs('crlf');
   assert.equal(verifyProtectedSources(lf, protection), Object.keys(protection.hashes).length);
   assert.equal(verifyProtectedSources(crlf, protection), Object.keys(protection.hashes).length);
+  const vercelPath = path.join(lf, 'vercel.json');
+  const vercelOriginal = fs.readFileSync(vercelPath);
+  const config = JSON.parse(vercelOriginal);
+  const verifyConfig = value => {
+    fs.writeFileSync(vercelPath, value);
+    return verifyProtectedSources(lf, protection);
+  };
+  assert.equal(verifyConfig(vercelOriginal), 53, 'Formatted Git configuration passes');
+  assert.equal(verifyConfig(JSON.stringify(config) + '\n'), 53, 'Minified configuration passes');
+  assert.equal(verifyConfig(JSON.stringify(config, null, '\t') + '\r\n'), 53, 'Different indentation passes');
+  const reversed = Object.fromEntries(Object.entries(config).reverse());
+  assert.equal(verifyConfig(JSON.stringify(reversed)), 53, 'Object key order is immaterial');
+  for (const mutate of [
+    value => { value.buildCommand = 'unexpected'; },
+    value => { value.outputDirectory = 'unexpected'; },
+    value => { value.redirects[0].destination = '/unexpected'; },
+    value => { value.headers[0].headers[0].value = 'index, follow'; },
+    value => { value.redirects.reverse(); }
+  ]) {
+    const changed = structuredClone(config); mutate(changed);
+    assert.throws(() => verifyConfig(JSON.stringify(changed)), /Protected source changed: vercel\.json/);
+  }
+  assert.throws(() => verifyConfig('{invalid'), SyntaxError);
+  assert.throws(() => verifyConfig('{"nested":{"name":1,"name":2}}'), /Duplicate JSON key/);
+  assert.throws(() => verifyConfig('{"nested":{"name":1,"' + String.fromCharCode(92) + 'u006eame":2}}'), /Duplicate JSON key/);
+  assert.throws(() => verifyConfig('{"unsafe":9007199254740993}'), /represented safely/);
+  fs.writeFileSync(vercelPath, vercelOriginal);
+  assert.equal(verifyProtectedSources(lf, protection), 53, 'All protected sources remain checked');
+  console.log('Vercel JSON integrity passed: formatting and key order; configuration, array, invalid JSON, duplicate-key and unsafe-number rejection.');
+
   const left = buildSite(lf, { target: 'local' }), right = buildSite(crlf, { target: 'local' });
   assert.equal(left.inputFingerprint, right.inputFingerprint, 'LF and CRLF must have the same fingerprint');
   assert.deepEqual(left.pages, right.pages, 'Route inventory and page fingerprints must match');
