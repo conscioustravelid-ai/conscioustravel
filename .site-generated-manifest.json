@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "inputFingerprint": "27a23c6c24459e8ea441e2c9f6cd719e9436e965b8a057b61ee27a813ef4a6a8",
+  "inputFingerprint": "ca04640b73dd1723a3e66feb395b63d6d0d1dfc9d7a837f70454d439c55e500a",
   "ownedEnFiles": [
     "en/index.html",
     "en/corporate-packages/index.html",
@@ -15,7 +15,8 @@
     "en/impact/index.html",
     "en/faq/index.html",
     "en/contact/index.html",
-    "en/sport-trips/index.html"
+    "en/sport-trips/index.html",
+    "en/conscious-ride/index.html"
   ],
   "anchors": {
     "/": [
@@ -425,6 +426,28 @@
       "about-menu",
       "featured",
       "upcoming"
+    ],
+    "/conscious-ride/": [
+      "main-content",
+      "site-header",
+      "page-root",
+      "site-footer",
+      "primary-navigation",
+      "corporate-menu",
+      "experiences-menu",
+      "about-menu",
+      "fleet"
+    ],
+    "/en/conscious-ride/": [
+      "main-content",
+      "site-header",
+      "page-root",
+      "site-footer",
+      "primary-navigation",
+      "corporate-menu",
+      "experiences-menu",
+      "about-menu",
+      "fleet"
     ]
   },
   "pages": [
@@ -433,28 +456,28 @@
       "page": "home",
       "locale": "id",
       "path": "/",
-      "fingerprint": "bd8a5b9238af1cae12f4584b1f74dfbd3a0212adfcbad1a63011e2472960a76d"
+      "fingerprint": "44438f00c130e14242733241bdcff8cad1714183c40c1ab5f8dba31c4f9deb82"
     },
     {
       "file": "en/index.html",
       "page": "home",
       "locale": "en",
       "path": "/en/",
-      "fingerprint": "4a935cc52f4da03e176ddad9a07b419c43c0b170e549c4a69910a815c1b79970"
+      "fingerprint": "77281e2ee37091066e5ec3c4e88299485c3bc7eb78d368ed9ae76680e3ffadb5"
     },
     {
       "file": "corporate-packages/index.html",
       "page": "corporateHub",
       "locale": "id",
       "path": "/corporate-packages/",
-      "fingerprint": "742536bed478f7050ff1742365302c783423906b3b98fe949bafe789d5d2749b"
+      "fingerprint": "0abb314e65b08c0e683589cab44c5942815f87cf4fd876fc068b02bd35128346"
     },
     {
       "file": "en/corporate-packages/index.html",
       "page": "corporateHub",
       "locale": "en",
       "path": "/en/corporate-packages/",
-      "fingerprint": "66932f1c3ddafeeba6fb80dd7adb5f76e16d7f45b4ca4373f75f8dafbbe11c2a"
+      "fingerprint": "d5346105ca133ae4963a79de8a87013a2cf431d55a1dfbf42b40db0b9e6a6447"
     },
     {
       "file": "corporate-packages/indonesia-region/index.html",
@@ -489,14 +512,14 @@
       "page": "csr",
       "locale": "id",
       "path": "/corporate-packages/csr-program/",
-      "fingerprint": "3fb356217db922508fd8d46f42e432dc29b733a63bed136a1b35fd743902985c"
+      "fingerprint": "4b52c188533c4f530eea4f7c14b58a0f99a49cd76253776dc41bee7d4563b74b"
     },
     {
       "file": "en/corporate-packages/csr-program/index.html",
       "page": "csr",
       "locale": "en",
       "path": "/en/corporate-packages/csr-program/",
-      "fingerprint": "50c2bd79ea9c6e27c8ff3ec6cb8cbc5f7d444cf9f889f88456228b560d8ceedd"
+      "fingerprint": "eb723e77d10ce9ffa7f0c49ff740617663b22e8376c5bfa89da8253e66e7e01e"
     },
     {
       "file": "corporate-packages/event-planning-organizer/index.html",
@@ -531,14 +554,14 @@
       "page": "study",
       "locale": "id",
       "path": "/study-tour/",
-      "fingerprint": "5e042ff96fe8e79ea67cec607ebed3dd4b11f50c47bc77f36d07df3e8b0d03d4"
+      "fingerprint": "4b918ac9bd64561aa2680b3f8911db009a9f76fd4d3cdc11a1ca2324d8240a4f"
     },
     {
       "file": "en/study-tour/index.html",
       "page": "study",
       "locale": "en",
       "path": "/en/study-tour/",
-      "fingerprint": "91e04ed2a872826ce15ca59d98ba40fbda31a03e3cd67fa102e3750d65de693e"
+      "fingerprint": "6cd7fb8a9553a55a208e4c7655b11acf2047ef11b2ab8f44e47f30d8e8e5708a"
     },
     {
       "file": "sailing-package/index.html",
@@ -615,14 +638,28 @@
       "page": "sport",
       "locale": "id",
       "path": "/sport-trips/",
-      "fingerprint": "c6e52b00af75dccdd856defde6aed74f3b1560fcd55596ffe3f6bf24497a2f11"
+      "fingerprint": "2bfe9b257e02f0fb39684333af4a85821849f17b77b85d294d5fc1fd87202611"
     },
     {
       "file": "en/sport-trips/index.html",
       "page": "sport",
       "locale": "en",
       "path": "/en/sport-trips/",
-      "fingerprint": "b1a62358273ecec982ee2a8607a12dce0263bf05828e4109ecd274873c288d30"
+      "fingerprint": "b3c35f9b4db9f987f7ac138f111f3dd3c2d85176ec510e2f5ee08739e8aa6ab0"
+    },
+    {
+      "file": "conscious-ride/index.html",
+      "page": "ride",
+      "locale": "id",
+      "path": "/conscious-ride/",
+      "fingerprint": "da0895ec348ec1483618c26e8b8130a9113a32ea3e52ed51742f00af428d8685"
+    },
+    {
+      "file": "en/conscious-ride/index.html",
+      "page": "ride",
+      "locale": "en",
+      "path": "/en/conscious-ride/",
+      "fingerprint": "d240e2fd807e85e830b4c824232816729455e5917390d2a5c48b940bd32dbfcf"
     }
   ]
 }

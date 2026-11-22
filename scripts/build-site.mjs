@@ -17,7 +17,7 @@ export function region(html, name, value) {
   return html.slice(0, a) + '\n' + value + '\n' + html.slice(b);
 }
 export function validateRegistry(registry) {
-  if (registry.schemaVersion !== 1 || registry.origin !== SITE_ORIGIN || registry.pages.length !== 14) throw new Error('Invalid site registry');
+  if (registry.schemaVersion !== 1 || registry.origin !== SITE_ORIGIN || registry.pages.length !== 15) throw new Error('Invalid site registry');
   const paths = new Set(), keys = new Set();
   for (const page of registry.pages) {
     if (keys.has(page.key)) throw new Error('Duplicate page key');

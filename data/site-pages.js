@@ -591,6 +591,48 @@ window.CT_SITE_PAGES = {
         }
       },
       "priority": "0.8"
+    },
+    {
+      "key": "ride",
+      "source": "conscious-ride/index.html",
+      "paths": {
+        "id": "/conscious-ride/",
+        "en": "/en/conscious-ride/"
+      },
+      "available": {
+        "id": true,
+        "en": true
+      },
+      "lastmod": {
+        "id": "2026-11-22",
+        "en": "2026-11-22"
+      },
+      "metadata": {
+        "id": {
+          "title": "Conscious Ride | Sewa Kendaraan di Bali",
+          "description": "Jelajahi pilihan kendaraan Conscious Ride untuk kebutuhan perjalanan dan mobilitas di Bali.",
+          "ogTitle": "Conscious Ride | Conscious Travel",
+          "ogDescription": "Pilihan kendaraan untuk kebutuhan mobilitas di Bali.",
+          "ogImage": "https://conscioustravel.id/assets/images/v2/ride-hero.webp"
+        },
+        "en": {
+          "title": "Conscious Ride | Vehicle Rental in Bali",
+          "description": "Explore Conscious Ride vehicle options for travel and mobility in Bali.",
+          "ogTitle": "Conscious Ride | Conscious Travel",
+          "ogDescription": "Vehicle options for mobility in Bali.",
+          "ogImage": "https://conscioustravel.id/assets/images/v2/ride-hero.webp"
+        }
+      },
+      "productionApproval": {
+        "en": {
+          "copy": false,
+          "metadata": false,
+          "fingerprint": null,
+          "reviewer": null,
+          "approvedAt": null
+        }
+      },
+      "priority": "0.8"
     }
   ]
 };

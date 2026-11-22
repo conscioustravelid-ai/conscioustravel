@@ -195,7 +195,7 @@ function renderV2Header() {
         ${v2PageLink("study")}
         <a id="experiences-menu" href="${escapeHtml(v2PageUrl("sport"))}">Sports Trip</a>
         ${v2PageLink("csr")}
-        <a href="${escapeHtml(v2PageUrl("corporateHub"))}">Conscious Ride</a>
+        <a href="${escapeHtml(v2PageUrl("ride"))}">Conscious Ride</a>
         <a id="about-menu" href="${escapeHtml(v2PageUrl("about"))}">${escapeHtml(home.nav.about)}</a>
       </nav>
       <div class="v2-actions">${renderLanguageSwitch()}<a class="v2-button" href="${escapeHtml(whatsappUrl(waKey))}" target="_blank" rel="noopener" data-wa-key="${waKey}">${escapeHtml(home.plan)} <span aria-hidden="true">↗</span></a></div>
@@ -230,7 +230,7 @@ function renderProductCard(product, options = {}) {
 }
 
 function renderHeader() {
-  if (["home", "corporateHub", "study", "sport", "csr"].includes(document.body.dataset.page)) {
+  if (["home", "corporateHub", "study", "sport", "csr", "ride"].includes(document.body.dataset.page)) {
     document.getElementById("site-header").innerHTML = renderV2Header();
     return;
   }
@@ -274,7 +274,7 @@ function renderHeader() {
 }
 
 function renderFooter() {
-  if (["home", "corporateHub", "study", "sport", "csr"].includes(document.body.dataset.page)) {
+  if (["home", "corporateHub", "study", "sport", "csr", "ride"].includes(document.body.dataset.page)) {
     document.getElementById("site-footer").innerHTML = renderV2Footer();
     return;
   }
@@ -930,6 +930,7 @@ function renderPage() {
     experiences: renderExperiences,
     study: renderStudy,
     sport: renderSport,
+    ride: renderRide,
     sailing: renderSailing,
     impact: renderImpact,
     about: renderAbout,
@@ -1473,6 +1474,7 @@ function initializeUi({ render = true } = {}) {
   if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "study") bindStudyPage();
   if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "sport") bindSportPage();
   if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "csr") bindCsrPage();
+  if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "ride") bindRidePage();
   bindClientCarousel();
   bindLanguageToggle();
   bindWhatsappTracking();
@@ -1590,4 +1592,47 @@ function bindCsrPage() {
   document.querySelector(".v2-subscribe").addEventListener("click",()=>{document.querySelector(".v2-news-status").hidden=false});
   const revealHash=()=>{if(!window.location.hash)return;try{const target=document.getElementById(decodeURIComponent(window.location.hash.slice(1)));const details=target?.closest("details");if(details){details.open=true;target.scrollIntoView();}}catch{}};
   window.addEventListener("hashchange",revealHash); revealHash();
+}
+
+
+function rideWhatsapp(name="") {
+  const message=CT_STATE.language==="en"
+    ? "Hello Conscious Travel, I would like to ask about Conscious Ride"+(name?" — "+name:"")+". Please help me check availability and a quote."
+    : "Halo Conscious Travel, saya ingin bertanya tentang Conscious Ride"+(name?" — "+name:"")+". Mohon bantu cek ketersediaan dan penawaran.";
+  return "https://wa.me/"+window.CT_CONFIG.whatsappNumber+"?text="+encodeURIComponent(message);
+}
+function renderRide() {
+  const en=CT_STATE.language==="en", h=content().home, e=escapeHtml;
+  const t=en?{
+    hero:"Move freely with Conscious Ride.",lead:"Explore Bali with vehicle options for your team and personal mobility.",heroCta:"Explore Our Fleet",
+    benefits:[["For Offices & Corporates","Tailored for company and team mobility."],["Monthly Rental","Flexible options for longer-term use."],["Reliable Fleet","Discuss the vehicle options that suit your needs."],["Dedicated Support","Our team is ready to assist your rental needs."]],
+    kicker:"Our fleet & availability",title:"Explore Our Cars & Motorbikes",intro:"Browse example vehicle options for monthly rental.",disclaimer:"Preview examples only. Vehicle details and availability have not been confirmed.",cars:"Cars",bikes:"Motorbikes",fleet:"Car Fleet",fleetSub:"Example vehicles for monthly rental (Corporate & Office Use)",brand:"All Brands",availability:"Availability",available:"Available",limited:"Limited",sample:"Example",seats:"Seats",automatic:"Automatic",enquire:"Enquire Now",empty:"No example vehicles match these filters.",soon:"Motorbike options are coming soon.",personalK:"For Individuals",personal:"Need a Car or Motorbike for Personal Use?",personalText:"Send us a message and our team will help you explore the available options.",message:"Send Us a Message",faq:"Frequently Asked Questions",questions:["Is the rental available for daily or weekly use?","What's included in the monthly rental?","How can I check availability or get a quote?"],answer:"Please contact our team for current terms, availability and a quote.",ask:"Ask our team"
+  }:{
+    hero:"Bergerak leluasa bersama Conscious Ride.",lead:"Jelajahi Bali dengan pilihan kendaraan untuk kebutuhan tim maupun pribadi.",heroCta:"Jelajahi Armada",
+    benefits:[["Untuk Kantor & Perusahaan","Untuk kebutuhan mobilitas perusahaan dan tim."],["Sewa Bulanan","Pilihan fleksibel untuk penggunaan jangka panjang."],["Pilihan Armada","Diskusikan kendaraan yang sesuai kebutuhan Anda."],["Dukungan Tim","Tim kami siap membantu kebutuhan sewa Anda."]],
+    kicker:"Armada & ketersediaan",title:"Jelajahi Mobil & Motor Kami",intro:"Lihat contoh pilihan kendaraan untuk sewa bulanan.",disclaimer:"Contoh untuk preview. Detail kendaraan dan ketersediaan belum dikonfirmasi.",cars:"Mobil",bikes:"Motor",fleet:"Armada Mobil",fleetSub:"Contoh kendaraan untuk sewa bulanan (Kantor & Perusahaan)",brand:"Semua Merek",availability:"Ketersediaan",available:"Tersedia",limited:"Terbatas",sample:"Contoh",seats:"Kursi",automatic:"Otomatis",enquire:"Tanyakan Sekarang",empty:"Tidak ada kendaraan contoh yang cocok dengan filter ini.",soon:"Pilihan motor akan segera hadir.",personalK:"Untuk Individu",personal:"Butuh Mobil atau Motor untuk Keperluan Pribadi?",personalText:"Kirim pesan dan tim kami akan membantu mencari pilihan yang tersedia.",message:"Kirim Pesan",faq:"Pertanyaan yang Sering Diajukan",questions:["Apakah tersedia sewa harian atau mingguan?","Apa saja yang termasuk dalam sewa bulanan?","Bagaimana cara cek ketersediaan atau meminta penawaran?"],answer:"Hubungi tim kami untuk informasi ketentuan, ketersediaan, dan penawaran terkini.",ask:"Tanya tim kami"
+  };
+  const fleet=[["Toyota Yaris","Toyota",5,"available"],["Honda Brio","Honda",5,"available"],["Toyota Agya","Toyota",5,"available"],["Toyota Innova","Toyota",7,"limited"],["Mitsubishi Xpander","Mitsubishi",5,"available"],["Wuling Cortez","Wuling",7,"available"],["Suzuki XL7","Suzuki",7,"available"]];
+  const icons=[
+    '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 41V8h20v33M28 19h12v22M4 41h40M13 14h4m5 0h3m-12 7h4m5 0h3m-12 7h4m5 0h3m-12 7h4m5 0h3m9-10h3m-3 7h3"/></svg>',
+    '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="6" y="10" width="36" height="32" rx="3"/><path d="M6 19h36M15 5v10M33 5v10"/></svg>',
+    '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M24 4 40 10v12c0 10-7 17-16 22C15 39 8 32 8 22V10L24 4Z"/><path d="m16 24 5 5 11-12"/></svg>',
+    '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 27v-4a17 17 0 0 1 34 0v4M7 25h6v10H7zM35 25h6v10h-6zM35 37c-2 4-6 5-11 5"/></svg>'
+  ];
+  const vehicle=f=>'<article class="ride-car" data-brand="'+e(f[1])+'" data-availability="'+e(f[3])+'"><div class="ride-car-image"><img src="/assets/images/v2/ride-hero.webp" alt="" width="1507" height="756" loading="lazy"><span class="ride-status '+e(f[3])+'">'+e(t.sample)+': '+e(t[f[3]])+'</span></div><div class="ride-car-content"><h3>'+e(f[0])+'</h3><p>♙ '+f[2]+' '+e(t.seats)+' &nbsp; │ &nbsp; ⚙ '+e(t.automatic)+'</p><a class="ride-button" href="'+e(rideWhatsapp(f[0]))+'" target="_blank" rel="noopener">'+e(t.enquire)+' →</a></div></article>';
+  const dropdown=(label,attr,options)=>'<label><span class="sr-only">'+e(label)+'</span><select data-ride-filter="'+attr+'"><option value="">'+e(label)+'</option>'+options.map(x=>'<option value="'+e(x[0])+'">'+e(x[1])+'</option>').join("")+'</select></label>';
+  return '<section class="corp-hero ride-hero"><picture><img src="/assets/images/v2/ride-hero.webp" alt="" width="1507" height="756" fetchpriority="high"></picture><div class="corp-wrap corp-hero-copy"><p>Conscious Ride</p><h1>'+e(t.hero)+'</h1><p>'+e(t.lead)+'</p><a class="ride-light" href="#fleet">'+e(t.heroCta)+' →</a></div></section>'+
+    '<section class="ride-benefits"><div class="corp-wrap">'+t.benefits.map((p,i)=>'<div>'+icons[i]+'<p><strong>'+e(p[0])+'</strong><br>'+e(p[1])+'</p></div>').join("")+'</div></section>'+
+    '<section class="corp-section ride-fleet" id="fleet"><div class="corp-wrap"><div class="corp-centered"><p class="corp-kicker">'+e(t.kicker)+'</p><h2>'+e(t.title)+'</h2><p>'+e(t.intro)+'</p></div><p class="ride-disclaimer" role="note">'+e(t.disclaimer)+'</p><div class="ride-tabs" aria-label="'+e(t.title)+'"><button type="button" class="active" data-ride-tab="cars" aria-pressed="true">'+e(t.cars)+'</button><button type="button" data-ride-tab="bikes" aria-pressed="false">'+e(t.bikes)+'</button></div><div data-ride-panel="cars"><div class="ride-list-head"><div><h3>'+e(t.fleet)+'</h3><p>'+e(t.fleetSub)+'</p></div><div class="ride-filters">'+dropdown(t.brand,"brand",["Toyota","Honda","Mitsubishi","Wuling","Suzuki"].map(x=>[x,x]))+dropdown(t.availability,"availability",[["available",t.available],["limited",t.limited]])+'</div></div><div class="ride-grid">'+fleet.map(vehicle).join("")+'</div><p class="ride-empty" role="status" hidden>'+e(t.empty)+'</p></div><div class="ride-bikes" data-ride-panel="bikes" hidden><p>'+e(t.soon)+'</p></div></div></section>'+
+    '<section class="ride-personal-wrap"><div class="corp-wrap"><div class="ride-personal"><div class="ride-personal-img" role="presentation"></div><div><p class="corp-kicker">'+e(t.personalK)+'</p><h2>'+e(t.personal)+'</h2><p>'+e(t.personalText)+'</p></div><a class="ride-light" href="'+e(rideWhatsapp())+'" target="_blank" rel="noopener">'+e(t.message)+' →</a></div></div></section>'+
+    '<section class="corp-section ride-faq"><div class="corp-wrap ride-faq-grid"><div><p class="corp-kicker">FAQ</p><h2>'+e(t.faq)+'</h2></div><div>'+t.questions.map(q=>'<details><summary>'+e(q)+' <span aria-hidden="true">+</span></summary><p>'+e(t.answer)+' <a href="'+e(rideWhatsapp())+'" target="_blank" rel="noopener">'+e(t.ask)+' →</a></p></details>').join("")+'</div></div></section>'+
+    '<section class="v2-news v2-section"><div class="v2-wrap">'+v2Heading(h.newsletterLabel,h.newsletterTitle)+'<div class="v2-news-fields"><label><span class="sr-only">'+e(h.firstName)+'</span><input type="text" autocomplete="given-name" placeholder="'+e(h.firstName)+'"></label><label><span class="sr-only">'+e(h.lastName)+'</span><input type="text" autocomplete="family-name" placeholder="'+e(h.lastName)+'"></label><label><span class="sr-only">'+e(h.emailLabel)+'</span><input type="email" autocomplete="email" placeholder="'+e(h.emailLabel)+'"></label><button class="v2-subscribe" type="button">Subscribe</button></div><p class="v2-news-notice">'+e(h.newsletterStatus)+'</p><p class="v2-news-status" role="status" hidden>Coming soon</p></div></section>';
+}
+function bindRidePage() {
+  const tabs=[...document.querySelectorAll("[data-ride-tab]")],panels=[...document.querySelectorAll("[data-ride-panel]")];
+  tabs.forEach(tab=>tab.addEventListener("click",()=>{const selected=tab.dataset.rideTab;tabs.forEach(button=>{const active=button===tab;button.classList.toggle("active",active);button.setAttribute("aria-pressed",String(active))});panels.forEach(panel=>{panel.hidden=panel.dataset.ridePanel!==selected})}));
+  const brand=document.querySelector('[data-ride-filter="brand"]'),availability=document.querySelector('[data-ride-filter="availability"]'),cards=[...document.querySelectorAll(".ride-car")],empty=document.querySelector(".ride-empty");
+  const apply=()=>{let count=0;cards.forEach(card=>{const show=(!brand.value||card.dataset.brand===brand.value)&&(!availability.value||card.dataset.availability===availability.value);card.hidden=!show;if(show)count++});empty.hidden=count!==0};
+  brand.addEventListener("change",apply);availability.addEventListener("change",apply);
+  document.querySelector(".v2-subscribe").addEventListener("click",()=>{document.querySelector(".v2-news-status").hidden=false});
 }
