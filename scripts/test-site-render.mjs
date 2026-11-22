@@ -12,11 +12,12 @@ const registry = loadRegistry(root);
 const baseline = JSON.parse(read('scripts/fixtures/site-id-baseline.json'));
 const pilotHome = JSON.parse(read('scripts/fixtures/site-v2-home.json'));
 const pilotCorporate = JSON.parse(read('scripts/fixtures/site-v2-corporate.json'));
+const pilotStudy = JSON.parse(read('scripts/fixtures/site-v2-study.json'));
 for (const page of registry.pages) {
   const id = renderSite(root, page, 'id', { year: registry.renderYear });
   const en = renderSite(root, page, 'en', { year: registry.renderYear });
   const before = baseline.pages.find(item => item.key === page.key);
-  const isPilot = ['home', 'corporateHub'].includes(page.key);
+  const isPilot = ['home', 'corporateHub', 'study'].includes(page.key);
   if (!isPilot) {
     assert.equal(hash(id.primary), before.primarySha256, `${page.key}: approved ID primary HTML changed`);
     assert.equal(hash(id.footer), before.footerSha256, `${page.key}: ID footer changed`);
@@ -30,11 +31,11 @@ for (const page of registry.pages) {
     assert.equal(source.includes('href="/css/v2.css?'), isPilot, `${page.key}/${locale}: stylesheet scope`);
     if (isPilot) {
       for (const name of ['header', 'primary', 'footer']) {
-        const expected = page.key === 'home' ? pilotHome : pilotCorporate;
+        const expected = page.key === 'home' ? pilotHome : page.key === 'study' ? pilotStudy : pilotCorporate;
         assert.equal(hash(rendered[name]), expected[locale][name], `${page.key}/${locale}: V.2 ${name} changed`);
       }
       assert.match(rendered.header, /class="v2-announcement"/);
-      assert.match(rendered.header, page.key === 'home' ? /data-wa-key="general"/ : /data-wa-key="corporate"/);
+      assert.match(rendered.header, page.key === 'home' ? /data-wa-key="general"/ : page.key === 'study' ? /data-wa-key="study"/ : /data-wa-key="corporate"/);
       assert.match(rendered.primary, /fetchpriority="high"/);
     }
     if (page.key === 'home') {
@@ -52,6 +53,12 @@ for (const page of registry.pages) {
       assert.equal((rendered.primary.match(/data-corporate-group=/g) || []).length, 4);
       assert.match(rendered.primary, /corporate-hero-desktop.webp/);
       assert.equal((rendered.primary.match(/class="corp-package"/g) || []).length, 14);
+      assert.doesNotMatch(rendered.primary, /<form\b/);
+    }
+    if (page.key === 'study') {
+      assert.equal((rendered.primary.match(/data-study-open=/g) || []).length, 6);
+      assert.match(rendered.primary, /study-hero-desktop.webp/);
+      assert.match(rendered.primary, /class="study-dialog"/);
       assert.doesNotMatch(rendered.primary, /<form\b/);
     }
     const normalizeSerialization = value => normalizeText(value).replace(/^[ \t]+$/gm, '').trim();

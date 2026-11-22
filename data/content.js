@@ -517,6 +517,25 @@ window.CT_CONTENT = {
   }
 };
 
+window.CT_STUDY_V2 = {
+  id: {
+    hero: "Belajar melampaui ruang kelas", lead: "Perjalanan edukasi melalui budaya, alam, keberlanjutan, dan dampak sosial.",
+    intro: "Perjalanan belajar yang lebih mendalam", introBody: "Study tour bermakna yang memadukan pendidikan, pertukaran budaya, dan pengalaman langsung.",
+    kicker: "Dirancang untuk belajar", title: "Perjalanan Edukasi dengan Budaya, Alam, Keberlanjutan, dan Dampak Sosial.",
+    pillars: [["Budaya & Warisan", "Jelajahi sejarah, tradisi, dan kearifan lokal."], ["Alam & Lingkungan", "Kenali ekosistem, keanekaragaman hayati, dan konservasi."], ["Keberlanjutan", "Pelajari praktik berkelanjutan dan solusi untuk masa depan."], ["Dampak Sosial", "Terhubung dan belajar bersama komunitas lokal."]],
+    regional: "Study Tour Regional", international: "Study Tour Internasional", view: "Lihat paket", close: "Tutup", highlights: "Sorotan perjalanan", flow: "Contoh alur", starting: "Mulai dari", per: "siswa", duration: "Durasi", includesFlight: "Belum termasuk penerbangan", inquire: "Tanyakan paket via WhatsApp",
+    cta: "Punya program pembelajaran?", ctaBody: "Mari rancang study tour Anda.", proposal: "Minta proposal"
+  },
+  en: {
+    hero: "Learn beyond the classroom", lead: "Educational journeys with culture, nature, sustainability, and social impact.",
+    intro: "A Deeper Learning Journey", introBody: "Purposeful and experiential study tours that combine education, cultural exchange, and real-world experience.",
+    kicker: "Made for learning", title: "Educational Journey with Culture, Nature, Sustainability, and Social Impact.",
+    pillars: [["Culture & Heritage", "Explore history, traditions, and local wisdom."], ["Nature & Environment", "Discover ecosystems, biodiversity, and conservation."], ["Sustainability", "Learn sustainable practices and real solutions for the future."], ["Social Impact", "Connect and learn with local communities."]],
+    regional: "Regional Study Tours", international: "International Study Tours", view: "View package", close: "Close", highlights: "Journey highlights", flow: "Sample journey", starting: "From", per: "student", duration: "Duration", includesFlight: "Flights excluded", inquire: "Enquire about this package on WhatsApp",
+    cta: "Have a learning program in mind?", ctaBody: "Let’s design your study tour.", proposal: "Request a proposal"
+  }
+};
+
 window.CT_CORPORATE_V2 = {
   id: {
     eyebrow: "Corporate Outing", hero: "Dekatkan tim Anda", lead: "Company outing dan perjalanan tim yang direncanakan dengan saksama",

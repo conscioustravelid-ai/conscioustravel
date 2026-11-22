@@ -184,6 +184,7 @@ function v2BlogLink() {
 function renderV2Header() {
   const { home, skip, ui } = content();
   const isHome = document.body.dataset.page === "home";
+  const waKey = isHome ? "general" : document.body.dataset.page === "study" ? "study" : "corporate";
   return `<a class="skip-link" href="#main-content">${escapeHtml(skip)}</a>
     <div class="v2-announcement"><a href="${escapeHtml(v2PageUrl("experiences"))}">${escapeHtml(home.announcement)} <span aria-hidden="true">→</span></a></div>
     <div class="v2-nav-bar v2-wrap">
@@ -197,7 +198,7 @@ function renderV2Header() {
         <a href="${escapeHtml(v2PageUrl("corporateHub"))}">Conscious Ride</a>
         <a id="about-menu" href="${escapeHtml(v2PageUrl("about"))}">${escapeHtml(home.nav.about)}</a>
       </nav>
-      <div class="v2-actions">${renderLanguageSwitch()}<a class="v2-button" href="${escapeHtml(whatsappUrl(isHome ? "general" : "corporate"))}" target="_blank" rel="noopener" data-wa-key="${isHome ? "general" : "corporate"}">${escapeHtml(home.plan)} <span aria-hidden="true">↗</span></a></div>
+      <div class="v2-actions">${renderLanguageSwitch()}<a class="v2-button" href="${escapeHtml(whatsappUrl(waKey))}" target="_blank" rel="noopener" data-wa-key="${waKey}">${escapeHtml(home.plan)} <span aria-hidden="true">↗</span></a></div>
       <noscript><a class="v2-menu-fallback" href="#site-footer">${escapeHtml(home.navigation)}</a></noscript>
     </div>`;
 }
@@ -229,7 +230,7 @@ function renderProductCard(product, options = {}) {
 }
 
 function renderHeader() {
-  if (["home", "corporateHub"].includes(document.body.dataset.page)) {
+  if (["home", "corporateHub", "study"].includes(document.body.dataset.page)) {
     document.getElementById("site-header").innerHTML = renderV2Header();
     return;
   }
@@ -273,7 +274,7 @@ function renderHeader() {
 }
 
 function renderFooter() {
-  if (["home", "corporateHub"].includes(document.body.dataset.page)) {
+  if (["home", "corporateHub", "study"].includes(document.body.dataset.page)) {
     document.getElementById("site-footer").innerHTML = renderV2Footer();
     return;
   }
@@ -807,34 +808,26 @@ function renderExperiences() {
 }
 
 function renderStudy() {
-  const p = content().study;
-  const e = editorialContent().study;
-  const data = CT_STATE.catalog.studyTour;
-  const products = [...data.regional, ...data.international];
-  const productsById = Object.fromEntries(products.map((product) => [product.id, product]));
-  const guideItems = products.map((product) => ({ id: product.id, name: product.name.replace(" Study Tour", ""), summary: e.destinations[product.id].intro }));
-  const renderStudyGroup = (group, title, lead, id, offset) => `<section class="study-region-heading" id="${escapeHtml(id)}"><div class="container"><p class="section-kicker">${escapeHtml(id === "regional" ? editorialContent().labels.regional : editorialContent().labels.international)}</p><h2>${escapeHtml(title)}</h2><p>${escapeHtml(lead)}</p></div></section>${group.map((product, index) => renderDestinationStory(
-    { id: product.id, name: product.name },
-    { ...e.destinations[product.id], title: product.name },
-    [productsById[product.id]],
-    PRODUCT_PAGE_IMAGES.study[product.id],
-    {
-      layout: ["standard", "reverse", "wide"][(index + offset) % 3],
-      details: e.packageDetails,
-      service: "Study Tour",
-      alt: `${product.name} educational journey`
-    }
-  )).join("")}`;
-  const hero = { ...p, title: e.heroTitle, lead: e.heroLead };
-  return `${renderHero("study", hero, { primaryHref: "#study-guide", primaryLabel: e.heroPrimary, secondaryHref: inquiryUrl("Study Tour"), secondaryLabel: content().ui.requestProposal })}
-    ${renderBreadcrumb([[content().nav.study, "/study-tour/"]])}
-    <section class="section product-page-intro"><div class="container product-page-intro-grid"><div><p class="section-kicker">Learning journey design</p><h2>${escapeHtml(e.introTitle)}</h2></div><p class="section-lead">${escapeHtml(e.introBody)}</p></div></section>
-    ${renderEditorialGuide(guideItems, e.guideTitle, e.guideLead, { id: "study-guide", kicker: editorialContent().labels.learningThemes })}
-    ${renderStudyGroup(data.regional, e.regionalTitle, e.regionalLead, "regional", 0)}
-    ${renderStudyGroup(data.international, e.internationalTitle, e.internationalLead, "international", 1)}
-    <section class="section editorial-proof-section study-pillars-section"><div class="container editorial-proof-grid"><div><p class="section-kicker">${escapeHtml(editorialContent().labels.learningThemes)}</p><h2>${escapeHtml(e.pillarsTitle)}</h2><p>${escapeHtml(e.pillarsLead)}</p></div>${renderFeatureList(e.pillars)}</div></section>
-    <section class="section study-support-section"><div class="container study-support-grid"><div><p class="section-kicker">Coordination</p><h2>${escapeHtml(e.supportTitle)}</h2><p>${escapeHtml(e.supportBody)}</p></div>${renderEditorialList(p.includeTitle, p.include, "study-inclusion-list")}</div></section>
-    ${renderProductClosingCta(e.closingTitle, e.closingBody, { service: "Study Tour", waKey: "study", primaryLabel: e.closingPrimary, secondaryLabel: e.closingSecondary })}`;
+  const p = window.CT_STUDY_V2[CT_STATE.language], home = content().home;
+  const editorial = editorialContent().study, catalog = CT_STATE.catalog.studyTour;
+  const pillars = ["/assets/images/study-tour/bali-destination.webp", "/assets/images/study-tour/bandung-destination.webp", "/assets/images/corporate/csr-program/mangrove-restoration.webp", "/assets/images/study-tour/yogyakarta-destination.webp"];
+  const card = product => {
+    const details = editorial.packageDetails[product.id], name = productCopy(product)[0], price = formatCurrency(product.price);
+    const extra = product.price.excludesFlight ? `<p>${escapeHtml(p.includesFlight)}</p>` : "";
+    const highlights = details.highlights.map(item => `<li>${escapeHtml(item)}</li>`).join("");
+    const flow = details.flow.map(item => `<li>${escapeHtml(item)}</li>`).join("");
+    return `<article class="corp-package study-package" id="${escapeHtml(product.id)}" tabindex="-1"><img src="${escapeHtml(PRODUCT_PAGE_IMAGES.study[product.id])}" alt="" width="800" height="500" loading="lazy"><div class="corp-package-body"><h3>${escapeHtml(name)}</h3><p class="corp-price">${escapeHtml(p.starting)} <strong>${escapeHtml(price)}</strong> / ${escapeHtml(p.per)}</p><p class="corp-meta">${escapeHtml(p.duration)} · ${escapeHtml(product.duration)}</p>${extra}<div class="corp-inclusions"><strong>${escapeHtml(p.highlights)}</strong><ul>${highlights}</ul></div><button class="corp-button study-open" type="button" data-study-open="${escapeHtml(product.id)}">${escapeHtml(p.view)} <span aria-hidden="true">→</span></button><template><h2>${escapeHtml(name)}</h2><p>${escapeHtml(details.positioning)}</p><p>${escapeHtml(p.starting)} <strong>${escapeHtml(price)}</strong> / ${escapeHtml(p.per)} · ${escapeHtml(product.duration)}</p>${extra}<h3>${escapeHtml(p.highlights)}</h3><ul>${highlights}</ul><h3>${escapeHtml(p.flow)}</h3><ul>${flow}</ul></template></div></article>`;
+  };
+  const group = (products, title, id) => `<section class="corp-packages corp-section" id="${id}"><div class="corp-wrap"><h2>${escapeHtml(title)}</h2><div class="study-filters" aria-label="${escapeHtml(title)}">${products.map(product => `<a href="#${escapeHtml(product.id)}">${escapeHtml(productCopy(product)[0].replace(" Study Tour", ""))}</a>`).join("")}</div><div class="study-package-grid">${products.map(card).join("")}</div></div></section>`;
+  return `<section class="corp-hero study-hero"><picture><source media="(max-width: 600px)" srcset="/assets/images/v2/study-hero-mobile.webp"><img src="/assets/images/v2/study-hero-desktop.webp" alt="" width="1500" height="750" fetchpriority="high"></picture><div class="corp-wrap corp-hero-copy"><p>Study Tour</p><h1>${escapeHtml(p.hero)}</h1><p>${escapeHtml(p.lead)}</p></div></section>
+    <section class="corp-intro"><div class="corp-wrap"><h2>${escapeHtml(p.intro)}</h2><p>${escapeHtml(p.introBody)}</p></div></section>
+    <section class="study-pillars corp-section" id="study-guide"><div class="corp-wrap"><div class="corp-centered"><p class="corp-kicker">${escapeHtml(p.kicker)}</p><h2>${escapeHtml(p.title)}</h2></div><div class="study-pillar-grid">${p.pillars.map(([title, body], index) => `<article><img src="${pillars[index]}" alt="" width="800" height="450" loading="lazy"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(body)}</p></article>`).join("")}</div></div></section>
+    ${group(catalog.regional, p.regional, "regional")}
+    ${group(catalog.international, p.international, "international")}
+    <section class="corp-cta"><div class="corp-wrap"><div><h2>${escapeHtml(p.cta)}</h2><p>${escapeHtml(p.ctaBody)}</p></div><a class="corp-button-light" href="${escapeHtml(inquiryUrl("Study Tour"))}">${escapeHtml(p.proposal)} →</a></div></section>
+    <section class="v2-news v2-section"><div class="v2-wrap">${v2Heading(home.newsletterLabel, home.newsletterTitle)}<div class="v2-news-fields"><label><span class="sr-only">${escapeHtml(home.firstName)}</span><input type="text" autocomplete="given-name" placeholder="${escapeHtml(home.firstName)}"></label><label><span class="sr-only">${escapeHtml(home.lastName)}</span><input type="text" autocomplete="family-name" placeholder="${escapeHtml(home.lastName)}"></label><label><span class="sr-only">${escapeHtml(home.emailLabel)}</span><input type="email" autocomplete="email" placeholder="${escapeHtml(home.emailLabel)}"></label><button class="v2-subscribe" type="button">Subscribe</button></div><p class="v2-news-notice">${escapeHtml(home.newsletterStatus)}</p><p class="v2-news-status" role="status" hidden>Coming soon</p></div></section>
+    <section class="v2-faq v2-section"><div class="v2-wrap v2-faq-content"><h2 class="v2-heading">FAQ</h2><a class="v2-faq-button" href="${escapeHtml(v2PageUrl("faq"))}">${escapeHtml(home.faqLink)} →</a></div></section>
+    <dialog class="study-dialog" aria-label="${escapeHtml(p.view)}"><button type="button" class="study-dialog-close" aria-label="${escapeHtml(p.close)}">×</button><div class="study-dialog-content"></div><a class="corp-button study-dialog-wa" href="${escapeHtml(whatsappUrl("study"))}" target="_blank" rel="noopener" data-wa-key="study">${escapeHtml(p.inquire)} →</a></dialog>`;
 }
 
 function renderSailing() {
@@ -1078,6 +1071,30 @@ function bindCorporatePage() {
   };
   buttons.forEach(button => button.addEventListener("click", () => select(button.dataset.corporateFilter)));
   select(buttons[0].dataset.corporateFilter);
+  document.querySelector(".v2-subscribe").addEventListener("click", () => {
+    document.querySelector(".v2-news-status").hidden = false;
+  });
+}
+
+function bindStudyPage() {
+  const dialog = document.querySelector(".study-dialog");
+  const contentNode = dialog.querySelector(".study-dialog-content");
+  const whatsapp = dialog.querySelector(".study-dialog-wa");
+  let opener = null;
+  document.querySelectorAll("[data-study-open]").forEach(button => {
+    button.addEventListener("click", () => {
+      opener = button;
+      const card = button.closest(".study-package");
+      contentNode.replaceChildren(card.querySelector("template").content.cloneNode(true));
+      const name = card.querySelector("h3").textContent;
+      dialog.setAttribute("aria-label", name);
+      const message = CT_STATE.language === "id" ? ` Saya tertarik dengan ${name}.` : ` I am interested in ${name}.`;
+      whatsapp.href = whatsappUrl("study") + encodeURIComponent(message);
+      dialog.showModal();
+    });
+  });
+  dialog.querySelector(".study-dialog-close").addEventListener("click", () => dialog.close());
+  dialog.addEventListener("close", () => opener?.focus());
   document.querySelector(".v2-subscribe").addEventListener("click", () => {
     document.querySelector(".v2-news-status").hidden = false;
   });
@@ -1452,6 +1469,7 @@ function initializeUi({ render = true } = {}) {
     bindHomeInteractions();
   }
   if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "corporateHub") bindCorporatePage();
+  if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "study") bindStudyPage();
   bindClientCarousel();
   bindLanguageToggle();
   bindWhatsappTracking();

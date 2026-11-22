@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "inputFingerprint": "3114b393f793eccc75ad403377353880bc542208fea25f951a97aa88febb1fe9",
+  "inputFingerprint": "5e5cc9e68dfe4b421492dd4b7a406a392457d55cf5c33dacb02b7e6fe14baf77",
   "ownedEnFiles": [
     "en/index.html",
     "en/corporate-packages/index.html",
@@ -494,14 +494,14 @@
       "page": "study",
       "locale": "id",
       "path": "/study-tour/",
-      "fingerprint": "84922850b2069e402bf578cb2d3664dbd123195ac75994dcafa8a6505215d81b"
+      "fingerprint": "10c97985842bc7599704ca2a384136b08b684ed586906f8999908f8f98cb86f4"
     },
     {
       "file": "en/study-tour/index.html",
       "page": "study",
       "locale": "en",
       "path": "/en/study-tour/",
-      "fingerprint": "da5592744b3c3b8ca33f2bf1e50cf4bf85f5c12a4ae6a8287a4859dcaad37813"
+      "fingerprint": "f7d5904f693ca7d65a671f00aa1db5e1bc6e7d28eab218f5e45228e9026838bd"
     },
     {
       "file": "sailing-package/index.html",
