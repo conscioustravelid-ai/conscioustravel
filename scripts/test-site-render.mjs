@@ -39,6 +39,11 @@ for (const page of registry.pages) {
         assert.equal(hash(rendered[name]), expected[locale][name], `${page.key}/${locale}: V.2 ${name} changed`);
       }
       assert.match(rendered.header, /class="v2-announcement"/);
+      assert.match(rendered.header, /aria-controls="about-menu" aria-expanded="false"|aria-expanded="false" aria-controls="about-menu"/);
+      assert.match(rendered.header, /class="nav-dropdown-menu" id="about-menu"/);
+      if (locale === 'id') assert.match(rendered.header, /href="\/blog\/">Blog<\/a>/);
+      else assert.match(rendered.header, /Blog \(Coming soon\)/);
+
       assert.match(rendered.header, ['home','about'].includes(page.key) ? /data-wa-key="general"/ : page.key === 'study' ? /data-wa-key="study"/ : page.key === 'csr' ? /data-wa-key="csr"/ : /data-wa-key="corporate"/);
       assert.match(rendered.primary, /fetchpriority="high"/);
     }

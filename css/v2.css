@@ -522,3 +522,8 @@ body[data-ui-version="v2"] .v2-faq-button:hover { text-decoration: underline; te
 body[data-ui-version="v2"] .v2-footer-brand img { filter: grayscale(1) contrast(3); mix-blend-mode: screen; }
 @media (max-width: 800px) { body[data-ui-version="v2"] .v2-news-fields { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { body[data-ui-version="v2"] .v2-news-fields { grid-template-columns: 1fr; gap: 12px; } body[data-ui-version="v2"] .v2-news-fields .v2-subscribe { width: 100%; } }
+
+/* Our Story dropdown in the V2 navigation */
+body[data-ui-version="v2"]:not([data-page="home"]) #site-header .v2-nav .nav-dropdown-toggle{color:#1e3a2b;cursor:pointer}
+body[data-ui-version="v2"] .v2-nav .nav-dropdown-toggle{cursor:pointer}
+body[data-ui-version="v2"] .v2-nav .v2-dropdown-unavailable{display:block;min-height:44px;padding:10px 14px;color:#52675a;font-size:.92rem}

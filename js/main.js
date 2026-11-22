@@ -196,7 +196,7 @@ function renderV2Header() {
         <a id="experiences-menu" href="${escapeHtml(v2PageUrl("sport"))}">Sports Trip</a>
         ${v2PageLink("csr")}
         <a href="${escapeHtml(v2PageUrl("ride"))}">Conscious Ride</a>
-        <a id="about-menu" href="${escapeHtml(v2PageUrl("about"))}">${escapeHtml(home.nav.about)}</a>
+        <div class="nav-dropdown"><button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-controls="about-menu">${escapeHtml(home.nav.about)} <span class="chevron" aria-hidden="true"></span></button><div class="nav-dropdown-menu" id="about-menu">${v2PageLink("about")}${CT_STATE.language === "en" ? '<span class="v2-dropdown-unavailable" aria-disabled="true">Blog (Coming soon)</span>' : '<a href="/blog/">Blog</a>'}</div></div>
       </nav>
       <div class="v2-actions">${renderLanguageSwitch()}<a class="v2-button" href="${escapeHtml(whatsappUrl(waKey))}" target="_blank" rel="noopener" data-wa-key="${waKey}">${escapeHtml(home.plan)} <span aria-hidden="true">↗</span></a></div>
       <noscript><a class="v2-menu-fallback" href="#site-footer">${escapeHtml(home.navigation)}</a></noscript>
