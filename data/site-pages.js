@@ -549,6 +549,48 @@ window.CT_SITE_PAGES = {
         }
       },
       "priority": "0.8"
+    },
+    {
+      "key": "sport",
+      "source": "sport-trips/index.html",
+      "paths": {
+        "id": "/sport-trips/",
+        "en": "/en/sport-trips/"
+      },
+      "available": {
+        "id": true,
+        "en": true
+      },
+      "lastmod": {
+        "id": "2026-11-22",
+        "en": "2026-11-22"
+      },
+      "metadata": {
+        "id": {
+          "title": "Sport Trips | Conscious Travel Indonesia",
+          "description": "Jelajahi inspirasi perjalanan olahraga bersama Conscious Travel.",
+          "ogTitle": "Sport Trips | Conscious Travel",
+          "ogDescription": "Inspirasi perjalanan olahraga dan komunitas.",
+          "ogImage": "https://conscioustravel.id/assets/images/v2/sport-hero.png"
+        },
+        "en": {
+          "title": "Sport Trips and Experiences | Conscious Travel",
+          "description": "Explore sport travel inspiration and shared experiences with Conscious Travel.",
+          "ogTitle": "Sport Trips | Conscious Travel",
+          "ogDescription": "Sport travel inspiration and community.",
+          "ogImage": "https://conscioustravel.id/assets/images/v2/sport-hero.png"
+        }
+      },
+      "productionApproval": {
+        "en": {
+          "copy": false,
+          "metadata": false,
+          "fingerprint": null,
+          "reviewer": null,
+          "approvedAt": null
+        }
+      },
+      "priority": "0.8"
     }
   ]
 };

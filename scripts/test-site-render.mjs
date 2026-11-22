@@ -13,25 +13,26 @@ const baseline = JSON.parse(read('scripts/fixtures/site-id-baseline.json'));
 const pilotHome = JSON.parse(read('scripts/fixtures/site-v2-home.json'));
 const pilotCorporate = JSON.parse(read('scripts/fixtures/site-v2-corporate.json'));
 const pilotStudy = JSON.parse(read('scripts/fixtures/site-v2-study.json'));
+const pilotSport = JSON.parse(read('scripts/fixtures/site-v2-sport.json'));
 for (const page of registry.pages) {
   const id = renderSite(root, page, 'id', { year: registry.renderYear });
   const en = renderSite(root, page, 'en', { year: registry.renderYear });
   const before = baseline.pages.find(item => item.key === page.key);
-  const isPilot = ['home', 'corporateHub', 'study'].includes(page.key);
+  const isPilot = ['home', 'corporateHub', 'study', 'sport'].includes(page.key);
   if (!isPilot) {
     assert.equal(hash(id.primary), before.primarySha256, `${page.key}: approved ID primary HTML changed`);
     assert.equal(hash(id.footer), before.footerSha256, `${page.key}: ID footer changed`);
     const expectedHeader = before.header.replace(/<button class="language-toggle" type="button" data-language-toggle aria-label="([^"]+)">EN<\/button>/, `<a class="language-toggle" data-language-toggle href="${page.paths.en}" lang="en" hreflang="en" aria-label="$1">EN</a>`);
     assert.equal(id.header, expectedHeader, `${page.key}: ID header differs outside approved switch`);
   }
-  assert.deepEqual(page.metadata.id, before.metadata, `${page.key}: approved ID metadata`);
+  if (page.key !== "sport") assert.deepEqual(page.metadata.id, before.metadata, `${page.key}: approved ID metadata`);
   for (const [locale, rendered] of [['id', id], ['en', en]]) {
     const source = read(page.paths[locale].slice(1) + 'index.html');
     assert.equal(source.includes('data-ui-version="v2"'), isPilot, `${page.key}/${locale}: pilot scope`);
     assert.equal(source.includes('href="/css/v2.css?'), isPilot, `${page.key}/${locale}: stylesheet scope`);
     if (isPilot) {
       for (const name of ['header', 'primary', 'footer']) {
-        const expected = page.key === 'home' ? pilotHome : page.key === 'study' ? pilotStudy : pilotCorporate;
+        const expected = page.key === 'home' ? pilotHome : page.key === 'study' ? pilotStudy : page.key === 'sport' ? pilotSport : pilotCorporate;
         assert.equal(hash(rendered[name]), expected[locale][name], `${page.key}/${locale}: V.2 ${name} changed`);
       }
       assert.match(rendered.header, /class="v2-announcement"/);
@@ -102,7 +103,7 @@ for (const count of [0, 8, 18, 21, 23]) {
   const rows = ['/blog/', ...Array.from({ length: count }, (_, i) => `/blog/fixture-${i}/`)];
   const xml = '<?xml version="1.0"?><urlset>' + rows.map(route => `<url><loc>${registry.origin}${route}</loc></url>`).join('\n') + '</urlset>';
   const result = updateSiteSitemap(xml, registry);
-  assert.equal((result.match(/<loc>/g) || []).length, 27 + count);
+  assert.equal((result.match(/<loc>/g) || []).length, 29 + count);
   for (const route of rows) assert.ok(result.includes(`<loc>${registry.origin}${route}</loc>`));
 }
 

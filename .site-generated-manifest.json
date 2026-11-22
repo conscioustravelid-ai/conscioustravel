@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "inputFingerprint": "5e5cc9e68dfe4b421492dd4b7a406a392457d55cf5c33dacb02b7e6fe14baf77",
+  "inputFingerprint": "10257b6830bd5e91ec40d7fd6b4fec8fbabde4240ed4628a8eed2779ce540e8c",
   "ownedEnFiles": [
     "en/index.html",
     "en/corporate-packages/index.html",
@@ -14,7 +14,8 @@
     "en/about/index.html",
     "en/impact/index.html",
     "en/faq/index.html",
-    "en/contact/index.html"
+    "en/contact/index.html",
+    "en/sport-trips/index.html"
   ],
   "anchors": {
     "/": [
@@ -388,6 +389,30 @@
       "form-error",
       "form-submit-btn",
       "form-success"
+    ],
+    "/sport-trips/": [
+      "main-content",
+      "site-header",
+      "page-root",
+      "site-footer",
+      "primary-navigation",
+      "corporate-menu",
+      "experiences-menu",
+      "about-menu",
+      "featured",
+      "upcoming"
+    ],
+    "/en/sport-trips/": [
+      "main-content",
+      "site-header",
+      "page-root",
+      "site-footer",
+      "primary-navigation",
+      "corporate-menu",
+      "experiences-menu",
+      "about-menu",
+      "featured",
+      "upcoming"
     ]
   },
   "pages": [
@@ -396,28 +421,28 @@
       "page": "home",
       "locale": "id",
       "path": "/",
-      "fingerprint": "c76f7716a18da44fad720f373d0fc406f5806198a95627e8fdfaef871dd5b065"
+      "fingerprint": "bd8a5b9238af1cae12f4584b1f74dfbd3a0212adfcbad1a63011e2472960a76d"
     },
     {
       "file": "en/index.html",
       "page": "home",
       "locale": "en",
       "path": "/en/",
-      "fingerprint": "3655cf8a3ecd35d2a37cdb3a4a19de94aff1f9c76b072b7087a7209c7a1e1215"
+      "fingerprint": "4a935cc52f4da03e176ddad9a07b419c43c0b170e549c4a69910a815c1b79970"
     },
     {
       "file": "corporate-packages/index.html",
       "page": "corporateHub",
       "locale": "id",
       "path": "/corporate-packages/",
-      "fingerprint": "e53f269b2b1b04fd6e2e0d77db8dfaf4d516503660075f7812fab9d4bcefb82d"
+      "fingerprint": "742536bed478f7050ff1742365302c783423906b3b98fe949bafe789d5d2749b"
     },
     {
       "file": "en/corporate-packages/index.html",
       "page": "corporateHub",
       "locale": "en",
       "path": "/en/corporate-packages/",
-      "fingerprint": "f4744c9e249af3fa304eb3087026621e3f571a5a8f233a5b20040900b063e925"
+      "fingerprint": "66932f1c3ddafeeba6fb80dd7adb5f76e16d7f45b4ca4373f75f8dafbbe11c2a"
     },
     {
       "file": "corporate-packages/indonesia-region/index.html",
@@ -494,14 +519,14 @@
       "page": "study",
       "locale": "id",
       "path": "/study-tour/",
-      "fingerprint": "10c97985842bc7599704ca2a384136b08b684ed586906f8999908f8f98cb86f4"
+      "fingerprint": "5e042ff96fe8e79ea67cec607ebed3dd4b11f50c47bc77f36d07df3e8b0d03d4"
     },
     {
       "file": "en/study-tour/index.html",
       "page": "study",
       "locale": "en",
       "path": "/en/study-tour/",
-      "fingerprint": "f7d5904f693ca7d65a671f00aa1db5e1bc6e7d28eab218f5e45228e9026838bd"
+      "fingerprint": "91e04ed2a872826ce15ca59d98ba40fbda31a03e3cd67fa102e3750d65de693e"
     },
     {
       "file": "sailing-package/index.html",
@@ -572,6 +597,20 @@
       "locale": "en",
       "path": "/en/contact/",
       "fingerprint": "3f056bd9785061d9b3ee96fa882631755b702ada32083579ea33d330de811479"
+    },
+    {
+      "file": "sport-trips/index.html",
+      "page": "sport",
+      "locale": "id",
+      "path": "/sport-trips/",
+      "fingerprint": "c6e52b00af75dccdd856defde6aed74f3b1560fcd55596ffe3f6bf24497a2f11"
+    },
+    {
+      "file": "en/sport-trips/index.html",
+      "page": "sport",
+      "locale": "en",
+      "path": "/en/sport-trips/",
+      "fingerprint": "b1a62358273ecec982ee2a8607a12dce0263bf05828e4109ecd274873c288d30"
     }
   ]
 }

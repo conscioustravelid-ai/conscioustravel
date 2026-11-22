@@ -193,7 +193,7 @@ function renderV2Header() {
       <nav class="v2-nav" id="primary-navigation" aria-label="${escapeHtml(home.navigation)}">
         <a id="corporate-menu" href="${escapeHtml(v2PageUrl("corporateHub"))}">${escapeHtml(home.nav.corporateHub)}</a>
         ${v2PageLink("study")}
-        <a id="experiences-menu" href="${escapeHtml(v2PageUrl("corporateHub"))}">Sports Trip</a>
+        <a id="experiences-menu" href="${escapeHtml(v2PageUrl("sport"))}">Sports Trip</a>
         ${v2PageLink("csr")}
         <a href="${escapeHtml(v2PageUrl("corporateHub"))}">Conscious Ride</a>
         <a id="about-menu" href="${escapeHtml(v2PageUrl("about"))}">${escapeHtml(home.nav.about)}</a>
@@ -230,7 +230,7 @@ function renderProductCard(product, options = {}) {
 }
 
 function renderHeader() {
-  if (["home", "corporateHub", "study"].includes(document.body.dataset.page)) {
+  if (["home", "corporateHub", "study", "sport"].includes(document.body.dataset.page)) {
     document.getElementById("site-header").innerHTML = renderV2Header();
     return;
   }
@@ -274,7 +274,7 @@ function renderHeader() {
 }
 
 function renderFooter() {
-  if (["home", "corporateHub", "study"].includes(document.body.dataset.page)) {
+  if (["home", "corporateHub", "study", "sport"].includes(document.body.dataset.page)) {
     document.getElementById("site-footer").innerHTML = renderV2Footer();
     return;
   }
@@ -929,6 +929,7 @@ function renderPage() {
     event: renderEvent,
     experiences: renderExperiences,
     study: renderStudy,
+    sport: renderSport,
     sailing: renderSailing,
     impact: renderImpact,
     about: renderAbout,
@@ -1470,6 +1471,7 @@ function initializeUi({ render = true } = {}) {
   }
   if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "corporateHub") bindCorporatePage();
   if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "study") bindStudyPage();
+  if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "sport") bindSportPage();
   bindClientCarousel();
   bindLanguageToggle();
   bindWhatsappTracking();
@@ -1502,3 +1504,34 @@ async function initializeSite() {
 }
 
 document.addEventListener("DOMContentLoaded", initializeSite);
+
+
+function renderSport() {
+  const en=CT_STATE.language==="en", h=content().home;
+  const t=en?{hero:"Travel for the moments that move you.",lead:"Experience iconic sporting events, great destinations and a community that shares your passion.",benefits:["World-Class Sporting Events","Seamless Travel & Logistics","Like-Minded Sport Enthusiasts","Responsible & Meaningful Travel"],featured:"Featured Sport Trips",all:"View All Sport Trips",note:"Preview examples only — dates, prices and availability have not been confirmed.",from:"From",unit:"pax",people:"travellers",why:"More Than Just a Sport Trip.",whyText:"A travel experience designed for sport lovers — combining world-class events, community, and meaningful travel.",whyK:"Why travel with us",reasons:["Access to iconic sporting events","Curated itineraries & local experiences","Connect with like-minded sport enthusiasts","Travel responsibly & support local communities"],calendar:"Sport trip calendar",upcoming:"Upcoming Sport Trips",galleryK:"Travel gallery",gallery:"Moments from Our Sport Trips",included:"What's included",inclusions:["Accommodation","Event tickets","Transportation","Sport activities","Trip leader & on-ground support"],includedNote:"Inclusions depend on the confirmed package.",cta:"Ready for Your Next Sport Trip?",ctaText:"Join our next sport trip and experience world-class events with a great community.",explore:"Explore Sport Trips",close:"Close",modal:"This is sample content for design review. Dates, prices, inclusions and availability are not confirmed.",details:"Example trip details"}:
+  {hero:"Perjalanan untuk momen yang menggerakkan Anda.",lead:"Nikmati ajang olahraga, destinasi baru, dan komunitas dengan semangat yang sama.",benefits:["Ajang Olahraga Kelas Dunia","Perjalanan & Logistik Praktis","Komunitas Pecinta Olahraga","Perjalanan yang Bermakna"],featured:"Sport Trips Pilihan",all:"Lihat Semua Sport Trips",note:"Contoh untuk preview — tanggal, harga, dan ketersediaan belum dikonfirmasi.",from:"Mulai dari",unit:"orang",people:"peserta",why:"Lebih dari Sekadar Sport Trip.",whyText:"Pengalaman perjalanan bagi pencinta olahraga yang memadukan ajang dunia, komunitas, dan perjalanan bermakna.",whyK:"Mengapa bersama kami",reasons:["Kesempatan menikmati ajang olahraga ikonis","Itinerary dan pengalaman lokal yang dikurasi","Bertemu komunitas pecinta olahraga","Bepergian dengan bertanggung jawab"],calendar:"Kalender sport trip",upcoming:"Sport Trips Mendatang",galleryK:"Galeri perjalanan",gallery:"Momen dalam Sport Trips Kami",included:"Yang dapat disertakan",inclusions:["Akomodasi","Tiket acara","Transportasi","Aktivitas olahraga","Trip leader & dukungan lapangan"],includedNote:"Fasilitas mengikuti paket yang telah dikonfirmasi.",cta:"Siap untuk Sport Trip Berikutnya?",ctaText:"Jelajahi perjalanan olahraga bersama komunitas yang memiliki semangat yang sama.",explore:"Jelajahi Sport Trips",close:"Tutup",modal:"Ini adalah contoh untuk review desain. Tanggal, harga, fasilitas, dan ketersediaan belum dikonfirmasi.",details:"Detail contoh perjalanan"};
+  const images=["/assets/images/v2/sport-hero.png","/assets/images/v2/experiences-card.webp","/assets/images/home/experiences-home-outdoor.webp"];
+  const trips=[["F1","F1 Singapore Grand Prix","26 – 29 Sep 2027","8 – 16","Rp27,500,000",en?"Experience the excitement of Formula 1 in Singapore.":"Rasakan keseruan Formula 1 di Singapura."],["Tennis","Wimbledon","28 Jun – 6 Jul 2027","8 – 14","Rp49,500,000",en?"Discover the atmosphere of Wimbledon and the UK.":"Nikmati suasana Wimbledon dan perjalanan di Inggris."],["Padel","Bali Padel Retreat","12 – 16 Mar 2027","10 – 16","Rp9,950,000",en?"A sport and wellness getaway in Bali.":"Perjalanan olahraga dan wellness di Bali."]];
+  const upcoming=[["F1","F1 Abu Dhabi","3 – 7 Dec 2027"],["Tennis","French Open","23 May – 6 Jun 2027"],["Tennis","US Open","30 Aug – 12 Sep 2027"],["Padel","Padel Madrid Retreat","10 – 14 Apr 2027"]];
+  const e=escapeHtml, pic=(src,label)=>'<div class="sport-image"><img src="'+src+'" alt="" loading="lazy"><span>'+e(label)+'</span></div>';
+  const cards=trips.map((p,i)=>'<article class="sport-card">'+pic(images[i],p[0])+'<div class="sport-card-body"><h3>'+e(p[1])+'</h3><p class="sport-meta">▣ &nbsp;'+e(p[2])+' &nbsp; | &nbsp; ♙ '+e(p[3])+' '+e(t.people)+'</p><p>'+e(p[5])+'</p><div class="sport-card-bottom"><p>'+e(t.from)+'<br><strong>'+e(p[4])+'</strong> / '+e(t.unit)+'</p><button class="sport-detail" type="button" data-sport-name="'+e(p[1])+'" aria-label="'+e(t.details)+': '+e(p[1])+'">→</button></div></div></article>').join("");
+  const listing=upcoming.map((p,i)=>'<article class="sport-card">'+pic(images[i%3],p[0])+'<div class="sport-card-body"><h3>'+e(p[1])+'</h3><p>▣ &nbsp;'+e(p[2])+'</p></div></article>').join("");
+  const pill=(title,body)=>'<div class="corp-centered"><p class="corp-kicker">'+e(title)+'</p><h2>'+e(body)+'</h2></div>';
+  return '<section class="corp-hero sport-hero"><picture><img src="/assets/images/v2/sport-hero.png" alt="" width="1512" height="758" fetchpriority="high"></picture><div class="corp-wrap corp-hero-copy"><p>Sport Trips</p><h1>'+e(t.hero)+'</h1><p>'+e(t.lead)+'</p><a class="corp-button-light" href="#featured">'+e(t.explore)+' →</a></div></section>'+
+    '<section class="sport-benefits"><div class="corp-wrap">'+t.benefits.map((p,i)=>'<p><span aria-hidden="true">'+["♜","✈","♧","♧"][i]+'</span>'+e(p)+'</p>').join("")+'</div></section>'+
+    '<section class="corp-section sport-section" id="featured"><div class="corp-wrap"><div class="sport-heading"><h2>'+e(t.featured)+'</h2><a href="#upcoming">'+e(t.all)+' →</a></div><p class="sport-demo" role="note">'+e(t.note)+'</p><div class="sport-cards">'+cards+'</div></div></section>'+
+    '<section class="corp-section sport-why"><div class="corp-wrap sport-why-grid"><img src="/assets/images/v2/experiences-card.webp" alt="" loading="lazy"><div><p class="corp-kicker">'+e(t.whyK)+'</p><h2>'+e(t.why)+'</h2><p>'+e(t.whyText)+'</p><ul>'+t.reasons.map(p=>'<li>✓ &nbsp; '+e(p)+'</li>').join("")+'</ul></div></div></section>'+
+    '<section class="corp-section sport-section" id="upcoming"><div class="corp-wrap">'+pill(t.calendar,t.upcoming)+'<p class="sport-demo" role="note">'+e(t.note)+'</p><div class="sport-upcoming">'+listing+'</div></div></section>'+
+    '<section class="corp-section sport-section"><div class="corp-wrap">'+pill(t.galleryK,t.gallery)+'<div class="sport-gallery">'+[images[0],images[1],images[2],"/assets/images/group-dinner-party.webp","/assets/images/games-in-nature.webp"].map(src=>'<img src="'+src+'" alt="" loading="lazy">').join("")+'</div><div class="corp-centered sport-included"><p class="corp-kicker">'+e(t.included)+'</p><div>'+t.inclusions.map((p,i)=>'<p><span aria-hidden="true">'+["♧","◇","▣","⚑","✓"][i]+'</span>'+e(p)+'</p>').join("")+'</div><small>'+e(t.includedNote)+'</small></div></div></section>'+
+    '<section class="corp-cta"><div class="corp-wrap"><div><h2>'+e(t.cta)+'</h2><p>'+e(t.ctaText)+'</p></div><a class="corp-button-light" href="#featured">'+e(t.explore)+' →</a></div></section>'+
+    '<section class="v2-news v2-section"><div class="v2-wrap">'+v2Heading(h.newsletterLabel,h.newsletterTitle)+'<div class="v2-news-fields"><label><span class="sr-only">'+e(h.firstName)+'</span><input type="text" autocomplete="given-name" placeholder="'+e(h.firstName)+'"></label><label><span class="sr-only">'+e(h.lastName)+'</span><input type="text" autocomplete="family-name" placeholder="'+e(h.lastName)+'"></label><label><span class="sr-only">'+e(h.emailLabel)+'</span><input type="email" autocomplete="email" placeholder="'+e(h.emailLabel)+'"></label><button class="v2-subscribe" type="button">Subscribe</button></div><p class="v2-news-notice">'+e(h.newsletterStatus)+'</p><p class="v2-news-status" role="status" hidden>Coming soon</p></div></section>'+
+    '<section class="v2-faq v2-section"><div class="v2-wrap v2-faq-content"><h2 class="v2-heading">FAQ</h2><a class="v2-faq-button" href="'+e(v2PageUrl("faq"))+'">'+e(h.faqLink)+' →</a></div></section>'+
+    '<dialog class="sport-dialog" aria-label="'+e(t.details)+'"><button class="sport-close" type="button" aria-label="'+e(t.close)+'">×</button><h2></h2><p>'+e(t.modal)+'</p></dialog>';
+}
+function bindSportPage() {
+  const dialog=document.querySelector(".sport-dialog");let opener;
+  document.querySelectorAll(".sport-detail").forEach(button=>button.addEventListener("click",()=>{opener=button;dialog.querySelector("h2").textContent=button.dataset.sportName;dialog.showModal()}));
+  dialog.querySelector(".sport-close").addEventListener("click",()=>dialog.close());
+  dialog.addEventListener("close",()=>opener?.focus());
+  document.querySelector(".v2-subscribe").addEventListener("click",()=>{document.querySelector(".v2-news-status").hidden=false});
+}

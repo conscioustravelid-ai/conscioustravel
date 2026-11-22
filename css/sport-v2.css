@@ -1,0 +1,41 @@
+
+body[data-page="sport"] {background:#fbf6ec;color:#1e3a2b}
+body[data-page="sport"] .sport-section {background:#fbf6ec}
+body[data-page="sport"] .sport-heading {display:flex;justify-content:space-between;align-items:end;gap:20px}
+body[data-page="sport"] .sport-heading h2,body[data-page="sport"] .corp-centered h2,body[data-page="sport"] .sport-why h2 {font:400 clamp(2.3rem,4.5vw,4rem)/1.04 var(--v2-serif);color:inherit}
+body[data-page="sport"] .sport-heading a {font-weight:700}
+body[data-page="sport"] .sport-demo {margin:18px 0;color:#375c49;font-size:.9rem}
+body[data-page="sport"] .sport-benefits {padding:34px 0;background:#fbf6ec}
+body[data-page="sport"] .sport-benefits .corp-wrap,body[data-page="sport"] .sport-included>div {display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+body[data-page="sport"] .sport-benefits p,body[data-page="sport"] .sport-included p {display:flex;align-items:center;gap:16px;font-weight:700}
+body[data-page="sport"] .sport-benefits span,body[data-page="sport"] .sport-included span {font-size:2rem}
+body[data-page="sport"] .sport-cards,body[data-page="sport"] .sport-upcoming {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+body[data-page="sport"] .sport-upcoming {grid-template-columns:repeat(4,minmax(0,1fr))}
+body[data-page="sport"] .sport-card {border:1px solid #ded7c9;border-radius:18px;overflow:hidden;background:#fbf6ec;box-shadow:0 4px 10px #1e3a2b0e}
+body[data-page="sport"] .sport-image {position:relative}
+body[data-page="sport"] .sport-image img {width:100%;aspect-ratio:1.52;object-fit:cover}
+body[data-page="sport"] .sport-image span {position:absolute;top:16px;left:16px;background:#d2f3da;border-radius:30px;padding:7px 22px;font-weight:700}
+body[data-page="sport"] .sport-card-body {padding:20px;display:flex;flex-direction:column;gap:12px}
+body[data-page="sport"] .sport-card h3 {font:400 clamp(1.4rem,2vw,2rem)/1.1 var(--v2-serif)}
+body[data-page="sport"] .sport-meta {font-size:.9rem}
+body[data-page="sport"] .sport-card-bottom {display:flex;align-items:end;justify-content:space-between;margin-top:12px}
+body[data-page="sport"] .sport-card-bottom strong {font-size:1.3rem}
+body[data-page="sport"] .sport-detail {width:52px;height:52px;border:0;border-radius:16px;background:#1e3a2b;color:#fbf6ec;font-size:1.6rem;cursor:pointer}
+body[data-page="sport"] .sport-why {background:#1e3a2b;color:#fbf6ec}
+body[data-page="sport"] .sport-why-grid {display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:6%}
+body[data-page="sport"] .sport-why-grid img {width:100%;aspect-ratio:1.35;object-fit:cover;border-radius:18px}
+body[data-page="sport"] .sport-why-grid ul {list-style:none;padding:0;margin:24px 0 0}
+body[data-page="sport"] .sport-why-grid li {margin:14px 0;font-weight:700}
+body[data-page="sport"] .sport-why-grid h2 {margin:12px 0}
+body[data-page="sport"] .sport-gallery {display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:repeat(2,190px);gap:12px;margin:35px 0 60px}
+body[data-page="sport"] .sport-gallery img {width:100%;height:100%;object-fit:cover;border-radius:16px}
+body[data-page="sport"] .sport-gallery img:first-child {grid-row:span 2}
+body[data-page="sport"] .sport-included>div {grid-template-columns:repeat(5,1fr);margin:35px 0}
+body[data-page="sport"] .sport-included p {flex-direction:column;text-align:center}
+body[data-page="sport"] .sport-dialog {width:min(92vw,600px);margin:auto;padding:32px;border:0;border-radius:16px;background:#fbf6ec;color:#1e3a2b}
+body[data-page="sport"] .sport-dialog::backdrop {background:#071b13bb}
+body[data-page="sport"] .sport-dialog h2 {font:400 2rem/1.1 var(--v2-serif);margin-bottom:15px}
+body[data-page="sport"] .sport-close {display:block;margin-left:auto;width:44px;height:44px;border:1px solid;border-radius:50%;background:transparent;font-size:1.5rem;cursor:pointer}
+body[data-page="sport"]:not([data-site-bound="true"]) .sport-detail {display:none}
+@media(max-width:800px){body[data-page="sport"] .sport-benefits .corp-wrap,body[data-page="sport"] .sport-upcoming {grid-template-columns:repeat(2,1fr)}body[data-page="sport"] .sport-cards {grid-template-columns:repeat(2,1fr)}body[data-page="sport"] .sport-why-grid {grid-template-columns:1fr;gap:30px}body[data-page="sport"] .sport-included>div {grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){body[data-page="sport"] .sport-cards {grid-template-columns:1fr}body[data-page="sport"] .sport-heading {align-items:start;flex-direction:column}body[data-page="sport"] .sport-gallery {grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,130px)}body[data-page="sport"] .sport-gallery img:first-child {grid-column:span 2;grid-row:auto}body[data-page="sport"] .sport-included>div {grid-template-columns:repeat(2,1fr)}}
