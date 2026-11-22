@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "inputFingerprint": "a90c88e389cdd4159496ab3d60b2764ea0c6ba2e83e55065eaf935d289b633e6",
+  "inputFingerprint": "15e1b8efece0027279776b9e737f81c2a2cbf07da4b09e3f500f517f6c0bdb41",
   "ownedEnFiles": [
     "en/index.html",
     "en/corporate-packages/index.html",
@@ -586,14 +586,14 @@
       "page": "about",
       "locale": "id",
       "path": "/about/",
-      "fingerprint": "2eb830734a5d7d95ae15d6ccc087701fd6e19d6c09ed51d8620a5ec2add63915"
+      "fingerprint": "083ff834b428ee9029808f62a013783e68b74201542071b71c1fef61409ac35c"
     },
     {
       "file": "en/about/index.html",
       "page": "about",
       "locale": "en",
       "path": "/en/about/",
-      "fingerprint": "259f96b5d252a0db9c18ba984e819518deaf525525c167b6a2b57dce73a8f20a"
+      "fingerprint": "dbe2cfee22157260d42a4554d1abfb84a048b4f28d17ef4be82b4ea6b4c51075"
     },
     {
       "file": "impact/index.html",
