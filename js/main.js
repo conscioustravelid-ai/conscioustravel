@@ -184,7 +184,7 @@ function v2BlogLink() {
 function renderV2Header() {
   const { home, skip, ui } = content();
   const isHome = document.body.dataset.page === "home";
-  const waKey = isHome ? "general" : document.body.dataset.page === "study" ? "study" : "corporate";
+  const waKey = isHome ? "general" : document.body.dataset.page === "study" ? "study" : document.body.dataset.page === "csr" ? "csr" : "corporate";
   return `<a class="skip-link" href="#main-content">${escapeHtml(skip)}</a>
     <div class="v2-announcement"><a href="${escapeHtml(v2PageUrl("experiences"))}">${escapeHtml(home.announcement)} <span aria-hidden="true">→</span></a></div>
     <div class="v2-nav-bar v2-wrap">
@@ -230,7 +230,7 @@ function renderProductCard(product, options = {}) {
 }
 
 function renderHeader() {
-  if (["home", "corporateHub", "study", "sport"].includes(document.body.dataset.page)) {
+  if (["home", "corporateHub", "study", "sport", "csr"].includes(document.body.dataset.page)) {
     document.getElementById("site-header").innerHTML = renderV2Header();
     return;
   }
@@ -274,7 +274,7 @@ function renderHeader() {
 }
 
 function renderFooter() {
-  if (["home", "corporateHub", "study", "sport"].includes(document.body.dataset.page)) {
+  if (["home", "corporateHub", "study", "sport", "csr"].includes(document.body.dataset.page)) {
     document.getElementById("site-footer").innerHTML = renderV2Footer();
     return;
   }
@@ -767,7 +767,7 @@ function renderInternational() {
     ${renderProductClosingCta(e.closingTitle, e.closingBody, { service: "Corporate Packages", waKey: "corporate", primaryLabel: e.closingPrimary, secondaryLabel: e.closingSecondary })}`;
 }
 
-function renderCsr() {
+function renderCsrLegacy() {
   const p = content().csr;
   const e = editorialContent().csr;
   const data = CT_STATE.catalog.csrPrograms;
@@ -1472,6 +1472,7 @@ function initializeUi({ render = true } = {}) {
   if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "corporateHub") bindCorporatePage();
   if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "study") bindStudyPage();
   if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "sport") bindSportPage();
+  if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "csr") bindCsrPage();
   bindClientCarousel();
   bindLanguageToggle();
   bindWhatsappTracking();
@@ -1534,4 +1535,59 @@ function bindSportPage() {
   dialog.querySelector(".sport-close").addEventListener("click",()=>dialog.close());
   dialog.addEventListener("close",()=>opener?.focus());
   document.querySelector(".v2-subscribe").addEventListener("click",()=>{document.querySelector(".v2-news-status").hidden=false});
+}
+
+
+function renderCsr() {
+  const en=CT_STATE.language==="en", h=content().home, editorial=editorialContent().csr, data=CT_STATE.catalog.csrPrograms, e=escapeHtml;
+  const t=en?{
+    hero:"Travel with purpose. Create positive impact.",lead:"Meaningful journeys that connect people, communities, and the places we visit.",
+    benefits:["Community Empowerment","Social Impact","Environmental Conservation","Responsible & Inclusive Travel"],
+    aboutK:"About our CSR program",about:"Meaningful Travel, Lasting Impact.",aboutText:"We combine travel experiences with purpose-driven initiatives, developed in collaboration with local partners.",approach:"Our Approach",
+    focusK:"Our CSR focus areas",focus:[["Education","Support learning opportunities and youth development."],["Health & Wellbeing","Explore initiatives for wellbeing and inclusive communities."],["Community Empowerment","Collaborate with local communities on relevant opportunities."],["Environmental Conservation","Learn about natural habitats and responsible practices."]],
+    programsK:"CSR program options",programs:"Ways to Get Involved",community:"Community Project Trip",communityText:"Hands-on travel experiences that support local communities.",conservation:"Conservation Trip",conservationText:"Contribute to environmental preservation and restoration.",custom:"Custom CSR Program",customText:"A tailored CSR experience for companies, schools, or groups.",check:"Check Program",request:"Request a Program",viewActivities:"Program activities",ask:"Ask about this program",
+    disclaimer:"Programs, activities and availability are subject to partner assessment and the agreed proposal.",galleryK:"CSR program gallery",gallery:"Moments from Our CSR Trips",
+    cta:"Let's Create Positive Impact Together.",ctaText:"Plan a purpose-driven trip for your team, community, or organization.",plan:"Plan a CSR Trip"
+  }:{
+    hero:"Perjalanan bermakna untuk dampak positif.",lead:"Perjalanan yang menghubungkan manusia, komunitas, dan tempat yang kita kunjungi.",
+    benefits:["Pemberdayaan Komunitas","Dampak Sosial","Konservasi Lingkungan","Perjalanan Bertanggung Jawab"],
+    aboutK:"Tentang program CSR kami",about:"Perjalanan Bermakna, Dampak Berkelanjutan.",aboutText:"Kami memadukan perjalanan dengan inisiatif bermakna yang disusun bersama mitra lokal.",approach:"Pendekatan Kami",
+    focusK:"Fokus program CSR",focus:[["Pendidikan","Mendukung kesempatan belajar dan pengembangan generasi muda."],["Kesehatan & Kesejahteraan","Menjelajahi inisiatif kesejahteraan dan komunitas yang inklusif."],["Pemberdayaan Komunitas","Berkolaborasi dengan komunitas lokal untuk peluang yang relevan."],["Konservasi Lingkungan","Mengenal habitat alam dan praktik yang bertanggung jawab."]],
+    programsK:"Pilihan program CSR",programs:"Cara untuk Berkontribusi",community:"Community Project Trip",communityText:"Pengalaman langsung yang mendukung komunitas lokal.",conservation:"Conservation Trip",conservationText:"Berkontribusi pada pelestarian dan pemulihan lingkungan.",custom:"Custom CSR Program",customText:"Pengalaman CSR yang dirancang untuk perusahaan, sekolah, atau kelompok.",check:"Lihat Program",request:"Ajukan Program",viewActivities:"Aktivitas program",ask:"Tanyakan program ini",
+    disclaimer:"Program, aktivitas, dan ketersediaan mengikuti asesmen mitra dan proposal yang disepakati.",galleryK:"Galeri program CSR",gallery:"Momen dalam Perjalanan CSR Kami",
+    cta:"Mari Ciptakan Dampak Positif Bersama.",ctaText:"Rencanakan perjalanan bermakna untuk tim, komunitas, atau organisasi Anda.",plan:"Rencanakan CSR Trip"
+  };
+  const community=data.featured.filter(p=>p.id!=="mangrove-restoration"), conservation=[...data.featured.filter(p=>p.id==="mangrove-restoration"),...data.morePrograms];
+  const wa=whatsappUrl("csr"), root="/assets/images/corporate/csr-program/";
+  const detail=product=>{
+    const story=editorial.programDetails[product.id], desc=story?.intro || editorial.moreDetails[product.id] || productCopy(product)[1];
+    const activities=story?'<p><strong>'+e(t.viewActivities)+'</strong></p><ul>'+story.activities.map(x=>'<li>'+e(x)+'</li>').join("")+'</ul>':"";
+    return '<article class="csr-v2-program" id="'+e(product.id)+'"><h4>'+e((window.CT_PRODUCT_COPY[CT_STATE.language][product.id] || [product.name])[0])+'</h4><p>'+e(desc)+'</p>'+renderPrice(product)+activities+'<a href="'+e(wa)+'" target="_blank" rel="noopener" data-wa-key="csr">'+e(t.ask)+' →</a></article>';
+  };
+  const icon=(key)=>({
+    leaf:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M39 7C18 7 8 16 9 34c13 2 28-7 30-27ZM8 40c5-10 12-16 22-21"/></svg>',
+    people:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="24" cy="15" r="6"/><circle cx="11" cy="18" r="4"/><circle cx="37" cy="18" r="4"/><path d="M13 38v-4c0-7 4-11 11-11s11 4 11 11v4H13ZM4 37v-4c0-5 3-8 8-8M44 37v-4c0-5-3-8-8-8"/></svg>',
+    seed:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M24 42V24M24 28C11 28 6 21 6 11c12 0 18 5 18 17ZM24 22C24 11 30 6 42 6c0 10-5 16-18 16ZM13 42h22"/></svg>',
+    hands:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m4 24 8-9 8 3 5-3 8 3 11 9-9 10-9-5-6 4L4 24ZM12 15l4-5 10 5M32 18l4-5 8 10M17 26l10 7M21 22l10 8"/></svg>',
+    education:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 17 24 7l20 10-20 10L4 17ZM12 22v10c8 6 16 6 24 0V22M43 18v12"/></svg>',
+    heart:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M24 41S5 29 5 17c0-9 12-13 19-4 7-9 19-5 19 4 0 12-19 24-19 24Z"/><path d="M8 23h9l3-6 5 12 3-6h12"/></svg>',
+    mountain:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m3 39 13-21 6 9L31 9l14 30H3ZM11 27l5 3 4-4M27 17l4 3 4-3"/></svg>'
+  }[key]);
+  const option=(title,desc,img,items)=>'<article class="csr-v2-option"><img src="'+root+img+'" alt="" loading="lazy" width="800" height="500"><div class="csr-v2-option-body"><h3>'+e(title)+'</h3><p>'+e(desc)+'</p><details><summary>'+e(t.check)+' <span aria-hidden="true">→</span></summary><div class="csr-v2-program-list">'+items.map(detail).join("")+'</div></details></div></article>';
+  const custom='<article class="csr-v2-option"><img src="'+root+'school-impact-day.webp" alt="" loading="lazy" width="800" height="500"><div class="csr-v2-option-body"><h3>'+e(t.custom)+'</h3><p>'+e(t.customText)+'</p><a class="csr-v2-button" href="'+e(wa)+'" target="_blank" rel="noopener" data-wa-key="csr">'+e(t.request)+' →</a></div></article>';
+  const gallery=["/assets/images/v2/csr-hero.webp",root+"mangrove-restoration.webp",root+"build-for-community.webp",root+"school-impact-day.webp",root+"village-empowerment.webp"];
+  return '<section class="corp-hero csr-v2-hero"><picture><img src="/assets/images/v2/csr-hero.webp" alt="" width="1512" height="763" fetchpriority="high"></picture><div class="corp-wrap corp-hero-copy"><p>CSR Program</p><h1>'+e(t.hero)+'</h1><p>'+e(t.lead)+'</p><a class="csr-v2-light" href="#featured-csr">'+e(t.check)+' →</a></div></section>'+
+    '<section class="csr-v2-benefits"><div class="corp-wrap">'+t.benefits.map((p,i)=>'<div>'+icon(["leaf","people","seed","hands"][i])+'<p>'+e(p)+'</p></div>').join("")+'</div></section>'+
+    '<section class="corp-section csr-v2-about" id="our-approach"><div class="corp-wrap csr-v2-about-grid"><div><p class="corp-kicker">'+e(t.aboutK)+'</p><h2>'+e(t.about)+'</h2><p>'+e(t.aboutText)+'</p><a class="csr-v2-outline" href="'+e(v2PageUrl("impact"))+'">'+e(t.approach)+' →</a></div><img src="'+root+'village-empowerment.webp" alt="" loading="lazy" width="800" height="500"></div></section>'+
+    '<section class="corp-section csr-v2-focus"><div class="corp-wrap"><div class="corp-centered"><p class="corp-kicker">'+e(t.focusK)+'</p></div><div class="csr-v2-focus-grid">'+t.focus.map((v,i)=>'<article>'+icon(["education","heart","seed","mountain"][i])+'<h3>'+e(v[0])+'</h3><p>'+e(v[1])+'</p></article>').join("")+'</div></div></section>'+
+    '<section class="corp-section csr-v2-options" id="featured-csr"><div class="corp-wrap"><div class="corp-centered"><p class="corp-kicker">'+e(t.programsK)+'</p><h2>'+e(t.programs)+'</h2></div><p class="csr-v2-note">'+e(t.disclaimer)+'</p><div class="csr-v2-option-grid">'+option(t.community,t.communityText,"school-impact-day.webp",community)+option(t.conservation,t.conservationText,"mangrove-restoration.webp",conservation)+custom+'</div></div></section>'+
+    '<section class="corp-section csr-v2-gallery"><div class="corp-wrap"><div class="corp-centered"><p class="corp-kicker">'+e(t.galleryK)+'</p><h2>'+e(t.gallery)+'</h2></div><div class="csr-v2-gallery-grid">'+gallery.map(src=>'<img src="'+src+'" alt="" loading="lazy">').join("")+'</div></div></section>'+
+    '<section class="csr-v2-cta-wrap"><div class="corp-wrap"><div class="csr-v2-cta"><h2>'+e(t.cta)+'</h2><div><p>'+e(t.ctaText)+'</p><a class="csr-v2-light" href="'+e(wa)+'" target="_blank" rel="noopener" data-wa-key="csr">'+e(t.plan)+' →</a></div></div></div></section>'+
+    '<section class="v2-news v2-section"><div class="v2-wrap">'+v2Heading(h.newsletterLabel,h.newsletterTitle)+'<div class="v2-news-fields"><label><span class="sr-only">'+e(h.firstName)+'</span><input type="text" autocomplete="given-name" placeholder="'+e(h.firstName)+'"></label><label><span class="sr-only">'+e(h.lastName)+'</span><input type="text" autocomplete="family-name" placeholder="'+e(h.lastName)+'"></label><label><span class="sr-only">'+e(h.emailLabel)+'</span><input type="email" autocomplete="email" placeholder="'+e(h.emailLabel)+'"></label><button class="v2-subscribe" type="button">Subscribe</button></div><p class="v2-news-notice">'+e(h.newsletterStatus)+'</p><p class="v2-news-status" role="status" hidden>Coming soon</p></div></section>'+
+    '<section class="v2-faq v2-section"><div class="v2-wrap v2-faq-content"><h2 class="v2-heading">FAQ</h2><a class="v2-faq-button" href="'+e(v2PageUrl("faq"))+'">'+e(h.faqLink)+' →</a></div></section>';
+}
+function bindCsrPage() {
+  document.querySelector(".v2-subscribe").addEventListener("click",()=>{document.querySelector(".v2-news-status").hidden=false});
+  const revealHash=()=>{if(!window.location.hash)return;try{const target=document.getElementById(decodeURIComponent(window.location.hash.slice(1)));const details=target?.closest("details");if(details){details.open=true;target.scrollIntoView();}}catch{}};
+  window.addEventListener("hashchange",revealHash); revealHash();
 }

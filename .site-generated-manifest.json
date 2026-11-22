@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "inputFingerprint": "10257b6830bd5e91ec40d7fd6b4fec8fbabde4240ed4628a8eed2779ce540e8c",
+  "inputFingerprint": "27a23c6c24459e8ea441e2c9f6cd719e9436e965b8a057b61ee27a813ef4a6a8",
   "ownedEnFiles": [
     "en/index.html",
     "en/corporate-packages/index.html",
@@ -143,12 +143,18 @@
       "corporate-menu",
       "experiences-menu",
       "about-menu",
+      "our-approach",
       "featured-csr",
       "village-empowerment",
       "school-impact-day",
       "bicycle-for-education",
       "build-for-community",
-      "mangrove-restoration"
+      "mangrove-restoration",
+      "coral-reef-restoration",
+      "sea-turtle-conservation",
+      "beach-clean-up",
+      "sustainable-farming",
+      "animal-welfare"
     ],
     "/en/corporate-packages/csr-program/": [
       "main-content",
@@ -159,12 +165,18 @@
       "corporate-menu",
       "experiences-menu",
       "about-menu",
+      "our-approach",
       "featured-csr",
       "village-empowerment",
       "school-impact-day",
       "bicycle-for-education",
       "build-for-community",
-      "mangrove-restoration"
+      "mangrove-restoration",
+      "coral-reef-restoration",
+      "sea-turtle-conservation",
+      "beach-clean-up",
+      "sustainable-farming",
+      "animal-welfare"
     ],
     "/corporate-packages/event-planning-organizer/": [
       "main-content",
@@ -477,14 +489,14 @@
       "page": "csr",
       "locale": "id",
       "path": "/corporate-packages/csr-program/",
-      "fingerprint": "79631d56cdd5c69eb51727c6c7827fe9c8b580df93a97c272ca8e71cd803ed4f"
+      "fingerprint": "3fb356217db922508fd8d46f42e432dc29b733a63bed136a1b35fd743902985c"
     },
     {
       "file": "en/corporate-packages/csr-program/index.html",
       "page": "csr",
       "locale": "en",
       "path": "/en/corporate-packages/csr-program/",
-      "fingerprint": "c4d5fcf3f6e11d7eae7e8ba480814cc38a2087b1b3957a1c86ecb760edfe7eab"
+      "fingerprint": "50c2bd79ea9c6e27c8ff3ec6cb8cbc5f7d444cf9f889f88456228b560d8ceedd"
     },
     {
       "file": "corporate-packages/event-planning-organizer/index.html",

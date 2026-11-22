@@ -1,10 +1,10 @@
 /* Corporate Outing V.2 */
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] {
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] {
   background: #fbf6ec;
   color: #1e3a2b;
   --v2-gutter: clamp(24px, 4vw, 68px);
 }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] #site-header {
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] #site-header {
   position: absolute;
   inset: 0 0 auto;
   height: 0;
@@ -13,16 +13,16 @@ body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data
   box-shadow: none;
   pointer-events: none;
 }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .v2-announcement { display: none; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .v2-nav-bar {
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .v2-announcement { display: none; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .v2-nav-bar {
   width: min(calc(100% - 48px), 1440px);
   max-width: none;
   margin-top: 40px;
   background: #fbf6ec;
   color: #1e3a2b;
 }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .v2-brand img { display: none; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .v2-brand::after {
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .v2-brand img { display: none; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .v2-brand::after {
   content: "CONSCIOUS TRAVEL";
   color: #1e3a2b;
   font-weight: 700;
@@ -30,104 +30,104 @@ body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data
   letter-spacing: .025em;
   white-space: nowrap;
 }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] #site-header .v2-nav > a,
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] #site-header .menu-toggle,
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] #site-header .language-toggle { color: #1e3a2b; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] #site-header .language-toggle { border-color: #91a397; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .v2-actions .v2-button { background: #1e3a2b18; border-color: #b7c1b6; color: #1e3a2b; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-wrap { width: min(calc(100% - 2 * var(--v2-gutter)), 1430px); margin-inline: auto; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-section { padding-block: clamp(56px, 5vw, 80px); }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] :is(.corp-section, .corp-intro, .corp-hero, .corp-destinations, .corp-cta) :is(h1,h2,h3,p,ul) { margin: 0; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-hero { position: relative; display: flex; align-items: center; min-height: clamp(640px, 50vw, 754px); isolation: isolate; background: #1e3a2b; color: #fbf6ec; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-hero picture,
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-hero picture img,
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-hero::after { position: absolute; inset: 0; width: 100%; height: 100%; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-hero picture { z-index: -2; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-hero img { object-fit: cover; object-position: center; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-hero::after { content: ""; z-index: -1; background: linear-gradient(90deg,#061b13b8,transparent 76%), linear-gradient(0deg,#061b1388,transparent 48%); }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-hero-copy { padding-top: 120px; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-hero-copy p:first-child { font-size: clamp(1rem, 1.6vw, 1.5rem); font-weight: 600; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-hero h1 { max-width: 9ch; margin-block: 35px 25px; font: 600 clamp(3.3rem, 4.5vw, 4.5rem)/1.04 var(--v2-sans); letter-spacing: -.04em; color: inherit; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-hero-copy p:last-child { max-width: 31ch; font-weight: 600; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-intro { padding-block: 42px; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-intro .corp-wrap { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 8%; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-intro h2 { max-width: 19ch; font: 600 clamp(2rem, 3.2vw, 3rem)/1.22 var(--v2-sans); }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-intro p { max-width: 40ch; font-weight: 600; font-size: clamp(1rem,1.6vw,1.5rem); }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-destinations { padding: 50px 0; background: #1e3a2b; color: #fbf6ec; text-align: center; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-destinations > div > p { font-weight: 600; font-size: 1.1rem; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-destinations h2 { margin: 16px 0 45px; color: inherit; font: 600 clamp(2.4rem,4vw,3.7rem)/1.05 var(--v2-sans); }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-destination-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; text-align: left; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-destination { position: relative; display: flex; align-items: end; overflow: hidden; isolation: isolate; min-height: clamp(310px,28vw,420px); border-radius: 18px; color: #fff; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-destination img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-destination::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg,#071c12e8,transparent 75%); }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-destination > div { padding: clamp(20px,3vw,45px); }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-destination h3 { font: 400 clamp(2.2rem,3.3vw,3.3rem)/1 var(--v2-serif); color: inherit; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-destination p { margin-top: 14px; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-destination span { display: block; margin-top: 14px; font-weight: 700; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-centered { text-align: center; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-kicker { margin-bottom: 12px; font-size: .8rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] :is(.corp-centered,.corp-packages,.corp-international) h2 { font: 400 clamp(2.5rem,3.8vw,3.8rem)/1.07 var(--v2-serif); letter-spacing: -.03em; color: #1e3a2b; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-centered > p:last-child { max-width: 58ch; margin: 14px auto 0; font: italic 1.2rem/1.5 var(--v2-serif); }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-pillar-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 18px; margin-top: 42px; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-pillar-grid img { width: 100%; aspect-ratio: 1.9; object-fit: cover; border-radius: 12px; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-pillar-grid article > div { padding: 22px; border-right: 1px solid #c8c9b7; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-pillar-grid h3 { font: 400 1.5rem/1.1 var(--v2-serif); }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-pillar-grid p { margin-top: 10px; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-packages > div > p { margin-top: 8px; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-filters { display: none; flex-wrap: wrap; gap: 14px; margin: 24px 0; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"][data-site-bound="true"] .corp-filters { display: flex; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-filters button { flex: 1 1 140px; min-height: 46px; padding: 8px 20px; border: 1px solid #a6b0a0; border-radius: 30px; background: transparent; color: #1e3a2b; cursor: pointer; font-weight: 700; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-filters button[aria-pressed="true"] { background: #1e3a2b; color: #fbf6ec; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-package-group[hidden] { display: none; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-destination-name { margin: 16px 0; font-size: 1rem; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-package-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; margin-top: 25px; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-package { overflow: hidden; display: flex; flex-direction: column; border: 1px solid #d6cebd; border-radius: 16px; background: #fbf6ec; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-package > img { width: 100%; aspect-ratio: 1.75; object-fit: cover; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-package-body { display: flex; flex-direction: column; flex: 1; padding: 20px; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-package h3 { font: 400 clamp(1.45rem,2vw,2rem)/1.1 var(--v2-serif); }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-price { margin-top: 12px; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-meta { padding: 12px 0; border-bottom: 1px solid #d6cebd; font-size: .85rem; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-inclusions { margin-top: 10px; font-size: .9rem; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-inclusions ul { padding-left: 20px; margin-top: 5px; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-button { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 44px; margin-top: auto; padding: 9px 18px; border-radius: 8px; background: #1e3a2b; color: #fbf6ec; font-weight: 700; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-inclusions + .corp-button { margin-top: 18px; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-italic { font: italic clamp(1.5rem,2.2vw,2.2rem)/1.25 var(--v2-serif); }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-badge { align-self: flex-start; margin-top: 15px; padding: 4px 10px; border-radius: 6px; background: #dfe5d1; font-size: .9rem; font-weight: 600; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-intl-description { margin: 16px 0 22px; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-cta { background: #1e3a2b; color: #fbf6ec; padding-block: 35px; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-cta .corp-wrap { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-cta h2, body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-cta p { font: 400 clamp(1.8rem,2.5vw,2.7rem)/1.05 var(--v2-serif); color: inherit; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-cta p { font-style: italic; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-button-light { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 10px 24px; border-radius: 8px; background: #fbf6ec; color: #1e3a2b; font-weight: 700; white-space: nowrap; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-gallery-grid { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); grid-template-rows: repeat(2,200px); gap: 12px; margin-top: 42px; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-gallery-grid img { width: 100%; height: 100%; border-radius: 14px; object-fit: cover; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-gallery-grid img:first-child { grid-column: span 2; grid-row: span 2; }
-body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] :is(a,button,input):focus-visible { outline: 3px solid #c36e0c; outline-offset: 3px; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] #site-header .v2-nav > a,
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] #site-header .menu-toggle,
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] #site-header .language-toggle { color: #1e3a2b; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] #site-header .language-toggle { border-color: #91a397; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .v2-actions .v2-button { background: #1e3a2b18; border-color: #b7c1b6; color: #1e3a2b; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-wrap { width: min(calc(100% - 2 * var(--v2-gutter)), 1430px); margin-inline: auto; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-section { padding-block: clamp(56px, 5vw, 80px); }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] :is(.corp-section, .corp-intro, .corp-hero, .corp-destinations, .corp-cta) :is(h1,h2,h3,p,ul) { margin: 0; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-hero { position: relative; display: flex; align-items: center; min-height: clamp(640px, 50vw, 754px); isolation: isolate; background: #1e3a2b; color: #fbf6ec; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-hero picture,
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-hero picture img,
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-hero::after { position: absolute; inset: 0; width: 100%; height: 100%; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-hero picture { z-index: -2; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-hero img { object-fit: cover; object-position: center; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-hero::after { content: ""; z-index: -1; background: linear-gradient(90deg,#061b13b8,transparent 76%), linear-gradient(0deg,#061b1388,transparent 48%); }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-hero-copy { padding-top: 120px; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-hero-copy p:first-child { font-size: clamp(1rem, 1.6vw, 1.5rem); font-weight: 600; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-hero h1 { max-width: 9ch; margin-block: 35px 25px; font: 600 clamp(3.3rem, 4.5vw, 4.5rem)/1.04 var(--v2-sans); letter-spacing: -.04em; color: inherit; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-hero-copy p:last-child { max-width: 31ch; font-weight: 600; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-intro { padding-block: 42px; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-intro .corp-wrap { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 8%; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-intro h2 { max-width: 19ch; font: 600 clamp(2rem, 3.2vw, 3rem)/1.22 var(--v2-sans); }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-intro p { max-width: 40ch; font-weight: 600; font-size: clamp(1rem,1.6vw,1.5rem); }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-destinations { padding: 50px 0; background: #1e3a2b; color: #fbf6ec; text-align: center; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-destinations > div > p { font-weight: 600; font-size: 1.1rem; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-destinations h2 { margin: 16px 0 45px; color: inherit; font: 600 clamp(2.4rem,4vw,3.7rem)/1.05 var(--v2-sans); }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-destination-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; text-align: left; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-destination { position: relative; display: flex; align-items: end; overflow: hidden; isolation: isolate; min-height: clamp(310px,28vw,420px); border-radius: 18px; color: #fff; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-destination img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-destination::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg,#071c12e8,transparent 75%); }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-destination > div { padding: clamp(20px,3vw,45px); }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-destination h3 { font: 400 clamp(2.2rem,3.3vw,3.3rem)/1 var(--v2-serif); color: inherit; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-destination p { margin-top: 14px; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-destination span { display: block; margin-top: 14px; font-weight: 700; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-centered { text-align: center; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-kicker { margin-bottom: 12px; font-size: .8rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] :is(.corp-centered,.corp-packages,.corp-international) h2 { font: 400 clamp(2.5rem,3.8vw,3.8rem)/1.07 var(--v2-serif); letter-spacing: -.03em; color: #1e3a2b; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-centered > p:last-child { max-width: 58ch; margin: 14px auto 0; font: italic 1.2rem/1.5 var(--v2-serif); }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-pillar-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 18px; margin-top: 42px; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-pillar-grid img { width: 100%; aspect-ratio: 1.9; object-fit: cover; border-radius: 12px; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-pillar-grid article > div { padding: 22px; border-right: 1px solid #c8c9b7; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-pillar-grid h3 { font: 400 1.5rem/1.1 var(--v2-serif); }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-pillar-grid p { margin-top: 10px; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-packages > div > p { margin-top: 8px; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-filters { display: none; flex-wrap: wrap; gap: 14px; margin: 24px 0; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"][data-site-bound="true"] .corp-filters { display: flex; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-filters button { flex: 1 1 140px; min-height: 46px; padding: 8px 20px; border: 1px solid #a6b0a0; border-radius: 30px; background: transparent; color: #1e3a2b; cursor: pointer; font-weight: 700; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-filters button[aria-pressed="true"] { background: #1e3a2b; color: #fbf6ec; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-package-group[hidden] { display: none; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-destination-name { margin: 16px 0; font-size: 1rem; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-package-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; margin-top: 25px; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-package { overflow: hidden; display: flex; flex-direction: column; border: 1px solid #d6cebd; border-radius: 16px; background: #fbf6ec; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-package > img { width: 100%; aspect-ratio: 1.75; object-fit: cover; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-package-body { display: flex; flex-direction: column; flex: 1; padding: 20px; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-package h3 { font: 400 clamp(1.45rem,2vw,2rem)/1.1 var(--v2-serif); }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-price { margin-top: 12px; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-meta { padding: 12px 0; border-bottom: 1px solid #d6cebd; font-size: .85rem; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-inclusions { margin-top: 10px; font-size: .9rem; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-inclusions ul { padding-left: 20px; margin-top: 5px; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-button { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 44px; margin-top: auto; padding: 9px 18px; border-radius: 8px; background: #1e3a2b; color: #fbf6ec; font-weight: 700; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-inclusions + .corp-button { margin-top: 18px; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-italic { font: italic clamp(1.5rem,2.2vw,2.2rem)/1.25 var(--v2-serif); }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-badge { align-self: flex-start; margin-top: 15px; padding: 4px 10px; border-radius: 6px; background: #dfe5d1; font-size: .9rem; font-weight: 600; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-intl-description { margin: 16px 0 22px; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-cta { background: #1e3a2b; color: #fbf6ec; padding-block: 35px; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-cta .corp-wrap { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-cta h2, body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-cta p { font: 400 clamp(1.8rem,2.5vw,2.7rem)/1.05 var(--v2-serif); color: inherit; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-cta p { font-style: italic; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-button-light { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 10px 24px; border-radius: 8px; background: #fbf6ec; color: #1e3a2b; font-weight: 700; white-space: nowrap; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-gallery-grid { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); grid-template-rows: repeat(2,200px); gap: 12px; margin-top: 42px; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-gallery-grid img { width: 100%; height: 100%; border-radius: 14px; object-fit: cover; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-gallery-grid img:first-child { grid-column: span 2; grid-row: span 2; }
+body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] :is(a,button,input):focus-visible { outline: 3px solid #c36e0c; outline-offset: 3px; }
 @media (max-width: 1200px) {
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .v2-nav { background: #fbf6ec; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .v2-nav > * + * { border-color: #c8c9b7; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .v2-nav-bar { margin-top: 16px; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-package-grid, body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-pillar-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .v2-nav { background: #fbf6ec; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .v2-nav > * + * { border-color: #c8c9b7; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .v2-nav-bar { margin-top: 16px; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-package-grid, body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-pillar-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
 @media (max-width: 600px) {
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .v2-nav-bar { width: calc(100% - 24px); margin-top: 12px; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .v2-brand::after { font-size: .8rem; letter-spacing: 0; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .v2-brand { width: auto; overflow: visible; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .v2-actions { gap: 4px; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .v2-actions .v2-button { min-width: 0; padding-inline: 8px; font-size: .7rem; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-hero { min-height: 650px; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-hero img { object-position: 50% center; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-intro .corp-wrap, body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-destination-grid { grid-template-columns: 1fr; gap: 22px; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-package-grid { grid-template-columns: 1fr; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-pillar-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-pillar-grid article > div { padding: 14px 8px; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-pillar-grid h3 { font-size: 1.25rem; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-cta .corp-wrap { flex-direction: column; align-items: flex-start; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-gallery-grid { grid-template-columns: repeat(2,minmax(0,1fr)); grid-template-rows: none; grid-auto-rows: 145px; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .corp-gallery-grid img:first-child { grid-column: span 2; grid-row: span 2; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .v2-nav-bar { width: calc(100% - 24px); margin-top: 12px; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .v2-brand::after { font-size: .8rem; letter-spacing: 0; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .v2-brand { width: auto; overflow: visible; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .v2-actions { gap: 4px; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .v2-actions .v2-button { min-width: 0; padding-inline: 8px; font-size: .7rem; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-hero { min-height: 650px; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-hero img { object-position: 50% center; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-intro .corp-wrap, body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-destination-grid { grid-template-columns: 1fr; gap: 22px; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-package-grid { grid-template-columns: 1fr; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-pillar-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-pillar-grid article > div { padding: 14px 8px; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-pillar-grid h3 { font-size: 1.25rem; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-cta .corp-wrap { flex-direction: column; align-items: flex-start; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-gallery-grid { grid-template-columns: repeat(2,minmax(0,1fr)); grid-template-rows: none; grid-auto-rows: 145px; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .corp-gallery-grid img:first-child { grid-column: span 2; grid-row: span 2; }
 }
 @media (max-width: 380px) {
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .v2-brand::after { font-size: .55rem; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .v2-nav-bar { gap: 2px; padding-inline: 8px; }
-  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"])[data-ui-version="v2"] .v2-actions .v2-button { font-size: .6rem; padding-inline: 4px; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .v2-brand::after { font-size: .55rem; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .v2-nav-bar { gap: 2px; padding-inline: 8px; }
+  body:is([data-page="corporateHub"],[data-page="study"],[data-page="sport"],[data-page="csr"])[data-ui-version="v2"] .v2-actions .v2-button { font-size: .6rem; padding-inline: 4px; }
 }
