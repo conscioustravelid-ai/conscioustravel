@@ -184,7 +184,7 @@ function v2BlogLink() {
 function renderV2Header() {
   const { home, skip, ui } = content();
   const isHome = document.body.dataset.page === "home";
-  const waKey = isHome ? "general" : document.body.dataset.page === "study" ? "study" : document.body.dataset.page === "csr" ? "csr" : "corporate";
+  const waKey = isHome || document.body.dataset.page === "about" ? "general" : document.body.dataset.page === "study" ? "study" : document.body.dataset.page === "csr" ? "csr" : "corporate";
   return `<a class="skip-link" href="#main-content">${escapeHtml(skip)}</a>
     <div class="v2-announcement"><a href="${escapeHtml(v2PageUrl("experiences"))}">${escapeHtml(home.announcement)} <span aria-hidden="true">→</span></a></div>
     <div class="v2-nav-bar v2-wrap">
@@ -230,7 +230,7 @@ function renderProductCard(product, options = {}) {
 }
 
 function renderHeader() {
-  if (["home", "corporateHub", "study", "sport", "csr", "ride"].includes(document.body.dataset.page)) {
+  if (["home", "corporateHub", "study", "sport", "csr", "ride", "about"].includes(document.body.dataset.page)) {
     document.getElementById("site-header").innerHTML = renderV2Header();
     return;
   }
@@ -274,7 +274,7 @@ function renderHeader() {
 }
 
 function renderFooter() {
-  if (["home", "corporateHub", "study", "sport", "csr", "ride"].includes(document.body.dataset.page)) {
+  if (["home", "corporateHub", "study", "sport", "csr", "ride", "about"].includes(document.body.dataset.page)) {
     document.getElementById("site-footer").innerHTML = renderV2Footer();
     return;
   }
@@ -850,7 +850,7 @@ function renderImpact() {
     ${renderCta(p.ctaTitle, p.ctaBody, { waKey: "csr", service: "CSR Program" })}`;
 }
 
-function renderAbout() {
+function renderAboutLegacy() {
   const p = content().about;
   const teamCards = p.team.map(([name, role, filename]) => `<article class="team-card"><img src="/assets/images/about/${filename}" alt="${escapeHtml(name)}, ${escapeHtml(role)} at Conscious Travel" width="500" height="600" loading="lazy" onerror="this.onerror=null;this.src='/assets/images/group-local-lunch.webp'"><div><h3>${escapeHtml(name)}</h3><p>${escapeHtml(role)}</p></div></article>`).join("");
   return `${renderHero("about", p, { secondaryHref: "/contact/", secondaryLabel: content().nav.contact })}
@@ -1475,6 +1475,7 @@ function initializeUi({ render = true } = {}) {
   if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "sport") bindSportPage();
   if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "csr") bindCsrPage();
   if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "ride") bindRidePage();
+  if (document.body.dataset.uiVersion === "v2" && document.body.dataset.page === "about") bindAboutPage();
   bindClientCarousel();
   bindLanguageToggle();
   bindWhatsappTracking();
@@ -1634,5 +1635,25 @@ function bindRidePage() {
   const brand=document.querySelector('[data-ride-filter="brand"]'),availability=document.querySelector('[data-ride-filter="availability"]'),cards=[...document.querySelectorAll(".ride-car")],empty=document.querySelector(".ride-empty");
   const apply=()=>{let count=0;cards.forEach(card=>{const show=(!brand.value||card.dataset.brand===brand.value)&&(!availability.value||card.dataset.availability===availability.value);card.hidden=!show;if(show)count++});empty.hidden=count!==0};
   brand.addEventListener("change",apply);availability.addEventListener("change",apply);
+  document.querySelector(".v2-subscribe").addEventListener("click",()=>{document.querySelector(".v2-news-status").hidden=false});
+}
+
+
+function renderAbout() {
+  const p=content().about, home=content().home, en=CT_STATE.language==="en", e=escapeHtml;
+  const t=en?{label:"Our Story",discover:"Discover our story",vision:"Our direction",founder:"The person behind the journey",team:"People behind the journeys",why:"Our approach",cta:"Start a conversation"}:{label:"Cerita Kami",discover:"Kenali cerita kami",vision:"Arah perjalanan kami",founder:"Sosok di balik perjalanan",team:"Tim di balik perjalanan",why:"Pendekatan kami",cta:"Mulai Percakapan"};
+  const people=p.team.map(([name,role,filename])=>'<article class="about-v2-person"><img src="/assets/images/about/'+e(filename)+'" alt="'+e(name)+'" width="500" height="600" loading="lazy"><div><h3>'+e(name)+'</h3><p>'+e(role)+'</p></div></article>').join("");
+  return '<section class="corp-hero about-v2-hero"><picture><source media="(max-width:600px)" srcset="/assets/images/v2/hero-mobile.webp"><img src="/assets/images/v2/hero-desktop.webp" alt="" width="1672" height="941" fetchpriority="high"></picture><div class="corp-wrap corp-hero-copy"><p>'+e(t.label)+'</p><h1>'+e(p.title)+'</h1><p>'+e(p.lead)+'</p><a class="about-v2-light" href="#about-story">'+e(t.discover)+' →</a></div></section>'+
+    '<section class="corp-section about-v2-story" id="about-story"><div class="corp-wrap about-v2-story-grid"><div><p class="corp-kicker">'+e(t.label)+'</p><h2>'+e(p.storyTitle)+'</h2></div><div>'+p.story.map(text=>'<p>'+e(text)+'</p>').join("")+'</div><img src="/assets/images/home/storytelling-home-campfire.webp" alt="" width="1200" height="700" loading="lazy"></div></section>'+
+    '<section class="corp-section about-v2-direction"><div class="corp-wrap"><p class="corp-kicker">'+e(t.vision)+'</p><div class="about-v2-direction-grid"><article><h2>'+e(p.visionTitle)+'</h2><p>'+e(p.vision)+'</p></article><article><h2>'+e(p.missionTitle)+'</h2><ul>'+p.mission.map(item=>'<li>'+e(item)+'</li>').join("")+'</ul></article></div></div></section>'+
+    '<section class="corp-section about-v2-founder"><div class="corp-wrap about-v2-founder-grid"><img src="/assets/images/about/merlin-ohara.webp" alt="'+e(p.founderName)+'" width="800" height="950" loading="lazy"><div><p class="corp-kicker">'+e(t.founder)+'</p><h2>'+e(p.founderTitle)+'</h2><h3>'+e(p.founderName)+'</h3><p class="about-v2-role">'+e(p.founderRole)+'</p><p>'+e(p.founderBio)+'</p></div></div></section>'+
+    '<section class="corp-section about-v2-team" id="about-team"><div class="corp-wrap"><div class="corp-centered"><p class="corp-kicker">'+e(t.team)+'</p><h2>'+e(p.teamTitle)+'</h2><p>'+e(p.teamLead)+'</p></div><div class="about-v2-team-grid">'+people+'</div></div></section>'+
+    '<section class="corp-section about-v2-why"><div class="corp-wrap about-v2-why-grid"><div><p class="corp-kicker">'+e(t.why)+'</p><h2>'+e(p.whyTitle)+'</h2></div><ul>'+p.why.map(item=>'<li><span aria-hidden="true">↗</span> '+e(item)+'</li>').join("")+'</ul></div></section>'+
+    '<section class="v2-clients" aria-label="'+e(home.clients)+'"><div class="v2-client-track"><ul>'+CLIENT_LOGOS.map(([name,src,width,height])=>'<li><img src="'+src+'" alt="'+e(name)+'" width="'+width+'" height="'+height+'" loading="lazy"></li>').join("")+'</ul><ul aria-hidden="true">'+CLIENT_LOGOS.map(([,src,width,height])=>'<li><img src="'+src+'" alt="" width="'+width+'" height="'+height+'" loading="lazy"></li>').join("")+'</ul></div></section>'+
+    '<section class="about-v2-cta-wrap"><div class="corp-wrap"><div class="about-v2-cta"><div><h2>'+e(p.ctaTitle)+'</h2><p>'+e(p.ctaBody)+'</p></div><a class="about-v2-light" href="'+e(v2PageUrl("contact"))+'">'+e(t.cta)+' →</a></div></div></section>'+
+    '<section class="v2-news v2-section"><div class="v2-wrap">'+v2Heading(home.newsletterLabel,home.newsletterTitle)+'<div class="v2-news-fields"><label><span class="sr-only">'+e(home.firstName)+'</span><input type="text" autocomplete="given-name" placeholder="'+e(home.firstName)+'"></label><label><span class="sr-only">'+e(home.lastName)+'</span><input type="text" autocomplete="family-name" placeholder="'+e(home.lastName)+'"></label><label><span class="sr-only">'+e(home.emailLabel)+'</span><input type="email" autocomplete="email" placeholder="'+e(home.emailLabel)+'"></label><button class="v2-subscribe" type="button">Subscribe</button></div><p class="v2-news-notice">'+e(home.newsletterStatus)+'</p><p class="v2-news-status" role="status" hidden>Coming soon</p></div></section>'+
+    '<section class="v2-faq v2-section"><div class="v2-wrap v2-faq-content"><h2 class="v2-heading">FAQ</h2><a class="v2-faq-button" href="'+e(v2PageUrl("faq"))+'">'+e(home.faqLink)+' →</a></div></section>';
+}
+function bindAboutPage() {
   document.querySelector(".v2-subscribe").addEventListener("click",()=>{document.querySelector(".v2-news-status").hidden=false});
 }

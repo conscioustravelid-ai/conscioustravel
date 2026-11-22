@@ -16,11 +16,12 @@ const pilotStudy = JSON.parse(read('scripts/fixtures/site-v2-study.json'));
 const pilotSport = JSON.parse(read('scripts/fixtures/site-v2-sport.json'));
 const pilotCsr = JSON.parse(read('scripts/fixtures/site-v2-csr.json'));
 const pilotRide = JSON.parse(read('scripts/fixtures/site-v2-ride.json'));
+const pilotAbout = JSON.parse(read('scripts/fixtures/site-v2-about.json'));
 for (const page of registry.pages) {
   const id = renderSite(root, page, 'id', { year: registry.renderYear });
   const en = renderSite(root, page, 'en', { year: registry.renderYear });
   const before = baseline.pages.find(item => item.key === page.key);
-  const isPilot = ['home', 'corporateHub', 'study', 'sport', 'csr', 'ride'].includes(page.key);
+  const isPilot = ['home', 'corporateHub', 'study', 'sport', 'csr', 'ride', 'about'].includes(page.key);
   if (!isPilot) {
     assert.equal(hash(id.primary), before.primarySha256, `${page.key}: approved ID primary HTML changed`);
     assert.equal(hash(id.footer), before.footerSha256, `${page.key}: ID footer changed`);
@@ -34,11 +35,11 @@ for (const page of registry.pages) {
     assert.equal(source.includes('href="/css/v2.css?'), isPilot, `${page.key}/${locale}: stylesheet scope`);
     if (isPilot) {
       for (const name of ['header', 'primary', 'footer']) {
-        const expected = page.key === 'home' ? pilotHome : page.key === 'study' ? pilotStudy : page.key === 'sport' ? pilotSport : page.key === 'csr' ? pilotCsr : page.key === 'ride' ? pilotRide : pilotCorporate;
+        const expected = page.key === 'home' ? pilotHome : page.key === 'study' ? pilotStudy : page.key === 'sport' ? pilotSport : page.key === 'csr' ? pilotCsr : page.key === 'ride' ? pilotRide : page.key === 'about' ? pilotAbout : pilotCorporate;
         assert.equal(hash(rendered[name]), expected[locale][name], `${page.key}/${locale}: V.2 ${name} changed`);
       }
       assert.match(rendered.header, /class="v2-announcement"/);
-      assert.match(rendered.header, page.key === 'home' ? /data-wa-key="general"/ : page.key === 'study' ? /data-wa-key="study"/ : page.key === 'csr' ? /data-wa-key="csr"/ : /data-wa-key="corporate"/);
+      assert.match(rendered.header, ['home','about'].includes(page.key) ? /data-wa-key="general"/ : page.key === 'study' ? /data-wa-key="study"/ : page.key === 'csr' ? /data-wa-key="csr"/ : /data-wa-key="corporate"/);
       assert.match(rendered.primary, /fetchpriority="high"/);
     }
     if (page.key === 'home') {
@@ -57,6 +58,12 @@ for (const page of registry.pages) {
       assert.match(rendered.primary, /corporate-hero-desktop.webp/);
       assert.equal((rendered.primary.match(/class="corp-package"/g) || []).length, 14);
       assert.doesNotMatch(rendered.primary, /<form\b/);
+    }
+    if (page.key === 'about') {
+      assert.match(rendered.primary, /merlin-ohara.webp/);
+      assert.equal((rendered.primary.match(/class="about-v2-person"/g) || []).length, 5);
+      assert.match(rendered.primary, /id="about-story"/);
+      assert.match(rendered.primary, /id="about-team"/);
     }
     if (page.key === 'ride') {
       assert.equal((rendered.primary.match(/class="ride-car"/g) || []).length, 7);

@@ -42,7 +42,7 @@ export function validateSite(rootDir = root) {
     assert.ok(scripts.every((position, index) => position > 0 && (index === 0 || position > scripts[index - 1])), `${route}: script order`);
     assert.ok(!/\bundefined\b|\[object Object\]|\/en\/blog\//.test(html), `${route}: invalid output`);
     if (locale === 'en') {
-      assert.equal((html.match(/href="\/blog\/" hreflang="id">Blog \(Bahasa Indonesia\)/g) || []).length, ['home', 'corporateHub', 'study', 'sport', 'csr', 'ride'].includes(page.key) ? 1 : 2, `${route}: explicit ID Blog links`);
+      assert.equal((html.match(/href="\/blog\/" hreflang="id">Blog \(Bahasa Indonesia\)/g) || []).length, ['home', 'corporateHub', 'study', 'sport', 'csr', 'ride', 'about'].includes(page.key) ? 1 : 2, `${route}: explicit ID Blog links`);
       assert.ok(!/\b(?:membantu|perjalanan|Hubungi|Pilih layanan|Mohon lengkapi)\b/.test(html.slice(html.indexOf('site:primary:start'), html.indexOf('site:primary:end'))), `${route}: unexpected ID primary copy`);
     }
     documents.set(route, { html, ids });

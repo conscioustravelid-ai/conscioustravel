@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "inputFingerprint": "ca04640b73dd1723a3e66feb395b63d6d0d1dfc9d7a837f70454d439c55e500a",
+  "inputFingerprint": "a90c88e389cdd4159496ab3d60b2764ea0c6ba2e83e55065eaf935d289b633e6",
   "ownedEnFiles": [
     "en/index.html",
     "en/corporate-packages/index.html",
@@ -289,7 +289,9 @@
       "primary-navigation",
       "corporate-menu",
       "experiences-menu",
-      "about-menu"
+      "about-menu",
+      "about-story",
+      "about-team"
     ],
     "/en/about/": [
       "main-content",
@@ -299,7 +301,9 @@
       "primary-navigation",
       "corporate-menu",
       "experiences-menu",
-      "about-menu"
+      "about-menu",
+      "about-story",
+      "about-team"
     ],
     "/impact/": [
       "main-content",
@@ -582,14 +586,14 @@
       "page": "about",
       "locale": "id",
       "path": "/about/",
-      "fingerprint": "b7df060c7eca012bca1f1b342d1b8b09fa6c2b801d467d0bbb8a9ba9b6ec7577"
+      "fingerprint": "2eb830734a5d7d95ae15d6ccc087701fd6e19d6c09ed51d8620a5ec2add63915"
     },
     {
       "file": "en/about/index.html",
       "page": "about",
       "locale": "en",
       "path": "/en/about/",
-      "fingerprint": "f46d0e11dae4b1bba4c2ebf32c1c66271ea5a045c642b8b82435e0bab9d0ea69"
+      "fingerprint": "259f96b5d252a0db9c18ba984e819518deaf525525c167b6a2b57dce73a8f20a"
     },
     {
       "file": "impact/index.html",
