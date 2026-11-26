@@ -3,6 +3,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { CONNECTION_TEST_SLUG, SITE_ORIGIN } from './lib/sanity-config.mjs'
 import { normalizeSlug } from './lib/blog-normalize.mjs'
+import { stripAllowedMapFrames } from './lib/blog-map.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const blogRoot = path.join(root, 'blog')
@@ -38,7 +39,7 @@ async function validatePage(relative, { article = false } = {}) {
   if (article) {
     const body = html.match(/<div class="container blog-prose" data-blog-article-body>([\s\S]*?)<\/div><!-- \/blog-article-body -->/i)?.[1] || ''
     check(body.trim().length > 0, `${relative}: body artikel kosong`)
-    check(!/<(?:script|iframe|object|embed)\b|javascript:/i.test(body), `${relative}: HTML tidak aman`)
+    check(!/<(?:script|iframe|object|embed)\b/i.test(stripAllowedMapFrames(body)) && !/javascript:/i.test(body), `${relative}: HTML tidak aman`)
     check(!/<[^>]+\son(?:error|click)=/i.test(body), `${relative}: event handler tidak aman`)
     const pageIds = [...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1])
     check(new Set(pageIds).size === pageIds.length, `${relative}: duplicate id attribute ditemukan`)

@@ -1,4 +1,5 @@
 import {escapeAttribute, escapeHtml, safeUrl} from './html-utils.mjs'
+import {renderMap} from './blog-map.mjs'
 
 const CALLOUT_LABELS = {tip:'Tip',important:'Penting',warning:'Perhatian',goodToKnow:'Good to Know'}
 const CTA_DESTINATIONS = new Set(['whatsapp','contact','experiences','corporatePackages','customInternal'])
@@ -138,6 +139,7 @@ function calloutHtml(block){const label=CALLOUT_LABELS[block.type];return `<asid
 const CTA_HREF={contact:'/contact/#inquiry',experiences:'/experiences/',corporatePackages:'/corporate-packages/'}
 function ctaHtml(block,articleSlug){const href=block.destinationType==='customInternal'?block.customPath:(CTA_HREF[block.destinationType]||'/contact/#inquiry');const wa=block.destinationType==='whatsapp';return `<section class="blog-reader-cta blog-reader-cta--${block.style}" aria-label="Ajakan bertindak">${block.eyebrow?`<p class="blog-reader-cta-eyebrow">${escapeHtml(block.eyebrow)}</p>`:''}<h3>${escapeHtml(block.title)}</h3>${block.description?`<p>${escapeHtml(block.description)}</p>`:''}<a class="blog-reader-cta-link" href="${escapeAttribute(href)}"${wa?' target="_blank" rel="noopener noreferrer" data-wa-key="general"':''} data-blog-reader-cta data-tracking-id="${escapeAttribute(block.trackingId)}" data-destination-type="${escapeAttribute(block.destinationType)}" data-article-slug="${escapeAttribute(articleSlug)}">${escapeHtml(block.buttonLabel)}</a></section>`}
 export function renderReaderBlock(block,{articleSlug,precedingHeadingId}={}){
+  if(block?._type==='mapEmbed') return renderMap(block)
   if(block?._type==='table')return tableHtml(block)
   if(block?._type==='itineraryBlock')return itineraryHtml(block,{precedingHeadingId})
   if(block?._type==='calloutBlock')return calloutHtml(block)
